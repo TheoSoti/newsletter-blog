@@ -3,7 +3,14 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+).splice(2);
 ---
 
 <!doctype html>
@@ -16,37 +23,87 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Hero />
 
 		<main>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
+			<h2>Latest articles:</h2>
 			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.slug}/`}>
+								<img width={720} height={360} src={post.data.heroImage} alt="" />
+								<h4 class="title">{post.data.title}</h4>
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+							</a>
+						</li>
+					))
+				}
 			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		padding: 1em 0;
+	}
+	ul {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 20px;
+		list-style-type: none;
+		padding: 0;
+	}
+	li {
+		border: 2px solid rgba(var(--black));
+		border-radius: 6px;
+		box-shadow: var(--box-shadow);
+		transition-property: all;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+		background: white;
+		width: 100%;
+    margin: auto;
+	}
+	li:hover {
+		box-shadow: 0 0 rgba(var(--black));
+		transform: translateY(6px);
+	}
+	img {
+		border-radius: 0;
+		border-bottom: 2px solid rgba(var(--black));
+		object-fit: cover;
+		width: 100%;
+		height: 150px;
+	}
+	a {
+		text-decoration: none;
+	}
+	h4, p {
+		padding: 0 0.5rem;
+	}
+	h4 {
+		font-size: 1em;
+	}
+	p {
+		margin: 0 0 1rem;
+		font-size: 0.8rem;
+	}
+	@media (width > 600px) {
+		ul {
+			grid-template-columns: 1fr 1fr;
+		}
+		h4, p {
+			padding: 0 1rem;
+		}
+	}
+	@media (width > 1024px) {
+		ul {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+		h4, p {
+			padding: 0 1.5rem;
+		}
+	}
+</style>
