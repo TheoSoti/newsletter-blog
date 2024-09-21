@@ -9,7 +9,6 @@ const today = new Date();
 		<div class="copy">
 			<h2>TheoSoti</h2>
 			<Newsletter></Newsletter>
-			<p>&copy; {today.getFullYear()} Theodore Lefevre</p>
 		</div>
 		<div class="right">
 			<h4>Find me online</h4>
@@ -47,6 +46,7 @@ const today = new Date();
 				</a>
 			</div>
 		</div>
+		<p>&copy; {today.getFullYear()} Theodore Lefevre</p>
 	</div>
 </footer>
 <style>
@@ -57,8 +57,6 @@ const today = new Date();
 		border-top: 4px solid rgba(var(--black));
 	}
 	.container {
-		display: flex;
-		flex-direction: column;
 		width: 1100px;
     max-width: calc(100% - 2em);
 		margin: auto;
@@ -68,8 +66,6 @@ const today = new Date();
 	}
 	p {
 		margin: 0;
-	}
-	.copy p {
 		font-size: 0.8em;
 	}
 	.social-links {
@@ -78,23 +74,33 @@ const today = new Date();
 		gap: 1em;
 		margin: 0;
 	}
+	.social-links svg {
+		display: block;
+	}
 	.social-links a {
 		text-decoration: none;
 		color: rgb(var(--black));
+		border: 2px solid rgba(var(--black));
+		box-shadow: var(--box-shadow);
+		border-radius: 6px;
+		transition-property: all;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 0.15s;
+		padding: 0.4rem 0.5rem;
 	}
-	.social-links a:hover {
-		color: var(--accent-dark);
+	.social-links a:hover,
+	.social-links a:focus {
+		box-shadow: 0 0 rgba(var(--black));
+		transform: translateY(6px);
 	}
 	svg {
 		width: 25px;
 	}
 	@media (width > 600px) {
 		.container {
-			flex-direction: row;
-			gap: 20px;
-		}
-		.copy {
-			width: calc(50% - 10px);
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			column-gap: 20px;
 		}
 	}
 </style>
