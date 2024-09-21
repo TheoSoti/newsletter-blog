@@ -79,12 +79,15 @@ const posts = (await getCollection('blog')).sort(
 	}
 	a {
 		text-decoration: none;
+		display: flex;
+    flex-direction: column;
 	}
 	h4, p {
 		padding: 0 0.5rem;
 	}
 	h4 {
 		font-size: 1em;
+		margin-top: 1em;
 	}
 	p {
 		margin: 0 0 1rem;

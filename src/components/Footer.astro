@@ -1,12 +1,18 @@
 ---
+import Newsletter from './Newsletter.astro';
+
 const today = new Date();
 ---
 
 <footer>
 	<div class="container">
-		<p class="copy">&copy; {today.getFullYear()} © Theodore Lefevre</p>
+		<div class="copy">
+			<h2>TheoSoti</h2>
+			<Newsletter client:load></Newsletter>
+			<p>&copy; {today.getFullYear()} Theodore Lefevre</p>
+		</div>
 		<div class="right">
-			<p>Find me online</p>
+			<h4>Find me online</h4>
 
 			<div class="social-links">
 				<a href="https://www.linkedin.com/in/theodorelefevre/" target="_blank">
@@ -63,8 +69,8 @@ const today = new Date();
 	p {
 		margin: 0;
 	}
-	.copy {
-		order: 1;
+	.copy p {
+		font-size: 0.8em;
 	}
 	.social-links {
 		display: flex;
@@ -85,10 +91,10 @@ const today = new Date();
 	@media (width > 600px) {
 		.container {
 			flex-direction: row;
+			gap: 20px;
 		}
 		.copy {
-			order: 0;
-			width: 50%;
+			width: calc(50% - 10px);
 		}
 	}
 </style>

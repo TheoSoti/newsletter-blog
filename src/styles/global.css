@@ -24,6 +24,13 @@
 }
 @font-face {
 	font-family: 'PlusJakartaSans';
+	src: url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'PlusJakartaSans';
 	src: url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
 	font-weight: 700;
 	font-style: normal;
@@ -37,8 +44,8 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: var(--background);
-	background-size: 100% 600px;
+	background-color: var(--background);
+	background-image: url(background-write.svg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
@@ -61,6 +68,7 @@ h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
+	font-weight: 600;
 }
 h1 {
 	font-size: 2.5em;
@@ -148,9 +156,11 @@ hr {
 	transition-property: all;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 0.15s;
+	font-weight: 600;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
 	box-shadow: 0 0 rgba(var(--black));
 	transform: translateY(6px);
 }
