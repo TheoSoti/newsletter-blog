@@ -24,46 +24,49 @@
   form {
     margin: 20px 0;
   }
-  form.formkit-form .subscribe-text {
+  ul {
+    margin: 0;
+  }
+  .subscribe-text {
     font-size: 0.75em;
-    margin-top: 0;
+    margin: 0 0 0.5em;
     line-height: 1.4em;
   }
-  form.formkit-form.seva-form .formkit-fields {
+  .formkit-fields {
+    display: flex;
+    flex-wrap: wrap;
     row-gap: 20px;
     column-gap: 10px;
   }
-  form.formkit-form.seva-form .formkit-field {
+  .formkit-field {
     flex-basis: clamp(100px, 100%, 240px);
     max-width: 240px;
     margin: 0;
   }
-  form.formkit-form.seva-form button.button.formkit-submit {
+  button.button.formkit-submit {
     max-width: 130px;
     font-weight: 600;
   }
-  form.formkit-form.seva-form .formkit-input {
+  .formkit-input {
     box-shadow: var(--box-shadow);
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 0.15s;
+    width: 100%;
+    padding: 0 1rem;
   }
-  form.formkit-form.seva-form .formkit-input:hover,
-  form.formkit-form.seva-form .formkit-input:focus {
+  .formkit-input:hover,
+  .formkit-input:focus {
     box-shadow: 0 0 rgba(var(--black));
     transform: translateY(6px);
   }
-  form.formkit-form.seva-form .formkit-input,
+  .formkit-input,
   .button {
     height: 45px;
     border: 2px solid rgba(var(--black));
     border-radius: 6px;
     font-family: 'PlusJakartaSans', monospace, sans-serif;
     font-size: 0.8em;
-  }
-  @media (width > 600px) {
-    form {
-      margin: 0;
-    }
+    flex-shrink: 0;
   }
 </style>
