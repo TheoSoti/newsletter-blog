@@ -12,6 +12,13 @@ import { SITE_TITLE } from '../consts';
 			<span></span>
 		</button>
 		<div popover id="mobile-navigation">
+			<div class="drawer-top">
+				<span>Menu</span>
+				<button class="mobile-close button" popovertarget="mobile-navigation" popovertargetaction="hide">
+					<span></span>
+					<span></span>
+				</button>
+			</div>
 			<div class="drawer-links">
 				<HeaderLink href="/">Home</HeaderLink>
 				<HeaderLink href="/blog">Blog</HeaderLink>
@@ -97,11 +104,23 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		flex-direction: column;
 	}
+	#mobile-navigation .drawer-links a:first-child {
+		border-top: 2px solid rgba(var(--black));
+	}
 	#mobile-navigation .drawer-links a {
 		border-bottom: 2px solid rgba(var(--black));
 	}
 	#mobile-navigation .hireme {
 		margin: 20px auto 0 auto;
+	}
+	.drawer-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.drawer-top span {
+		padding-left: 0.5rem;
+		font-weight: 700;
 	}
 	nav button.mobile-menu {
 		cursor: pointer;
@@ -119,7 +138,30 @@ import { SITE_TITLE } from '../consts';
 	.global-links {
 		display: none;
 	}
-	
+	.mobile-close {
+		cursor: pointer;
+		width: fit-content;
+		padding: 0.8rem 1rem;
+		margin: 0.5rem 0.5rem 1rem auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+	.mobile-close span:first-child {
+		rotate: 45deg;
+		
+	}
+	.mobile-close span {
+		width: 20px;
+		height: 2px;
+		background-color: rgba(var(--black));
+		border-radius: 6px;
+		rotate: -45deg;
+		transform-origin: center;
+		position: absolute;
+	}
 
 	@media (min-width: 600px) {
 		.global-links {
