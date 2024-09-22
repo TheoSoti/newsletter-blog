@@ -1,90 +1,98 @@
 ---
 import { Picture } from 'astro:assets';
 import profile from '../assets/profile.png';
-
 ---
 
 <div class="hero">
-  <div class="container">
-    <Picture src={profile} formats={['avif', 'webp', 'jpg']} class="profile" width="440" height="440" alt="Theo Soti profile picture"></Picture>
-    <h1 class="title">Hi there! I'm Theo.</h1>
-    
-    <div class="text">
-      <p>I'm a passionate front-end developer dedicated to sharing my knowledge in web design with a particular focus on CSS. Here's what you can expect from this blog:</p>
-      <ul>
-          <li>In-depth articles that break down complex CSS </li>
-          <li>Easy-to-understand explanations for all skill levels</li>
-          <li>Ideas and tips to help you push the boundaries of design with code</li>
-        </ul>
-    </div>
-  </div>
+	<div class="container">
+		<Picture
+			src={profile}
+			formats={['avif', 'webp', 'jpg']}
+			class="profile"
+			width="440"
+			height="440"
+			alt="Theo Soti profile picture"
+		/>
+		<h1 class="title">Hi there! I'm Theo.</h1>
+
+		<div class="text">
+			<p>
+				I'm a passionate front-end developer dedicated to sharing my knowledge in web design with a particular focus on
+				CSS. Here's what you can expect from this blog:
+			</p>
+			<ul>
+				<li>In-depth articles that break down complex CSS</li>
+				<li>Easy-to-understand explanations for all skill levels</li>
+				<li>Ideas and tips to help you push the boundaries of design with code</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
-
 <style>
-  .hero {
-    border-bottom: 4px solid rgba(var(--black));
-    background-image: url(background.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .container {
-    width: 1100px;
-    max-width: calc(100% - 2em);
-    margin: auto;
-    padding: 1em 0;
-    display: grid;
-  }
-  .profile {
-    display: none;
-    border-radius: 50%;
-    border: 2px solid rgba(var(--black));
-    flex-shrink: 0;
-    transition: width 0.3s ease;
-  }
-  ul {
-    margin: 0;
-  }
-  @media (width > 600px) {
-    .container {
-      padding: 3em 0;
-      grid-template-rows: 80px 1fr;
-      grid-template-columns: 100px 1fr;
-      align-items: center;
-      grid-template-areas:
-      'avatar title'
-      'text text';
-    }
+	.hero {
+		border-bottom: 4px solid rgba(var(--black));
+		background-image: url(background.svg);
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.container {
+		width: 1100px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+		padding: 1em 0;
+		display: grid;
+	}
+	.profile {
+		display: none;
+		border-radius: 50%;
+		border: 2px solid rgba(var(--black));
+		flex-shrink: 0;
+		transition: width 0.3s ease;
+	}
+	ul {
+		margin: 0;
+	}
+	@media (width > 600px) {
+		.container {
+			padding: 3em 0;
+			grid-template-rows: 80px 1fr;
+			grid-template-columns: 100px 1fr;
+			align-items: center;
+			grid-template-areas:
+				'avatar title'
+				'text text';
+		}
 
-    .profile {
-      display: block;
-      grid-area: avatar;
-      width: 80px;
-    }
-        
-    .title {
-      grid-area: title;
-    }
+		.profile {
+			display: block;
+			grid-area: avatar;
+			width: 80px;
+		}
 
-    .text {
-      grid-area: text;
-    }
-  }
+		.title {
+			grid-area: title;
+		}
 
-  @media (width > 1024px) {
-    .container {
-      grid-template-rows: 50px 1fr;
-      grid-template-columns: 240px 1fr;
-      column-gap: 50px;
-      align-items: flex-start;
-      grid-template-areas:
-      'avatar title'
-      'avatar text';
-    }
+		.text {
+			grid-area: text;
+		}
+	}
 
-    .profile {
-      width: 100%;
-      margin-top: 10px;
-    }
-  }
+	@media (width > 1024px) {
+		.container {
+			grid-template-rows: 50px 1fr;
+			grid-template-columns: 240px 1fr;
+			column-gap: 50px;
+			align-items: flex-start;
+			grid-template-areas:
+				'avatar title'
+				'avatar text';
+		}
+
+		.profile {
+			width: 100%;
+			margin-top: 10px;
+		}
+	}
 </style>

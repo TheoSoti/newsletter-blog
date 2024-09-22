@@ -8,9 +8,9 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).splice(2);
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.splice(2);
 ---
 
 <!doctype html>
@@ -64,7 +64,7 @@ const posts = (await getCollection('blog')).sort(
 		transition-duration: 0.15s;
 		background: white;
 		width: 100%;
-    margin: auto;
+		margin: auto;
 	}
 	li:hover,
 	li:focus {
@@ -81,9 +81,10 @@ const posts = (await getCollection('blog')).sort(
 	a {
 		text-decoration: none;
 		display: flex;
-    flex-direction: column;
+		flex-direction: column;
 	}
-	h4, p {
+	h4,
+	p {
 		padding: 0 0.5rem;
 	}
 	h4 {
@@ -98,7 +99,8 @@ const posts = (await getCollection('blog')).sort(
 		ul {
 			grid-template-columns: 1fr 1fr;
 		}
-		h4, p {
+		h4,
+		p {
 			padding: 0 1rem;
 		}
 	}
@@ -106,7 +108,8 @@ const posts = (await getCollection('blog')).sort(
 		ul {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
-		h4, p {
+		h4,
+		p {
 			padding: 0 1.5rem;
 		}
 	}

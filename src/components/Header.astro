@@ -55,7 +55,7 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: space-between;
 		width: 1100px;
-    max-width: calc(100% - 2em);
+		max-width: calc(100% - 2em);
 		margin: auto;
 	}
 	nav a {
@@ -73,7 +73,7 @@ import { SITE_TITLE } from '../consts';
 	nav a.hireme {
 		margin-top: -3px;
 		margin-left: 2em;
-    padding: 0.1em 0.5em;
+		padding: 0.1em 0.5em;
 		margin: auto;
 	}
 	h2 a {
@@ -83,13 +83,15 @@ import { SITE_TITLE } from '../consts';
 		height: 100dvh;
 		width: 200px;
 		margin-right: 0;
-    margin-left: auto;
+		margin-left: auto;
 		padding: 0;
 		border: 0;
 		background-color: var(--background);
 		background-image: url(background-write.svg);
 		border-left: 4px solid rgba(var(--black));
-		transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+		transition:
+			transform 0.2s ease-out,
+			opacity 0.2s ease-out;
 		transition-behavior: allow-discrete;
 		display: flex;
 		flex-direction: column;
@@ -151,7 +153,6 @@ import { SITE_TITLE } from '../consts';
 	}
 	.mobile-close span:first-child {
 		rotate: 45deg;
-		
 	}
 	.mobile-close span {
 		width: 20px;
@@ -168,12 +169,12 @@ import { SITE_TITLE } from '../consts';
 			display: flex;
 			gap: 40px;
 		}
-		nav button.mobile-menu{
+		nav button.mobile-menu {
 			display: none;
 		}
 		#mobile-navigation:popover-open {
 			opacity: 0;
-		transform: translateX(200px);
+			transform: translateX(200px);
 		}
 	}
 </style>

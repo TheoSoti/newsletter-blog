@@ -8,7 +8,7 @@
       <div class="formkit-field">
         <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email">
       </div>
-      <button data-element="submit" class="formkit-submit formkit-submit button" style="color: rgb(0, 0, 0); background-color: rgb(127, 188, 140); border-radius: 6px; font-weight: 400;">
+      <button data-element="submit" class="formkit-submit formkit-submit button">
         <div class="formkit-spinner">
           <div></div>
           <div></div>
@@ -44,8 +44,10 @@
     margin: 0;
   }
   button.button.formkit-submit {
-    max-width: 130px;
-    font-weight: 600;
+    max-width: 150px;
+    background-color: var(--accent);
+    padding: 0 0.5em;
+    color: rgaba(var(--black));
   }
   .formkit-input {
     box-shadow: var(--box-shadow);
@@ -68,5 +70,6 @@
     font-family: 'PlusJakartaSans', monospace, sans-serif;
     font-size: 0.8em;
     flex-shrink: 0;
+    font-weight: 600;
   }
 </style>
