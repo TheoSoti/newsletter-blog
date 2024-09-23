@@ -4,7 +4,7 @@ const { post, width, height } = Astro.props;
 
 <li class="card">
 	<a href={`/blog/${post.slug}/`}>
-		<img width={width} height={height} src={post.data.heroImage} alt="" />
+		<img width={width} height={height} src=`src/assets${post.data.heroImage}` alt="" />
 		<h4 class="title">{post.data.title}</h4>
 	</a>
 </li>
@@ -27,7 +27,7 @@ const { post, width, height } = Astro.props;
 		transform: translateY(6px);
 	}
 	img {
-		border-radius: 0;
+		border-radius: 4px 4px 0 0;
 		border-bottom: 2px solid rgba(var(--black));
 		object-fit: cover;
 		width: 100%;
@@ -41,6 +41,7 @@ const { post, width, height } = Astro.props;
 	h4 {
 		padding: 0.5rem 1rem;
 		font-size: 1em;
+		line-height: 1.4;
 		margin: 0;
 	}
 </style>
