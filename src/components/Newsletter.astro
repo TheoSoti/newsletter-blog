@@ -1,75 +1,92 @@
 <script is:inline src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-<form action="https://app.convertkit.com/forms/7124812/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="7124812" data-uid="db7a3d5935" data-format="inline" data-version="5">
-  <p class="subscribe-text">Want to know when I publish new content?<br/>
-    Enter your email to join my free newsletter:</p>
-  <div data-style="clean">
-    <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-    <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-      <div class="formkit-field">
-        <input class="formkit-input" name="email_address" aria-label="Email Address" placeholder="Email Address" required="" type="email">
-      </div>
-      <button data-element="submit" class="formkit-submit formkit-submit button">
-        <div class="formkit-spinner">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        Join newsletter
-      </button>
-    </div>
-  </div>
+<form
+	action="https://app.convertkit.com/forms/7124812/subscriptions"
+	class="seva-form formkit-form"
+	method="post"
+	data-sv-form="7124812"
+	data-uid="db7a3d5935"
+	data-format="inline"
+	data-version="5"
+>
+	<p class="subscribe-text">
+		Want to know when I publish new content?<br />
+		Enter your email to join my free newsletter:
+	</p>
+	<div data-style="clean">
+		<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+		<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+			<div class="formkit-field">
+				<input
+					class="formkit-input"
+					name="email_address"
+					aria-label="Email Address"
+					placeholder="Email Address"
+					required=""
+					type="email"
+				/>
+			</div>
+			<button data-element="submit" class="formkit-submit formkit-submit button">
+				<div class="formkit-spinner">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				Join newsletter
+			</button>
+		</div>
+	</div>
 </form>
 
 <style>
-  form {
-    margin: 20px 0;
-  }
-  ul {
-    margin: 0;
-  }
-  .subscribe-text {
-    font-size: 0.75em;
-    margin: 0 0 0.5em;
-    line-height: 1.4em;
-  }
-  .formkit-fields {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 20px;
-    column-gap: 10px;
-  }
-  .formkit-field {
-    flex-basis: clamp(100px, 100%, 240px);
-    max-width: 240px;
-    margin: 0;
-  }
-  button.button.formkit-submit {
-    max-width: 150px;
-    background-color: var(--accent);
-    padding: 0 0.5em;
-    color: rgaba(var(--black));
-  }
-  .formkit-input {
-    box-shadow: var(--box-shadow);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.15s;
-    width: 100%;
-    padding: 0 1rem;
-  }
-  .formkit-input:hover,
-  .formkit-input:focus {
-    box-shadow: 0 0 rgba(var(--black));
-    transform: translateY(6px);
-  }
-  .formkit-input,
-  .button {
-    height: 45px;
-    border: 2px solid rgba(var(--black));
-    border-radius: 6px;
-    font-family: 'PlusJakartaSans', monospace, sans-serif;
-    font-size: 0.8em;
-    flex-shrink: 0;
-    font-weight: 600;
-  }
+	form {
+		margin: 20px 0;
+	}
+	ul {
+		margin: 0;
+	}
+	.subscribe-text {
+		font-size: 0.75em;
+		margin: 0 0 0.5em;
+		line-height: 1.4em;
+	}
+	.formkit-fields {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	.formkit-field {
+		flex: 1;
+		min-width: 180px;
+		max-width: 240px;
+		margin: 0;
+	}
+	button.button.formkit-submit {
+		max-width: 150px;
+		background-color: var(--accent);
+		padding: 0 0.5em;
+		color: rgaba(var(--black));
+	}
+	.formkit-input {
+		box-shadow: var(--box-shadow);
+		transition-property: all;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.15s;
+		width: 100%;
+		padding: 0 1rem;
+	}
+	.formkit-input:hover,
+	.formkit-input:focus {
+		box-shadow: 0 0 rgba(var(--black));
+		transform: translateY(6px);
+	}
+	.formkit-input,
+	.button {
+		height: 45px;
+		border: 2px solid rgba(var(--black));
+		border-radius: 6px;
+		font-family: 'PlusJakartaSans', monospace, sans-serif;
+		font-size: 0.8em;
+		flex-shrink: 0;
+		font-weight: 600;
+	}
 </style>

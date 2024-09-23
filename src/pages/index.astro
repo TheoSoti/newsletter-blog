@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import Card from '../components/Card.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -25,19 +26,7 @@ const posts = (await getCollection('blog'))
 		<main>
 			<h2>Latest articles:</h2>
 			<ul>
-				{
-					posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.slug}/`}>
-								<img width={720} height={360} src={post.data.heroImage} alt="" />
-								<h4 class="title">{post.data.title}</h4>
-								<p class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
-						</li>
-					))
-				}
+				{posts.map((post) => <Card post={post} width="720" height="360" />)}
 			</ul>
 		</main>
 		<Footer />
@@ -55,62 +44,14 @@ const posts = (await getCollection('blog'))
 		list-style-type: none;
 		padding: 0;
 	}
-	li {
-		border: 2px solid rgba(var(--black));
-		border-radius: 6px;
-		box-shadow: var(--box-shadow);
-		transition-property: all;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-duration: 0.15s;
-		background: white;
-		width: 100%;
-		margin: auto;
-	}
-	li:hover,
-	li:focus {
-		box-shadow: 0 0 rgba(var(--black));
-		transform: translateY(6px);
-	}
-	img {
-		border-radius: 0;
-		border-bottom: 2px solid rgba(var(--black));
-		object-fit: cover;
-		width: 100%;
-		height: 150px;
-	}
-	a {
-		text-decoration: none;
-		display: flex;
-		flex-direction: column;
-	}
-	h4,
-	p {
-		padding: 0 0.5rem;
-	}
-	h4 {
-		font-size: 1em;
-		margin-top: 1em;
-	}
-	p {
-		margin: 0 0 1rem;
-		font-size: 0.8rem;
-	}
 	@media (width > 600px) {
 		ul {
 			grid-template-columns: 1fr 1fr;
-		}
-		h4,
-		p {
-			padding: 0 1rem;
 		}
 	}
 	@media (width > 1024px) {
 		ul {
 			grid-template-columns: 1fr 1fr 1fr;
-		}
-		h4,
-		p {
-			padding: 0 1.5rem;
 		}
 	}
 </style>
