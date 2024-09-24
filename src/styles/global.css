@@ -1,7 +1,8 @@
 :root {
-	--accent: #7fbc8c;
-	--accent-dark: #047857;
-	--background: #efeee5;
+	--accent: #95d2b3;
+	--accent-dark: #55ad9b;
+	--background: #f1f8e8;
+	--white: #fbfdfb;
 	--black: 15, 18, 25;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
@@ -14,6 +15,7 @@
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
+	unicode-range: U+00-FF, U+0100-017F;
 }
 @font-face {
 	font-family: 'PlusJakartaSans';
@@ -21,13 +23,7 @@
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
-}
-@font-face {
-	font-family: 'PlusJakartaSans';
-	src: url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+	unicode-range: U+00-FF, U+0100-017F;
 }
 * {
 	box-sizing: border-box;
@@ -80,7 +76,7 @@ h5 {
 }
 strong,
 b {
-	font-weight: 700;
+	font-weight: 600;
 }
 a {
 	color: var(--accent-dark);
