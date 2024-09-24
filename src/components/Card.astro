@@ -4,7 +4,7 @@ const { post, width, height } = Astro.props;
 
 <li class="card">
 	<a href={`/blog/${post.slug}/`}>
-		<img width={width} height={height} src=`src/assets${post.data.heroImage}` alt="" />
+		<img width={width} height={height} src={post.data.heroImage} alt={post.data.title} />
 		<h4 class="title">{post.data.title}</h4>
 	</a>
 </li>
