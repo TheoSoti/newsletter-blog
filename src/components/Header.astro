@@ -1,40 +1,44 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+import DarkMode from './DarkMode.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<button class="mobile-menu button" popovertarget="mobile-navigation" popovertargetaction="show">
-			<span></span>
-			<span></span>
-			<span></span>
-		</button>
-		<div popover id="mobile-navigation">
-			<div class="drawer-top">
-				<span>Menu</span>
-				<button class="mobile-close button" popovertarget="mobile-navigation" popovertargetaction="hide">
-					<span></span>
-					<span></span>
-				</button>
+		<div class="nav-container">
+			<DarkMode />
+			<button class="mobile-menu button" popovertarget="mobile-navigation" popovertargetaction="show">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<div popover id="mobile-navigation">
+				<div class="drawer-top">
+					<span>Menu</span>
+					<button class="mobile-close button" popovertarget="mobile-navigation" popovertargetaction="hide">
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+				<div class="drawer-links">
+					<HeaderLink href="/">Home</HeaderLink>
+					<HeaderLink href="/blog">Blog</HeaderLink>
+					<!-- <HeaderLink href="/about">About</HeaderLink> -->
+				</div>
+				<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button">Hire Me</HeaderLink>
 			</div>
-			<div class="drawer-links">
-				<HeaderLink href="/">Home</HeaderLink>
-				<HeaderLink href="/blog">Blog</HeaderLink>
-				<!-- <HeaderLink href="/about">About</HeaderLink> -->
+			<div class="global-links">
+				<div class="internal-links">
+					<HeaderLink href="/">Home</HeaderLink>
+					<HeaderLink href="/blog">Blog</HeaderLink>
+					<!-- <HeaderLink href="/about">About</HeaderLink> -->
+				</div>
+				<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button" aria-label="hire me"
+					>Hire Me</HeaderLink
+				>
 			</div>
-			<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button">Hire Me</HeaderLink>
-		</div>
-		<div class="global-links">
-			<div class="internal-links">
-				<HeaderLink href="/">Home</HeaderLink>
-				<HeaderLink href="/blog">Blog</HeaderLink>
-				<!-- <HeaderLink href="/about">About</HeaderLink> -->
-			</div>
-			<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button" aria-label="hire me"
-				>Hire Me</HeaderLink
-			>
 		</div>
 	</nav>
 </header>
@@ -44,12 +48,16 @@ import { SITE_TITLE } from '../consts';
 		padding: 1em 0;
 		background-color: var(--background);
 		background-image: url(../assets/background-write.svg);
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-		border-bottom: 4px solid rgba(var(--black));
+		border-bottom: 4px solid var(--border);
 	}
 	h2 {
 		margin: 0;
 		font-size: 2em;
+	}
+
+	.nav-container {
+		display: flex;
+		align-items: center;
 	}
 
 	nav {
@@ -62,15 +70,15 @@ import { SITE_TITLE } from '../consts';
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		color: var(--text);
 		text-decoration: none;
 	}
 	nav a.active {
 		text-decoration: none;
-		color: var(--accent-dark);
+		color: var(--accent);
 	}
 	nav .internal-links a:hover {
-		color: var(--accent-dark);
+		color: var(--accent);
 	}
 	nav a.hireme {
 		margin-top: -3px;
@@ -90,7 +98,7 @@ import { SITE_TITLE } from '../consts';
 		border: 0;
 		background-color: var(--background);
 		background-image: url(../assets/background-write.svg);
-		border-left: 4px solid rgba(var(--black));
+		border-left: 4px solid var(--border);
 		transition:
 			transform 0.2s ease-out,
 			opacity 0.2s ease-out;
@@ -109,10 +117,10 @@ import { SITE_TITLE } from '../consts';
 		flex-direction: column;
 	}
 	#mobile-navigation .drawer-links a:first-child {
-		border-top: 2px solid rgba(var(--black));
+		border-top: 2px solid var(--border);
 	}
 	#mobile-navigation .drawer-links a {
-		border-bottom: 2px solid rgba(var(--black));
+		border-bottom: 2px solid var(--border);
 	}
 	#mobile-navigation .hireme {
 		margin: 20px auto 0 auto;
@@ -136,7 +144,7 @@ import { SITE_TITLE } from '../consts';
 	.mobile-menu span {
 		width: 20px;
 		height: 2px;
-		background-color: rgba(var(--black));
+		background-color: var(--border);
 		border-radius: 6px;
 	}
 	.global-links {
@@ -159,7 +167,7 @@ import { SITE_TITLE } from '../consts';
 	.mobile-close span {
 		width: 20px;
 		height: 2px;
-		background-color: rgba(var(--black));
+		background-color: var(--border);
 		border-radius: 6px;
 		rotate: -45deg;
 		transform-origin: center;

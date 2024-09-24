@@ -1,14 +1,21 @@
 :root {
 	--accent: #95d2b3;
-	--accent-dark: #55ad9b;
 	--background: #f1f8e8;
 	--white: #fbfdfb;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--box-shadow: 0px 5px 0 rgba(var(--black));
+	--black: #0f1219;
+	--text: #0f1219;
+	--box-shadow: 0 5px #0f1219;
+	--border: #0f1219;
 }
+:root:has(.check-darkmode:checked) {
+	--accent: #55ad9b;
+	--background: #0b2823;
+	--white: rgba(15, 18, 25);
+	--text: #eeefe9;
+	--box-shadow: 0 5px #000;
+	--border: #000;
+}
+
 @font-face {
 	font-family: 'PlusJakartaSans';
 	src: url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
@@ -37,7 +44,7 @@ body {
 	background-image: url(../assets/background-write.svg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--text);
 	font-size: 20px;
 	font-weight: 400;
 	line-height: 1.7;
@@ -55,7 +62,6 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
 	line-height: 1.2;
 	font-weight: 600;
 }
@@ -87,7 +93,8 @@ a {
 a:hover {
 	color: var(--accent);
 }
-p {
+p,
+ul {
 	margin-bottom: 1em;
 }
 .prose p {
@@ -142,7 +149,7 @@ hr {
 .button {
 	box-shadow: var(--box-shadow);
 	border-radius: 6px;
-	border: 2px solid rgba(var(--black));
+	border: 2px solid var(--border);
 	background: var(--accent);
 	transition-property: all;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -153,7 +160,7 @@ hr {
 
 .button:hover,
 .button:focus {
-	box-shadow: 0 0 rgba(var(--black));
+	box-shadow: 0 0 var(--black);
 	transform: translateY(6px);
 }
 

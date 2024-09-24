@@ -73,8 +73,7 @@ const today = new Date();
 	footer {
 		padding: 1em 0 2em 0;
 		background-color: var(--background);
-		color: rgb(var(--black));
-		border-top: 4px solid rgba(var(--black));
+		border-top: 4px solid var(--border);
 		background-image: url(../assets/background-write.svg);
 	}
 	.container {
@@ -97,8 +96,8 @@ const today = new Date();
 	}
 	.social-links a {
 		text-decoration: none;
-		color: rgb(var(--black));
-		border: 2px solid rgba(var(--black));
+		color: var(--text);
+		border: 2px solid var(--border);
 		box-shadow: var(--box-shadow);
 		border-radius: 6px;
 		transition-property: all;
@@ -110,7 +109,7 @@ const today = new Date();
 	}
 	.social-links a:hover,
 	.social-links a:focus {
-		box-shadow: 0 0 rgba(var(--black));
+		box-shadow: 0 0 var(--black);
 		transform: translateY(6px);
 	}
 	svg {
