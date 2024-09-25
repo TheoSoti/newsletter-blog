@@ -24,7 +24,7 @@ const posts = (await getCollection('blog'))
 		<Hero />
 
 		<main>
-			<h2>Latest articles:</h2>
+			<h2>Latest articles</h2>
 			<ul>
 				{posts.map((post) => <Card post={post} width="720" height="360" />)}
 			</ul>
@@ -35,7 +35,7 @@ const posts = (await getCollection('blog'))
 
 <style>
 	main {
-		padding: 1em 0;
+		padding: 1em 0 1.5em;
 	}
 	ul {
 		display: grid;
@@ -43,8 +43,12 @@ const posts = (await getCollection('blog'))
 		gap: 20px;
 		list-style-type: none;
 		padding: 0;
+		margin-bottom: 0;
 	}
 	@media (width > 600px) {
+		main {
+			padding: 2em 0 2.5em;
+		}
 		ul {
 			grid-template-columns: 1fr 1fr;
 		}

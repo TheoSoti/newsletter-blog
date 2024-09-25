@@ -1,5 +1,6 @@
 :root {
 	--accent: #95d2b3;
+	--accent-dark: #55ad9b;
 	--background: #f1f8e8;
 	--white: #fbfdfb;
 	--black: #0f1219;
@@ -45,7 +46,7 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: var(--text);
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.7;
 }
@@ -66,16 +67,16 @@ h6 {
 	font-weight: 600;
 }
 h1 {
-	font-size: 2.5em;
+	font-size: 2.15em;
 }
 h2 {
-	font-size: 2em;
+	font-size: 1.8em;
 }
 h3 {
-	font-size: 1.953em;
+	font-size: 1.6em;
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.5em;
 }
 h5 {
 	font-size: 1.25em;
@@ -137,7 +138,7 @@ hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
 }
-@media (max-width: 720px) {
+@media (min-width: 600px) {
 	body {
 		font-size: 18px;
 	}

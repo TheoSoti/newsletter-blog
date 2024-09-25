@@ -1,53 +1,73 @@
-<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js"></script>
-<form
-	action="https://app.convertkit.com/forms/7124812/subscriptions"
-	class="seva-form formkit-form"
-	method="post"
-	data-sv-form="7124812"
-	data-uid="db7a3d5935"
-	data-format="inline"
-	data-version="5"
->
-	<p class="subscribe-text">
-		Want to know when I publish new content?<br />
-		Enter your email to join my free newsletter:
-	</p>
-	<div data-style="clean">
-		<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-		<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-			<div class="formkit-field">
-				<input
-					class="formkit-input"
-					name="email_address"
-					aria-label="Email Address"
-					placeholder="Email Address"
-					required=""
-					type="email"
-				/>
-			</div>
-			<button data-element="submit" class="formkit-submit formkit-submit button" aria-label="Join the newsletter">
-				<div class="formkit-spinner">
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-				Join newsletter
-			</button>
-		</div>
-	</div>
-</form>
+<section class="newsletter">
+	<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+	<div class="container">
+		<h4 class="subscribe-text">
+			Want to know when I publish new content?<span> Enter your email to join my free newsletter.</span>
+		</h4>
 
+		<form
+			action="https://app.convertkit.com/forms/7124812/subscriptions"
+			class="seva-form formkit-form"
+			method="post"
+			data-sv-form="7124812"
+			data-uid="db7a3d5935"
+			data-format="inline"
+			data-version="5"
+		>
+			<div data-style="clean">
+				<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+				<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+					<div class="formkit-field">
+						<input
+							class="formkit-input"
+							name="email_address"
+							aria-label="Email Address"
+							placeholder="Email Address"
+							required=""
+							type="email"
+						/>
+					</div>
+					<button data-element="submit" class="formkit-submit formkit-submit button" aria-label="Join the newsletter">
+						<div class="formkit-spinner">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						Join newsletter
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
 <style>
+	.newsletter {
+		padding: 1em;
+		border-top: 4px solid var(--border);
+	}
+	.container {
+		border: 4px solid var(--border);
+		background: var(--white);
+		border-bottom-width: 8px;
+		max-width: 1100px;
+		padding: 1em;
+		width: 100%;
+		margin: 0 auto;
+	}
 	form {
-		margin: 20px 0;
+		margin: 1em 0 0;
 	}
 	ul {
 		margin: 0;
 	}
 	.subscribe-text {
-		font-size: 0.75em;
+		font-size: 1.2em;
 		margin: 0 0 0.5em;
 		line-height: 1.4em;
+	}
+	.subscribe-text span {
+		display: block;
+		margin-top: 0.5em;
 	}
 	.formkit-fields {
 		display: flex;
@@ -61,16 +81,11 @@
 		margin: 0;
 	}
 	button.button.formkit-submit {
-		max-width: 150px;
 		background-color: var(--accent);
 		padding: 0 0.5em;
 		color: var(--text);
 	}
 	.formkit-input {
-		box-shadow: var(--box-shadow);
-		transition-property: all;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-duration: 0.15s;
 		width: 100%;
 		padding: 0 1rem;
 		background-color: var(--white);
@@ -79,7 +94,6 @@
 	.formkit-input:hover,
 	.formkit-input:focus {
 		box-shadow: 0 0 var(--black);
-		transform: translateY(6px);
 	}
 	.formkit-input,
 	.button {
@@ -87,8 +101,43 @@
 		border: 2px solid var(--border);
 		border-radius: 6px;
 		font-family: 'PlusJakartaSans', monospace, sans-serif;
-		font-size: 0.8em;
+		font-size: 1em;
 		flex-shrink: 0;
 		font-weight: 600;
+	}
+	@media (width > 600px) {
+		.container {
+			padding: 2em;
+		}
+		.newsletter {
+			padding: 2em 1em;
+		}
+		.subscribe-text {
+			margin-bottom: 0;
+		}
+	}
+
+	@media (width > 740px) {
+		.container {
+			display: flex;
+			gap: 50px;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.subscribe-text {
+			flex-shrink: 0;
+		}
+
+		form {
+			margin-top: 0;
+		}
+	}
+
+	@media (width > 1024px) {
+		.container {
+			padding: 2em 3em;
+		}
 	}
 </style>
