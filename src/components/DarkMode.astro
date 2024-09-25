@@ -1,3 +1,7 @@
+---
+// let isChecked = window.localStorage.getItem('darkMode') === 'true';
+---
+
 <label>
 	<input type="checkbox" class="check-darkmode" />
 	<div class="image-check">
@@ -40,6 +44,15 @@
 		</svg>
 	</div>
 </label>
+
+<script is:inline>
+	const checkbox = document.querySelector('.check-darkmode');
+	checkbox.checked = localStorage.getItem('darkMode') === 'true';
+
+	checkbox.addEventListener('change', function (event) {
+		localStorage.setItem('darkMode', event.currentTarget.checked);
+	});
+</script>
 
 <style>
 	label {
