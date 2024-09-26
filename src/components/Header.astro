@@ -182,6 +182,9 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	@media (min-width: 600px) {
+		#mobile-navigation {
+			display: none;
+		}
 		header {
 			padding: 0;
 		}
@@ -191,10 +194,6 @@ import { SITE_TITLE } from '../consts';
 		}
 		nav button.mobile-menu {
 			display: none;
-		}
-		#mobile-navigation:popover-open {
-			opacity: 0;
-			transform: translateX(200px);
 		}
 	}
 </style>
