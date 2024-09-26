@@ -45,7 +45,7 @@ const posts = (await getCollection('blog'))
 		padding: 0;
 		margin-bottom: 0;
 	}
-	@media (width > 600px) {
+	@media (min-width: 600px) {
 		main {
 			padding: 2em 0 2.5em;
 		}
@@ -53,7 +53,7 @@ const posts = (await getCollection('blog'))
 			grid-template-columns: 1fr 1fr;
 		}
 	}
-	@media (width > 1024px) {
+	@media (min-width: 1024px) {
 		ul {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
