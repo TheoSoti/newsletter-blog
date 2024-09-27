@@ -1,9 +1,5 @@
----
-// let isChecked = window.localStorage.getItem('darkMode') === 'true';
----
-
-<label tabindex="0">
-	<input type="checkbox" class="check-darkmode" />
+<input type="checkbox" id="darkmode" class="check-darkmode" />
+<label for="darkmode">
 	<div class="image-check">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +51,17 @@
 </script>
 
 <style>
+	input:focus + label {
+		outline-offset: 2px;
+		outline: -webkit-focus-ring-color auto 1px;
+		outline: 2px solid var(--text);
+		border-radius: 6px;
+	}
 	label {
 		margin-right: 1rem;
+		transition:
+			outline-offset 0.2s ease,
+			outline 0.2s ease;
 	}
 	.image-check {
 		position: relative;
@@ -75,12 +80,11 @@
 		animation: bounce 0.6s ease-in-out;
 	}
 	input {
-		display: none;
 		width: 1px;
 		height: 1px;
+		margin-top: -5px;
 		border: 0;
 		opacity: 0;
-		visibility: hidden;
 		position: absolute;
 		top: 0;
 		left: 0;
