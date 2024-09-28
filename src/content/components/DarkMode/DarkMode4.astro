@@ -1,0 +1,54 @@
+<main class="demo4">
+	<input id="demo4-darkmode" type="checkbox" />
+	<label for="demo4-darkmode"> Dark mode </label>
+
+	<div class="demo4-content">
+		<h1>CSS-only dark mode</h1>
+		<p>
+			Lorem ipsum dolor sit amet, <a href="#">a link</a> consectetur adipiscing elit . Quisque maximus justo quis sapien
+			ornare vehicula vitae at est <a href="#">another link</a>.
+		</p>
+	</div>
+</main>
+
+<script is:inline>
+	const democheckbox = document.querySelector('#demo4-darkmode');
+
+	// When the checkbox state change, we store its state in the localStorage
+	democheckbox.addEventListener('change', function (event) {
+		localStorage.setItem('demo-darkmode', event.currentTarget.checked);
+	});
+
+	// Change the checkbox state depending of the value stored in the localStorage
+	democheckbox.checked = localStorage.getItem('demo-darkmode') === 'true';
+</script>
+
+<style>
+	.demo4 {
+		--c-text: #493c37;
+		--c-background: #eddfe0;
+		--c-primary: #b392f0;
+
+		padding: 1em;
+		max-width: 100%;
+	}
+	h1,
+	p,
+	label {
+		color: var(--c-text);
+	}
+	main {
+		background-color: var(--c-background);
+	}
+	a {
+		color: var(--c-primary);
+	}
+	p {
+		margin-bottom: 0;
+	}
+	.demo4:has(#demo4-darkmode:checked) {
+		--c-text: #fff;
+		--c-background: #333;
+		--c-interactive: #98fb98;
+	}
+</style>

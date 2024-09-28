@@ -1,0 +1,73 @@
+<main class="demo2">
+	<input id="demo2-darkmode" type="checkbox" />
+	<label for="demo2-darkmode"> Dark mode </label>
+
+	<div class="demo2-content">
+		<h1>CSS-only dark mode</h1>
+		<p>
+			Lorem ipsum dolor sit amet, <a href="#">a link</a> consectetur adipiscing elit . Quisque maximus justo quis sapien
+			ornare vehicula vitae at est <a href="#">another link</a>.
+		</p>
+	</div>
+	<div class="demo2-interactive">
+		<label>
+			<input class="text-color" type="color" value="#705c53" />
+			--c-text
+		</label>
+		<label>
+			<input class="background-color" type="color" value="#eddfe0" />
+			--c-background
+		</label>
+		<label>
+			<input class="primary-color" type="color" value="#b392f0" />
+			--c-primary
+		</label>
+	</div>
+</main>
+
+<script is:inline>
+	const text = document.querySelector('.text-color');
+	const background = document.querySelector('.background-color');
+	const primary = document.querySelector('.primary-color');
+	const main = document.querySelector('.demo2');
+
+	text.addEventListener('change', () => {
+		main.style.setProperty('--c-text', text.value);
+	});
+	background.addEventListener('change', () => {
+		main.style.setProperty('--c-background', background.value);
+	});
+	primary.addEventListener('change', () => {
+		main.style.setProperty('--c-primary', primary.value);
+	});
+</script>
+
+<style>
+	.demo2 {
+		--c-text: #493c37;
+		--c-background: #eddfe0;
+		--c-primary: #b392f0;
+
+		padding: 1em;
+		max-width: 100%;
+	}
+	.demo2-interactive {
+		gap: 0.5em;
+		display: flex;
+		flex-direction: column;
+	}
+	.demo2-interactive input {
+		margin-right: 0.5em;
+	}
+	h1,
+	p,
+	label {
+		color: var(--c-text);
+	}
+	main {
+		background-color: var(--c-background);
+	}
+	a {
+		color: var(--c-primary);
+	}
+</style>

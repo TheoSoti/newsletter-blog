@@ -23,7 +23,9 @@
 }
 @font-face {
 	font-family: 'PlusJakartaSans';
-	src: url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+	src:
+		url('/fonts/PlusJakartaSans-Regular.woff2') format('woff2'),
+		url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
@@ -31,8 +33,20 @@
 }
 @font-face {
 	font-family: 'PlusJakartaSans';
-	src: url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+	src:
+		url('/fonts/PlusJakartaSans-Medium.woff2') format('woff2'),
+		url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
 	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+00-FF, U+0100-017F;
+}
+@font-face {
+	font-family: 'PlusJakartaSans';
+	src:
+		url('/fonts/PlusJakartaSans-Bold.woff2') format('woff2'),
+		url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
+	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
 	unicode-range: U+00-FF, U+0100-017F;
@@ -77,6 +91,7 @@ h2 {
 	font-size: 1.8em;
 }
 h3 {
+	margin-top: 1em;
 	font-size: 1.6em;
 }
 h4 {
@@ -87,7 +102,7 @@ h5 {
 }
 strong,
 b {
-	font-weight: 600;
+	font-weight: 800;
 }
 a {
 	color: var(--accent-dark);
@@ -100,7 +115,7 @@ a:hover {
 }
 p,
 ul {
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 .prose p {
 	margin-bottom: 2em;
@@ -128,6 +143,8 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	tab-size: 2;
+	margin-bottom: 2em;
 }
 pre > code {
 	all: unset;

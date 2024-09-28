@@ -1,0 +1,27 @@
+<main class="demo">
+	<input id="demo-darkmode" type="checkbox" />
+	<label for="demo-darkmode"> Dark mode </label>
+
+	<div class="demo-content">
+		<h1>CSS-only dark mode</h1>
+		<p>
+			Lorem ipsum dolor sit amet, <a href="#">a link</a> consectetur adipiscing elit . Quisque maximus justo quis sapien
+			ornare vehicula vitae at est <a href="#">another link</a>.
+		</p>
+	</div>
+</main>
+
+<style>
+	.demo {
+		padding: 1em;
+		max-width: 100%;
+	}
+	h1,
+	p,
+	a {
+		color: revert;
+	}
+	p {
+		margin-bottom: 0;
+	}
+</style>

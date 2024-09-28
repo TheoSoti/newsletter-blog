@@ -1,10 +1,165 @@
 ---
-title: 'Create a darkmode without JavaScript'
+title: 'Create a darkmode - the easy way'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Sep 23 2024'
+pubDate: 'Sep 30 2024'
 heroImage: '/darkmode.jpg'
 ---
 
-## Ever wondered how to create a darkmode?
+## Why implement a darkmode
 
-blabla
+We are seeing dark mode becoming increasingly common across the web.<br/>
+Some find it easier to read with a darker background, while others still prefer the classic light mode. It really depends on the user and their environment. Things like screen time, lighting, and personal comfort all play a role.
+Letting users choose their mode is a simple way to make their visit more comfortable and personalized.
+
+## How to implement it
+
+There are several ways to implement dark mode. Some are straightforward, while others can be more complex, depending on the final result you're aiming for.
+
+In this post, I'll walk you through my method for creating a simple dark mode using minimal JavaScript. This is the same approach I've used on this site. Feel free to check it out! ;)
+
+This method uses 4 simple principles :
+
+- Utilizing **CSS variables** to easily switch color values when toggling between modes
+- Implementing a **checkbox** (or any other input like a select menu) to capture the user's mode preference
+- Leveraging **localStorage** to ensure the selected mode persists across pages
+- Respecting the **user's system preferences**, setting the default mode based on their OS settings
+
+## The implementation
+
+### Seting up the HTML
+
+First thing's first, let's declare a small html template.<br />
+We we'll need a **checkbox** and **some content** to have something explicit.
+
+```html
+<main class="demo">
+	<input id="demo-darkmode" type="checkbox" />
+	<label for="demo-darkmode">
+		<!-- Checkbox's label -->
+	</label>
+
+	<div class="demo-content">
+		<!-- Your website's content -->
+	</div>
+</main>
+```
+
+import DarkMode1 from '../components/DarkMode/DarkMode1.astro';
+import Wrapper from '../components/Wrapper.astro';
+
+<Wrapper>
+	<DarkMode1 />
+</Wrapper>
+
+We have our HTML structure, now let's set the colors.
+
+### Add some CSS variables
+
+Let's declare **3 CSS variable** for now.<br />
+Put them in the **:root selector** so you are sure they are accessible everywhere.<br/>
+We declare 1 for the text, 1 for the background and one for the links.
+
+```css
+:root {
+	--c-text: #493c37;
+	--c-background: #eddfe0;
+	--c-primary: #b392f0;
+}
+```
+
+Now let's link these variables to their elements.
+
+```css
+h1,
+p {
+	color: var(--c-text);
+}
+
+main {
+	background-color: var(--c-background);
+}
+
+a {
+	color: var(--c-primary);
+}
+```
+
+From now on, when you change the value of the CSS variables, it will impact all the elements linked to it.
+
+You can try and change the color values in the interactive exemple below.
+
+import DarkMode2 from '../components/DarkMode/DarkMode2.astro';
+
+<Wrapper>
+	<DarkMode2 />
+</Wrapper>
+
+Now we have all our HTML and CSS & variable set, but we still miss the main point: the dark mode.<br/>
+It's pretty simple from here. We have to define the colors we want when we enter the darkmode. We also have to define when we are in a darkmode.
+
+To know when we are in darkmode, we just have to see if the input is checked.<br />
+We can do that easily in CSS thanks to the relatively new selector **:has()**.<br />
+Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in a **checked** state. If it's the case, we reassign the CSS variable with new values.
+
+```css
+/* Default variables values */
+:root {
+	--c-text: #493c37;
+	--c-background: #eddfe0;
+	--c-primary: #b392f0;
+}
+
+/* Variables values when the input is checked */
+:root:has(#demo-darkmode:checked) {
+	--c-text: #fff;
+	--c-background: #333;
+	--c-primary: #98fb98;
+}
+```
+
+And just by adding that, clicking on the darkmode checkbox will change the colors we declared.<br />
+You can try it out in the interactive demo below.
+
+import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
+
+<Wrapper>
+	<DarkMode3 />
+</Wrapper>
+
+Our darkmode is working 🎉<br/>
+Currently if we check the darkmode checkbox and we reload the page, the checkbox will go back to it's original state.<br />
+We need to make the darkmode persistant across the pages now !
+
+### Add a localStorage
+
+Adding a localStorage for the darkmode is pretty straightforward.
+
+We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it's checked or not).<br/>
+
+On the page load, we also modify the checkbox state by applying the localStorage item value.
+
+```js
+const checkbox = document.querySelector('#demo-darkmode');
+
+// When the checkbox state change, we store its state in the localStorage
+checkbox.addEventListener('change', function (event) {
+	localStorage.setItem('demo-darkmode', event.currentTarget.checked);
+});
+
+// Change the checkbox state depending of the value stored in the localStorage
+checkbox.checked = localStorage.getItem('demo-darkmode') === 'true';
+```
+
+Now, if you check the checkbox below and reload the page, the interactive demo should stay in darkmode.
+
+import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
+
+<Wrapper>
+	<DarkMode4 />
+</Wrapper>
+
+## Support My Work
+
+Feel free to leave your comments or questions by email.
+If you found this article helpful, please share it with your peers and follow me for more web development tutorials.<br />
+Happy coding!
