@@ -150,7 +150,7 @@ checkbox.addEventListener('change', function (event) {
 checkbox.checked = localStorage.getItem('demo-darkmode') === 'true';
 ```
 
-Now, if you check the checkbox below and reload the page, the interactive demo should stay in darkmode.
+If you check the checkbox below and reload the page, the interactive demo should stay in darkmode.
 
 import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 
@@ -158,8 +158,27 @@ import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 	<DarkMode4 />
 </Wrapper>
 
+In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br/>
+It's functionnal, easy to implement, easy to maintain, supported by more than 88% of browsers.
+
+If you want to go a bit further, you can also implement a **prefers-color-scheme**. This will set the prefered color mode by default depending on the user settings.
+
+Want to check all the code in one place ? You can check [the codepen](https://codepen.io/emgarf/pen/bGPpvZg) I created.
+
+<p
+	class="codepen"
+	data-height="300"
+	data-default-tab="html"
+	data-slug-hash="qBeOdpE"
+	data-pen-title="Dark mode - Minimal JS"
+	data-user="emgarf"
+	style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+></p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
 ## Support My Work
 
-Feel free to leave your comments or questions by email.
-If you found this article helpful, please share it with your peers and follow me for more web development tutorials.<br />
+Feel free to leave your comments or questions by email at theodore.lef@gmail.com. <br />
+If you found this article helpful, please share it with your peers and follow me for more web development tutorials.
+
 Happy coding!
