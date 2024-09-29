@@ -1,15 +1,15 @@
 ---
-title: 'Create a darkmode - the easy way'
-description: 'Lorem ipsum dolor sit amet'
+title: 'Create a darkmode component'
+description: 'Learn how to implement a simple and effective dark mode using CSS variables and minimal JavaScript. This guide walks you through the steps to add dark mode, make it persist using localStorage, and respect system preferences for a better user experience.'
 pubDate: 'Sep 30 2024'
 heroImage: '/darkmode.jpg'
 ---
 
 ## Why implement a darkmode
 
-We are seeing dark mode becoming increasingly common across the web.<br/>
+Dark mode is becoming more and more common across the web.<br/>
 Some find it easier to read with a darker background, while others still prefer the classic light mode. It really depends on the user and their environment. Things like screen time, lighting, and personal comfort all play a role.
-Letting users choose their mode is a simple way to make their visit more comfortable and personalized.
+Giving users the choice of display helps make their experience more comfortable and personalized.
 
 ## How to implement it
 
@@ -28,8 +28,8 @@ This method uses 4 simple principles :
 
 ### Seting up the HTML
 
-First thing's first, let's declare a small html template.<br />
-We we'll need a **checkbox** and **some content** to have something explicit.
+First things first, let's create a basic html template.<br />
+We we'll need a **checkbox** and **some content**.
 
 ```html
 <main class="demo">
@@ -94,11 +94,11 @@ import DarkMode2 from '../components/DarkMode/DarkMode2.astro';
 	<DarkMode2 />
 </Wrapper>
 
-Now we have all our HTML and CSS & variable set, but we still miss the main point: the dark mode.<br/>
+Now we have our HTML and CSS variables set up, but we still miss the main part: the dark mode.<br/>
 It's pretty simple from here. We have to define the colors we want when we enter the darkmode. We also have to define when we are in a darkmode.
 
 To know when we are in darkmode, we just have to see if the input is checked.<br />
-We can do that easily in CSS thanks to the relatively new selector **:has()**.<br />
+We can do that easily in CSS using the relatively new selector **:has()**.<br />
 Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in a **checked** state. If it's the case, we reassign the CSS variable with new values.
 
 ```css
@@ -117,7 +117,7 @@ Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in
 }
 ```
 
-And just by adding that, clicking on the darkmode checkbox will change the colors we declared.<br />
+With just that addition, clicking the dark mode checkbox will switch the declared colors.<br />
 You can try it out in the interactive demo below.
 
 import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
@@ -127,12 +127,12 @@ import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
 </Wrapper>
 
 Our darkmode is working 🎉<br/>
-Currently if we check the darkmode checkbox and we reload the page, the checkbox will go back to it's original state.<br />
+Currently, if we check the dark mode checkbox and reload the page, it will reset to its original state.
 We need to make the darkmode persistant across the pages now !
 
 ### Add a localStorage
 
-Adding a localStorage for the darkmode is pretty straightforward.
+Adding localStorage to maintain darkmode is pretty straightforward.
 
 We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it's checked or not).<br/>
 
@@ -159,11 +159,11 @@ import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 </Wrapper>
 
 In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br/>
-It's functionnal, easy to implement, easy to maintain, supported by more than 88% of browsers.
+It's functional, easy to implement, easy to maintain, and supported by over 88% of browsers.
 
-If you want to go a bit further, you can also implement a **prefers-color-scheme**. This will set the prefered color mode by default depending on the user settings.
+To take it a step further, you can implement **prefers-color-scheme**, which will automatically apply the user's preferred mode based on their system settings.
 
-Want to check all the code in one place ? You can check [the codepen](https://codepen.io/emgarf/pen/bGPpvZg) I created.
+Want to see all the code in one place ? Check out [the CodePen](https://codepen.io/emgarf/pen/bGPpvZg) I created.
 
 <p
 	class="codepen"
