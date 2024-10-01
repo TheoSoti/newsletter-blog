@@ -9,10 +9,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
-	.sort(
-		(a: { data: { pubDate: number } }, b: { data: { pubDate: number } }) =>
-			b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-	)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.reverse()
 	.splice(-3)
 	.reverse();
