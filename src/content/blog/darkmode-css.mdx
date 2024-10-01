@@ -18,9 +18,7 @@ There are various ways to implement dark mode, ranging from simple to complex. H
 
 This is the same approach I've used on this site, so feel free to check it out!
 
-## The implementation
-
-### Setting up the HTML
+## Setting up the HTML
 
 First things first, let's create a basic html template.<br />
 We'll need a **checkbox** and **some content**.
@@ -47,7 +45,7 @@ import Wrapper from '../components/Wrapper.astro';
 
 We have our HTML structure, now let's set the colors.
 
-### Add some CSS variables
+## Add some CSS variables
 
 Let's declare **3 CSS variable** for now.<br />
 Put them in the **:root selector** so you are sure they are accessible everywhere.<br/>
@@ -124,7 +122,7 @@ Our darkmode is working 🎉<br/>
 Currently, if we check the darkmode checkbox and reload the page, it will reset to its original state.
 To fix this, we can make the darkmode persistant
 
-### Bonus: add a localStorage
+## add a localStorage
 
 Adding localStorage to maintain darkmode is pretty straightforward.
 

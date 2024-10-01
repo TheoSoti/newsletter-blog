@@ -8,6 +8,6 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://example.com',
-    integrations: [mdx(), sitemap(), partytown()],
+	site: 'https://theosoti.com',
+	integrations: [mdx(), sitemap(), partytown()],
 });

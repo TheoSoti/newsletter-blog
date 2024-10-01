@@ -9,7 +9,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.sort(
+		(a: { data: { pubDate: number } }, b: { data: { pubDate: number } }) =>
+			b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+	)
 	.reverse()
 	.splice(-3)
 	.reverse();
@@ -26,7 +29,7 @@ const posts = (await getCollection('blog'))
 		<main>
 			<h2>Latest articles</h2>
 			<ul>
-				{posts.map((post) => <Card post={post} width="720" height="360" />)}
+				{posts.map((post: any) => <Card post={post} width="720" height="360" />)}
 			</ul>
 		</main>
 		<Footer />
