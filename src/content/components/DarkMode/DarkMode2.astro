@@ -3,7 +3,7 @@
 	<label for="demo2-darkmode"> Dark mode </label>
 
 	<div class="demo2-content">
-		<h1>CSS-only dark mode</h1>
+		<p class="demo-title">CSS-only dark mode</p>
 		<p>
 			Lorem ipsum dolor sit amet, <a href="#">a link</a> consectetur adipiscing elit . Quisque maximus justo quis sapien
 			ornare vehicula vitae at est <a href="#">another link</a>.
@@ -59,7 +59,13 @@
 	.demo2-interactive input {
 		margin-right: 0.5em;
 	}
-	h1,
+	p {
+		margin: 0;
+	}
+	.demo-title {
+		margin: 0.4rem 0;
+		font-size: 1.8em;
+	}
 	p,
 	label {
 		color: var(--c-text);
