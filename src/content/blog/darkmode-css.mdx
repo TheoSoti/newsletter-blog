@@ -1,35 +1,29 @@
 ---
 title: 'Create a darkmode component'
-description: 'Learn how to implement a simple and effective dark mode using CSS variables and minimal JavaScript. This guide walks you through the steps to add dark mode, make it persist using localStorage, and respect system preferences for a better user experience.'
+description: 'Learn how to implement a simple dark mode using CSS variables and minimal JavaScript. This guide walks you through the steps to add dark mode, make it persist using localStorage for a better user experience.'
 pubDate: 'Sep 30 2024'
-heroImage: '/darkmode.jpg'
+heroImage: '/darkmode.png'
+readingTime: '5 min read'
 ---
 
-## Why implement a darkmode
-
-Dark mode is becoming more and more common across the web.<br/>
-Some find it easier to read with a darker background, while others still prefer the classic light mode. It really depends on the user and their environment. Things like screen time, lighting, and personal comfort all play a role.
-Giving users the choice of display helps make their experience more comfortable and personalized.
-
-## How to implement it
+## How to implement a darkmode
 
 There are several ways to implement dark mode. Some are straightforward, while others can be more complex, depending on the final result you're aiming for.
 
 In this post, I'll walk you through my method for creating a simple dark mode using minimal JavaScript. This is the same approach I've used on this site. Feel free to check it out! ;)
 
-This method uses 4 simple principles :
+This method uses 3 simple principles :
 
 - Utilizing **CSS variables** to easily switch color values when toggling between modes
 - Implementing a **checkbox** (or any other input like a select menu) to capture the user's mode preference
 - Leveraging **localStorage** to ensure the selected mode persists across pages
-- Respecting the **user's system preferences**, setting the default mode based on their OS settings
 
 ## The implementation
 
-### Seting up the HTML
+### Setting up the HTML
 
 First things first, let's create a basic html template.<br />
-We we'll need a **checkbox** and **some content**.
+We'll need a **checkbox** and **some content**.
 
 ```html
 <main class="demo">
@@ -128,13 +122,13 @@ import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
 
 Our darkmode is working 🎉<br/>
 Currently, if we check the dark mode checkbox and reload the page, it will reset to its original state.
-We need to make the darkmode persistant across the pages now !
+To fix this, we can make the darkmode persistant
 
-### Add a localStorage
+### Bonus: add a localStorage
 
 Adding localStorage to maintain darkmode is pretty straightforward.
 
-We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it's checked or not).<br/>
+We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it’s checked or not).<br/>
 
 On the page load, we also modify the checkbox state by applying the localStorage item value.
 

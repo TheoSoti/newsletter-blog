@@ -1,5 +1,6 @@
 ---
 import Newsletter from './Newsletter.astro';
+import { SITE_TITLE } from '../consts';
 
 const today = new Date();
 ---
@@ -9,7 +10,7 @@ const today = new Date();
 <footer>
 	<div class="container">
 		<div class="logo">
-			<h2>TheoSoti</h2>
+			<a href="/">{SITE_TITLE}</a>
 		</div>
 		<div class="nav">
 			<h4>Navigation</h4>
@@ -96,15 +97,16 @@ const today = new Date();
 		max-width: calc(100% - 2em);
 		margin: auto;
 	}
-	p {
-		margin: 0;
-		font-size: 0.8em;
-	}
-	.logo h2 {
-		margin-bottom: 1em;
+	.logo a {
+		display: block;
+		font-size: 2rem;
+		margin-bottom: 1rem;
 		width: fit-content;
-		border: 4px solid black;
-		padding: 0 0.2em;
+		border: 4px solid var(--border);
+		color: var(--black);
+		text-decoration: none;
+		padding: 0.2em 0.3em;
+		line-height: 1;
 		background: var(--white);
 	}
 	.social-links {

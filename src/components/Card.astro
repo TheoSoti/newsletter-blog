@@ -1,11 +1,13 @@
 ---
 const { post, width, height } = Astro.props;
+import FormattedDate from './FormattedDate.astro';
 ---
 
 <li class="card">
 	<a href={`/blog/${post.slug}/`}>
 		<img width={width} height={height} src={post.data.heroImage} alt={post.data.title} />
 		<h4 class="title">{post.data.title}</h4>
+		<span><FormattedDate date={post.data.pubDate} />, {post.data.readingTime}</span>
 	</a>
 </li>
 
@@ -41,9 +43,14 @@ const { post, width, height } = Astro.props;
 		transform: translateY(6px);
 	}
 	h4 {
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 1rem 0.2rem;
 		font-size: 1em;
 		line-height: 1.4;
 		margin: 0;
+	}
+	span {
+		padding: 0rem 1rem;
+		font-size: 0.8em;
+		margin-bottom: 0.5em;
 	}
 </style>

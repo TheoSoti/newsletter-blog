@@ -6,7 +6,9 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="logo">
+			<a href="/">{SITE_TITLE}</a>
+		</div>
 		<div class="nav-container">
 			<DarkMode />
 			<button class="mobile-menu button" popovertarget="mobile-navigation" popovertargetaction="show">
@@ -45,7 +47,6 @@ import { SITE_TITLE } from '../consts';
 <style>
 	header {
 		margin: 0;
-		padding: 1em 0;
 		background-color: var(--background);
 		background-image: url(../assets/background-write.svg);
 		border-bottom: 4px solid var(--border);
@@ -54,17 +55,14 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: center;
 	}
-	h2 {
-		padding: 0;
-		margin: 0;
-	}
-	nav h2 a {
+	nav .logo a {
 		display: block;
 		margin: 0;
 		font-size: 2rem;
 		width: fit-content;
 		border: 4px solid black;
-		padding: 0.1em 0.3em;
+		padding: 0.2em 0.3em;
+		line-height: 1;
 		background: var(--white);
 	}
 	.nav-container {

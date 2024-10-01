@@ -19,8 +19,9 @@ import profile from '../assets/profile.png';
 
 			<p>
 				Hi there! My name is Theodore, I'm a freelance frontend developer. I'm committed to sharing my web design
-				knowledge, with a special focus on CSS. <br /><br />Here's what you can expect from this blog:
+				knowledge, with a special focus on CSS.
 			</p>
+			<p>Here's what you can expect from this blog:</p>
 			<ul>
 				<li>In-depth articles that break down complex CSS</li>
 				<li>Easy-to-understand explanations for all skill levels</li>
@@ -42,6 +43,9 @@ import profile from '../assets/profile.png';
 		display: flex;
 		flex-direction: column;
 	}
+	p {
+		margin-bottom: 1em;
+	}
 	.container > picture {
 		flex-shrink: 0;
 	}
@@ -54,6 +58,7 @@ import profile from '../assets/profile.png';
 	}
 	ul {
 		margin: 0;
+		padding-left: 20px;
 	}
 	@media (min-width: 600px) {
 		.container {
