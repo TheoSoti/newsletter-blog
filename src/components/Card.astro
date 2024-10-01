@@ -6,7 +6,7 @@ import FormattedDate from './FormattedDate.astro';
 <li class="card">
 	<a href={`/blog/${post.slug}/`}>
 		<img width={width} height={height} src={post.data.heroImage} alt={post.data.title} />
-		<h4 class="title">{post.data.title}</h4>
+		<h3 class="title">{post.data.title}</h3>
 		<span><FormattedDate date={post.data.pubDate} /> - {post.data.readingTime}</span>
 	</a>
 </li>
@@ -42,7 +42,7 @@ import FormattedDate from './FormattedDate.astro';
 		box-shadow: 0 0 var(--black);
 		transform: translateY(6px);
 	}
-	h4 {
+	h3 {
 		padding: 0.5rem 1rem 0.2rem;
 		font-size: 1em;
 		line-height: 1.4;
