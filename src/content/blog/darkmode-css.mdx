@@ -1,22 +1,22 @@
 ---
-title: 'Create a darkmode component'
-description: 'Learn how to implement a simple dark mode using CSS variables and minimal JavaScript. This guide walks you through the steps to add dark mode, make it persist using localStorage for a better user experience.'
+title: 'Create a darkmode using minimal JavaScript'
+description: 'Learn how to implement a simple darkmode using CSS variables and minimal JavaScript. This guide walks you through the steps to add darkmode and make it persist using localStorage for a better user experience.'
 pubDate: 'Sep 30 2024'
 heroImage: '/darkmode.png'
 readingTime: '5 min read'
 ---
 
-## How to implement a darkmode
+## Introduction
 
-There are several ways to implement dark mode. Some are straightforward, while others can be more complex, depending on the final result you're aiming for.
+In this step-by-step tutorial, I'll show you how to create a dark mode for your website using minimal JavaScript. You can follow along and see the results in real time with the interactive elements included.
 
-In this post, I'll walk you through my method for creating a simple dark mode using minimal JavaScript. This is the same approach I've used on this site. Feel free to check it out! ;)
+There are various ways to implement dark mode, ranging from simple to complex. Here, I'll walk you through a straightforward method that relies on three key principles:
 
-This method uses 3 simple principles :
+- **CSS variables** to easily switch color values between modes
+- A **checkbox** (or other input) to capture the user's preference
+- **localStorage** to make the selected mode persist across pages
 
-- Utilizing **CSS variables** to easily switch color values when toggling between modes
-- Implementing a **checkbox** (or any other input like a select menu) to capture the user's mode preference
-- Leveraging **localStorage** to ensure the selected mode persists across pages
+This is the same approach I've used on this site, so feel free to check it out!
 
 ## The implementation
 
@@ -88,7 +88,7 @@ import DarkMode2 from '../components/DarkMode/DarkMode2.astro';
 	<DarkMode2 />
 </Wrapper>
 
-Now we have our HTML and CSS variables set up, but we still miss the main part: the dark mode.<br/>
+Now we have our HTML and CSS variables set up, but we still miss the main part: the darkmode.<br/>
 It's pretty simple from here. We have to define the colors we want when we enter the darkmode. We also have to define when we are in a darkmode.
 
 To know when we are in darkmode, we just have to see if the input is checked.<br />
@@ -111,7 +111,7 @@ Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in
 }
 ```
 
-With just that addition, clicking the dark mode checkbox will switch the declared colors.<br />
+With just that addition, clicking the darkmode checkbox will switch the declared colors.<br />
 You can try it out in the interactive demo below.
 
 import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
@@ -121,7 +121,7 @@ import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
 </Wrapper>
 
 Our darkmode is working 🎉<br/>
-Currently, if we check the dark mode checkbox and reload the page, it will reset to its original state.
+Currently, if we check the darkmode checkbox and reload the page, it will reset to its original state.
 To fix this, we can make the darkmode persistant
 
 ### Bonus: add a localStorage
@@ -155,8 +155,6 @@ import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br/>
 It's functional, easy to implement, easy to maintain, and supported by over 88% of browsers.
 
-To take it a step further, you can implement **prefers-color-scheme**, which will automatically apply the user's preferred mode based on their system settings.
-
 Want to see all the code in one place ? Check out [the CodePen](https://codepen.io/emgarf/pen/bGPpvZg) I created.
 
 <p
@@ -164,15 +162,26 @@ Want to see all the code in one place ? Check out [the CodePen](https://codepen.
 	data-height="300"
 	data-default-tab="html"
 	data-slug-hash="qBeOdpE"
-	data-pen-title="Dark mode - Minimal JS"
+	data-pen-title="DarkMode - Minimal JS"
 	data-user="emgarf"
 	style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
 ></p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
+## What's next?
+
+There are still a lot of ways to improve the darkmode from here:
+
+- Implement **prefers-color-scheme**, which will automatically apply the user's preferred mode based on their system settings.
+- Add animations to make the transition smoother
+- Add more than just a light and dark mode
+- Change other values than just colors
+
+It's up to you to explore and decide how you want to enhance your dark mode!
+
 ## Support My Work
 
 Feel free to leave your comments or questions by email at theodore.lef@gmail.com. <br />
-If you found this article helpful, please share it with your peers and follow me for more web development tutorials.
+If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
 
 Happy coding!
