@@ -74,7 +74,7 @@ h5,
 h6 {
 	margin: 0 0 0.5rem 0;
 	line-height: 1.2;
-	font-weight: 600;
+	font-weight: 500;
 }
 h1 {
 	font-size: 2rem;
@@ -95,7 +95,7 @@ h5 {
 }
 strong,
 b {
-	font-weight: 700;
+	font-weight: 600;
 }
 a {
 	color: var(--accent-dark);
@@ -185,7 +185,7 @@ iframe.cp_embed_iframe {
 	transition-property: all;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 0.15s;
-	font-weight: 600;
+	font-weight: 500;
 	cursor: pointer;
 }
 .button:hover,
