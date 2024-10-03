@@ -1,5 +1,4 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
-export const SITE_TITLE = 'TheoSoti';
-export const SITE_DESCRIPTION = "I'm a frontend developer teaching CSS tips & tricks";
+export const SITE_TITLE = 'CSS Tips by Theo Soti | Web Design & Frontend Development';
+export const SITE_NAME = 'TheoSoti';
+export const SITE_DESCRIPTION =
+	'Learn CSS tips and tricks from freelance frontend developer Theo Soti. Explore in-depth guides, easy explanations, and creative design ideas to enhance your web projects.';

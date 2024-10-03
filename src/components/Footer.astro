@@ -1,6 +1,6 @@
 ---
 import Newsletter from './Newsletter.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_NAME } from '../consts';
 const { isNewsletter } = Astro.props;
 ---
 
@@ -9,7 +9,7 @@ const { isNewsletter } = Astro.props;
 <footer>
 	<div class="container">
 		<div class="logo">
-			<a href="/">{SITE_TITLE}</a>
+			<a href="/">{SITE_NAME}</a>
 		</div>
 		<div class="nav">
 			<h4>Navigation</h4>
