@@ -11,7 +11,15 @@ import { SITE_TITLE } from '../consts';
 		</div>
 		<div class="nav-container">
 			<DarkMode />
-			<button class="mobile-menu button" popovertarget="mobile-navigation" popovertargetaction="show">
+			<button
+				class="mobile-menu button"
+				popovertarget="mobile-navigation"
+				popovertargetaction="show"
+				type="button"
+				aria-label="Open main navigation"
+				aria-controls="mobile-navigation"
+				aria-haspopup="true"
+			>
 				<span></span>
 				<span></span>
 				<span></span>
@@ -27,7 +35,6 @@ import { SITE_TITLE } from '../consts';
 				<div class="drawer-links">
 					<HeaderLink href="/">Home</HeaderLink>
 					<HeaderLink href="/blog">Blog</HeaderLink>
-					<!-- <HeaderLink href="/about">About</HeaderLink> -->
 				</div>
 				<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button">Hire Me</HeaderLink>
 			</div>
@@ -35,7 +42,6 @@ import { SITE_TITLE } from '../consts';
 				<div class="internal-links">
 					<HeaderLink href="/">Home</HeaderLink>
 					<HeaderLink href="/blog">Blog</HeaderLink>
-					<!-- <HeaderLink href="/about">About</HeaderLink> -->
 				</div>
 				<HeaderLink target="_blank" href="https://zcal.co/theodore/30min" class="hireme button" aria-label="hire me"
 					>Hire Me</HeaderLink

@@ -1,11 +1,10 @@
 ---
 import Newsletter from './Newsletter.astro';
 import { SITE_TITLE } from '../consts';
-
-const today = new Date();
+const { isNewsletter } = Astro.props;
 ---
 
-<Newsletter />
+{isNewsletter !== 'false' && <Newsletter />}
 
 <footer>
 	<div class="container">
