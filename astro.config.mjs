@@ -9,5 +9,11 @@ import partytown from '@astrojs/partytown';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://theosoti.com',
-	integrations: [mdx(), sitemap(), partytown()],
+	integrations: [
+		mdx(),
+		sitemap({
+			filter: (page) => page !== 'https://theosoti.com/newsletter-success/',
+		}),
+		partytown(),
+	],
 });
