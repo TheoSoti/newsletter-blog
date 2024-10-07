@@ -5,6 +5,7 @@
 	--white: #fbfdfb;
 	--black: #0f1219;
 	--text: #0f1219;
+	--small-text: #707070;
 	--box-shadow: 0 5px #0f1219;
 	--border: #0f1219;
 }
@@ -21,16 +22,6 @@
 	outline: 2px solid var(--text);
 	border-radius: 4px;
 }
-/* @font-face {
-	font-family: 'PlusJakartaSans';
-	src:
-		url('/fonts/PlusJakartaSans-Regular.woff2') format('woff2'),
-		url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-	unicode-range: U+00-FF, U+0100-017F;
-}*/
 * {
 	box-sizing: border-box;
 }
