@@ -51,7 +51,6 @@ body {
 	padding: 0;
 	text-align: left;
 	background-color: var(--background);
-	background-image: url(../assets/background-write.svg);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: var(--text);
