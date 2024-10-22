@@ -8,6 +8,7 @@
 	--small-text: #707070;
 	--box-shadow: 0 5px #0f1219;
 	--border: #0f1219;
+	--example: #f5c7de;
 }
 :root:has(.check-darkmode:checked) {
 	--accent: #55ad9b;
@@ -17,6 +18,7 @@
 	--text: #eeefe9;
 	--box-shadow: 0 5px #000;
 	--border: #000;
+	--example: #9b59b6;
 }
 *:focus {
 	outline-offset: 2px;
