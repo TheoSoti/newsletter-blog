@@ -1,0 +1,45 @@
+---
+import { Base } from './Base.jsx';
+
+const dropdownStyle = {
+	display: 'flex',
+	fontSize: '0.8em',
+	backgroundColor: '#F5C7DE',
+	padding: '0 1em',
+};
+---
+
+<div class="exemple3">
+	<Base buttonText="Flex" ddStyle={dropdownStyle} exempleNumber={3} client:load>
+		<div>
+			<div class="inner">
+				<p contenteditable="true" spellcheck="false" autocapitalize="off">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
+					blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
+					venenatis nisi et, malesuada ligula.
+				</p>
+			</div>
+		</div>
+	</Base>
+</div>
+
+<style>
+	.exemple3 {
+		padding: 1em;
+		min-height: 220px;
+	}
+	.inner {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.5s linear;
+	}
+	.exemple3:has(.hide) .inner {
+		max-height: 0px !important;
+	}
+	.exemple3:not(:has(.hide)) .inner {
+		max-height: 100%;
+	}
+	p {
+		margin: 1em;
+	}
+</style>

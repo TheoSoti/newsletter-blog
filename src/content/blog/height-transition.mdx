@@ -1,0 +1,220 @@
+---
+title: 'How to transition height'
+description: 'Learn five practical ways to smoothly transition an element’s height in CSS, from traditional techniques like max-height to modern methods with flexbox and grid. Discover upcoming features like calc-size() for even more flexibility.'
+pubDate: 'Oct 22 2024'
+heroImage: '/height-transition.png'
+readingTime: '5 min read'
+---
+
+import Wrapper from '../components/Wrapper.astro';
+
+## Introduction
+
+In the past, we had to rely on clever hacks or turn to JavaScript to transition height. But now, there are some really cool, native solutions (and even more exciting ones just around the corner).
+
+In this article, I'll show you five ways to transition an element's height. We'll start with older, less reliable methods and move on to modern techniques that work best.
+
+All the examples I provide below are interactive, so feel free to experiment with them!
+
+## Transitioning the height
+
+We’ve all wanted to transition an element’s height directly. Unfortunately, it’s not that simple.
+
+If you know the final height and set it as a static value, it works perfectly. But in most cases, the element's height is dynamic and unpredictable.
+
+Here is the HTML:
+
+```html
+<button>Toggle dropdown</button>
+
+<div class="dropdown hide">
+	<div>Some content</div>
+</div>
+```
+
+Here is the CSS:
+
+```css
+.dropdown {
+	overflow: hidden;
+	height: 210px; /* exemple 1 */
+	height: auto; /* exemple 2 */
+	transition: height 0.5s ease;
+}
+
+.hide {
+	height: 0px;
+}
+```
+
+Then I toggle the <code>.hide</code> class with some JS by clicking on the button.
+
+On the demo below you can see:
+
+- For the first one, the animation works because there is an explicit height.
+- For the second one, there are no animation because the height is set to auto.
+
+import HeightTransition1 from '../components/HeightTransition/1.astro';
+
+<Wrapper>
+	<HeightTransition1 />
+</Wrapper>
+
+## Transitioning the Max-height
+
+Since transitioning <code>height</code> directly doesn’t work well, what about using max-height?
+
+Sadly, like the <code>height</code> value, you can't directly animate it's height to an auto value.
+
+This approach is still a bit better since you can set a larger value, and the animation will work.
+However, if the value is too high, the transition speeds up too quickly and becomes erratic.
+
+Here is the CSS:
+
+```css
+.dropdown {
+	overflow: hidden;
+	max-height: 100px; /* | 400px | 1000px */
+	transition: height 0.5s ease;
+}
+
+.hide {
+	max-height: 0px;
+}
+```
+
+Try toggling the content by clicking the button and changing the <code>max-height</code> values:
+
+import HeightTransition2 from '../components/HeightTransition/2.astro';
+
+<Wrapper>
+	<HeightTransition2 />
+</Wrapper>
+
+You see that if the <code>max-height</code> has a value too big, the animation is too quick and delayed.<br/>
+And if the value is too low, the text will be cropped.
+
+## Transitioning with flex
+
+The previous examples aren’t ideal, as they come with many limitations.<br />
+But did you know you can transition the height to 100% using flex?<br />
+The HTML structure changes a bit (there is one more div inside the dropdown):
+
+```html
+<button>Toggle dropdown</button>
+
+<div class="dropdown hide">
+	<div>
+		<div class="inner">Some content</div>
+	</div>
+</div>
+```
+
+And the CSS looks like that:
+
+```css
+.dropdown {
+	display: flex;
+}
+
+.inner {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s linear;
+}
+
+.dropdown:not(.hide) .inner {
+	max-height: 100%;
+}
+```
+
+See the exemple below:
+
+import HeightTransition3 from '../components/HeightTransition/3.astro';
+
+<Wrapper>
+	<HeightTransition3 />
+</Wrapper>
+
+It works, but there are still two issues:
+
+- You need to add a wrapper div for it to function properly
+- While the content transitions, its container expands instantly
+
+## Transitioning with grid
+
+Another more flexible solution is using CSS Grid. Similar to the flex approach, Grid can help us transition an element’s height, but with better control and fewer limitations.
+
+In this case, we’ll utilize the grid-template-rows property to animate the height.
+
+Here’s the updated HTML:
+
+```html
+<button>Toggle dropdown</button>
+
+<div class="dropdown hide">
+	<div class="inner">Some content</div>
+</div>
+```
+
+And the CSS:
+
+```css
+.dropdown {
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.5s ease;
+	display: grid;
+}
+
+.inner {
+	overflow: hidden;
+}
+
+.dropdown:not(.hide) {
+	grid-template-rows: 1fr !important;
+}
+```
+
+In this example:
+
+- <code>grid-template-rows: 0fr</code> hides the content, while <code>1fr</code> makes the content fully visible.
+- The height smoothly transitions as the grid adjusts.
+
+import HeightTransition4 from '../components/HeightTransition/4.astro';
+
+<Wrapper>
+	<HeightTransition4 />
+</Wrapper>
+
+With Grid, there’s no need for extra wrapper divs, and the container height adjusts smoothly along with its content.
+It also gives you finer control over the layout compared to flexbox.
+
+## What about the future
+
+One promising feature is the upcoming calc-size() function, which will bring even more flexibility to CSS layouts.
+
+What this function does is convert values like auto to specific pixel values which it can then use in calculations with other values.
+This is handy on its own, but where it is most useful is with animating elements that are auto sized.
+
+Here is what it looks like:
+
+```css
+.dropdown {
+	height: 0;
+	overflow: hidden;
+	transition: height 0.3s;
+}
+
+.dropdown:not(.hide) {
+	height: calc-size(auto);
+}
+```
+
+The support is almost inexistant as today. But I belive it will spread soon to all major browsers!
+
+## Support My Work
+
+Feel free to leave your comments or questions by email at hey@theosoti.com. <br />
+If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
+
+Happy coding!

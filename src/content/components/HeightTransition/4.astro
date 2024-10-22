@@ -1,0 +1,41 @@
+---
+import { Base } from './Base.jsx';
+
+const dropdownStyle = {
+	gridTemplateRows: '0fr',
+	transition: 'grid-template-rows 0.5s linear',
+	display: 'grid',
+	fontSize: '0.8em',
+	backgroundColor: '#F5C7DE',
+};
+---
+
+<div class="exemple4">
+	<Base buttonText="Grid" ddStyle={dropdownStyle} exempleNumber={4} client:load>
+		<div class="inner">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
+				blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
+				venenatis nisi et, malesuada ligula.
+			</p>
+		</div>
+	</Base>
+</div>
+
+<style>
+	.exemple4 {
+		padding: 1em;
+		min-height: 220px;
+	}
+	.inner {
+		overflow: hidden;
+	}
+	p {
+		padding: 0 1em;
+	}
+</style>
+<style is:inline>
+	.exemple4 .dropdown:not(.hide) {
+		grid-template-rows: 1fr !important;
+	}
+</style>

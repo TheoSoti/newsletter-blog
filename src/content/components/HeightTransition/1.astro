@@ -1,0 +1,64 @@
+---
+import { Base } from './Base.jsx';
+
+const dropdownStyle = {
+	overflow: 'hidden',
+	transition: 'height 0.5s linear',
+	height: 'auto',
+	fontSize: '0.8em',
+	backgroundColor: '#F5C7DE',
+};
+---
+
+<div class="exemple1">
+	<div class="left">
+		<Base buttonText="Explicit height" ddStyle={dropdownStyle} exempleNumber={1} client:load>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
+				blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
+				venenatis nisi et, malesuada ligula.
+			</p>
+		</Base>
+	</div>
+	<div class="right">
+		<Base buttonText="Auto height" ddStyle={dropdownStyle} exempleNumber={1} client:load>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
+				blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
+				venenatis nisi et, malesuada ligula.
+			</p>
+		</Base>
+	</div>
+</div>
+
+<style>
+	.exemple1 {
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+		min-height: 310px;
+	}
+	.exemple1 > div {
+		min-width: 220px;
+		max-width: 310px;
+	}
+	p {
+		padding: 0 1em;
+	}
+
+	@media (min-width: 600px) {
+		.exemple1 {
+			flex-direction: row;
+		}
+	}
+</style>
+<style is:inline>
+	.exemple1 .hide {
+		height: 0px !important;
+	}
+
+	.exemple1 .left .dropdown:not(.hide) {
+		height: 200px !important;
+	}
+</style>

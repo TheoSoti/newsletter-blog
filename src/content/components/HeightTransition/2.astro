@@ -1,0 +1,53 @@
+---
+import { Base } from './Base.jsx';
+
+const dropdownStyle = {
+	overflow: 'hidden',
+	transition: 'max-height 0.5s linear',
+	fontSize: '0.8em',
+	backgroundColor: '#F5C7DE',
+};
+---
+
+<div class="exemple2">
+	<Base buttonText="Max height" ddStyle={dropdownStyle} exempleNumber={2} client:load>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
+			blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
+			venenatis nisi et, malesuada ligula.
+		</p>
+	</Base>
+</div>
+
+<style>
+	.exemple2 {
+		padding: 1em;
+		min-height: 310px;
+	}
+	p {
+		padding: 0 1em;
+	}
+
+	@media (min-width: 600px) {
+		.exemple2 {
+			flex-direction: row;
+		}
+	}
+</style>
+<style is:inline>
+	.exemple2 .hide {
+		max-height: 0px !important;
+	}
+
+	.exemple2 .heightInputs {
+		text-align: center;
+		background-color: var(--background);
+		margin-bottom: 0.5em;
+		padding: 0.5em;
+		border: 2px solid var(--border);
+	}
+
+	.exemple2 .heightInputs label {
+		padding: 0 0.4em;
+	}
+</style>

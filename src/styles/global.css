@@ -11,6 +11,7 @@
 }
 :root:has(.check-darkmode:checked) {
 	--accent: #55ad9b;
+	--accent-dark: #408e7e;
 	--background: #0b2823;
 	--white: rgba(15, 18, 25);
 	--text: #eeefe9;
@@ -73,6 +74,7 @@ h1 {
 h2 {
 	margin-top: 2em;
 	font-size: 1.5rem;
+	font-weight: bold;
 }
 h3 {
 	margin-top: 2em;
@@ -172,7 +174,7 @@ iframe.cp_embed_iframe {
 	box-shadow: var(--box-shadow);
 	border-radius: 6px;
 	border: 2px solid var(--border);
-	background: var(--accent);
+	background: var(--accent-dark);
 	transition-property: all;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 0.15s;
