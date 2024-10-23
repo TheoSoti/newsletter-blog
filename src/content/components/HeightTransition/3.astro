@@ -9,8 +9,8 @@ const dropdownStyle = {
 };
 ---
 
-<div class="exemple3">
-	<Base buttonText="Flex" ddStyle={dropdownStyle} exempleNumber={3} client:load>
+<div class="example3">
+	<Base buttonText="Flex" ddStyle={dropdownStyle} exampleNumber={3} client:load>
 		<div>
 			<div class="inner">
 				<p contenteditable="true" spellcheck="false" autocapitalize="off">
@@ -24,7 +24,7 @@ const dropdownStyle = {
 </div>
 
 <style>
-	.exemple3 {
+	.example3 {
 		padding: 1em;
 		min-height: 220px;
 	}
@@ -33,10 +33,10 @@ const dropdownStyle = {
 		overflow: hidden;
 		transition: max-height 0.5s linear;
 	}
-	.exemple3:has(.hide) .inner {
+	.example3:has(.hide) .inner {
 		max-height: 0px !important;
 	}
-	.exemple3:not(:has(.hide)) .inner {
+	.example3:not(:has(.hide)) .inner {
 		max-height: 100%;
 	}
 	p {

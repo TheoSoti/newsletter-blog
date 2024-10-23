@@ -10,9 +10,9 @@ const dropdownStyle = {
 };
 ---
 
-<div class="exemple1">
+<div class="example1">
 	<div class="left">
-		<Base buttonText="Explicit height" ddStyle={dropdownStyle} exempleNumber={1} client:load>
+		<Base buttonText="Explicit height" ddStyle={dropdownStyle} exampleNumber={1} client:load>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
 				blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
@@ -21,7 +21,7 @@ const dropdownStyle = {
 		</Base>
 	</div>
 	<div class="right">
-		<Base buttonText="Auto height" ddStyle={dropdownStyle} exempleNumber={1} client:load>
+		<Base buttonText="Auto height" ddStyle={dropdownStyle} exampleNumber={1} client:load>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel bibendum dolor. Phasellus quis est at ex
 				blandit pellentesque. Aliquam non eros mattis, egestas ligula ut, tempor ante. Donec sit amet ex consectetur,
@@ -32,14 +32,14 @@ const dropdownStyle = {
 </div>
 
 <style>
-	.exemple1 {
+	.example1 {
 		padding: 1em;
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
 		min-height: 310px;
 	}
-	.exemple1 > div {
+	.example1 > div {
 		min-width: 220px;
 		max-width: 310px;
 	}
@@ -48,17 +48,17 @@ const dropdownStyle = {
 	}
 
 	@media (min-width: 600px) {
-		.exemple1 {
+		.example1 {
 			flex-direction: row;
 		}
 	}
 </style>
 <style is:inline>
-	.exemple1 .hide {
+	.example1 .hide {
 		height: 0px !important;
 	}
 
-	.exemple1 .left .dropdown:not(.hide) {
+	.example1 .left .dropdown:not(.hide) {
 		height: 200px !important;
 	}
 </style>

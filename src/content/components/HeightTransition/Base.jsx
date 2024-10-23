@@ -7,7 +7,7 @@ const buttonStyle = {
 	color: 'var(--text)',
 };
 
-export function Base({ children, buttonText, ddStyle, exempleNumber }) {
+export function Base({ children, buttonText, ddStyle, exampleNumber }) {
 	const [hidden, setHidden] = useState(true);
 	const [height, setHeight] = useState(100);
 
@@ -19,7 +19,7 @@ export function Base({ children, buttonText, ddStyle, exempleNumber }) {
 		setHeight(+e.target.value);
 	};
 
-	if (exempleNumber === 2) {
+	if (exampleNumber === 2) {
 		ddStyle = {
 			...ddStyle,
 			maxHeight: height,
@@ -27,7 +27,7 @@ export function Base({ children, buttonText, ddStyle, exempleNumber }) {
 	}
 
 	const Inputs = () => {
-		if (exempleNumber !== 2) return;
+		if (exampleNumber !== 2) return;
 
 		return (
 			<div className="heightInputs">
