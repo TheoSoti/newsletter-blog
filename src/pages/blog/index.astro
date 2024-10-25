@@ -2,7 +2,6 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import Card from '../../components/Card.astro';
 
@@ -12,7 +11,10 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title="Find all the blog posts written by Theo Soti"
+			description="Discover the latest insights, tutorials, and tips in front-end development. Stay updated with articles on HTML, CSS, JavaScript, frameworks, and best practices to build responsive, high-performance websites."
+		/>
 		<style>
 			main {
 				width: 1100px;

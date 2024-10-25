@@ -1,5 +1,5 @@
 <section class="newsletter">
-	<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+	<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
 	<div class="container">
 		<h3 class="subscribe-text">
 			Want to know when I publish new content?<span> Enter your email to join my free newsletter.</span>
@@ -27,7 +27,12 @@
 							type="email"
 						/>
 					</div>
-					<button data-element="submit" class="formkit-submit formkit-submit button" aria-label="Join the newsletter">
+					<button
+						type="button"
+						data-element="submit"
+						class="formkit-submit formkit-submit button"
+						aria-label="Join the newsletter"
+					>
 						<div class="formkit-spinner">
 							<div></div>
 							<div></div>
