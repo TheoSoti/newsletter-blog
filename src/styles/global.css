@@ -1,25 +1,26 @@
 :root {
 	--main: hsl(150, 40%, 70%);
-	--secondary: hsl(150, 40%, 42%);
-	--background: hsl(86, 53%, 94%);
-	--bg-white: hsl(120, 33%, 99%);
-	--white: hsl(120, 33%, 99%);
-	--black: hsl(0, 0%, 7%);
-	--text: hsl(0, 0%, 7%);
+	--secondary: hsl(150, 40%, 35%);
+	--background: hsl(150, 40%, 98%);
+	--bg-light: hsl(230, 100%, 99%);
+	--white: hsl(230, 100%, 99%);
+	--black: hsl(0, 0%, 9%);
+	--text: hsl(0, 0%, 9%);
 	--small-text: hsl(0, 0%, 44%);
-	--box-shadow: 0 5px hsl(0, 0%, 7%);
-	--border: hsl(0, 0%, 7%);
-	--example: hsl(330, 70%, 87%);
+	--box-shadow: 0 5px hsl(0, 0%, 9%);
+	--border: hsl(0, 0%, 9%);
+	--example: hsl(230, 70%, 80%);
 }
 :root:has(.check-darkmode:checked) {
-	--main: hsl(168, 35%, 51%);
-	--secondary: hsl(150, 40%, 42%);
-	--background: hsl(170, 57%, 10%);
-	--bg-white: rgba(15, 18, 25);
-	--text: hsl(70, 16%, 93%);
+	--main: hsl(150, 40%, 60%);
+	--secondary: hsl(150, 40%, 40%);
+	--background: hsl(150, 40%, 12%);
+	--bg-light: hsl(0, 0%, 9%);
+	--text: hsl(255, 100%, 99%);
+	--small-text: hsl(0, 0%, 70%);
 	--box-shadow: 0 5px hsl(0, 0%, 0%);
 	--border: hsl(0, 0%, 0%);
-	--example: hsl(283, 39%, 53%);
+	--example: hsl(230, 70%, 60%);
 }
 *:focus {
 	outline-offset: 2px;

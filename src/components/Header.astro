@@ -27,7 +27,12 @@ import { SITE_NAME } from '../consts';
 			<div popover id="mobile-navigation">
 				<div class="drawer-top">
 					<span>Menu</span>
-					<button class="mobile-close button" popovertarget="mobile-navigation" popovertargetaction="hide">
+					<button
+						class="mobile-close button"
+						title="Close popover"
+						popovertarget="mobile-navigation"
+						popovertargetaction="hide"
+					>
 						<span></span>
 						<span></span>
 					</button>
@@ -74,7 +79,7 @@ import { SITE_NAME } from '../consts';
 		border: 4px solid black;
 		padding: 0.2em 0.3em;
 		line-height: 1;
-		background: var(--bg-white);
+		background: var(--bg-light);
 	}
 	.nav-container {
 		display: flex;
