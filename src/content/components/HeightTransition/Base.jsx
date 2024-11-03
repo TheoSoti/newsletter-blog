@@ -4,7 +4,6 @@ const buttonStyle = {
 	padding: '0.5em',
 	marginBottom: '1.5em',
 	fontSize: '1em',
-	color: 'var(--text)',
 };
 
 export function Base({ children, buttonText, ddStyle, exampleNumber }) {

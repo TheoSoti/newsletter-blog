@@ -1,24 +1,25 @@
 :root {
-	--accent: #95d2b3;
-	--accent-dark: #55ad9b;
-	--background: #f1f8e8;
-	--white: #fbfdfb;
-	--black: #0f1219;
-	--text: #0f1219;
-	--small-text: #707070;
-	--box-shadow: 0 5px #0f1219;
-	--border: #0f1219;
-	--example: #f5c7de;
+	--main: hsl(150, 40%, 70%);
+	--secondary: hsl(150, 40%, 42%);
+	--background: hsl(86, 53%, 94%);
+	--bg-white: hsl(120, 33%, 99%);
+	--white: hsl(120, 33%, 99%);
+	--black: hsl(0, 0%, 7%);
+	--text: hsl(0, 0%, 7%);
+	--small-text: hsl(0, 0%, 44%);
+	--box-shadow: 0 5px hsl(0, 0%, 7%);
+	--border: hsl(0, 0%, 7%);
+	--example: hsl(330, 70%, 87%);
 }
 :root:has(.check-darkmode:checked) {
-	--accent: #55ad9b;
-	--accent-dark: #408e7e;
-	--background: #0b2823;
-	--white: rgba(15, 18, 25);
-	--text: #eeefe9;
-	--box-shadow: 0 5px #000;
-	--border: #000;
-	--example: #9b59b6;
+	--main: hsl(168, 35%, 51%);
+	--secondary: hsl(150, 40%, 42%);
+	--background: hsl(170, 57%, 10%);
+	--bg-white: rgba(15, 18, 25);
+	--text: hsl(70, 16%, 93%);
+	--box-shadow: 0 5px hsl(0, 0%, 0%);
+	--border: hsl(0, 0%, 0%);
+	--example: hsl(283, 39%, 53%);
 }
 *:focus {
 	outline-offset: 2px;
@@ -93,13 +94,13 @@ b {
 	font-weight: 600;
 }
 a {
-	color: var(--accent-dark);
+	color: var(--secondary);
 	transition:
 		color,
 		0.3s ease;
 }
 a:hover {
-	color: var(--accent);
+	color: var(--main);
 }
 p,
 ul {
@@ -139,7 +140,7 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 4px solid var(--accent);
+	border-left: 4px solid var(--main);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
@@ -176,12 +177,13 @@ iframe.cp_embed_iframe {
 	box-shadow: var(--box-shadow);
 	border-radius: 6px;
 	border: 2px solid var(--border);
-	background: var(--accent-dark);
+	background: var(--secondary);
 	transition-property: all;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 0.15s;
 	font-weight: 500;
 	cursor: pointer;
+	color: var(--white);
 }
 .button:hover,
 .button:focus {
