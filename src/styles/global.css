@@ -13,11 +13,11 @@
 }
 :root:has(.check-darkmode:checked) {
 	--main: hsl(150, 40%, 60%);
-	--secondary: hsl(150, 40%, 40%);
+	--secondary: hsl(150, 40%, 35%);
 	--background: hsl(150, 40%, 12%);
 	--bg-light: hsl(0, 0%, 9%);
-	--text: hsl(255, 100%, 99%);
-	--small-text: hsl(0, 0%, 70%);
+	--text: hsl(230, 100%, 99%);
+	--small-text: hsl(0, 0%, 75%);
 	--box-shadow: 0 5px hsl(0, 0%, 0%);
 	--border: hsl(0, 0%, 0%);
 	--example: hsl(230, 70%, 60%);
