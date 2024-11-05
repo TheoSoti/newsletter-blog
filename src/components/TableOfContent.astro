@@ -1,0 +1,79 @@
+---
+interface Heading {
+	depth: number;
+	slug: string;
+	text: string;
+}
+
+const { headings } = Astro.props;
+
+const displayedHeadings = headings.filter((heading: Heading) => heading.depth === 2);
+console.log(displayedHeadings);
+---
+
+{
+	displayedHeadings.length > 0 && (
+		<nav>
+			<span>Table of contents</span>
+			<ul>
+				{displayedHeadings.map((heading: Heading) => (
+					<li>
+						<a href={`#${heading.slug}`}>{heading.text}</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	)
+}
+
+<style>
+	nav {
+		display: none;
+	}
+	@media (min-width: 900px) {
+		nav {
+			width: 300px;
+			display: block;
+			position: -webkit-sticky;
+			position: sticky;
+			top: 2em;
+			flex-shrink: 0;
+			border: 2px solid var(--border);
+			border-bottom-width: 5px;
+		}
+		span {
+			display: block;
+			padding: 0.5em;
+			color: var(--secondary);
+			font-weight: 600;
+			border-bottom: 2px solid var(--border);
+		}
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+			margin: 0;
+		}
+		li {
+		}
+		li:after {
+		}
+		a {
+			display: block;
+			color: var(--text);
+			text-decoration: none;
+			padding: 0.5em 2em 0.5em 0.5em;
+			position: relative;
+			border-bottom: 1px dotted var(--border);
+		}
+		a:after {
+			content: '>';
+			font-size: 0.8em;
+			position: absolute;
+			right: 1em;
+			top: 0.8em;
+		}
+		a:hover {
+			color: var(--secondary);
+		}
+	}
+</style>

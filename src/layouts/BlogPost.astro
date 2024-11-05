@@ -4,24 +4,30 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import TableOfContent from '../components/TableOfContent.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+// type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime, headings } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
+			html {
+				scroll-behavior: smooth;
+			}
 			main {
-				width: calc(100% - 2em);
 				max-width: 100%;
-				margin: 0 auto;
 				padding-top: 0;
+				scroll-behavior: smooth;
+			}
+			.container {
+				width: calc(100% - 2em);
+				margin: auto;
 			}
 			.prose {
-				width: 720px;
 				max-width: 100%;
 				margin: auto;
 			}
@@ -33,7 +39,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 				max-width: calc(100% - 2em);
 				width: fit-content;
 				text-align: center;
-				padding: 1.5rem 2rem;
+				padding: 1.5em 2em;
 				margin: auto;
 				border: 4px solid var(--border);
 				border-bottom-width: 8px;
@@ -70,30 +76,39 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 				inset: 0;
 				background: var(--background);
 			}
-
 			h1 {
 				counter-reset: h2counter;
 			}
-
 			.prose h2 {
 				counter-increment: h2counter;
 				counter-reset: h3counter;
 			}
-
 			.prose h2:before {
 				content: counter(h2counter) '.';
 			}
-
 			.prose h3:before {
 				content: counter(h2counter) '.' counter(h3counter) '.';
 				counter-increment: h3counter;
 			}
 			@media (min-width: 600px) {
-				.prose {
-					max-width: calc(100% - 2em);
-				}
 				.post-header {
 					margin-bottom: 2em;
+				}
+			}
+			@media (min-width: 900px) {
+				.container {
+					display: flex;
+					flex-wrap: nowrap;
+					align-items: flex-start;
+					width: calc(100% - 2em);
+					gap: 40px;
+					scroll-behavior: smooth;
+				}
+				.prose {
+					scroll-behavior: smooth;
+					max-width: calc(100% - 2em);
+					width: clamp(530px, calc(100% - 340px), 760px);
+					margin-top: -2em;
 				}
 			}
 		</style>
@@ -118,11 +133,13 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 			</div>
 		</div>
 		<main>
-			<article>
-				<div class="prose">
+			<div class="container">
+				<TableOfContent headings={headings} />
+
+				<article class="prose">
 					<slot />
-				</div>
-			</article>
+				</article>
+			</div>
 		</main>
 		<Footer />
 	</body>
