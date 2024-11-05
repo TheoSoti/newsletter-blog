@@ -5,10 +5,8 @@ interface Heading {
 	text: string;
 }
 
-const { headings } = Astro.props;
-
-const displayedHeadings = headings.filter((heading: Heading) => heading.depth === 2);
-console.log(displayedHeadings);
+const headings: Heading[] = Astro.props.headings;
+const displayedHeadings = headings.filter((heading) => heading.depth === 2);
 ---
 
 {
@@ -16,7 +14,7 @@ console.log(displayedHeadings);
 		<nav>
 			<span>Table of contents</span>
 			<ul>
-				{displayedHeadings.map((heading: Heading) => (
+				{displayedHeadings.map((heading) => (
 					<li>
 						<a href={`#${heading.slug}`}>{heading.text}</a>
 					</li>
