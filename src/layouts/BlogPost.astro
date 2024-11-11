@@ -15,13 +15,17 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
+			@media (prefers-reduced-motion: no-preference) {
+				html {
+					scroll-behavior: smooth;
+				}
+			}
 			html {
-				scroll-behavior: smooth;
+				scroll-padding: 2em;
 			}
 			main {
 				max-width: 100%;
 				padding-top: 0;
-				scroll-behavior: smooth;
 			}
 			.container {
 				width: calc(100% - 2em);
@@ -36,8 +40,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				max-width: calc(100% - 2em);
-				width: fit-content;
+				max-width: 1100px;
 				text-align: center;
 				padding: 1.5em 2em;
 				margin: auto;
@@ -58,7 +61,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 			}
 			.post-header {
 				position: relative;
-				padding: 5em 0;
+				padding: 5em 1em;
 				border-bottom: 4px solid var(--border);
 			}
 			.post-image {
@@ -96,16 +99,18 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 				}
 			}
 			@media (min-width: 900px) {
+				main {
+					width: 100%;
+					padding-bottom: 2em;
+				}
 				.container {
 					display: flex;
 					flex-wrap: nowrap;
 					align-items: flex-start;
-					width: calc(100% - 2em);
+					max-width: 1100px;
 					gap: 40px;
-					scroll-behavior: smooth;
 				}
 				.prose {
-					scroll-behavior: smooth;
 					max-width: calc(100% - 2em);
 					width: clamp(530px, calc(100% - 340px), 760px);
 					margin-top: -2em;
