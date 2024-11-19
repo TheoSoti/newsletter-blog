@@ -1,0 +1,29 @@
+<main class="demo">
+	<button class="button">Focus Within</button>
+	<p>
+		The focus will show on the container everytime the user focus an element inside it. But not when it's a mouse click.
+		<a href="javascript:void(0)">Try with a link</a>
+	</p>
+</main>
+
+<style>
+	.demo {
+		padding: 1em;
+		max-width: 100%;
+		background-color: white;
+		gap: 2rem;
+	}
+	.button {
+		font-size: 1em;
+		padding: 0.5em;
+		margin-bottom: 1em;
+	}
+	.demo:has(a:focus-visible, button:focus-visible) {
+		outline-offset: -4px;
+		outline: 3px solid deeppink;
+	}
+	p {
+		color: black;
+		margin: 0;
+	}
+</style>

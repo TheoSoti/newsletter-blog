@@ -63,6 +63,10 @@ import { SITE_NAME } from '../consts';
 </header>
 <style>
 	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
 		margin: 0;
 		background-color: var(--background);
 		border-bottom: 4px solid var(--border);
@@ -70,6 +74,7 @@ import { SITE_NAME } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		z-index: 99;
 	}
 	nav .logo a {
 		display: block;
@@ -94,7 +99,7 @@ import { SITE_NAME } from '../consts';
 		margin: auto;
 	}
 	nav a {
-		padding: 1em 0.5em;
+		padding: 0.2em 0.5em;
 		color: var(--text);
 		text-decoration: none;
 	}

@@ -108,6 +108,7 @@ const { isNewsletter } = Astro.props;
 		line-height: 1;
 		background: var(--bg-light);
 	}
+
 	.social-links {
 		display: flex;
 		align-items: center;
@@ -138,9 +139,18 @@ const { isNewsletter } = Astro.props;
 	svg {
 		width: 25px;
 	}
+
+	.social {
+		margin-top: 2em;
+	}
+	h4,
+	.social-links {
+		padding: 0 0.4em;
+	}
 	.nav a {
 		color: var(--text);
 		text-decoration: none;
+		padding: 0.2em 0.4em;
 	}
 	.nav a:hover {
 		color: var(--secondary);
@@ -155,6 +165,10 @@ const { isNewsletter } = Astro.props;
 			display: grid;
 			grid-template-columns: 1fr 1fr auto;
 			column-gap: 20px;
+		}
+		.social,
+		h4 {
+			margin-top: 0;
 		}
 	}
 </style>

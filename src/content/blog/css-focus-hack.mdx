@@ -1,0 +1,131 @@
+---
+title: 'Mastering CSS Focus States'
+description: 'Learn how to master CSS focus states like :focus, :focus-visible and :focus-within, plus the secret focus-visible-within. Enhance accessibility and user experience with tips to apply these selectors effectively in your web projects.'
+pubDate: 'Nov 18 2024'
+heroImage: '/focus.png'
+readingTime: '5 min read'
+---
+
+## Introduction
+
+CSS Focus states might seem straightforward, but in reality, there are multiple selectors that control how and when focus is displayed on elements.
+There are three primary focus states in CSS, plus a “secret” fourth one.
+
+Understanding how to use these focus states correctly can elevate accessibility, create smoother interfaces, and improve user navigation.
+
+Try playing with these examples below by tabbing or clicking and see the diferences:
+
+import Wrapper from '../components/Wrapper.astro';
+import Focus1 from '../components/FocusHacks/1.astro';
+
+<Wrapper title="4 types of CSS focus">
+	<Focus1 />
+</Wrapper>
+
+Now that you have a basic understanding, let's deep dive into this `:focus` universe to see when and where to implement them.
+
+## The basic :focus state
+
+The simplest of all focus states is `:focus`.
+
+```css
+a:focus {
+	outline: 2px solid #000;
+}
+```
+
+When you apply this to an element, it shows a style whenever that element is focused.
+
+The focus can occur from clicking, tabbing, or using other navigation methods.
+
+For example, if you tab through this site, you will see a black or white (depending of the darkmode) outline on links and buttons.
+
+But if you try to click on any buttons or links, it wont show anything.
+
+**Why you say ?**
+
+Because for this site I used `:focus-visible` on almost all the links…
+
+## The :focus-visible state
+
+Unlike `:focus`, which shows styles regardless of how the user interacts with the element, `:focus-visible` only displays focus styles when they’re visually necessary.
+
+```css
+a:focus-visible {
+	outline: 2px solid deeppink;
+}
+```
+
+For instance, when navigating by keyboard, `:focus-visible` triggers, but with a mouse, it won’t display any outline.
+
+This keeps the interface looking clean, while still offering guidance for keyboard users.
+
+So, how do you decide between `:focus` and `:focus-visible`?
+
+Here’s my rule:
+
+- Use `:focus` if you want a style that shows up with any type of interaction. In general all inputs related to a form.
+- Use `:focus-visible` for a cleaner look, where focus only appears when helpful for the user. In general for all other types of elements (links, buttons ,…).
+
+If you noticed on my website, the only element that have a simple `:focus` state is the input of my newsletter. Everything else uses `:focus-visible`.
+
+Now we reviewed the 2 basic :focus states, let’s dive into the advanced state `:focus-within`.
+
+## The advanced :focus-within state
+
+Another useful focus state is `:focus-within`, which allows you to style a parent element based on whether any child element inside it, is focused.
+
+```css
+.container:focus-within {
+	outline: 2px solid deeppink;
+}
+```
+
+This is especially useful for complex components like dropdowns or modal containers.
+
+This will trigger for each interaction of the user on the selected area (click, tab, or other navigation methods).
+
+Here is an example:
+
+import Focus2 from '../components/FocusHacks/2.astro';
+
+<Wrapper>
+	<Focus2 />
+</Wrapper>
+
+For now we reviewed `:focus`, `:focus-visible` and `:focus-within`.
+
+So the next state to present is logically `:focus-within-visible`, right?
+
+Well almost but not excatly, here is this fourth secret state!
+
+## The “secret” fourth :focus-visible-within state
+
+While CSS doesn’t directly support a `focus-visible-within` selector, you can achieve this effect using the `:has` pseudo-class.
+
+```css
+.container:has(a:focus-visible, button:focus-visible) {
+	outline: 2px solid deeppink;
+}
+```
+
+This “secret” selector applies the focus only when it’s necessary for the user’s navigation style, similar to `:focus-visible`, but within a container context.
+
+By combining `:has` with `:focus-visible`, you can set up a container element to style itself based on the visibility of focus within its child elements.
+
+This is particularly useful for custom interface elements, where a parent container needs to indicate focus only in visually relevant scenarios.
+
+Here is an example:
+
+import Focus3 from '../components/FocusHacks/3.astro';
+
+<Wrapper>
+	<Focus3 />
+</Wrapper>
+
+## Support My Work
+
+Feel free to leave your comments or questions by email at hey@theosoti.com. <br />
+If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
+
+Happy coding!

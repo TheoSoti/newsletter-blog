@@ -1,0 +1,87 @@
+<main class="demo">
+	<div class="demo1">
+		<button class="button">Regular Focus</button>
+		<p>The focus will show everytime, whatever method used</p>
+	</div>
+
+	<div class="demo2">
+		<button class="button">Focus Visible</button>
+		<p>The focus won't show on click, but it will show with every other methods</p>
+	</div>
+
+	<div class="demo3">
+		<button class="button">Focus within</button>
+		<p>The focus will show on the parent element, whatever method used</p>
+	</div>
+
+	<div class="demo4">
+		<button class="button">Focus within visible</button>
+		<p>The focus won't show on click, but it will show with every other methods</p>
+	</div>
+
+	<p>
+		<u>Note</u>: If you are on a mobile device, you won't see any difference between <code>:focus</code> and <code
+			>:focus-visible</code
+		>. You won't see any difference between <code>:focus-within</code> and <code>:focus-within-visible</code> either.
+	</p>
+</main>
+
+<style>
+	.demo {
+		display: flex;
+		flex-direction: column;
+		padding: 1em;
+		max-width: 100%;
+		background-color: white;
+		gap: 2rem;
+	}
+	.demo > div {
+		padding: 0.2em;
+	}
+	.demo > p {
+		font-size: 0.8em;
+		grid-column: 1/3;
+		margin: 0;
+		color: var(--small-text);
+	}
+	.demo code {
+		text-wrap: none;
+		font-size: 0.8em;
+	}
+	.button {
+		font-size: 1em;
+		padding: 0.5em;
+		margin-bottom: 1em;
+	}
+	.demo1 button:focus,
+	.demo3 button:focus {
+		outline-offset: 2px;
+		outline: 3px solid deeppink;
+		border-radius: 5px;
+	}
+	.demo2 button:focus-visible,
+	.demo4 button:focus-visible {
+		outline-offset: 2px;
+		outline: 3px solid deeppink;
+		border-radius: 5px;
+	}
+	.demo3:focus-within {
+		outline-offset: 4px;
+		outline: 3px solid deeppink;
+	}
+	.demo4:has(button:focus-visible) {
+		outline-offset: 4px;
+		outline: 3px solid deeppink;
+	}
+	p {
+		color: black;
+		margin: 0;
+	}
+	@media (min-width: 600px) {
+		.demo {
+			display: grid;
+			gap: 3rem;
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

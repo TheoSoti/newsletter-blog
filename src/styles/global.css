@@ -10,9 +10,10 @@
 	--box-shadow: 0 5px hsl(0, 0%, 9%);
 	--border: hsl(0, 0%, 9%);
 	--example: hsl(230, 70%, 80%);
+	--code: #ebeceb;
 }
 :root:has(.check-darkmode:checked) {
-	--main: hsl(150, 40%, 60%);
+	--main: hsl(150 59.02% 68.79%);
 	--secondary: hsl(150, 40%, 35%);
 	--background: hsl(150, 40%, 12%);
 	--bg-light: hsl(0, 0%, 9%);
@@ -21,8 +22,9 @@
 	--box-shadow: 0 5px hsl(0, 0%, 0%);
 	--border: hsl(0, 0%, 0%);
 	--example: hsl(230, 70%, 60%);
+	--code: #ffffff26;
 }
-*:focus {
+*:focus-visible {
 	outline-offset: 2px;
 	outline: 2px solid var(--text);
 	border-radius: 4px;
@@ -54,6 +56,7 @@ body {
 	font-weight: 400;
 	line-height: 1.7;
 	counter-reset: h2counter;
+	margin-top: 80px;
 }
 main {
 	width: 1100px;
@@ -126,9 +129,11 @@ img {
 	border-radius: 8px;
 }
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	font-size: 0.9em;
+	padding: 3px 6px;
+	background-color: var(--code);
+	border-radius: 5px;
+	color: var(--text);
 }
 pre {
 	padding: 1.5em;
@@ -148,7 +153,7 @@ blockquote {
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid var(--border);
 }
 iframe.cp_embed_iframe {
 	margin: 2em 0;
