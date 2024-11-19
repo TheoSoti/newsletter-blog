@@ -13,7 +13,7 @@ There are three primary focus states in CSS, plus a “secret” fourth one.
 
 Understanding how to use these focus states correctly can elevate accessibility, create smoother interfaces, and improve user navigation.
 
-Try playing with these examples below by tabbing or clicking and see the diferences:
+Try playing with these examples below by tabbing or clicking and see the differences:
 
 import Wrapper from '../components/Wrapper.astro';
 import Focus1 from '../components/FocusHacks/1.astro';
@@ -30,7 +30,7 @@ The simplest of all focus states is `:focus`.
 
 ```css
 a:focus {
-	outline: 2px solid #000;
+	outline: 2px solid deeppink;
 }
 ```
 
@@ -38,13 +38,13 @@ When you apply this to an element, it shows a style whenever that element is foc
 
 The focus can occur from clicking, tabbing, or using other navigation methods.
 
-For example, if you tab through this site, you will see a black or white (depending of the darkmode) outline on links and buttons.
+For example, if you tab through this site, you will see a black or white (depending on dark mode) outline on links and buttons.
 
-But if you try to click on any buttons or links, it wont show anything.
+But if you try to click on any buttons or links, it won’t show anything.
 
-**Why you say ?**
+**Why you ask?**
 
-Because for this site I used `:focus-visible` on almost all the links…
+Because, for this site, I used :focus-visible on almost all the links!
 
 ## The :focus-visible state
 
@@ -65,15 +65,15 @@ So, how do you decide between `:focus` and `:focus-visible`?
 Here’s my rule:
 
 - Use `:focus` if you want a style that shows up with any type of interaction. In general all inputs related to a form.
-- Use `:focus-visible` for a cleaner look, where focus only appears when helpful for the user. In general for all other types of elements (links, buttons ,…).
+- Use `:focus-visible` for a cleaner look, where focus only appears when helpful for the user. In general, for all other types of elements (links, buttons, etc.).
 
 If you noticed on my website, the only element that have a simple `:focus` state is the input of my newsletter. Everything else uses `:focus-visible`.
 
-Now we reviewed the 2 basic :focus states, let’s dive into the advanced state `:focus-within`.
+Now that we’ve reviewed the 2 basic focus states, let’s dive into the advanced state `:focus-within`.
 
 ## The advanced :focus-within state
 
-Another useful focus state is `:focus-within`, which allows you to style a parent element based on whether any child element inside it, is focused.
+Another useful focus state is :focus-within, which allows you to style a parent element based on whether any child element inside it is focused.
 
 ```css
 .container:focus-within {
@@ -83,7 +83,7 @@ Another useful focus state is `:focus-within`, which allows you to style a paren
 
 This is especially useful for complex components like dropdowns or modal containers.
 
-This will trigger for each interaction of the user on the selected area (click, tab, or other navigation methods).
+This will trigger for each user interaction on the selected area (click, tab, or other navigation methods).
 
 Here is an example:
 
@@ -95,9 +95,9 @@ import Focus2 from '../components/FocusHacks/2.astro';
 
 For now we reviewed `:focus`, `:focus-visible` and `:focus-within`.
 
-So the next state to present is logically `:focus-within-visible`, right?
+So, the next state to present is logically `:focus-within-visible`, right?
 
-Well almost but not excatly, here is this fourth secret state!
+Well, almost, but not excatly. Here is this fourth secret state!
 
 ## The “secret” fourth :focus-visible-within state
 
@@ -125,7 +125,7 @@ import Focus3 from '../components/FocusHacks/3.astro';
 
 ## Support My Work
 
-Feel free to leave your comments or questions by email at hey@theosoti.com. <br />
+Feel free to leave your comments or questions via email at hey@theosoti.com. <br />
 If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
 
 Happy coding!
