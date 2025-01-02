@@ -1,0 +1,101 @@
+<main class="demo">
+	<ul>
+		<li><img src="https://picsum.photos/id/230/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/231/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/232/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/233/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/234/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/235/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/236/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/237/300/300" width="300" height="300" alt="album" /></li>
+		<li><img src="https://picsum.photos/id/238/300/300" width="300" height="300" alt="album" /></li>
+	</ul>
+</main>
+
+<style>
+	.demo {
+		position: relative;
+		margin: 0;
+		width: 100%;
+		max-width: inherit;
+		padding: 20px;
+	}
+
+	ul {
+		margin: 0;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		overflow-x: scroll;
+		white-space: nowrap;
+		padding: 0;
+		padding: 100px 0;
+		list-style-type: none;
+		scroll-snap-type: x mandatory;
+		max-width: 100%;
+	}
+
+	li {
+		animation: linear adjust-z-index both;
+		animation-timeline: view(inline);
+		perspective: 40em;
+		position: relative;
+
+		will-change: z-index;
+		user-select: none;
+
+		display: inline-block;
+		width: 150px;
+		height: 150px;
+		scroll-snap-align: center;
+	}
+
+	li:first-of-type {
+		margin-left: calc(50% - 50px);
+	}
+
+	li:last-of-type {
+		margin-right: calc(50% - 50px);
+	}
+
+	img {
+		animation: linear rotate-cover both;
+		animation-timeline: view(inline);
+		will-change: transform;
+		transform: translateX(-100%) rotateY(-45deg);
+
+		border: 2px solid black;
+		display: block;
+		height: 150px;
+		width: 150px;
+	}
+
+	@keyframes adjust-z-index {
+		0% {
+			z-index: 1;
+		}
+		50% {
+			z-index: 50;
+		}
+		100% {
+			z-index: 1;
+		}
+	}
+
+	@keyframes rotate-cover {
+		0% {
+			transform: translateX(-100%) rotateY(-45deg);
+		}
+		35% {
+			transform: translateX(0) rotateY(-45deg);
+		}
+		50% {
+			transform: rotateY(0deg) translateZ(1em) scale(1.5);
+		}
+		65% {
+			transform: translateX(0) rotateY(45deg);
+		}
+		100% {
+			transform: translateX(100%) rotateY(45deg);
+		}
+	}
+</style>

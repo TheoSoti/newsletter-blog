@@ -1,0 +1,212 @@
+---
+title: 'Scroll-driven animation in full CSS'
+description: 'Learn five practical ways to smoothly transition an element’s height in CSS, from traditional techniques like max-height to modern methods with flexbox and grid. Discover upcoming features like calc-size() for even more flexibility.'
+pubDate: 'Dec 19 2024'
+heroImage: '/scroll-animation-css.png'
+readingTime: '10 min read'
+---
+
+import Wrapper from '../components/Wrapper.astro';
+
+## Introduction
+
+Scroll-driven animations are a great way to enhance web experiences by tying animations to scrolling. Think of parallax effects, where backgrounds shift as you scroll, or elements that fade in as they come into view.
+
+In the past, creating these effects meant handling scroll events (with javascript) on [the main thread](https://developer.mozilla.org/en-US/docs/Glossary/Main_thread), which often led to choppy results. But with the [Scroll-driven Animations specification](https://drafts.csswg.org/scroll-animations-1/), you can now create smooth, responsive animations declaratively.
+
+These new APIs work seamlessly with the [Web Animations API](https://drafts.csswg.org/web-animations-1/) and [CSS Animations API](https://drafts.csswg.org/css-animations/), allowing scroll-driven animations to run off the main thread.
+
+The result? Silky-smooth animations that are easy to implement with just a few lines of code.
+
+Here is an example of a component working with the scroll-driven animation:
+
+import Animation5 from '../components/ScrollAnimation/5.astro';
+
+<Wrapper title="Scroll horizontally to see the image appearing">
+	<Animation5 />
+</Wrapper>
+
+## Scroll timeline
+
+By default, animations run on the document’s main timeline, where time determines progress. But with the new Scroll Timeline API, you can make animations scroll-driven. Instead of progressing over a fixed duration, the animation’s progress is tied directly to the scroll position of a scroll container.
+
+Here’s how it works:
+
+- At **0% progress**, the animation corresponds to the start of the scroll.
+- At **100% progress**, the animation completes at the end of the scroll.
+
+This approach allows you to control animations dynamically through scrolling, offering a more interactive experience.
+
+To illustrate, here’s a simple animation that runs as soon as the page loads. The element scales horizontally over a fixed two-second duration:
+
+```css
+@keyframes progress {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+#progress {
+	animation: progress 2s linear infinite running;
+}
+```
+
+import Animation1 from '../components/ScrollAnimation/1.astro';
+
+<Wrapper>
+	<Animation1 />
+</Wrapper>
+
+Now, let’s make this animation scroll-driven. With the `animation-timeline` property and `scroll()` function, the animation’s progress is tied to the scroll position. We no longer need to define a fixed duration neither an iteration count, as the scroll position determines the timing:
+
+```css
+@keyframes progress {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+#progress {
+	animation: progress linear forwards;
+	animation-timeline: scroll();
+}
+```
+
+import Animation2 from '../components/ScrollAnimation/2.astro';
+
+<Wrapper title="Scroll inside this container to see what it looks like">
+	<Animation2 />
+</Wrapper>
+
+By default, the `scroll()` function uses the nearest scrollable ancestor as the scroller. But it can also take two optional parameters to customize its behavior:
+
+- **`<axis>`**: Specifies the axis of scrolling that drives the animation.
+  - Possible values: **block** (default), **inline**, **x**, or **y**.
+- **`<scroller>`**: Specifies the scroll container element whose scroll position drives the animation.
+  - Possible values: **nearest** (default), **root**, or **self**.
+
+With these options, you can fine-tune the behavior of scroll-driven animations to match your design needs.
+
+## The view timeline
+
+The View Timeline is a specialized type of scroll timeline. While it responds to scrolling, it behaves more like the JavaScript Intersection Observer API. The key difference is that the animation progress starts only when the target element begins entering the viewport and ends when it leaves the viewport.
+
+Just like with scroll-driven animations, we use the `animation-timeline` property, but this time we call the `view()` function instead of `scroll()`.
+
+The `view()` function can take two optional parameters:
+
+- **`<axis>`**: Determines the axis of scrolling that drives the animation progress.
+  - Possible values: **block** (default), **inline**, **x**, or **y**.
+- **`<view-timeline-inset>`**: Adjusts the visibility range for the animation progress within the viewport.
+  - Possible values: **auto** (default) or a custom `<length-percentage>` value.
+
+Unlike the `scroll()` function, there’s no scroller parameter here. The `view()` function always uses the nearest scrollable ancestor as its reference.
+
+Here’s an example where images fade & slide in as they become visible in the viewport:
+
+```css
+@keyframes fade-in {
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.image {
+	opacity: 0.2;
+	transform: translateX(-100px);
+
+	animation: fade-in linear forwards;
+	animation-timeline: view();
+}
+```
+
+import Animation3 from '../components/ScrollAnimation/3.astro';
+
+<Wrapper title="Scroll inside this container to see what it looks like">
+	<Animation3 />
+</Wrapper>
+
+It’s nice but not perfect. We never see the full image at 100% opacity. The image should have full opacity at around 50% of the viewport.
+
+The initial idea might be to adjust the keyframes to end at 50%. <br/> While this approach could work, it’s not easy to maintain. For example:
+
+```css
+@keyframes fade-in {
+	0% {
+		opacity: 0.2;
+		transform: translateX(0);
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(1);
+	}
+}
+```
+
+Thankfully, there is an easier way to do this. You can adjust your animation attachment with timeline ranges.
+
+## Timelines ranges
+
+To further customise scroll-driven animations, you can use the `animation-range` property in combination with `animation-timeline`. This property allows you to define the exact range within which your animation should run.
+
+By default, `animation-range` is set to **`normal normal`**, which is shorthand for `animation-range-start: normal;` and `animation-range-end: normal;`. This default configuration corresponds to the animation running from **0%** to **100%** of the timeline. In CSS terms, it can be expressed as: `animation-range: 0% 100%;`
+
+But you’re not limited to percentages! The `animation-range` property lets you specify **lengths** or **percentages** to fine-tune when the animation starts and ends relative to the scroll position.
+
+For instance, if we get back to our previous example, you can define an animation that starts when the scroll offset reaches `100px` and ends at `50%`:
+
+```css
+@keyframes fade-in {
+	to {
+		opacity: 1;
+	}
+}
+
+.image {
+	opacity: 0.2;
+	transform: translateX(-100px);
+
+	animation: fade-in linear forwards;
+	animation-timeline: view();
+	animation-range: 100px 50%;
+}
+```
+
+import Animation4 from '../components/ScrollAnimation/4.astro';
+
+<Wrapper title="Scroll inside this container to see what it looks like">
+	<Animation4 />
+</Wrapper>
+
+In this example:
+
+- The animation begins when the element’s scroll offset reaches **100px**.
+- The animation completes as the scroll offset reaches **50%**.
+
+This flexibility allows you to create more precise, visually engaging animations that align perfectly with your design goals.
+
+With that there are already a lot of scroll animations possible with pure CSS.
+
+## Tools & Resources
+
+To visualise and debug Scroll-Driven Animations on your own site: [Scroll-Driven Animations Debugger extension for Chrome DevTools](https://chromewebstore.google.com/detail/scroll-driven-animations-debugger/ojihehfngalmpghicjgbfdmloiifhoce).
+
+To visualise all the possible outcome for the view timeline ranges: [scroll-driven-animations.style/tools/view-timeline/ranges](https://scroll-driven-animations.style/tools/view-timeline/ranges/)
+
+To deep dive into scroll driven animations: [scroll-driven-animations.style](https://scroll-driven-animations.style/).
+
+Great video from Kevin Powell about scroll driven animations: [youtube.com/watch?v=UmzFk68Bwdk](https://www.youtube.com/watch?v=UmzFk68Bwdk).
+
+## Support My Work
+
+Feel free to leave your comments or questions by email at hey@theosoti.com. <br />
+If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
+
+Happy coding!

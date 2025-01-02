@@ -1,0 +1,31 @@
+<main class="demo">
+	<div class="progress"></div>
+</main>
+
+<style>
+	.demo {
+		height: 100px;
+	}
+	.progress {
+		background: #dbdbdb;
+		height: 5px;
+		position: relative;
+		border-radius: 5px;
+	}
+
+	.progress:before {
+		content: '';
+		position: absolute;
+		border-radius: 5px;
+		background: deeppink;
+		width: 0;
+		height: 5px;
+		animation: progress 2s linear infinite running;
+	}
+
+	@keyframes progress {
+		to {
+			width: 100%;
+		}
+	}
+</style>

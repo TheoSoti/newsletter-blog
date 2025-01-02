@@ -1,0 +1,49 @@
+<main class="demo">
+	<div class="container">
+		<div class="progress"></div>
+		<p>⏬ Scroll Me ⏬</p>
+	</div>
+</main>
+
+<style>
+	.demo {
+		height: 200px;
+		overflow-y: scroll;
+		position: relative;
+	}
+	.container {
+		height: 500px;
+		position: relative;
+	}
+	p {
+		position: sticky;
+		top: 74px;
+		left: 0;
+		text-align: center;
+		margin-top: 50px;
+		color: deeppink;
+	}
+	.progress {
+		background: #dbdbdb;
+		height: 5px;
+		position: sticky;
+		top: 0;
+		left: 0;
+		border-radius: 5px;
+	}
+	.progress:before {
+		content: '';
+		position: absolute;
+		border-radius: 5px;
+		background: deeppink;
+		width: 0;
+		height: 5px;
+		animation: progress linear forwards;
+		animation-timeline: scroll();
+	}
+	@keyframes progress {
+		to {
+			width: 100%;
+		}
+	}
+</style>
