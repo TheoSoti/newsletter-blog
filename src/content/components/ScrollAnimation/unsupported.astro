@@ -1,0 +1,20 @@
+<p class="warning">
+	⚠️ Your browser does not support Scroll-Linked Animations. To cater for this, a <a
+		href="https://github.com/flackr/scroll-timeline">polyfill</a
+	> has been loaded.
+</p>
+
+<style>
+	.warning {
+		background: #0000003d;
+		border: 2px solid var(--border);
+		margin-top: 2em;
+		padding: 1em;
+	}
+
+	@supports (animation-timeline: scroll()) {
+		.warning {
+			display: none;
+		}
+	}
+</style>

@@ -8,6 +8,12 @@ readingTime: '10 min read'
 
 import Wrapper from '../components/Wrapper.astro';
 
+<script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
+
+import Unsuported from '../components/ScrollAnimation/unsupported.astro';
+
+<Unsuported> </Unsuported>
+
 ## Introduction
 
 Scroll-driven animations are a great way to enhance web experiences by tying animations to scrolling. Think of parallax effects, where backgrounds shift as you scroll, or elements that fade in as they come into view.
@@ -193,6 +199,14 @@ In this example:
 This flexibility allows you to create more precise, visually engaging animations that align perfectly with your design goals.
 
 With that there are already a lot of scroll animations possible with pure CSS.
+
+## Support
+
+Scroll-driven animations in CSS are gaining attention but aren’t yet universally supported. Currently, they have around 74% global support. While Chrome and Edge support them starting from version 115, Safari and Firefox have yet to implement this feature.
+
+However, this shouldn’t discourage us from using scroll-driven animations. They can be implemented as a progressive enhancement, meaning non-critical animations won’t affect the overall user experience if they aren’t visible in unsupported browsers.
+
+To handle browser compatibility, the @supports rule in CSS allows you to check if a specific property is supported. This makes it easy to add fallbacks or even display warning messages for unsupported browsers. Additionally, polyfills are available to bring scroll-driven animations to more browsers, ensuring a wider reach.
 
 ## Tools & Resources
 
