@@ -32,7 +32,7 @@ import Animation5 from '../components/ScrollAnimation/5.astro';
 	<Animation5 />
 </Wrapper>
 
-## Scroll timeline
+## Scroll Timeline
 
 By default, animations run on the document’s main timeline, where time determines progress. But with the new Scroll Timeline API, you can make animations scroll-driven. Instead of progressing over a fixed duration, the animation’s progress is tied directly to the scroll position of a scroll container.
 
@@ -99,7 +99,7 @@ By default, the `scroll()` function uses the nearest scrollable ancestor as the 
 
 With these options, you can fine-tune the behavior of scroll-driven animations to match your design needs.
 
-## The view timeline
+## View Timeline
 
 The View Timeline is a specialized type of scroll timeline. While it responds to scrolling, it behaves more like the JavaScript Intersection Observer API. The key difference is that the animation progress starts only when the target element begins entering the viewport and ends when it leaves the viewport.
 
@@ -158,7 +158,7 @@ The initial idea might be to adjust the keyframes to end at 50%. <br/> While thi
 
 Thankfully, there is an easier way to do this. You can adjust your animation attachment with timeline ranges.
 
-## Timelines ranges
+## Timelines Ranges
 
 To further customise scroll-driven animations, you can use the `animation-range` property in combination with `animation-timeline`. This property allows you to define the exact range within which your animation should run.
 
@@ -200,7 +200,7 @@ This flexibility allows you to create more precise, visually engaging animations
 
 With that there are already a lot of scroll animations possible with pure CSS.
 
-## Support
+## Browser Support
 
 Scroll-driven animations in CSS are gaining attention but aren’t yet universally supported. Currently, they have around 74% global support. While Chrome and Edge support them starting from version 115, Safari and Firefox have yet to implement this feature.
 
