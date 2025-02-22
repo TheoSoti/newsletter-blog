@@ -13,6 +13,12 @@ const posts = (await getCollection('blog'))
 	.reverse()
 	.splice(-6)
 	.reverse();
+
+const shorts = (await getCollection('short'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.reverse()
+	.splice(-6)
+	.reverse();
 ---
 
 <html lang="en">
@@ -24,10 +30,27 @@ const posts = (await getCollection('blog'))
 		<Hero />
 
 		<main>
-			<h2>Latest articles</h2>
-			<ul>
-				{posts.map((post: any) => <Card post={post} width="720" height="360" />)}
-			</ul>
+			<section>
+				<h2>Latest Blog Articles</h2>
+				<p>
+					Discover in-depth articles covering a variety of topics. <br />
+					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
+				</p>
+				<ul>
+					{posts.map((post: any) => <Card post={post} width="720" height="360" />)}
+				</ul>
+			</section>
+
+			<section>
+				<h2>Latest Short Articles</h2>
+				<p>
+					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
+					you're short on time but still want valuable content.
+				</p>
+				<ul>
+					{shorts.map((short: any) => <Card post={short} width="720" height="360" type="short" />)}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
@@ -36,6 +59,9 @@ const posts = (await getCollection('blog'))
 <style>
 	main {
 		padding: 1em 0 1.5em;
+	}
+	section {
+		margin-bottom: 3em;
 	}
 	h2 {
 		margin-top: 0;

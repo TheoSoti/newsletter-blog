@@ -5,15 +5,15 @@ import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import Card from '../../components/Card.astro';
 
-const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title="Find all the blog posts written by Theo Soti"
-			description="Discover the latest insights, tutorials, and tips in front-end development. Stay updated with articles on HTML, CSS, JavaScript, frameworks, and best practices to build responsive, high-performance websites."
+			title="Find all the short articles written by Theo Soti"
+			description="Discover quick and insightful reads on web development, design, and tech. These bite-sized articles by Theo Soti deliver valuable knowledge in under a minute."
 		/>
 		<style>
 			main {
@@ -43,13 +43,13 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
 		<Header />
 		<main>
 			<section>
-				<h1 class="title">Blog Articles</h1>
+				<h1 class="title">Short Articles</h1>
 				<p>
-					Discover in-depth articles covering a variety of topics. <br />
-					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
+					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
+					you're short on time but still want valuable content.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" />)}
+					{posts.map((post) => <Card post={post} width="720" height="360" type="short" />)}
 				</ul>
 			</section>
 		</main>

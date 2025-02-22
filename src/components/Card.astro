@@ -1,13 +1,26 @@
 ---
-const { post, width, height } = Astro.props;
+const { post, width, height, type } = Astro.props;
 import FormattedDate from './FormattedDate.astro';
 ---
 
 <li class="card">
-	<a href={`/blog/${post.slug}/`}>
+	<a href={`/${type}/${post.slug}/`}>
 		<img width={width} height={height} src={post.data.heroImage} alt={post.data.title} />
 		<h3 class="title">{post.data.title}</h3>
-		<span><FormattedDate date={post.data.pubDate} /> - {post.data.readingTime}</span>
+		{
+			type !== 'short' && (
+				<span>
+					<FormattedDate date={post.data.pubDate} /> - {post.data.readingTime}
+				</span>
+			)
+		}
+		{
+			type === 'short' && (
+				<span>
+					<FormattedDate date={post.data.pubDate} />
+				</span>
+			)
+		}
 	</a>
 </li>
 
