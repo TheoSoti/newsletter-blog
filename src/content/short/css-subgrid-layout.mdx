@@ -1,0 +1,80 @@
+---
+title: 'How CSS subgrid fixes alignment issues for good'
+description: 'Say goodbye to inconsistent layouts. Learn how CSS Subgrid keeps your designs perfectly aligned across components like pricing cards, blog listings, and dashboards.'
+pubDate: 'Feb 17 2025'
+heroImage: '/short/css-subgrid-layout.png'
+---
+
+import { Image } from 'astro:assets';
+
+<Image
+	src="/short/css-subgrid-layout-comparison.png"
+	alt="Presenting the power of the subgrid layout"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+Subgrid is your new best friend.
+
+Instead of each item defining its own layout, it inherits the parent’s grid structure.
+
+That means:
+
+- No more inconsistent heights.
+- No more manually tweaking spacing.
+- Everything stays perfectly aligned.
+
+To make it work, it’s simple:
+
+- Set `display: grid` on the child element.
+- Use `grid-template-rows: subgrid` or `grid-template-columns: subgrid`.
+- Use `grid-row: span 3;` (or equivalent) to stretch items across multiple tracks within the parent grid.
+- The child now follows the parent’s grid.
+
+In the pricing card example, all sections stay aligned across all cards, no extra hacks needed.
+
+Subgrid is great in component-based layouts:
+
+- Blog listings where titles, excerpts, and metadata align.
+- Feature grids with perfectly balanced headings and descriptions.
+- Dashboards where stats and labels need precise positioning.
+- Forms with consistent input and label alignment.
+
+Subgrid is reliable for most modern browsers with 91.51% support.
+
+Some older browsers might need fallbacks, so use it as progressive enhancement where needed.
+
+Here is the code:
+
+```html
+<section class="container">
+	<div class="card">
+		<h2>First plan - super long title</h2>
+		<p>Content</p>
+		<button>Super Cheap</button>
+	</div>
+	<div class="card">
+		<h2>Best plan</h2>
+		<p>Content</p>
+		<button>Great Value</button>
+	</div>
+	...
+</section>
+```
+
+```css
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
+}
+
+.card {
+	display: grid;
+	grid-template-rows: subgrid;
+	grid-row: span 3;
+}
+```
+
+To learn more tips about CSS, make sure to join my newsletter below ❤️

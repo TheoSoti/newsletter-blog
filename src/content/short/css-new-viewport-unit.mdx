@@ -1,0 +1,38 @@
+---
+title: 'Use these new viewport unit to have a better mobile experience'
+description: 'Say goodbye to 100vh layout shifts! Learn how the new CSS viewport units (svh, lvh, dvh) provide better control over dynamic toolbars for a smoother, more reliable design.'
+pubDate: 'Feb 19 2025'
+heroImage: '/short/new-css-viewport-unit.png'
+---
+
+import { Image } from 'astro:assets';
+
+<Image
+	src="/short/css-viewport-units-lvh-dvh-svh.png"
+	alt="Presenting new CSS viewport units: lvh, dvh, svh"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+For years, `vh` and `vw` were our go-to viewport units.
+
+But mobile browsers’ dynamic toolbars made `100vh` unreliable, causing layout shifts.
+
+Now, CSS gives us better control with new viewport units.
+
+- `svh` / `svw` → Small Viewport (when toolbars are fully visible)
+- `lvh` / `lvw` → Large Viewport (when toolbars are fully collapsed)
+- `dvh` / `dvw` → Dynamic Viewport (adjusts in real time as the UI changes)
+
+With these units, layouts can adapt fluidly without sudden jumps when the browser UI changes.
+
+Need a full-height section?
+Use `100dvh`, and it’ll always fit.
+
+Want a consistent design even when toolbars disappear?
+`lvh` has you covered.
+
+The browser support is already solid at ~95%, so it’s pretty safe to use.
+
+To learn more tips about CSS, make sure to join my newsletter below ❤️
