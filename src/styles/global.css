@@ -213,3 +213,11 @@ iframe.cp_embed_iframe {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+.video {
+	margin: 2em auto 1em auto;
+	display: block;
+	border: 4px solid var(--border);
+	width: 100%;
+	max-height: 500px;
+}

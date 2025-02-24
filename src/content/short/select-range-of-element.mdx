@@ -1,0 +1,29 @@
+---
+title: 'Select a range of elements without classes'
+description: 'Target a precise range of elements with :nth-child(). Learn how to combine selectors to style specific segments of a list—no extra classes needed.'
+pubDate: 'Feb 24 2025'
+heroImage: '/short/02-2025/select-a-range-of-content.png'
+---
+
+<video controls class="video">
+	<source src="/short/02-2025/select-range-of-content.mp4" type="video/mp4" />
+</video>
+
+You might already use `:nth-child()` to target specific elements in a list.{' '}
+
+But did you know you can use it to select an entire range of elements?
+
+Instead of styling every third item or just the odd/even ones, you can define a precise segment.
+
+This works by combining two `:nth-child()` selectors:
+
+- `nth-child(n+4)`: Selects everything from the 3rd item onward.
+- `nth-child(-n+7)`: Selects everything up to the 7th item.
+
+Together, they create a flexible way to target only a specific range.
+
+This trick is perfect for highlighting content or dynamically styling sections of a list.
+
+Next time you need to style a group of elements, without adding extra classes, think about `:nth-child()`.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
