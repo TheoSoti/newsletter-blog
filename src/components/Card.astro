@@ -4,7 +4,7 @@ import FormattedDate from './FormattedDate.astro';
 ---
 
 <li class="card">
-	<a href={`/${type}/${post.slug}/`}>
+	<a href={`/${type || 'blog'}/${post.slug}/`}>
 		<img width={width} height={height} src={post.data.heroImage} alt={post.data.title} />
 		<h3 class="title">{post.data.title}</h3>
 		{
