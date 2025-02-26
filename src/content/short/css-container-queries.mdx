@@ -1,0 +1,82 @@
+---
+title: 'New way of declaring media queries'
+description: 'CSS container queries let elements adapt to their container, not just the viewport. Making layouts more flexible and reusable.'
+pubDate: 'Feb 13 2025'
+heroImage: '/short/02-2025/container-queries.png'
+---
+
+import { Image } from 'astro:assets';
+
+<Image
+	src="/short/02-2025/container-queries.gif"
+	alt="New way of declaring media queries"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+Are you still relying only on media queries for responsive design?
+
+Let me show you another way...
+
+...The CSS container queries!
+
+Instead of adjusting elements based on the viewport, they adapt to the size of their container.
+
+This makes your layouts more flexible, reusable, and predictable.
+It’s in general used for component-based design.
+
+**How it works:**
+
+- Define a `container-name` (acts as a reference).
+- Set a `container-type` (to respond to width or height).
+- Use `@container` to apply styles based on the container’s size.
+
+**With this new way, a new set of measurement units is introduced:**
+
+1. `cqw`: % of container width
+2. `cqh`: % of container height
+3. `cqi`: % of the inline dimension of the container
+4. `cqb`: % of container block dimension
+5. `cqmin`: the smaller value between cqi and cqb
+6. `cqmax`: the larger value between cqi and cqb
+
+With container queries, components resize based on their container, not the viewport.
+
+This means they behave consistently across different layouts, making your designs more adaptable.
+
+You also get more control over how elements react to their immediate environment.
+
+And with 93% browser support, they’re ready for production.
+
+```html
+<div class="container">
+	<p class="resize">Some content</p>
+</div>
+```
+
+```css
+.container {
+	container: example / inline-size;
+}
+
+.resize {
+	background-color: #065f46;
+}
+
+@container example (width < 20ch) {
+	.resize {
+		background-color: #fc5757;
+	}
+}
+
+@container example (width > 30ch) {
+	.resize {
+		background-color: #27ae60;
+	}
+}
+```
+
+Codepen link: https://codepen.io/emgarf/pen/qBzybLP
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
