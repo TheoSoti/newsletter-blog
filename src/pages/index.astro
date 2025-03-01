@@ -50,6 +50,7 @@ const shorts = (await getCollection('short'))
 				<ul>
 					{shorts.map((short: any) => <Card post={short} width="720" height="360" type="short" />)}
 				</ul>
+				<a href="/short" class="button"> View more articles </a>
 			</section>
 		</main>
 		<Footer />
@@ -73,6 +74,11 @@ const shorts = (await getCollection('short'))
 		list-style-type: none;
 		padding: 0;
 		margin-bottom: 0;
+	}
+	.button {
+		font-size: 1em;
+		padding: 0.5em;
+		margin: 1.5em auto 0;
 	}
 	@media (min-width: 600px) {
 		main {

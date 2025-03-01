@@ -1,0 +1,74 @@
+---
+title: 'Create a responsive grid layout with just 1 line of CSS'
+description: 'Learn how to create responsive layouts with just one line of CSS. Discover the power of flexible, media-query-free designs that adapt seamlessly to any screen size.'
+pubDate: 'Feb 28 2025'
+heroImage: '/short/02-2025/one-liner-responsive-layout.png'
+---
+
+import { Image } from 'astro:assets';
+
+<Image
+	src="/short/02-2025/one-liner-responsive-layout.gif"
+	alt="Create a responsive grid layout with just 1 line of CSS"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+Responsive layouts in 1 CSS line ?
+Yes it’s possible! I’ll show you how ⬇️
+
+Let’s analyse the magic behind grid-template-columns:
+
+1. Repeat()
+
+- repeat(x, value): generates multiple columns or rows with the same pattern.
+- auto-fit: automatically adjusts the number of columns based on available space.
+
+2. minmax(min(100%, 18.75rem), 1fr)
+
+- min(100%, 18.75rem): ensures the column never exceeds 18.75rem but also doesn’t exceed the container’s width.
+- minmax(..., 1fr): Sets a minimum size while allowing columns to grow and evenly fill available space.
+
+Why this work so well?
+
+- No media queries needed.
+- Thanks to min(100%, 18.75rem), elements won’t exceed their container.
+- Automatically adapts to different screen sizes and layouts.
+- One line does all the work!
+
+All these functions (repeat, minmax, min) have more than 96% browser support.
+
+This one-liner is perfect for card layouts, galleries, and grids that need to be both structured and flexible.
+
+Have you used this approach or a similar one before?
+Let’s discuss in the comments!
+
+```html
+<div class="container">
+	<div class="card"></div>
+	<div class="card"></div>
+	<div class="card"></div>
+	<div class="card"></div>
+</div>
+```
+
+```css
+.container {
+	display: grid;
+	gap: 1rem;
+
+	/* this line does it all */
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
+}
+
+.card {
+	height: 12.5rem;
+	background: #fff;
+	border: 4px solid #000;
+}
+```
+
+Codepen link: https://codepen.io/emgarf/pen/WbNomqr
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
