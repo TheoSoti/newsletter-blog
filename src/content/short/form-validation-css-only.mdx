@@ -1,0 +1,89 @@
+---
+title: 'Create custom form validation with CSS only'
+description: 'Learn how to validate forms using only CSS! Discover built-in pseudo-classes like :valid and :user-invalid to style inputs dynamically without JavaScript. Improve user experience with minimal effort.'
+pubDate: 'Mar 05 2025'
+heroImage: '/short/03-2025/form-validation-css-only.png'
+---
+
+<video controls class="video">
+	<source src="/short/03-2025/form-validation-css-only.mov" type="video/mp4" />
+</video>
+
+<p
+	data-height="520"
+	data-theme-id="0"
+	data-slug-hash="ogNZzdJ"
+	data-default-tab="result"
+	data-embed-version="2"
+	class="codepen"
+></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+Validate forms with just CSS? Yes, it's possible!
+
+Form validation is often handled with JavaScript, but did you know CSS can do a lot of the heavy lifting?
+
+It works thanks to 4 built-in pseudo classes:
+
+- `:valid` → The input meets all constraints.
+- `:invalid` → The input fails validation.
+- `:user-valid` → The input is valid and the user has interacted with it.
+- `:user-invalid` → The input is invalid but only after the user typed something and left the field.
+
+You can also define validation rules directly in HTML using attributes like required, type, and pattern.
+
+CSS selectors combined with these pseudo-classes allow you to style form elements based on their validation state.
+You can show or hide messages, change input borders, or visually guide users as they type.
+
+Regarding browser support:
+
+- `:valid` & `:invalid` have more than 96%
+- `:user-valid` & `:user-invalid` have a bit more than 90%
+
+This approach isn’t a full replacement for JavaScript validation, but it’s a powerful way to enhance forms with minimal effort.
+
+Codepen link: https://codepen.io/emgarf/pen/ogNZzdJ
+
+```html
+<div class="field">
+	<label for="email">Input Email</label>
+	<input
+		id="email"
+		required="required"
+		aria-describedby="input-message"
+		type="email"
+		pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+	/>
+	<ul class="validation" role="list">
+		<li data-matches="valid">🔵 Input <code>:valid</code></li>
+		<li data-matches="invalid">🟠 Input <code>:invalid</code></li>
+		<li data-matches="user-valid">🟢 Input <code>:user-valid</code></li>
+		<li data-matches="user-invalid">🔴 Input <code>:user-invalid</code></li>
+	</ul>
+</div>
+```
+
+```css
+input:user-valid {
+  --state-color: green;
+}
+
+input:user-invalid {
+  --state-color: red;
+}
+
+input:valid + .validation [data-matches="valid"],
+input:invalid + .validation [data-matches="invalid"] {
+  display: block;
+}
+
+input:user-valid + .validation [data-matches="user-valid"],
+input:user-invalid + .validation [data-matches="user-invalid"] {
+  display: block;
+}
+
+input {
+  --state-color: black;
+```
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
