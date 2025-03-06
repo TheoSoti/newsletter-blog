@@ -13,12 +13,16 @@ const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.value
 	<head>
 		<BaseHead
 			title="Find all the short articles written by Theo Soti"
-			description="Discover quick and insightful reads on web development, design, and tech. These bite-sized articles by Theo Soti deliver valuable knowledge in under a minute."
+			description="Discover quick and insightful reads on web development, design, and tech. These bite-sized articles deliver valuable knowledge in under a minute."
 		/>
 		<style>
 			main {
 				width: 1100px;
 				max-width: calc(100% - 2em);
+			}
+			h2 {
+				margin-top: 0;
+				font-weight: 400;
 			}
 			ul {
 				display: grid;
@@ -43,10 +47,12 @@ const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.value
 		<Header />
 		<main>
 			<section>
-				<h1 class="title">Short Articles</h1>
+				<h1>Short Articles</h1>
+				<h2>Looking for quick insights?</h2>
 				<p>
-					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
-					you're short on time but still want valuable content.
+					Curious to learn more without diving into lengthy articles? Discover our "Short Articles," quick and
+					captivating reads that offer a concise overview of various topics. Perfect for satisfying your curiosity and
+					broadening your horizons in a flash.
 				</p>
 				<ul>
 					{posts.map((post) => <Card post={post} width="720" height="360" type="short" />)}
