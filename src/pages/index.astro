@@ -9,16 +9,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.reverse()
 	.splice(-6)
-	.reverse();
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const shorts = (await getCollection('short'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.reverse()
 	.splice(-6)
-	.reverse();
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <html lang="en">
@@ -50,7 +46,7 @@ const shorts = (await getCollection('short'))
 				<ul>
 					{shorts.map((short: any) => <Card post={short} width="720" height="360" type="short" />)}
 				</ul>
-				<a href="/short" class="button"> View more articles </a>
+				<a href="/short/" class="button"> View more articles </a>
 			</section>
 		</main>
 		<Footer />
