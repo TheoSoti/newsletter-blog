@@ -1,6 +1,6 @@
 <input type="checkbox" id="darkmode" class="check-darkmode" aria-label="Switch color theme" />
 <label for="darkmode">
-	<div class="image-check">
+	<span class="image-check">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="moon"
@@ -38,7 +38,7 @@
 				stroke-linejoin="round"
 				stroke-width="8"></path>
 		</svg>
-	</div>
+	</span>
 </label>
 
 <script is:inline>
@@ -64,6 +64,7 @@
 			outline 0.2s ease;
 	}
 	.image-check {
+		display: block;
 		position: relative;
 		width: 30px;
 		height: 30px;
