@@ -1,0 +1,66 @@
+---
+title: 'Progress bar based on scroll, CSS only'
+description: 'Learn how to create a scroll-based progress bar using only CSS with animation-timeline: scroll(). A smooth, high-performance, and accessible approach to reduce JavaScript dependency. Full explanation and code included to enhance your web animations!'
+pubDate: 'Mar 7 2025'
+heroImage: '/short/03-2025/progress-bar-full-css.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/progress-bar-full-css.gif"
+	alt="progress bar creation in CSS only"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Use only CSS for progress bar
+
+A progress bar is a perfect example of what's possible with modern CSS.
+It leverages the power of animation-timeline: scroll();, which links the animation's progress directly to your scroll position.
+
+As you scroll down the page, the progress bar fills up in perfect sync with your movement.
+It's a subtle but effective way to enhance the user experience.
+
+CSS keyframes also play a crucial role, defining the animation's behavior.
+In this case, a simple width change from 0 to 100%.
+
+The result?
+A smooth, natural animation that feels intuitive and performant.
+
+Plus, CSS animations are:
+
+- Performant (hardware-accelerated)
+- Accessible
+- Great for reducing JavaScript dependencies
+
+The only downside for now is the browser support.
+The support for animation-timeline is currently around 73%.
+
+I talk about CSS scroll animations in one of my blog posts.
+If you want to deep dive into this subject, you can check it out here: https://lnkd.in/eX-tmD6V
+
+```html
+<header>
+	<div class="progress"></div>
+</header>
+```
+
+```css
+.progress {
+	background: #55ad9b;
+	width: 0;
+	height: 8px;
+	animation: grow linear forwards;
+	animation-timeline: scroll();
+}
+
+@keyframes grow {
+	to {
+		width: 100%;
+	}
+}
+```
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

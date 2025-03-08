@@ -1,0 +1,83 @@
+---
+title: 'CSS evolved with new attr() function'
+description: 'The new CSS attr() function in Chrome 133 is more powerful than ever! It now supports multiple data types and works with any CSS property, making styles more dynamic—without JavaScript. Discover its potential with examples and practical use cases!'
+pubDate: 'Mar 3 2025'
+heroImage: '/short/03-2025/evolved-attr-function.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/evolved-attr-function.png"
+	alt="New attr() function in CSS"
+	width="600"
+	height="800"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## CSS just got smarter!
+
+Meet the upgraded attr() function.
+
+Chrome 133 introduces a significant enhancement to the CSS attr().
+It can now be used with any CSS property, including custom properties, not just content.
+
+It also supports multiple data types like colors, lenghts, IDs, and more, instead of being limited to strings.
+
+This unlocks tons of possibilities to make CSS more dynamic—without a single line of JavaScript!
+
+Some cool examples:
+
+- Dynamically change text color based on an HTML attribute.
+- Simplify visual transitions effortlessly.
+- Adapt styles based on metadata
+
+⚠️ Currently, this feature is available ONLY in Chrome 133.
+So don’t use it in prod just yet!
+
+The revamped attr() will make CSS even more powerful.
+I can’t wait to use it safely in my projects!
+
+Example 1:
+
+```html
+<div data-foo="blue">test</div>
+```
+
+```css
+div {
+	color: attr(data-foo type(<color>), red);
+}
+```
+
+Example 2:
+
+```html
+<div class="cards">
+	<div class="card" id="card-1"></div>
+	<div class="card" id="card-2"></div>
+	<div class="card" id="card-3"></div>
+</div>
+```
+
+```css
+.card {
+	/* card-1, card-2, card-3, etc. */
+	view-transition-name: attr(id type(<custom--ident>), none);
+	view-transition-class: card;
+}
+```
+
+Example 3:
+
+```html
+<div data-size="10">test</div>
+```
+
+```css
+div {
+	font-size: attr(data-size px);
+}
+```
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
