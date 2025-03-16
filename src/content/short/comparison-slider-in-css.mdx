@@ -1,0 +1,81 @@
+---
+title: 'CSS-Powered Before/After Slider with Minimal JS'
+description: 'Create a before/after image slider with just 1 line of JavaScript! Learn how CSS masking and grid make it efficient, simple, and widely supported.'
+pubDate: 'Mar 12 2025'
+heroImage: '/short/03-2025/comparison-slider-in-css.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/comparison-slider-in-css.gif"
+	alt="Comparison slider made in CSS"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Before/after slider with just 1 line of JavaScript?
+
+Yes, it’s possible!
+
+Most comparison sliders rely on extra JavaScript,
+But CSS can do most of the work for us.
+
+## How does it work?
+
+- Both sections and the slider are placed in the same grid cell, ensuring perfect overlap.
+- A mask on each section controls its visibility. As the slider moves, one section gradually disappears while the other is revealed.
+- The range input updates the mask position dynamically, creating a seamless effect.
+
+## Why use this approach?
+
+- No need for complex JavaScript logic.
+- CSS handles most of the work efficiently.
+- A simple structure with clear separation of concerns.
+- Over 95% browser support!
+
+This technique is perfect for image comparisons, UI demos, and interactive before/after effects.
+
+```html
+<div class="compare">
+	<section class="before">I'm the left section</section>
+	<section class="after">I'm the right section</section>
+	<input type="range" id="range" step="0.1" />
+</div>
+```
+
+```css
+.compare {
+	display: grid;
+
+	> * {
+		grid-area: 1 / 1;
+	}
+}
+
+section {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+}
+
+.before {
+	background-color: #fff8f0;
+	mask: linear-gradient(to right, #000 0, var(--pos, 50%), transparent 0);
+}
+
+.after {
+	background-color: #122b1f;
+	mask: linear-gradient(to right, transparent 0, var(--pos, 50%), #000 0);
+	color: #fff8f0;
+}
+```
+
+```js
+range.oninput = () => document.body.style.setProperty('--pos', range.value + '%');
+```
+
+Full code available here: https://codepen.io/emgarf/pen/JojrrgB
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

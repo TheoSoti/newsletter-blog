@@ -1,0 +1,64 @@
+---
+title: 'CSS Anchor Positioning: Simplify Dynamic UI Layouts'
+description: 'Learn how CSS Anchor Positioning makes UI layout easier by allowing elements to be positioned dynamically—no more complex JS or layout shifts!'
+pubDate: 'Mar 10 2025'
+heroImage: '/short/03-2025/new-anchor-property-css.png'
+---
+
+<video controls class="video">
+	<source src="/short/03-2025/CSS-anchors.mp4" type="video/mp4" />
+</video>
+
+## Positioning UI elements just got easier.
+
+Meet CSS Anchor Positioning!
+
+Positioning elements dynamically has always been a hassle.
+Absolute positioning, JavaScript calculations, and unexpected layout shifts...
+
+But the new Anchor Positioning makes everything better!
+
+## How does it work?
+
+- Define an element as an anchor using `anchor-name`
+- Then position another element relative to it with `anchor()`.
+
+No more guesswork, just native, flexible, and precise positioning.
+
+## Some real-world use cases:
+
+- Tooltips that stay perfectly attached to their trigger.
+- Dropdown menus that align dynamically with their button.
+- Modals or popovers that position relative to an element instead of the whole viewport.
+- Notifications that stick near the related content.
+
+What about browser support?
+Not great for now, with only a bit more than 71%.
+It doesn’t work on firefox and safari.
+
+With features like this, CSS is proving once again that it's becoming more powerful than ever!
+
+```html
+<div class="container">
+	<button class="anchor-button">Anchor</button>
+	<div class="notice">I'm a great notice!</div>
+</div>
+```
+
+```css
+.anchor-button {
+	anchor-name: --anchor-el;
+}
+
+.notice {
+	position-anchor: --anchor-el;
+	position: absolute;
+	bottom: anchor(top);
+	justify-self: anchor-center;
+	margin: 0.5rem 0;
+}
+```
+
+You can find the codepen link here: https://codepen.io/emgarf/pen/JojyajY
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

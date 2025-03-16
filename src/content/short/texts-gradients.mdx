@@ -1,0 +1,64 @@
+---
+title: 'CSS Text Gradients: Stunning Effects in 3 Lines'
+description: 'Enhance your typography with CSS text gradients! No images, no extra elements—just pure CSS magic for bold, eye-catching UI design.'
+pubDate: 'Mar 14 2025'
+heroImage: '/short/03-2025/texts-gradients.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/texts-gradients.gif"
+	alt="CSS Text Gradients"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Good design is in the details.
+
+A simple text gradient can transform your UI.
+
+Flat colors are great, but gradients bring extra depth and personality to your typography.
+With just three lines of CSS, you can turn any text into a gradient without using images or extra elements.
+
+## How it works?
+
+- A linear gradient sets the background with a smooth transition between colors.
+- The background-clip: text; property ensures the gradient follows the text shape.
+- Setting color: transparent; hides the original text color, making the gradient visible.
+
+## Why use this technique?
+
+- It’s a lightweight solution that doesn’t require additional elements.
+- The effect works on any font size and adapts seamlessly to different layouts.
+- You can create endless variations by adjusting colors and angles.
+
+Perfect for headlines and UI elements that need an extra visual impact.
+
+Browser support is great.
+Over 97% of users can see the effect!
+
+And if you want to go even further, you can animate it with @property variables and keyframes animation.
+
+```html
+<article>
+	<h1>Theosoti.com</h1>
+	<p>For best CSS content</p>
+</article>
+```
+
+```css
+article {
+	background: linear-gradient(to right, deeppink, orange);
+	background-clip: text;
+	color: transparent;
+
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+```
+
+Full code available here: https://codepen.io/emgarf/pen/ogNoRPp
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
