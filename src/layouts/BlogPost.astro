@@ -145,6 +145,6 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 			</div>
 		</main>
 		<Footer />
-		<ArticleStructuredData {...Astro.props} />
+		<ArticleStructuredData {...{ title, description, pubDate, updatedDate, heroImage }} />
 	</body>
 </html>
