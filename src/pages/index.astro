@@ -35,7 +35,7 @@ const shorts = (await getCollection('short'))
 					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
 				</p>
 				<ul>
-					{posts.map((post: any) => <Card post={post} width="720" height="360" />)}
+					{posts.map((post) => <Card post={post} width="720" height="360" />)}
 				</ul>
 			</section>
 
@@ -46,7 +46,7 @@ const shorts = (await getCollection('short'))
 					you're short on time but still want valuable content.
 				</p>
 				<ul>
-					{shorts.map((short: any) => <Card post={short} width="720" height="360" type="short" />)}
+					{shorts.map((short) => <Card post={short} width="720" height="360" type="short" />)}
 				</ul>
 				<a href="/short/" class="button"> View more articles </a>
 			</section>
@@ -78,69 +78,6 @@ const shorts = (await getCollection('short'))
 						"width": 200,
 						"height": 50
 					}
-				},
-				"potentialAction": {
-					"@type": "SearchAction",
-					"target": "https://theosoti.com/search?q={search_term_string}",
-					"query-input": "required name=search_term_string"
-				},
-				"mainEntity": {
-					"@type": "Blog",
-					"name": "Theo Soti Blog",
-					"blogPosts": [
-						{
-							"@type": "BlogPosting",
-							"headline": "Scroll-driven animation in full CSS",
-							"url": "https://theosoti.com/blog/scroll-driven-animation-in-full-css",
-							"datePublished": "2025-01-06",
-							"dateModified": "2025-01-07",
-							"author": { "@type": "Person", "name": "Theo Soti" },
-							"publisher": { "@type": "Organization", "name": "Theo Soti" },
-							"image": "https://theosoti.com/images/scroll-driven-animation.jpg",
-							"articleSection": "CSS Animations",
-							"estimatedReadTime": "10 min",
-							"description": "Learn how to create scroll-driven animations using pure CSS without JavaScript."
-						},
-						{
-							"@type": "BlogPosting",
-							"headline": "Mastering CSS Focus States",
-							"url": "https://theosoti.com/blog/mastering-css-focus-states",
-							"datePublished": "2024-11-18",
-							"dateModified": "2024-11-19",
-							"author": { "@type": "Person", "name": "Theo Soti" },
-							"publisher": { "@type": "Organization", "name": "Theo Soti" },
-							"image": "https://theosoti.com/images/css-focus-states.jpg",
-							"articleSection": "CSS Accessibility",
-							"estimatedReadTime": "5 min",
-							"description": "A deep dive into how focus states work in CSS and best practices for accessibility."
-						},
-						{
-							"@type": "BlogPosting",
-							"headline": "How to smoothly transition an element’s height in CSS",
-							"url": "https://theosoti.com/blog/smoothly-transition-element-height-css",
-							"datePublished": "2024-10-22",
-							"dateModified": "2024-10-23",
-							"author": { "@type": "Person", "name": "Theo Soti" },
-							"publisher": { "@type": "Organization", "name": "Theo Soti" },
-							"image": "https://theosoti.com/images/smooth-transition-height.jpg",
-							"articleSection": "CSS Transitions",
-							"estimatedReadTime": "5 min",
-							"description": "A step-by-step guide to smoothly transitioning an element's height in CSS."
-						},
-						{
-							"@type": "BlogPosting",
-							"headline": "Create a dark mode using minimal JavaScript",
-							"url": "https://theosoti.com/blog/create-darkmode-using-minimal-javascript",
-							"datePublished": "2024-09-30",
-							"dateModified": "2024-10-01",
-							"author": { "@type": "Person", "name": "Theo Soti" },
-							"publisher": { "@type": "Organization", "name": "Theo Soti" },
-							"image": "https://theosoti.com/images/darkmode.jpg",
-							"articleSection": "JavaScript & CSS",
-							"estimatedReadTime": "7 min",
-							"description": "Implement a lightweight dark mode toggle using minimal JavaScript and CSS."
-						}
-					]
 				}
 			}
 		</script>

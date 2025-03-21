@@ -1,0 +1,47 @@
+---
+title: 'CSS-Powered Before/After Slider with Minimal JS'
+description: 'Create a before/after image slider with just 1 line of JavaScript! Learn how CSS masking and grid make it efficient, simple, and widely supported.'
+pubDate: 'Mar 21 2025'
+heroImage: '/short/03-2025/smooth-scrolling-css-only.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/smooth-scrolling-css-only.gif"
+	alt="Smooth scrolling with only css"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Smooth scrolling makes navigation feel effortless.
+
+When users click an anchor link, the browser jumps abruptly to the section.
+This can be jarring, especially on long pages.
+
+Instead of relying on JavaScript for smooth scrolling, CSS has a built-in solution: “scroll-behavior: smooth”.
+
+With just this, your page transitions fluidly between sections.
+
+But what if the content feels too close to the edge?
+
+By default, scrolling stops at the very top of the section, sometimes cutting off important content.
+
+Fix this with `scroll-padding` or `scroll-margin`: scroll-margin-top: 20px;
+
+Now, every scroll lands in a comfortable, readable position.
+
+It’s lightweight, easy to implement, and widely supported (more than 95,5%).
+
+```css
+html {
+	scroll-behaviour: smooth;
+}
+
+section {
+	scroll-margin-top: 20px;
+}
+```
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
