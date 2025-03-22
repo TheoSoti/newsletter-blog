@@ -17,7 +17,7 @@ type Props = {
 
 const { posts, type } = Astro.props as Props;
 
-const structuredData = posts.map((post) => {
+const structuredData = (posts || []).map((post) => {
 	return {
 		'@type': 'BlogPosting',
 		headline: post.data.title,
