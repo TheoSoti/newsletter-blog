@@ -1,0 +1,52 @@
+---
+import type { InferEntrySchema, Render } from 'astro:content';
+
+type Post = {
+	id: string;
+	slug: string;
+	body: string;
+	collection: 'blog' | 'short';
+	data: InferEntrySchema<'blog'> | InferEntrySchema<'short'>;
+	render(): Render['.mdx'];
+};
+
+type Props = {
+	posts: Post[];
+	type: 'blog' | 'short';
+};
+
+const { posts, type } = Astro.props as Props;
+
+const structuredData = posts.map((post) => {
+	return {
+		'@type': 'BlogPosting',
+		headline: post.data.title,
+		url: `https://theosoti.com/${type}/${post.slug}`,
+		datePublished: post.data.pubDate,
+		author: {
+			'@type': 'Person',
+			name: 'Theo Soti',
+			description: 'Frontend Developer & Content Creator',
+			sameAs: [
+				'https://www.linkedin.com/in/theodorelefevre/',
+				'https://github.com/emgarf',
+				'https://codepen.io/emgarf',
+			],
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'Theo Soti',
+			logo: {
+				'@type': 'ImageObject',
+				url: 'https://theosoti.com/logo.png',
+				width: 200,
+				height: 50,
+			},
+		},
+		image: `https://theosoti.com/${type}/${post.data.heroImage}`,
+		description: post.data.description,
+	};
+});
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />

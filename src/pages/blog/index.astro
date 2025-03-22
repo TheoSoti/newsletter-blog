@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import Card from '../../components/Card.astro';
+import ArticleListsStructuredData from '../ArticleListsStructuredData.astro';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
@@ -60,5 +61,6 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
 			</section>
 		</main>
 		<Footer />
+		<ArticleListsStructuredData posts={posts} type="blog" />
 	</body>
 </html>

@@ -26,8 +26,18 @@ const structuredData = {
 		'@type': 'Person',
 		name: 'Theo Soti',
 		description: 'Frontend Developer & Content Creator',
+		sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://github.com/emgarf', 'https://codepen.io/emgarf'],
 	},
-	publisher: { '@type': 'Organization', name: 'Theo Soti' },
+	publisher: {
+		'@type': 'Organization',
+		name: 'Theo Soti',
+		logo: {
+			'@type': 'ImageObject',
+			url: 'https://theosoti.com/logo.png',
+			width: 200,
+			height: 50,
+		},
+	},
 };
 ---
 
