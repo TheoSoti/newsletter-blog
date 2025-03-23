@@ -3,11 +3,17 @@ import profile from '../../assets/profile.png';
 import logo from '../../assets/logo.png';
 
 const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'Theo Soti',
+	url: 'https://theosoti.com/',
+	description: 'CSS tips and frontend development insights by Theo Soti.',
+	inLanguage: 'en',
 	author: {
 		'@type': 'Person',
 		name: 'Theo Soti',
 		description: 'Frontend Developer & Content Creator',
-		image: profile.src,
+		image: `https://theosoti.com/${profile.src}`,
 		sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://x.com/theoleff', 'https://codepen.io/emgarf'],
 	},
 	publisher: {
@@ -15,7 +21,7 @@ const structuredData = {
 		name: 'Theo Soti',
 		logo: {
 			'@type': 'ImageObject',
-			url: logo.src,
+			url: `https://theosoti.com/${logo.src}`,
 			width: 200,
 			height: 50,
 		},

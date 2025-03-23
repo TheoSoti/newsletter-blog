@@ -7,6 +7,7 @@ import Card from '../components/Card.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
+import ItemList from '../components/microdatas/ItemList.astro';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
@@ -52,16 +53,8 @@ const shorts = (await getCollection('short'))
 			</section>
 		</main>
 		<Footer />
-		<script type="application/ld+json" is:inline>
-			{
-				"@context": "https://schema.org",
-				"@type": "WebSite",
-				"name": "Theo Soti",
-				"url": "https://theosoti.com/",
-				"description": "CSS tips and frontend development insights by Theo Soti.",
-				"inLanguage": "en"
-			}
-		</script>
+		<ItemList posts={posts} type="blog" />
+		<ItemList posts={shorts} type="short" />
 	</body>
 </html>
 
