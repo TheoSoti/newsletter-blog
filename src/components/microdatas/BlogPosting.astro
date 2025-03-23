@@ -8,35 +8,18 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site);
 
 const structuredData = {
 	'@context': 'https://schema.org',
-	'@type': 'Article',
+	'@type': 'BlogPosting',
 	headline: title,
 	description,
 	datePublished: pubDate,
 	dateModified: updatedDate ?? undefined,
 	url: pageUrl,
-	thumbnailUrl: heroImage,
 	image: {
 		'@type': 'ImageObject',
 		url: heroImage,
 		width: 720,
 		height: 360,
 		caption: title,
-	},
-	author: {
-		'@type': 'Person',
-		name: 'Theo Soti',
-		description: 'Frontend Developer & Content Creator',
-		sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://github.com/emgarf', 'https://codepen.io/emgarf'],
-	},
-	publisher: {
-		'@type': 'Organization',
-		name: 'Theo Soti',
-		logo: {
-			'@type': 'ImageObject',
-			url: 'https://theosoti.com/logo.png',
-			width: 200,
-			height: 50,
-		},
 	},
 };
 ---

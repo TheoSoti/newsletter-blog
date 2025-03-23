@@ -19,30 +19,10 @@ const { posts, type } = Astro.props as Props;
 
 const structuredData = (posts || []).map((post) => {
 	return {
-		'@type': 'BlogPosting',
+		'@type': 'ItemList',
 		headline: post.data.title,
 		url: `https://theosoti.com/${type}/${post.slug}`,
 		datePublished: post.data.pubDate,
-		author: {
-			'@type': 'Person',
-			name: 'Theo Soti',
-			description: 'Frontend Developer & Content Creator',
-			sameAs: [
-				'https://www.linkedin.com/in/theodorelefevre/',
-				'https://github.com/emgarf',
-				'https://codepen.io/emgarf',
-			],
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: 'Theo Soti',
-			logo: {
-				'@type': 'ImageObject',
-				url: 'https://theosoti.com/logo.png',
-				width: 200,
-				height: 50,
-			},
-		},
 		image: `https://theosoti.com/${type}/${post.data.heroImage}`,
 		description: post.data.description,
 	};
