@@ -1,0 +1,58 @@
+---
+title: 'Improve text readability with CSS text-wrap'
+description: 'Say goodbye to awkward text wrapping! Use text-wrap: balance; for even lines and text-wrap: pretty; for better spacing.'
+pubDate: 'Mar 26 2025'
+heroImage: '/short/03-2025/balanced-and-pretty-texts.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/balanced-and-pretty-texts.gif"
+	alt="Example of balanced and pretty text wrapping using CSS"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## No more awkward text wrapping. Let CSS handle it beautifully.
+
+CSS gives us two new ways to make typography more visually pleasing:
+
+- text-wrap: balance;
+- text-wrap: pretty;
+
+## What’s the difference?
+
+1 - text-wrap: balance;
+It makes sure each line has a similar length, preventing one-word last lines or uneven spacing.
+Perfect for headlines or short text blocks.
+
+2 - text-wrap: pretty;
+It optimizes letter and word spacing to create a more natural and visually appealing text flow.
+Great for longer paragraphs where readability is key.
+
+## Why should you care?
+
+- No more weird line breaks.
+- More control over how text is displayed.
+- Better readability without extra HTML or JS.
+
+Browser support is already at ~88%.
+It’s not perfect, but since unsupported browsers just ignore it, there’s no downside.
+
+Simple CSS tricks make a huge difference.
+
+```css
+.balanced {
+	text-wrap: balance;
+}
+
+.pretty {
+	text-wrap: pretty;
+}
+```
+
+Full code available here: https://codepen.io/emgarf/pen/VYwBRBK
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

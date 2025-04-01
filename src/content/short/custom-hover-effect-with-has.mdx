@@ -1,0 +1,66 @@
+---
+title: 'Create an inverted hover effect with CSS :has()'
+description: 'Achieve a smooth inverted hover effect using CSS :has()—no JavaScript, no hacks! Style parent elements dynamically with clean, native CSS.'
+pubDate: 'Mar 28 2025'
+heroImage: '/short/03-2025/custom-hover-effect-with-has.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/custom-hover-effect-with-has.gif"
+	alt="Example of an inverted hover effect using CSS :has()"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Have you ever wanted to create an inverted hover effect?
+
+I'll show you how with just 2 extra lines of CSS!
+
+No hacks.
+No JavaScript.
+Just the power of :has().
+
+For years, CSS couldn't style parent elements based on their children.
+But now, :has() changes the game.
+
+Hover over an element, and :has() lets the parent react, applying styles to everything else.
+
+- No extra HTML.
+- No complex workarounds.
+- Just a clean, native way to control interactions.
+
+The result?
+A smooth hover effect that shifts focus exactly where you want it.
+And this is just one use case.
+
+With :has() you can also:
+
+- Build dark mode toggles.
+- Improve form validation styles.
+- Create advanced parent-child interactions.
+- Enhance focus and selection effects.
+- And more...
+
+With over 93% browser support, it’s pretty safe to use.
+
+```html
+<ul class="cardlist">
+	<li class="card">...</li>
+	<li class="card">...</li>
+	<li class="card">...</li>
+	<li class="card">...</li>
+</ul>
+```
+
+```css
+.cardlist:has(.card:hover) .card:not(:hover) {
+	filter: blur(4px);
+}
+```
+
+Full code available here: https://codepen.io/emgarf/pen/VwJryJK
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

@@ -1,0 +1,43 @@
+---
+title: 'Stylish drop caps in CSS with just two lines'
+description: 'Make your text stand out with a simple CSS trick! Use :first-letter and initial-letter to create elegant drop caps effortlessly.'
+pubDate: 'Mar 24 2025'
+heroImage: '/short/03-2025/stylish-drop-caps.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/stylish-drop-caps.png"
+	alt="Stylish drop cap effect applied to a paragraph using CSS"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Make your text pop with a single CSS trick.
+
+Ever noticed those stylish drop caps in print media?
+You can achieve the same effect in CSS easily.
+
+The magic?
+Just two lines of CSS:
+
+```css
+p:first-letter {
+	initial-letter: 3 2;
+}
+```
+
+- :first-letter targets the first character of a paragraph.
+- initial-letter: 3 2; pushes text aside by two lines, creating a balanced look
+
+This is perfect for giving articles, blogs, or long-form content a more refined and readable look.
+
+Browser support is great for :first-letter with more than 97,5%.
+
+For initial-letter it’s good but not great with more than 91%.
+
+Full code available here: https://codepen.io/emgarf/pen/PwoaJNP
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

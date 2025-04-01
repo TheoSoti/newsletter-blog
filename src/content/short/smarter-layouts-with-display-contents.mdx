@@ -1,0 +1,70 @@
+---
+title: 'Simplify layouts with CSS display: contents'
+description: 'Use display: contents to restructure layouts without extra markup. Works with Flexbox & Grid for cleaner, more flexible designs.'
+pubDate: 'Mar 30 2025'
+heroImage: '/short/03-2025/smarter-layouts-with-display-contents.png'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/03-2025/smarter-layouts-with-display-contents.gif"
+	alt="Visual example of CSS display: contents simplifying a layout"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Did you know CSS has a hidden gem called display: contents?
+
+It's a powerful tool that helps simplify layouts without adding extra DOM elements.
+It removes an element from the layout while keeping its children intact.
+
+## Why is this so powerful?
+
+- It lets you restructure layouts without adding extra wrappers.
+- It works seamlessly with Flexbox and Grid, making designs more flexible.
+- It pairs perfectly with order to rearrange content without duplication.
+
+On desktop, blocks 2 and 3 sit next to block 1 inside a container.
+On mobile, block 2 moves above block 1, and block 3 drops below it.
+
+Normally, this would require workarounds: extra markup, hacks, or even duplicated content.
+
+With display: contents, it's just one line of CSS.
+
+Browser support is already at 97%!
+But be aware, this property has some accessibility issues, especially with screen readers.
+
+```html
+<section>
+	<div class="first"></div>
+
+	<div class="container">
+		<div class="second"></div>
+		<div class="third"></div>
+	</div>
+</section>
+```
+
+```css
+section {
+	grid-template-columns: 1fr;
+}
+.container {
+	display: contents;
+}
+.first {
+	order: 2;
+}
+.second {
+	order: 1;
+}
+.third {
+	order: 3;
+}
+```
+
+Full code available here: https://codepen.io/emgarf/pen/KwPZGQQ
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
