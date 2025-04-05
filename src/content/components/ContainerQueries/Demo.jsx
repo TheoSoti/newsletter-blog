@@ -21,7 +21,6 @@ const buttonsStyle = {
 
 export default function Demo() {
 	let [card, setCard] = useState(1);
-	console.log('toto');
 
 	function addCard() {
 		if (card < 3) {
