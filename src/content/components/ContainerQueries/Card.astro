@@ -1,0 +1,116 @@
+<section class="card-container">
+	<div class="card">
+		<div class="card__avatar">
+			<img
+				src="https://doodleipsum.com/240x240/avatar?i=8ea4626088daa443e5a3d13e1658f832"
+				alt="Avatar"
+				width="120"
+				height="120"
+			/>
+		</div>
+		<div class="card__info">
+			<p class="card__name">John Doe</p>
+			<p class="card__tagline">Web Developer</p>
+		</div>
+		<div class="card__actions">
+			<a href="#" class="card__button button">View Profile</a>
+			<a href="#" class="card__button button button--reverse">Message</a>
+		</div>
+	</div>
+</section>
+
+<style is:inline>
+	.card-container {
+		container-type: inline-size;
+		min-width: 12.5em;
+		flex: 1 1 auto;
+	}
+	.card {
+		display: grid;
+		grid-template-columns: 1fr;
+		border: 2px solid var(--border);
+		border-radius: 0.5em;
+		padding: 1em;
+		background-color: var(--background);
+		grid-template-areas:
+			'avatar'
+			'infos'
+			'actions';
+	}
+	.card__avatar {
+		grid-area: avatar;
+		border-radius: 0.5em;
+		overflow: hidden;
+		width: 100%;
+		height: 120px;
+		padding: 1em;
+		border: 2px solid var(--border);
+		margin: 0 auto;
+		background-color: var(--white);
+	}
+	.card__avatar img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.card__info {
+		grid-area: infos;
+		text-align: center;
+		margin: 1em 0;
+	}
+	p.card__name {
+		font-size: 1.5em;
+		font-weight: bold;
+		margin: 0;
+	}
+	p.card__tagline {
+		font-size: 1em;
+		color: var(--small-text);
+		margin: 0;
+	}
+	.card__actions {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.5em;
+		grid-area: actions;
+	}
+	.card__button {
+		padding: 0.3em 1em;
+		text-decoration: none;
+		text-align: center;
+	}
+	.card__button:hover {
+		color: var(--white);
+	}
+	.card__actions .button--reverse {
+		background-color: var(--white);
+		color: var(--black);
+	}
+	.card__actions .button--reverse:hover {
+		color: var(--black);
+	}
+	@container (min-width: 18rem) {
+		.card {
+			grid-template-columns: 120px 1fr;
+			gap: 1em;
+			grid-template-areas:
+				'avatar infos'
+				'actions actions';
+		}
+		.card__avatar {
+			grid-area: avatar;
+		}
+		.card__info {
+			grid-area: infos;
+			text-align: left;
+		}
+		.card__actions {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		.card__actions .button {
+			flex: 1 1 auto;
+		}
+	}
+</style>

@@ -1,0 +1,141 @@
+---
+title: 'Responsive Design with Container Queries in CSS'
+description: 'Discover how CSS container queries enable truly responsive components that adapt to their parent container, not just screen size. A game-changer for design systems.'
+pubDate: 'Apr 04 2025'
+heroImage: '/container-queries.png'
+readingTime: '5 min read'
+---
+
+import Wrapper from '../components/Wrapper.astro';
+import { Picture } from 'astro:assets';
+import transition from '../../assets/blog/container-queries.gif';
+
+## The next step in responsive design: container queries.
+
+<Picture
+	src={transition}
+	alt="Illustration showing how a web component layout adapts based on its container size using CSS container queries"
+	width="400"
+	style="border: 2px solid var(--border);
+    border-radius: 0;
+    display: block; 
+		margin: auto;"
+/>
+
+For many years, responsive web design relied on media queries. You define some parameters, and the layout changes depending on the screen size. Ideal for adapting designs for phones, tablets, and desktops. But what if your components need to adapt to the real space they are in, rather than just the screen size?
+
+Enter container queries: a CSS feature that lets you style components based on the size of their parent container. It’s great for creating reusable, adaptable layouts that work seamlessly across different parts of a page.
+
+For example:
+
+- A Card component might look great in a wide sidebar but needs adjustments for a narrower one.
+- A Profile block might stack its elements vertically in a small space but align them horizontally when there’s more room.
+
+With container queries, your components don’t need to care about the entire screen anymore. They just care about their own box.
+
+## How do container queries work?
+
+To use container queries, the first step is to tell CSS which parent element should act as a "container." You do this with the container-type property. Here's an example:
+
+```css
+/* Define a container */
+.parent {
+	container-type: inline-size;
+}
+```
+
+What this does is let the `.parent` element report its **inline size** (basically, its width) to its child elements. Once that's set up, you can use the `@container` rule inside any child elements to adjust their styles dynamically.
+
+```css
+.child {
+	/* Default styles go here */
+}
+
+@container (min-width: 40rem) {
+	.child {
+		/* Apply these styles when the container's width is at least 40rem */
+	}
+}
+```
+
+It’s kind of like saying, "Hey, if my box is big enough, let’s give this component a different look."
+
+## Real-world example
+
+Imagine you’ve got a ProfileCard component, and it needs to display a profile picture, username, and bio.
+
+In a **small container**, you might want to stack everything:
+
+import CQ1 from '../components/ContainerQueries/1.astro';
+
+<Wrapper title="List of cards">
+	<CQ1 />
+</Wrapper>
+
+But in a larger container, you’d want a more horizontal layout:
+
+import CQ2 from '../components/ContainerQueries/2.astro';
+
+<Wrapper title="Single card">
+	<CQ2 />
+</Wrapper>
+
+With container queries, you can define a flexible design for this. Just mark the ProfileCard’s parent as a container, and then tweak the layout using something like this:
+
+```css
+.card {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		'avatar'
+		'infos'
+		'actions';
+}
+.card__avatar {
+	grid-area: avatar;
+}
+.card__info {
+	grid-area: infos;
+}
+.card__actions {
+	grid-area: actions;
+}
+
+@container (min-width: 18rem) {
+	.card {
+		grid-template-columns: 120px 1fr;
+		grid-template-areas:
+			'avatar infos'
+			'actions actions';
+	}
+}
+```
+
+Try removing and adding cards to see how the layout changes. The card will adapt to the size of its parent container, making it a lot more flexible and reusable.
+
+import CQ3 from '../components/ContainerQueries/3.astro';
+
+<Wrapper title="Remove or add cards">
+	<CQ3 />
+</Wrapper>
+
+See how that works? The layout adjusts automatically depending on the space the component has to work with.
+
+## What about browser support?
+
+Good news, container queries are here, and they’re supported by **most modern browsers**! As of today, support is solid for about 93,6% of users. That said, for browsers that don’t support them (looking at you, legacy setups), it’s smart to design with **progressive enhancement** in mind.
+
+Here’s the strategy:
+
+1. Start with a solid set of default styles that look good no matter what.
+2. Layer container-query rules on top for enhanced layouts when supported.
+
+## Why This Changes Everything
+
+Container queries let you design components that are truly modular. It doesn’t matter where a card or a widget lives on the page, it can adapt to its immediate context. That’s a huge step forward for flexibility and maintainability, especially when you’re building reusable design systems.
+
+If you’ve ever had trouble making a component work in different layouts or wanted better control at the container level, container queries are here to make your life easier.
+
+## Ready to Learn More?
+
+If you’re curious to dig even deeper, Josh W. Comeau’s article, ["A Friendly Introduction to Container Queries,"](https://www.joshwcomeau.com/css/container-queries-introduction/) is an incredible resource with more examples and detailed explanations. Definitely worth a read!

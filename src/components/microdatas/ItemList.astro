@@ -7,7 +7,7 @@ type Post = {
 	body: string;
 	collection: 'blog' | 'short';
 	data: InferEntrySchema<'blog'> | InferEntrySchema<'short'>;
-	render(): Render['.mdx'];
+	render(): Render['.md'];
 };
 
 type Props = {
