@@ -122,6 +122,110 @@ import CQ3 from '../components/ContainerQueries/3.astro';
 
 See how that works? The layout adjusts automatically depending on the space the component has to work with.
 
+## Naming containers
+
+By default, container queries target the nearest parent with a container-type set. But what if a component is nested inside multiple containers, and you want to target a specific one? That’s where container names come in.
+
+You can give a container a custom name using the container-name property. Then, when writing your @container rules, you can refer directly to that name.
+
+Here’s how it works:
+
+```css
+.sidebar {
+	container-type: inline-size;
+	container-name: sidebar;
+}
+```
+
+Now that this container is named, you can write a query like this:
+
+```css
+@container sidebar (min-width: 30rem) {
+	.widget {
+		/* Styles specific to when the sidebar is wide enough */
+	}
+}
+```
+
+This is super helpful when your layout has multiple containers, like a card inside a sidebar inside a grid. Instead of relying on CSS to guess which container you mean, you're telling it exactly where to look.
+
+Quick tip: You can also set both the type and name in one line like this:
+
+```css
+.container {
+	container: sidebar / inline-size;
+}
+```
+
+The format is:
+container: `<name> / <type>`;
+
+This makes your CSS more predictable and your components easier to manage—especially in more complex layouts.
+
+## New units for container queries
+
+Container queries introduce some exciting new units that make it easier to build responsive, context-aware designs. These units are specifically designed to work with the size of a container, not the viewport. Here are the key ones to know:
+
+1. `cqw` (container width)
+
+   Represents the container's width.
+
+```css
+.child {
+	width: 50cqw; /* 50% of the container's width */
+}
+```
+
+2. `cqh` (container height)
+
+   Represents the container's height.
+
+```css
+.child {
+	height: 20cqh; /* 20% of the container's height */
+}
+```
+
+3. `cqi` (container inline size)
+
+   Based on the container’s inline size (width in LTR or height in top-to-bottom layouts).
+
+```css
+.child {
+	margin-left: 5cqi; /* 5% of the container’s inline size */
+}
+```
+
+4. `cqb` (container block size)
+
+   Based on the container's block size (height in most layouts).
+
+```css
+.child {
+	padding-bottom: 2cqb; /* 2% of the container's block size */
+}
+```
+
+5. cqmin (minimum container size)
+   Based on the smaller of the container’s width or height.
+
+```css
+.child {
+	font-size: 2cqmin; /* 2% of the container's smallest dimension */
+}
+```
+
+6. cqmax (maximum container size)
+   Based on the larger of the container’s width or height.
+
+```css
+.child {
+	font-size: 3cqmax; /* 3% of the container's largest dimension */
+}
+```
+
+These units give you flexibility to create designs that react to the container’s actual size, making your components more adaptable to different contexts.
+
 ## What about browser support?
 
 Good news, container queries are here, and they’re supported by **most modern browsers**! As of today, support is solid for about 93,6% of users. That said, for browsers that don’t support them (looking at you, legacy setups), it’s smart to design with **progressive enhancement** in mind.
@@ -130,12 +234,6 @@ Here’s the strategy:
 
 1. Start with a solid set of default styles that look good no matter what.
 2. Layer container-query rules on top for enhanced layouts when supported.
-
-## Why This Changes Everything
-
-Container queries let you design components that are truly modular. It doesn’t matter where a card or a widget lives on the page, it can adapt to its immediate context. That’s a huge step forward for flexibility and maintainability, especially when you’re building reusable design systems.
-
-If you’ve ever had trouble making a component work in different layouts or wanted better control at the container level, container queries are here to make your life easier.
 
 ## Ready to Learn More?
 

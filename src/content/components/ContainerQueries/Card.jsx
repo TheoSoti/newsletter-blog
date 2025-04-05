@@ -15,10 +15,10 @@ export default function Card() {
 					<p className="card__tagline">Web Developer</p>
 				</div>
 				<div className="card__actions">
-					<a href="#" className="card__button button">
+					<a href="javascript:void(0)" className="card__button button">
 						View Profile
 					</a>
-					<a href="#" className="card__button button button--reverse">
+					<a href="javascript:void(0)" className="card__button button button--reverse">
 						Message
 					</a>
 				</div>

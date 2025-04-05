@@ -16,7 +16,8 @@ const buttonsStyle = {
 	justifyContent: 'center',
 	alignItems: 'center',
 	gap: '1em',
-	marginTop: '1em',
+	paddingTop: '1em',
+	backgroundColor: 'var(--white)',
 };
 
 export default function Demo() {
