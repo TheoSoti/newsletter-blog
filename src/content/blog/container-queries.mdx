@@ -65,7 +65,7 @@ It’s kind of like saying, "Hey, if my box is big enough, let’s give this com
 
 Imagine you’ve got a ProfileCard component, and it needs to display a profile picture, username, and bio.
 
-In a **small container**, you might want to stack everything:
+In a **small container**, you might want to stack everything inside the card:
 
 import CQ1 from '../components/ContainerQueries/1.astro';
 
@@ -73,13 +73,27 @@ import CQ1 from '../components/ContainerQueries/1.astro';
 	<CQ1 />
 </Wrapper>
 
-But in a larger container, you’d want a more horizontal layout:
+But in a larger container, you’d want a more horizontal layout inside the card:
 
 import CQ2 from '../components/ContainerQueries/2.astro';
 
 <Wrapper title="Single card">
 	<CQ2 />
 </Wrapper>
+
+Here's the html I used for the card:
+
+```html
+<section class="container">
+	<div class="card">
+		<div class="card__avatar">
+			<img src="..." alt="Avatar" width="120" height="120" />
+		</div>
+		<div class="card__info">...</div>
+		<div class="card__actions">...</div>
+	</div>
+</section>
+```
 
 With container queries, you can define a flexible design for this. Just mark the ProfileCard’s parent as a container, and then tweak the layout using something like this:
 
@@ -166,65 +180,53 @@ This makes your CSS more predictable and your components easier to manage—espe
 
 Container queries also introduce some exciting new units that make it easier to build responsive, context-aware designs. These units are specifically designed to work with the size of a container, not the viewport. Here are the key ones to know:
 
-1. `cqw` (container width)
+1. `cqw` (container width) - Represents the container's width.
 
-   Represents the container's width.
+   ```css
+   .child {
+   	width: 50cqw; /* 50% of the container's width */
+   }
+   ```
 
-```css
-.child {
-	width: 50cqw; /* 50% of the container's width */
-}
-```
+2. `cqh` (container height) - Represents the container's height.
 
-2. `cqh` (container height)
+   ```css
+   .child {
+   	height: 20cqh; /* 20% of the container's height */
+   }
+   ```
 
-   Represents the container's height.
+3. `cqi` (container inline size) - Based on the container’s inline size (width in LTR or height in top-to-bottom layouts).
 
-```css
-.child {
-	height: 20cqh; /* 20% of the container's height */
-}
-```
+   ```css
+   .child {
+   	margin-left: 5cqi; /* 5% of the container’s inline size */
+   }
+   ```
 
-3. `cqi` (container inline size)
+4. `cqb` (container block size) - Based on the container's block size (height in most layouts).
 
-   Based on the container’s inline size (width in LTR or height in top-to-bottom layouts).
+   ```css
+   .child {
+   	padding-bottom: 2cqb; /* 2% of the container's block size */
+   }
+   ```
 
-```css
-.child {
-	margin-left: 5cqi; /* 5% of the container’s inline size */
-}
-```
+5. `cqmin` (minimum container size) - Based on the smaller of the container’s width or height.
 
-4. `cqb` (container block size)
+   ```css
+   .child {
+   	font-size: 2cqmin; /* 2% of the container's smallest dimension */
+   }
+   ```
 
-   Based on the container's block size (height in most layouts).
+6. `cqmax` (maximum container size) - Based on the larger of the container’s width or height.
 
-```css
-.child {
-	padding-bottom: 2cqb; /* 2% of the container's block size */
-}
-```
-
-5. `cqmin` (minimum container size)
-
-   Based on the smaller of the container’s width or height.
-
-```css
-.child {
-	font-size: 2cqmin; /* 2% of the container's smallest dimension */
-}
-```
-
-6. `cqmax` (maximum container size)
-
-   Based on the larger of the container’s width or height.
-
-```css
-.child {
-	font-size: 3cqmax; /* 3% of the container's largest dimension */
-}
-```
+   ```css
+   .child {
+   	font-size: 3cqmax; /* 3% of the container's largest dimension */
+   }
+   ```
 
 These units give you flexibility to create designs that react to the container’s actual size, making your components more adaptable to different contexts.
 
@@ -239,4 +241,4 @@ Here’s the strategy:
 
 ## Ready to Learn More?
 
-If you’re curious to dig even deeper, Josh W. Comeau’s article, ["A Friendly Introduction to Container Queries,"](https://www.joshwcomeau.com/css/container-queries-introduction/) is an incredible resource with more examples and detailed explanations. Definitely worth a read!
+If you’re curious to dig even deeper, Josh W. Comeau’s article, [A friendly introduction to container queries](https://www.joshwcomeau.com/css/container-queries-introduction/), is an incredible resource with more examples and detailed explanations. Definitely worth a read!
