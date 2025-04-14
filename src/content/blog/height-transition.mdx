@@ -1,7 +1,8 @@
 ---
-title: 'How to smoothly transition an element’s height in CSS'
-description: 'CSS Height Transitions: 5 ways to smoothly transition height, from max-height to flexbox, grid, & new features like calc-size().'
+title: 'Height transition in CSS using five different approaches'
+description: 'Explore five effective ways to transition height in CSS using flex, grid, max-height, and upcoming features for smooth, responsive animations.'
 pubDate: 'Oct 22 2024'
+updatedDate: 'Apr 14 2025'
 heroImage: '/height-transition.png'
 readingTime: '5 min read'
 ---
@@ -10,9 +11,9 @@ import Wrapper from '../components/Wrapper.astro';
 import { Picture } from 'astro:assets';
 import transition from '../../assets/blog/how-to-height-transition.gif';
 
-## Introduction to height transitions
+## Introduction to height transition in CSS
 
-In the past, we had to rely on clever hacks or turn to JavaScript to transition height. But now, there are some really cool, native solutions (and even more exciting ones just around the corner).
+The current best approch in term of height transition, is using the grid transitions. But other cool solutions exists or will be existing in the future.
 
 In this article, I'll show you five ways to transition an element's height. We'll start with older, less reliable methods and move on to modern techniques that work best.
 
@@ -28,7 +29,7 @@ All the examples I provide below are interactive, so feel free to experiment wit
 		margin: auto;"
 />
 
-## Transitioning the height
+## Common height transitions
 
 We’ve all wanted to transition an element’s height directly. Unfortunately, it’s not that simple.
 
@@ -72,7 +73,7 @@ import HeightTransition1 from '../components/HeightTransition/1.astro';
 	<HeightTransition1 />
 </Wrapper>
 
-## Transitioning the Max-height
+## Transitioning the max-height in CSS
 
 Since transitioning <code>height</code> directly doesn’t work well, what about using max-height?
 
@@ -106,7 +107,7 @@ import HeightTransition2 from '../components/HeightTransition/2.astro';
 You see that if the <code>max-height</code> has a value too big, the animation is too quick and delayed.<br/>
 And if the value is too low, the text will be cropped.
 
-## Transitioning with flex
+## Height transition with flex
 
 The previous examples aren’t ideal, as they come with many limitations.<br />
 But did you know you can transition the height to 100% using flex?<br />
@@ -153,7 +154,7 @@ It works, but there are still two issues:
 - You need to add a wrapper div for it to function properly
 - While the content transitions, its container expands instantly
 
-## Transitioning with grid
+## Height transition with grid
 
 Another more flexible solution is using CSS Grid. Similar to the flex approach, Grid can help us transition an element’s height, but with better control and fewer limitations.
 
@@ -201,7 +202,7 @@ import HeightTransition4 from '../components/HeightTransition/4.astro';
 With Grid, there’s no need for extra wrapper divs, and the container height adjusts smoothly along with its content.
 It also gives you finer control over the layout compared to flexbox.
 
-## What about the future
+## New height transitions in the future?
 
 One promising feature is the upcoming calc-size() function, which will bring even more flexibility to CSS layouts.
 
