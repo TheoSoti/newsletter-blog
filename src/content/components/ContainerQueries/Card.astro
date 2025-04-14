@@ -25,7 +25,7 @@
 		min-width: 12.5em;
 		flex: 1 1 auto;
 	}
-	.card {
+	.card-container .card {
 		display: grid;
 		grid-template-columns: 1fr;
 		border: 2px solid var(--border);
@@ -37,7 +37,7 @@
 			'infos'
 			'actions';
 	}
-	.card__avatar {
+	.card-container.card__avatar {
 		grid-area: avatar;
 		border-radius: 0.5em;
 		overflow: hidden;
@@ -48,68 +48,68 @@
 		margin: 0 auto;
 		background-color: var(--white);
 	}
-	.card__avatar img {
+	.card-container.card__avatar img {
 		display: block;
 		width: 100%;
 		height: auto;
 	}
-	.card__info {
+	.card-container.card__info {
 		grid-area: infos;
 		text-align: center;
 		margin: 1em 0;
 	}
-	p.card__name {
+	.card-containerp.card__name {
 		font-size: 1.5em;
 		font-weight: bold;
 		margin: 0;
 	}
-	p.card__tagline {
+	.card-containerp.card__tagline {
 		font-size: 1em;
 		color: var(--small-text);
 		margin: 0;
 	}
-	.card__actions {
+	.card-container.card__actions {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		gap: 0.5em;
 		grid-area: actions;
 	}
-	.card__button {
+	.card-container.card__button {
 		padding: 0.3em 1em;
 		text-decoration: none;
 		text-align: center;
 	}
-	.card__button:hover {
+	.card-container.card__button:hover {
 		color: var(--white);
 	}
-	.card__actions .button--reverse {
+	.card-container.card__actions .button--reverse {
 		background-color: var(--white);
 		color: var(--black);
 	}
-	.card__actions .button--reverse:hover {
+	.card-container.card__actions .button--reverse:hover {
 		color: var(--black);
 	}
 	@container (min-width: 18rem) {
-		.card {
+		.card-container.card {
 			grid-template-columns: 120px 1fr;
 			gap: 1em;
 			grid-template-areas:
 				'avatar infos'
 				'actions actions';
 		}
-		.card__avatar {
+		.card-container.card__avatar {
 			grid-area: avatar;
 		}
-		.card__info {
+		.card-container.card__info {
 			grid-area: infos;
 			text-align: left;
 		}
-		.card__actions {
+		.card-container.card__actions {
 			flex-direction: row;
 			justify-content: space-between;
 		}
-		.card__actions .button {
+		.card-container.card__actions .button {
 			flex: 1 1 auto;
 		}
 	}

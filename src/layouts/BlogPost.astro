@@ -5,13 +5,26 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import TableOfContent from '../components/TableOfContent.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
+import { getCollection } from 'astro:content';
+import Card from '../components/Card.astro';
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime, headings } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug } = Astro.props;
+const posts = (await getCollection('blog'))
+	.filter((post) => post.slug !== slug)
+	.sort((a, b) => {
+		// Randomize the order of related posts based on the first character of the slug
+		const seed = slug.charCodeAt(0);
+		const aScore = a.slug.charCodeAt(0) ^ seed;
+		const bScore = b.slug.charCodeAt(0) ^ seed;
+		return aScore - bScore;
+	})
+	.slice(0, 3);
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+
 		<style>
 			@media (prefers-reduced-motion: no-preference) {
 				html {
@@ -28,6 +41,12 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 			.container {
 				width: calc(100% - 2em);
 				margin: auto;
+			}
+			section.container {
+				margin: 2em auto;
+			}
+			section.container h2 {
+				margin-top: 0;
 			}
 			.prose {
 				max-width: 100%;
@@ -91,9 +110,20 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 				content: counter(h2counter) '.' counter(h3counter) '.';
 				counter-increment: h3counter;
 			}
+			ul {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 20px;
+				list-style-type: none;
+				padding: 0;
+				margin-bottom: 0;
+			}
 			@media (min-width: 600px) {
 				.post-header {
 					margin-bottom: 2em;
+				}
+				ul {
+					grid-template-columns: 1fr 1fr;
 				}
 			}
 			@media (min-width: 900px) {
@@ -108,10 +138,18 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 					max-width: 1100px;
 					gap: 40px;
 				}
+				section.container {
+					display: block;
+				}
 				.prose {
 					max-width: calc(100% - 2em);
 					width: clamp(530px, calc(100% - 340px), 760px);
 					margin-top: -2em;
+				}
+			}
+			@media (min-width: 1024px) {
+				ul {
+					grid-template-columns: 1fr 1fr 1fr;
 				}
 			}
 		</style>
@@ -123,6 +161,7 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 			<div class="post-image" style=`background-image: url(${heroImage})`></div>
 			<div class="title">
 				<h1>{title}</h1>
+
 				<div class="date">
 					<FormattedDate date={pubDate} /> - {readingTime}
 					{
@@ -143,8 +182,18 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime, headin
 					<slot />
 				</article>
 			</div>
+			<section class="container">
+				<h2>Related Articles</h2>
+				<p>
+					Explore more articles on front-end development, covering HTML, CSS and JavaScript for building
+					high-performance websites.
+				</p>
+				<ul>
+					{posts.map((post) => <Card post={post} width="720" height="360" type="blog" />)}
+				</ul>
+			</section>
+			<Footer />
+			<BlogPosting {...{ title, description, pubDate, updatedDate, heroImage }} />
 		</main>
-		<Footer />
-		<BlogPosting {...{ title, description, pubDate, updatedDate, heroImage }} />
 	</body>
 </html>

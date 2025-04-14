@@ -36,7 +36,7 @@ const shorts = (await getCollection('short'))
 					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" />)}
+					{posts.map((post) => <Card post={post} width="720" height="360" type="blog" />)}
 				</ul>
 			</section>
 

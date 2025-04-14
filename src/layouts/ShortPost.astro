@@ -4,8 +4,20 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
+import { getCollection } from 'astro:content';
+import Card from '../components/Card.astro';
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, slug } = Astro.props;
+const posts = (await getCollection('short'))
+	.filter((post) => post.slug !== slug)
+	.sort((a, b) => {
+		// Randomize the order of related posts based on the first character of the slug
+		const seed = slug.charCodeAt(0);
+		const aScore = a.slug.charCodeAt(0) ^ seed;
+		const bScore = b.slug.charCodeAt(0) ^ seed;
+		return aScore - bScore;
+	})
+	.slice(0, 3);
 ---
 
 <html lang="en">
@@ -27,6 +39,23 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.container {
 				width: calc(100% - 2em);
 				margin: auto;
+			}
+			section.container {
+				margin: 2em auto;
+			}
+			section.container ul {
+				list-style: none;
+			}
+			section.container h2 {
+				margin-top: 0;
+			}
+			ul {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 20px;
+				list-style-type: none;
+				padding: 0;
+				margin-bottom: 0;
 			}
 			.prose {
 				max-width: 100%;
@@ -94,6 +123,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				.post-header {
 					margin-bottom: 2em;
 				}
+				ul {
+					grid-template-columns: 1fr 1fr;
+				}
 			}
 			@media (min-width: 900px) {
 				main {
@@ -107,10 +139,18 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					max-width: 1100px;
 					gap: 40px;
 				}
+				section.container {
+					display: block;
+				}
 				.prose {
 					max-width: calc(100% - 2em);
 					width: clamp(530px, calc(100% - 340px), 760px);
 					margin-top: -2em;
+				}
+			}
+			@media (min-width: 1024px) {
+				ul {
+					grid-template-columns: 1fr 1fr 1fr;
 				}
 			}
 		</style>
@@ -140,6 +180,16 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					<slot />
 				</article>
 			</div>
+			<section class="container">
+				<h2>Related Articles</h2>
+				<p>
+					Explore more articles on front-end development, covering HTML, CSS and JavaScript for building
+					high-performance websites.
+				</p>
+				<ul>
+					{posts.map((post) => <Card post={post} type="short" width="720" height="360" />)}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 		<BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate, heroImage }} />
