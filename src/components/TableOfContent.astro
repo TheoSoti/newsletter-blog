@@ -62,7 +62,10 @@ const displayedHeadings = headings.filter((heading) => heading.depth === 2);
 			text-decoration: none;
 			padding: 0.5em 2em 0.5em 0.5em;
 			position: relative;
-			border-bottom: 1px dotted var(--border);
+			border-bottom: 1px solid var(--border);
+		}
+		li:last-child a {
+			border-bottom: 0;
 		}
 		a:after {
 			content: '>';
