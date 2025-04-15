@@ -2,10 +2,8 @@ import { useState } from 'react';
 import Card from './Card.jsx';
 
 const containerStyle = {
-	padding: '1em',
-	maxWidth: '100%',
+	maxWidth: '700px',
 	backgroundColor: 'white',
-	overflow: 'auto',
 	display: 'flex',
 	justifyContent: 'space-between',
 	gap: '0.5em',

@@ -1,11 +1,11 @@
 ---
-const { title = 'Result' } = Astro.props;
+const { title = 'Result', overflow } = Astro.props;
 ---
 
 <div class="wrapper">
 	{title}
 
-	<div class="content">
+	<div class={`content ${overflow}`}>
 		<slot />
 	</div>
 </div>
@@ -20,5 +20,9 @@ const { title = 'Result' } = Astro.props;
 
 	.content {
 		border: 2px solid var(--border);
+	}
+
+	.content.scroll {
+		overflow: scroll;
 	}
 </style>

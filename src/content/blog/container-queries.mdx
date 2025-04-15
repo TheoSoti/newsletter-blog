@@ -69,7 +69,7 @@ In a **small container**, you might want to stack everything inside the card:
 
 import CQ1 from '../components/ContainerQueries/1.astro';
 
-<Wrapper title="List of cards">
+<Wrapper title="List of cards" overflow="scroll">
 	<CQ1 />
 </Wrapper>
 
@@ -77,7 +77,7 @@ But in a larger container, you’d want a more horizontal layout inside the card
 
 import CQ2 from '../components/ContainerQueries/2.astro';
 
-<Wrapper title="Single card">
+<Wrapper title="Single card" overflow="scroll">
 	<CQ2 />
 </Wrapper>
 
@@ -130,7 +130,7 @@ Try removing and adding cards to see how the layout changes. The card will adapt
 
 import CQ3 from '../components/ContainerQueries/3.astro';
 
-<Wrapper title="Remove or add cards">
+<Wrapper title="Remove or add cards" overflow="scroll">
 	<CQ3 />
 </Wrapper>
 
