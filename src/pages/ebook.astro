@@ -1,0 +1,419 @@
+---
+import '../styles/ebook.css';
+
+import { Picture } from 'astro:assets';
+import ebook from '../assets/ebook/ebook.png';
+import comingSoon from '../assets/ebook/coming-soon.png';
+import testimonial1 from '../assets/ebook/zark-muckerberg.jpeg';
+import testimonial2 from '../assets/ebook/melon-tusk.png';
+import testimonial3 from '../assets/ebook/kim-coot.png';
+import testimonial4 from '../assets/ebook/parry-lage.png';
+import testimonial5 from '../assets/ebook/beff-jezos.png';
+import testimonial6 from '../assets/ebook/pundar-sichai.png';
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<html lang="en">
+	<head>
+		<!-- Global Metadata -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Primary Meta Tags -->
+		<title>You don't need JavaScript</title>
+		<meta name="title" content="You don't need JavaScript" />
+		<meta
+			name="description"
+			content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this practical ebook."
+		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content="You don't need JavaScript" />
+		<meta
+			property="og:description"
+			content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this free, practical ebook."
+		/>
+		<meta property="og:image" content="" />
+		<!-- TODO -->
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content="You don't need JavaScript" />
+		<meta
+			property="twitter:description"
+			content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this free, practical ebook."
+		/>
+		<meta property="twitter:image" content="" />
+		<!-- TODO -->
+		<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
+	</head>
+
+	<body>
+		<section class="hero">
+			<div class="hero__container">
+				<div class="hero__content">
+					<h1 class="hero__title">You don't need JavaScript</h1>
+					<p class="hero__subtitle">
+						Learn how to build lightweight CSS components without JavaScript. Improve your site's speed, reduce bugs,
+						and develop faster with real-world methods.
+					</p>
+
+					<p class="hero__info">Sign up now and get a surprise when the book launches.</p>
+					<form
+						action="https://app.kit.com/forms/7980076/subscriptions"
+						class="seva-form formkit-form"
+						method="post"
+						data-sv-form="7124812"
+						data-uid="db7a3d5935"
+						data-format="inline"
+						data-version="5"
+					>
+						<div data-style="clean">
+							<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+								<div class="formkit-field">
+									<input
+										class="formkit-input"
+										name="email_address"
+										aria-label="Email Address"
+										placeholder="Email Address"
+										required=""
+										type="email"
+									/>
+								</div>
+								<button
+									type="submit"
+									data-element="submit"
+									class="formkit-submit formkit-submit button"
+									aria-label="Join the newsletter"
+								>
+									Notify Me
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="hero__image">
+					<div class="background"></div>
+					<Picture
+						src={comingSoon}
+						formats={['avif', 'webp', 'jpg']}
+						width="200"
+						height="200"
+						alt="Coming soon badge"
+						class="coming-soon"
+					/>
+					<Picture
+						src={ebook}
+						formats={['avif', 'webp', 'jpg']}
+						width="500"
+						class="book"
+						height="800"
+						alt="You don't need JavaScript ebook cover"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="features">
+			<div class="features__container">
+				<h2 class="features__title">What makes the book unique</h2>
+
+				<ul class="features__list">
+					<li class="feature">
+						<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M16 8V5L19 2L20 4L22 5L19 8H16ZM16 8L12 11.9999M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7"
+								stroke="var(--secondary)"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+						<div>
+							<h3 class="feature__title">Clear and direct approach</h3>
+							<p class="feature__description">
+								If you're a visual learner, this book is for you. It focuses more on actionable advice and tips.
+							</p>
+						</div>
+					</li>
+
+					<li class="feature">
+						<svg width="64px" height="64px" viewBox="0 0 20 20" fill="none">
+							<path
+								fill="#e44e25"
+								fill-rule="evenodd"
+								d="M3 10a7 7 0 019.307-6.611 1 1 0 00.658-1.889 9 9 0 105.98 7.501 1 1 0 00-1.988.22A7 7 0 113 10zm14.75-5.338a1 1 0 00-1.5-1.324l-6.435 7.28-3.183-2.593a1 1 0 00-1.264 1.55l3.929 3.2a1 1 0 001.38-.113l7.072-8z"
+							></path>
+						</svg>
+						<div>
+							<h3 class="feature__title">Real-life examples</h3>
+							<p class="feature__description">
+								All the examples in the book are things that you face in your day to day work. Nothing is abstract.
+							</p>
+						</div>
+					</li>
+
+					<li class="feature">
+						<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
+							<path
+								d="M8 5C7.44772 5 7 5.44772 7 6C7 6.55228 7.44772 7 8 7H12.2344L8.50386 9.13176C8.11017 9.35672 7.91712 9.81842 8.0335 10.2567C8.14988 10.6949 8.54657 11 9 11H13.8C13.9105 11 14 11.0895 14 11.2V13.5029C14 13.556 13.9789 13.6069 13.9414 13.6444L12.1414 15.4444C12.0633 15.5225 11.9367 15.5225 11.8586 15.4444L9.70711 13.2929C9.31658 12.9024 8.68342 12.9024 8.2929 13.2929C7.90237 13.6834 7.90237 14.3166 8.2929 14.7071L11.2929 17.7071C11.6834 18.0976 12.3166 18.0976 12.7071 17.7071L15.7071 14.7071C15.8946 14.5196 16 14.2652 16 14V10C16 9.44772 15.5523 9 15 9H12.7656L16.4961 6.86824C16.8898 6.64328 17.0829 6.18158 16.9665 5.74333C16.8501 5.30509 16.4534 5 16 5H8Z"
+								fill="#e44e25"></path>
+							<path
+								fill-rule="evenodd"
+								clip-rule="evenodd"
+								d="M4.30602 1C2.48038 1 1.07799 2.61696 1.33617 4.42426L2.90519 15.4074C3.00668 16.1178 3.35946 16.7683 3.89953 17.2409L10.0245 22.6002C11.1556 23.5899 12.8444 23.5899 13.9755 22.6002L20.1005 17.2409C20.6405 16.7683 20.9933 16.1178 21.0948 15.4074L22.6638 4.42426C22.922 2.61696 21.5196 1 19.694 1H4.30602ZM3.31607 4.14142C3.23001 3.53899 3.69747 3 4.30602 3H19.694C20.3025 3 20.77 3.53899 20.6839 4.14142L19.1149 15.1245C19.0811 15.3613 18.9635 15.5782 18.7835 15.7357L12.6585 21.095C12.2815 21.4249 11.7185 21.4249 11.3415 21.095L5.21653 15.7357C5.03651 15.5782 4.91892 15.3613 4.88509 15.1245L3.31607 4.14142Z"
+								fill="#e44e25"></path>
+						</svg>
+						<div>
+							<h3 class="feature__title">Modern CSS techniques</h3>
+							<p class="feature__description">
+								Learn the latest CSS features and best practices that make JavaScript unnecessary for many UI
+								interactions.
+							</p>
+						</div>
+					</li>
+
+					<li class="feature">
+						<svg fill="#e44e25" width="64px" height="64px" viewBox="0 0 32 32">
+							<path
+								d="M30.039 2.719c-0.143-0.544-0.631-0.939-1.211-0.939-0.395 0-0.748 0.184-0.977 0.47l-0.002 0.002c-1.639 1.931-3.786 3.384-6.235 4.158l-0.096 0.026c-1.66 0.54-3.592 0.925-5.588 1.079l-0.086 0.005c-2.296 0.094-4.448 0.609-6.414 1.468l0.114-0.045c-3.466 1.876-5.78 5.485-5.78 9.633 0 0.064 0.001 0.127 0.002 0.19l-0-0.010c0.010 0.318 0.031 0.631 0.068 0.945 0.144 1.149 0.443 2.193 0.877 3.163l-0.028-0.070c-1.472 1.947-2.758 4.166-3.758 6.536l-0.076 0.204c-0.064 0.145-0.101 0.314-0.101 0.492 0 0.512 0.309 0.953 0.75 1.146l0.008 0.003c0.144 0.064 0.311 0.102 0.487 0.102 0.001 0 0.003 0 0.004 0h-0c0 0 0.001 0 0.001 0 0.512 0 0.953-0.308 1.146-0.75l0.003-0.008c0.863-2.053 1.833-3.813 2.96-5.455l-0.066 0.102c1.149 1.549 2.642 2.78 4.37 3.593l0.070 0.030c1.482 0.678 3.216 1.072 5.041 1.072 0.026 0 0.052-0 0.077-0l-0.004 0c1.957-0.008 3.82-0.406 5.517-1.119l-0.095 0.035c5.424-2.452 9.281-7.517 9.983-13.546l0.008-0.079c0.151-1.153 0.237-2.486 0.237-3.839 0-3.061-0.441-6.020-1.264-8.815l0.056 0.22zM28.537 14.781c-0.578 5.22-3.848 9.56-8.373 11.642l-0.090 0.037c-1.28 0.561-2.772 0.888-4.34 0.888-1.522 0-2.972-0.308-4.292-0.864l0.073 0.027c-1.604-0.758-2.91-1.921-3.822-3.358l-0.022-0.037c3.354-3.495 8.014-5.715 13.193-5.872l0.029-0.001c0.636-0.064 1.129-0.596 1.129-1.244 0-0.69-0.56-1.25-1.25-1.25-0.043 0-0.085 0.002-0.126 0.006l0.005-0c-5.472 0.226-10.391 2.428-14.097 5.906l0.012-0.011c-0.102-0.347-0.188-0.766-0.242-1.196l-0.004-0.042c-0.027-0.24-0.045-0.482-0.051-0.723-0.001-0.048-0.002-0.105-0.002-0.162 0-3.16 1.757-5.909 4.348-7.325l0.044-0.022c1.6-0.679 3.456-1.104 5.402-1.174l0.027-0.001c2.288-0.177 4.409-0.604 6.429-1.258l-0.195 0.055c2.238-0.74 4.171-1.848 5.83-3.267l-0.023 0.020c0.404 1.735 0.635 3.727 0.635 5.773 0 1.216-0.082 2.414-0.24 3.587l0.015-0.137z"
+							></path>
+						</svg>
+						<div>
+							<h3 class="feature__title">Faster and greener</h3>
+							<p class="feature__description">
+								Building with pure CSS means lighter pages, faster load times, and a smaller carbon footprint.
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="testimonials">
+			<h2 class="testimonials__title">Loved by the community</h2>
+
+			<div class="testimonials__container">
+				<ul class="testimonial__list">
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial1}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Zark Muckerberg <br /> <span>Confused Developer</span></p>
+						</div>
+						<blockquote class="testimonial__text">
+							Who needs fast pages anyway? I love waiting 5 seconds for a button to work. This book is a disaster.
+						</blockquote>
+					</li>
+
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial2}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Melon Tusk <br /> <span>Former Framework Addict</span></p>
+						</div>
+						<blockquote class="testimonial__text">
+							This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
+						</blockquote>
+					</li>
+
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial3}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Kim Coot <br /> <span>Hardcore JavaScript Fan</span></p>
+						</div>
+						<blockquote class="testimonial__text">HAHAHAHAHAHAHAHAHAHAHAHAHAHAH IMAGINE READING THIS.</blockquote>
+					</li>
+
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial4}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Parry Lage <br /> <span>Proud jQuery Defender</span></p>
+						</div>
+						<blockquote class="testimonial__text">
+							Tried the CSS-only dropdown technique. It worked instantly. Honestly, it felt wrong.
+						</blockquote>
+					</li>
+
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial5}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Beff Jezos <br /> <span>JavaScript Maximalist</span></p>
+						</div>
+						<blockquote class="testimonial__text">
+							Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
+						</blockquote>
+					</li>
+
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial1}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt="Second testimonial"
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">Pundar Sichai <br /> <span>Reluctant CSS Believer</span></p>
+						</div>
+						<blockquote class="testimonial__text">
+							I opened this book expecting JavaScript magic. Instead, I got CSS reality. Absolute betrayal.
+						</blockquote>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="faq">
+			<h2 class="faq__title">Frequently asked questions</h2>
+
+			<ul class="faq__container">
+				<li class="accordion">
+					<details open>
+						<summary aria-describedby="accordion">
+							<span role="term">Who is this ebook for? </span>
+						</summary>
+					</details>
+
+					<div class="content">
+						<p class="inner" role="definition" id="accordion">
+							If you're a web developer who wants to build interactive components without relying on JavaScript — and
+							you care about performance, clean code, and saving time — this book is for you.
+						</p>
+					</div>
+				</li>
+
+				<li class="accordion">
+					<details>
+						<summary aria-describedby="accordion">
+							<span role="term">Do I need to be a CSS expert to follow along? </span>
+						</summary>
+					</details>
+
+					<div class="content">
+						<p class="inner" role="definition" id="accordion">
+							You don't need to be an expert, but a basic understanding of CSS is recommended. The ebook is
+							beginner-friendly, yet packed with tips and techniques that even seasoned developers will find valuable.
+							You'll learn step-by-step through clear, practical examples.
+						</p>
+					</div>
+				</li>
+
+				<li class="accordion">
+					<details>
+						<summary aria-describedby="accordion">
+							<span role="term">What exactly will I learn?</span>
+						</summary>
+					</details>
+
+					<div class="content">
+						<p class="inner" role="definition" id="accordion">
+							You'll learn how to create real-world UI components (like tabs, modals, dropdowns) using only CSS. Plus,
+							you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
+						</p>
+					</div>
+				</li>
+
+				<li class="accordion">
+					<details>
+						<summary aria-describedby="accordion">
+							<span role="term">When will the ebook be available? </span>
+						</summary>
+					</details>
+
+					<div class="content">
+						<p class="inner" role="definition" id="accordion">
+							The ebook is currently in preparation. Sign up with your email and you'll be the first to know as soon as
+							it launches — and get an exclusive discount!
+						</p>
+					</div>
+				</li>
+			</ul>
+		</section>
+
+		<section class="cta">
+			<h2 class="cta__title">Ready to build faster, cleaner, and greener?</h2>
+			<p class="cta__description">Sign up now and get a surprise when the book launches.</p>
+			<form
+				action="https://app.kit.com/forms/7980076/subscriptions"
+				class="seva-form formkit-form"
+				method="post"
+				data-sv-form="7124812"
+				data-uid="db7a3d5935"
+				data-format="inline"
+				data-version="5"
+			>
+				<div data-style="clean">
+					<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+						<div class="formkit-field">
+							<input
+								class="formkit-input"
+								name="email_address"
+								aria-label="Email Address"
+								placeholder="Email Address"
+								required=""
+								type="email"
+							/>
+						</div>
+						<button
+							type="submit"
+							data-element="submit"
+							class="formkit-submit formkit-submit button"
+							aria-label="Notify me"
+						>
+							Notify Me
+						</button>
+					</div>
+				</div>
+			</form>
+		</section>
+
+		<footer>
+			<p>
+				&copy; 2025 <a href="https://theosoti.com">Theo Soti</a>. All rights reserved.
+			</p>
+		</footer>
+	</body>
+</html>
