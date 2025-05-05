@@ -381,6 +381,22 @@
 		grid-template-columns: repeat(auto-fit, minmax(clamp(16rem, 50%, 25rem), 1fr));
 	}
 
+	.features .formkit-fields {
+		margin-inline: auto;
+	}
+
+	.features form {
+		margin-top: var(--pad-xl);
+	}
+
+	.features form p {
+		text-align: center;
+	}
+
+	.features .formkit-fields svg {
+		fill: var(--white);
+	}
+
 	.feature {
 		display: flex;
 		gap: var(--pad-12-16);
