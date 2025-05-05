@@ -1,3 +1,14 @@
+/* Register your custom font family and tell the browser where to find it. */
+@font-face {
+	font-family: 'BebasNeue';
+	src:
+		url('/fonts/BebasNeue-Regular.woff2') format('woff2'),
+		url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 @layer main {
 	:root {
 		--main: hsl(14 84.81% 84.51%);
@@ -13,8 +24,9 @@
 
 		--fs-1: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
 		--fs-2: clamp(1.2rem, 1.0739rem + 0.6304vw, 1.5625rem);
-		--fs-3: clamp(1.728rem, 1.4799rem + 1.2407vw, 2.4414rem);
-		--fs-4: clamp(2.0736rem, 1.7334rem + 1.7011vw, 3.0518rem);
+		--fs-2-5: clamp(1.944rem, 1.7399rem + 1.0203vw, 2.4414rem);
+		--fs-3: clamp(2.3328rem, 2.0378rem + 1.4748vw, 3.0518rem);
+		--fs-4: clamp(2.7994rem, 2.3828rem + 2.0827vw, 3.8147rem);
 
 		--pad-4-8: clamp(0.25rem, 0.163rem + 0.4348vw, 0.5rem);
 		--pad-12-16: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
@@ -92,11 +104,15 @@
 	}
 
 	h1 {
+		font-family: 'BebasNeue', sans-serif;
+
 		font-size: var(--fs-4);
 		font-weight: 800;
 	}
 
 	h2 {
+		font-family: 'BebasNeue', sans-serif;
+
 		font-size: var(--fs-3);
 		font-weight: bold;
 	}
@@ -106,6 +122,8 @@
 	.hero {
 		padding: var(--pad-xl) var(--pad-16-32);
 		border-bottom: 4px solid var(--border);
+		background-image: linear-gradient(90deg, #0001 1px, #0000 0), linear-gradient(#0001 1px, #0000 0);
+		background-size: 70px 70px;
 
 		p {
 			font-size: var(--fs-1);
@@ -169,7 +187,8 @@
 		.background {
 			width: 450px;
 			height: 450px;
-			background: var(--main);
+			background: var(--secondary);
+			opacity: 0.3;
 			border-radius: 50%;
 			position: absolute;
 			left: 0%;
@@ -232,6 +251,62 @@
 		.formkit-fields {
 			justify-content: start;
 		}
+	}
+}
+
+@layer about {
+	.about {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 4px solid var(--border);
+		background-color: var(--bg-light);
+
+		picture {
+			flex-shrink: 0;
+			width: 80px;
+			aspect-ratio: 1/1;
+		}
+		img {
+			display: block;
+			border: 2px solid var(--border);
+		}
+	}
+
+	.about__container {
+		max-width: 68.75em;
+		margin-inline: auto;
+	}
+
+	.about__content {
+		background-color: var(--white);
+		box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+		padding: var(--pad-16-32) var(--pad-16-32);
+		border-radius: 0.5em;
+		border: 2px solid var(--border);
+	}
+
+	.about__author {
+		display: flex;
+		align-items: center;
+		gap: var(--pad-12-16);
+	}
+
+	.author__title {
+		margin: 0;
+	}
+
+	.author__name {
+		font-size: var(--fs-2);
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.about__title {
+		text-align: center;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.about__description {
+		font-size: var(--fs-1);
 	}
 }
 
@@ -309,7 +384,7 @@
 
 	.testimonial {
 		gap: var(--pad-12-16);
-		background-color: var(--main);
+		background-color: var(--white);
 		padding: var(--pad-12-16);
 		border-radius: 0.5em;
 		border: 2px solid var(--border);
@@ -356,6 +431,87 @@
 	}
 }
 
+@layer learning {
+	.learning {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 4px solid var(--border);
+		background: #ffdb58;
+	}
+
+	.learning__container {
+		max-width: 68.75em;
+		margin-inline: auto;
+	}
+
+	.learning__title {
+		text-align: center;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.learning__steps {
+		display: flex;
+		flex-direction: column;
+		gap: var(--pad-xl);
+	}
+
+	.step {
+		display: grid;
+		gap: 2em;
+		grid-template-columns: repeat(auto-fit, minmax(clamp(7rem, 50%, 18rem), 1fr));
+		gap: clamp(1rem, -0.2308rem + 6.1538vw, 4rem);
+		justify-content: center;
+		align-items: center;
+		position: relative;
+
+		svg {
+			display: none;
+		}
+	}
+
+	.step__video {
+		width: 100%;
+		border: 2px solid var(--border);
+		box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+		border-radius: 8px;
+	}
+
+	.step__title {
+		font-size: var(--fs-2-5);
+		font-family: 'BebasNeue', sans-serif;
+		font-weight: bold;
+	}
+
+	.step__description {
+		margin-bottom: 0;
+	}
+
+	@media screen and (min-width: 43.75em) {
+		.step svg {
+			display: block;
+			position: absolute;
+			width: clamp(3.75rem, 0.4688rem + 7.5vw, 5.625rem);
+			left: 47%;
+			translate: -50% 0;
+			bottom: -110px;
+		}
+
+		.step__video {
+			object-fit: cover;
+			object-position: top;
+			height: 100%;
+		}
+
+		.step:nth-child(even) svg {
+			left: 53%;
+			bottom: -100px;
+		}
+
+		.step:nth-child(odd) .step__video {
+			order: -1;
+		}
+	}
+}
+
 @layer faq {
 	.faq {
 		padding: var(--pad-xl) var(--pad-16-32);
@@ -366,6 +522,7 @@
 	.faq__container {
 		max-width: 68.75em;
 		margin-inline: auto;
+		padding: 0;
 	}
 
 	.faq__title {
@@ -385,7 +542,13 @@
 		transition-property: all;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-		span {
+		.accordion__title {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1em;
+			margin: 0;
 			font-size: var(--fs-2);
 			padding: var(--pad-4-8) var(--pad-12-16);
 			background-color: var(--secondary);
@@ -400,15 +563,11 @@
 			display: none;
 		}
 
-		span {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		span:after {
+		.accordion__title:after {
 			content: '\276F';
-			transform: rotate(90deg);
-			transition: transform 0.3s ease;
+			rotate: 90deg;
+			transform-origin: center;
+			transition: rotate 0.3s ease;
 		}
 
 		.content {
@@ -430,8 +589,8 @@
 			padding: 10px;
 		}
 
-		details[open] span:after {
-			transform: rotate(270deg);
+		details[open] .accordion__title:after {
+			rotate: 270deg;
 		}
 	}
 
@@ -447,7 +606,6 @@
 	.cta {
 		padding: var(--pad-xl) var(--pad-16-32);
 		border-bottom: 4px solid var(--border);
-		background-color: var(--main);
 		background-image: linear-gradient(90deg, #0001 1px, #0000 0), linear-gradient(#0001 1px, #0000 0);
 		background-size: 70px 70px;
 
@@ -468,6 +626,18 @@
 
 @layer footer {
 	footer {
+		padding: var(--pad-xl) var(--pad-16-32);
+		background-color: var(--bg-light);
+
 		text-align: center;
+	}
+
+	.footer__title {
+		text-align: center;
+	}
+
+	.footer__description {
+		text-align: center;
+		margin-bottom: 0;
 	}
 }

@@ -2,14 +2,17 @@
 import '../styles/ebook.css';
 
 import { Picture } from 'astro:assets';
+import profile from '../assets/profile.png';
 import ebook from '../assets/ebook/ebook.png';
+import content1 from '../assets/ebook/content1.mp4';
+import content2 from '../assets/ebook/content2.mp4';
+import content3 from '../assets/ebook/content3.mp4';
+import content4 from '../assets/ebook/content4.mp4';
+import content5 from '../assets/ebook/content5.mp4';
 import comingSoon from '../assets/ebook/coming-soon.png';
-import testimonial1 from '../assets/ebook/zark-muckerberg.jpeg';
 import testimonial2 from '../assets/ebook/melon-tusk.png';
-import testimonial3 from '../assets/ebook/kim-coot.png';
 import testimonial4 from '../assets/ebook/parry-lage.png';
 import testimonial5 from '../assets/ebook/beff-jezos.png';
-import testimonial6 from '../assets/ebook/pundar-sichai.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -61,7 +64,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<section class="hero">
 			<div class="hero__container">
 				<div class="hero__content">
-					<h1 class="hero__title">You don't need JavaScript</h1>
+					<h1 class="hero__title">A practical guide to building modern components with CSS</h1>
 					<p class="hero__subtitle">
 						Learn how to build lightweight CSS components without JavaScript. Improve your site's speed, reduce bugs,
 						and develop faster with real-world methods.
@@ -72,12 +75,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 						action="https://app.kit.com/forms/7980076/subscriptions"
 						class="seva-form formkit-form"
 						method="post"
-						data-sv-form="7124812"
-						data-uid="db7a3d5935"
+						data-sv-form="7980076"
+						data-uid="d8415b0024"
 						data-format="inline"
 						data-version="5"
 					>
 						<div data-style="clean">
+							<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
 							<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
 								<div class="formkit-field">
 									<input
@@ -85,7 +89,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 										name="email_address"
 										aria-label="Email Address"
 										placeholder="Email Address"
-										required=""
+										required
 										type="email"
 									/>
 								</div>
@@ -93,7 +97,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 									type="submit"
 									data-element="submit"
 									class="formkit-submit formkit-submit button"
-									aria-label="Join the newsletter"
+									aria-label="Notify me"
 								>
 									Notify Me
 								</button>
@@ -198,28 +202,41 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			</div>
 		</section>
 
+		<section class="about">
+			<div class="about__container">
+				<h2 class="about__title">About the author</h2>
+				<div class="about__content">
+					<div class="about__author">
+						<Picture
+							src={profile}
+							formats={['avif', 'webp', 'jpg']}
+							width="160"
+							height="160"
+							alt="Theo Soti profile"
+							class="coming-soon"
+						/>
+						<div class="author__info">
+							<p class="author__name">Theo Soti</p>
+							<p class="author__title">Webdesigner & Front-end Developer</p>
+						</div>
+					</div>
+
+					<p class="about__description">
+						Over the years, I’ve helped businesses bring their ideas to life through responsive design, modern CSS,
+						fluid and pixel-perfect layouts.
+						<br />This ebook is my way of sharing what I’ve learned: real-world techniques, smart CSS tricks, and a
+						simpler way to build for the web. Whether you're just starting your front-end journey or looking to
+						modernize your workflow, I hope this book helps you get there, with less JavaScript, and more joy.
+					</p>
+				</div>
+			</div>
+		</section>
+
 		<section class="testimonials">
 			<h2 class="testimonials__title">Loved by the community</h2>
 
 			<div class="testimonials__container">
 				<ul class="testimonial__list">
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial1}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Zark Muckerberg <br /> <span>Confused Developer</span></p>
-						</div>
-						<blockquote class="testimonial__text">
-							Who needs fast pages anyway? I love waiting 5 seconds for a button to work. This book is a disaster.
-						</blockquote>
-					</li>
-
 					<li class="testimonial">
 						<div class="testimonial__content">
 							<Picture
@@ -235,21 +252,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 						<blockquote class="testimonial__text">
 							This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
 						</blockquote>
-					</li>
-
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial3}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Kim Coot <br /> <span>Hardcore JavaScript Fan</span></p>
-						</div>
-						<blockquote class="testimonial__text">HAHAHAHAHAHAHAHAHAHAHAHAHAHAH IMAGINE READING THIS.</blockquote>
 					</li>
 
 					<li class="testimonial">
@@ -285,24 +287,113 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 							Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
 						</blockquote>
 					</li>
-
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial1}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Pundar Sichai <br /> <span>Reluctant CSS Believer</span></p>
-						</div>
-						<blockquote class="testimonial__text">
-							I opened this book expecting JavaScript magic. Instead, I got CSS reality. Absolute betrayal.
-						</blockquote>
-					</li>
 				</ul>
+			</div>
+		</section>
+
+		<section class="learning">
+			<div class="learning__container">
+				<h2 class="learning__title">What you will learn</h2>
+
+				<div class="learning__steps">
+					<div class="step">
+						<div>
+							<h3 class="step__title">Create a popover menu with pure CSS</h3>
+							<p class="step__description">
+								Thanks to the Popover API, you can build an accessible drawer menu that works seamlessly across almost
+								all devices. This technique can be extended to create a variety of interactive components.
+							</p>
+						</div>
+						<video autoplay loop muted playsinline width="300" class="step__video">
+							<source src={content1} type="video/webm" />
+						</video>
+						<svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve" transform="rotate(90)">
+							<path
+								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+							></path>
+						</svg>
+					</div>
+
+					<div class="step">
+						<div>
+							<h3 class="step__title">Create accessible accordions easily in CSS</h3>
+							<p class="step__description">
+								Using semantic HTML and modern CSS, you can build accordions that are fully accessible and work
+								seamlessly across devices. Perfect for FAQs, content toggles, and more.
+							</p>
+						</div>
+						<video autoplay loop muted playsinline width="300" class="step__video">
+							<source src={content2} type="video/webm" />
+						</video>
+
+						<svg
+							fill="#696969"
+							version="1.1"
+							viewBox="0 0 367.339 367.34"
+							xml:space="preserve"
+							transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)"
+						>
+							<path
+								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+							></path>
+						</svg>
+					</div>
+
+					<div class="step">
+						<div>
+							<h3 class="step__title">Create awesome looping sliders free of JavaScript</h3>
+							<p class="step__description">
+								Learn how to build smooth, infinite-loop sliders with pure CSS techniques. Great for carousels,
+								testimonials, and interactive galleries—no JavaScript required.
+							</p>
+						</div>
+						<video autoplay loop muted playsinline width="300" class="step__video">
+							<source src={content3} type="video/webm" />
+						</video>
+						<svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve" transform="rotate(90)">
+							<path
+								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+							></path>
+						</svg>
+					</div>
+
+					<div class="step">
+						<div>
+							<h3 class="step__title">Create stunning scroll-driven animations 100% CSS</h3>
+							<p class="step__description">
+								Discover how to use CSS and a sprinkle of modern APIs to animate elements on scroll, adding
+								interactivity and depth to your pages while keeping performance in mind.
+							</p>
+						</div>
+						<video autoplay loop muted playsinline width="300" class="step__video">
+							<source src={content4} type="video/webm" />
+						</video>
+						<svg
+							fill="#696969"
+							version="1.1"
+							viewBox="0 0 367.339 367.34"
+							xml:space="preserve"
+							transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)"
+						>
+							<path
+								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+							></path>
+						</svg>
+					</div>
+
+					<div class="step">
+						<div>
+							<h3 class="step__title">And a lot more...</h3>
+							<p class="step__description">
+								Explore advanced components you never thought possible with pure CSS. Like dark mode toggles, comparison
+								sliders, anchor navigation, and powerful effects using <code>:has()</code>...
+							</p>
+						</div>
+						<video autoplay loop muted playsinline width="300" class="step__video">
+							<source src={content5} type="video/webm" />
+						</video>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -313,7 +404,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<li class="accordion">
 					<details open>
 						<summary aria-describedby="accordion">
-							<span role="term">Who is this ebook for? </span>
+							<p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
 						</summary>
 					</details>
 
@@ -328,7 +419,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<li class="accordion">
 					<details>
 						<summary aria-describedby="accordion">
-							<span role="term">Do I need to be a CSS expert to follow along? </span>
+							<p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
 						</summary>
 					</details>
 
@@ -344,7 +435,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<li class="accordion">
 					<details>
 						<summary aria-describedby="accordion">
-							<span role="term">What exactly will I learn?</span>
+							<p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
 						</summary>
 					</details>
 
@@ -359,7 +450,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<li class="accordion">
 					<details>
 						<summary aria-describedby="accordion">
-							<span role="term">When will the ebook be available? </span>
+							<p class="accordion__title" role="term"><span>When will the ebook be available?</span></p>
 						</summary>
 					</details>
 
@@ -380,8 +471,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				action="https://app.kit.com/forms/7980076/subscriptions"
 				class="seva-form formkit-form"
 				method="post"
-				data-sv-form="7124812"
-				data-uid="db7a3d5935"
+				data-sv-form="7980076"
+				data-uid="d8415b0024"
 				data-format="inline"
 				data-version="5"
 			>
@@ -393,7 +484,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 								name="email_address"
 								aria-label="Email Address"
 								placeholder="Email Address"
-								required=""
+								required
 								type="email"
 							/>
 						</div>
@@ -411,9 +502,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		</section>
 
 		<footer>
-			<p>
-				&copy; 2025 <a href="https://theosoti.com">Theo Soti</a>. All rights reserved.
-			</p>
+			<h2 class="footer__title">Have questions or feedback?</h2>
+			<p class="footer__description">Please get in touch at hey@theosoti.com</p>
 		</footer>
 	</body>
 </html>
