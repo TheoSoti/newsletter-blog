@@ -358,7 +358,6 @@
 @layer features {
 	.features {
 		padding: var(--pad-xl) var(--pad-16-32);
-		border-bottom: 2px solid var(--border);
 		background-color: #8955ff;
 		color: var(--white);
 	}
