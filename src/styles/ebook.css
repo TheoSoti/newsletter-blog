@@ -450,6 +450,7 @@
 	.about {
 		padding: var(--pad-xl) var(--pad-16-32);
 		background-color: var(--main);
+		overflow: hidden;
 	}
 
 	.about picture {
@@ -466,6 +467,7 @@
 	.about__container {
 		max-width: 68.75em;
 		margin-inline: auto;
+		position: relative;
 	}
 
 	.about__content {
@@ -474,6 +476,44 @@
 		padding: var(--pad-16-32) var(--pad-16-32);
 		border-radius: 0.5em;
 		border: 2px solid var(--border);
+		z-index: 1;
+		position: relative;
+	}
+
+	.about__background {
+		width: 500px; /* adjust to control the size */
+		aspect-ratio: 1;
+		clip-path: polygon(
+			100% 50%,
+			78.78% 58.45%,
+			92.06% 77.03%,
+			69.65% 72.67%,
+			70.77% 95.48%,
+			54.27% 79.69%,
+			42.88% 99.49%,
+			37.54% 77.29%,
+			17.26% 87.79%,
+			24.76% 66.22%,
+			2.03% 64.09%,
+			20% 50%,
+			2.03% 35.91%,
+			24.76% 33.78%,
+			17.26% 12.21%,
+			37.54% 22.71%,
+			42.88% 0.51%,
+			54.27% 20.31%,
+			70.77% 4.52%,
+			69.65% 27.33%,
+			92.06% 22.97%,
+			78.78% 41.55%
+		);
+
+		background: var(--secondary);
+		position: absolute;
+		left: 0%;
+		transform: translate(-50%, -50%);
+		z-index: 0;
+		top: 0%;
 	}
 
 	.about__author {
