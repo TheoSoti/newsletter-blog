@@ -6,6 +6,8 @@ heroImage: '/focus.png'
 readingTime: '5 min read'
 ---
 
+import Newsletter from '../../../src/components/Newsletter.astro';
+
 ## Introduction to focus states
 
 CSS Focus states might seem straightforward, but in reality, there are multiple selectors that control how and when focus is displayed on elements.
@@ -70,6 +72,8 @@ Here’s my rule:
 If you noticed on my website, the only element that have a simple `:focus` state is the input of my newsletter. Everything else uses `:focus-visible`.
 
 Now that we’ve reviewed the 2 basic focus states, let’s dive into the advanced state `:focus-within`.
+
+<Newsletter />
 
 ## The advanced :focus-within state
 
