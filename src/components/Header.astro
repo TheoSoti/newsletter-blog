@@ -5,6 +5,9 @@ import { SITE_NAME } from '../consts';
 ---
 
 <header>
+	<div class="banner">
+		🔥 I’m working on an ebook called “You Don’t Need JavaScript.” <a href="/you-dont-need-js/">Find out more.</a>
+	</div>
 	<nav>
 		<div class="logo">
 			<a href="/">{SITE_NAME}</a>
@@ -74,10 +77,6 @@ import { SITE_NAME } from '../consts';
 		margin: 0;
 		background-color: var(--background);
 		border-bottom: 4px solid var(--border);
-		height: 80px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		z-index: 99;
 	}
 	nav .logo a {
@@ -128,6 +127,7 @@ import { SITE_NAME } from '../consts';
 			width: calc(100% + 4px);
 		}
 	}
+
 	@keyframes frame2 {
 		0%,
 		50% {
@@ -153,12 +153,30 @@ import { SITE_NAME } from '../consts';
 		justify-content: space-between;
 		width: 1100px;
 		max-width: calc(100% - 2em);
+		height: 80px;
 		margin: auto;
 	}
 	nav a {
 		padding: 0.2em 0.5em;
 		color: var(--text);
 		text-decoration: none;
+	}
+
+	header .banner {
+		background-color: var(--secondary);
+		color: var(--white);
+		text-align: center;
+		padding: 0 1em;
+		display: block;
+	}
+
+	header .banner a {
+		color: #f7c86d;
+		text-decoration: underline;
+	}
+	header .banner a:hover {
+		color: #ffe8ba;
+		text-decoration: underline;
 	}
 	nav a.active {
 		text-decoration: none;
