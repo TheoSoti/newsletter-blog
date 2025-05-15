@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 
 type Props = CollectionEntry<'short'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props as Props;
+const { title, description, pubDate, updatedDate } = Astro.props as Props;
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 
 const structuredData = {
@@ -16,7 +16,6 @@ const structuredData = {
 	url: pageUrl,
 	image: {
 		'@type': 'ImageObject',
-		url: heroImage,
 		width: 720,
 		height: 360,
 		caption: title,

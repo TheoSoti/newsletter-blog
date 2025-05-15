@@ -1,17 +1,14 @@
 ---
-const { post, width, height, type } = Astro.props;
+const { post } = Astro.props;
 import FormattedDate from './FormattedDate.astro';
-import { Picture } from 'astro:assets';
 ---
 
 <li class="card">
-	<a href={`/blog/${post.slug}/`}>
-		{post.data.heroImage && <Picture width={width} height={height} src={post.data.heroImage} alt={post.data.title} />}
-		<h3 class="title">{post.data.title}</h3>
-
+	<a href={`/short/${post.slug}/`}>
 		<span>
-			<FormattedDate date={post.data.pubDate} /> - {post.data.readingTime}
+			<FormattedDate date={post.data.pubDate} />
 		</span>
+		{post.data.title}
 	</a>
 </li>
 
@@ -40,6 +37,8 @@ import { Picture } from 'astro:assets';
 		transition-property: all;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 0.15s;
+		padding: 1em 1em;
+		line-height: 1.2;
 	}
 	a:hover,
 	a:focus {
@@ -58,9 +57,9 @@ import { Picture } from 'astro:assets';
 		margin: 0;
 	}
 	span {
-		margin-top: auto;
-		padding: 0em 1rem;
-		font-size: 0.8em;
 		margin-bottom: 0.5em;
+		font-size: 0.7em;
+		margin-bottom: 0.5em;
+		color: var(--small-text);
 	}
 </style>

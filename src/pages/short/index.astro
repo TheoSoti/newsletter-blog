@@ -3,7 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
-import Card from '../../components/Card.astro';
+import ShortList from '../../components/ShortList.astro';
 import ItemList from '../../components/microdatas/ItemList.astro';
 
 const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -56,7 +56,7 @@ const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.value
 					broadening your horizons in a flash.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" type="short" />)}
+					{posts.map((post) => <ShortList post={post} />)}
 				</ul>
 			</section>
 		</main>

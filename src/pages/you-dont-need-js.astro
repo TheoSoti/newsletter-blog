@@ -44,7 +44,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			property="og:description"
 			content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
 		/>
-		<meta property="og:image" content=`${Astro.site}ebook.png` />
+		<meta property="og:image" content={new URL('ebook.png', Astro.site)} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
@@ -54,7 +54,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			property="twitter:description"
 			content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
 		/>
-		<meta property="twitter:image" content=`${Astro.site}ebook.png` />
+		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
 		<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
 	</head>
 
@@ -471,9 +471,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 					</div>
 
 					<p class="about__description">
-						Over the years, I’ve helped businesses bring their ideas to life through responsive design, modern CSS,
+						Over the years, I've helped businesses bring their ideas to life through responsive design, modern CSS,
 						fluid and pixel-perfect layouts.
-						<br />This ebook is my way of sharing what I’ve learned: real-world techniques, smart CSS tricks, and a
+						<br />This ebook is my way of sharing what I've learned: real-world techniques, smart CSS tricks, and a
 						simpler way to build for the web. Whether you're just starting your front-end journey or looking to
 						modernize your workflow, I hope this book helps you get there, with less JavaScript, and more joy.
 					</p>

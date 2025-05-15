@@ -189,11 +189,11 @@ const posts = (await getCollection('blog'))
 					high-performance websites.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" type="blog" />)}
+					{posts.map((post) => <Card post={post} width="720" height="360" />)}
 				</ul>
 			</section>
 			<Footer />
-			<BlogPosting {...{ title, description, pubDate, updatedDate, heroImage }} />
+			<BlogPosting {...{ title, description, pubDate, updatedDate }} />
 		</main>
 	</body>
 </html>

@@ -23,7 +23,6 @@ const structuredData = (posts || []).map((post) => {
 		headline: post.data.title,
 		url: `https://theosoti.com/${type}/${post.slug}`,
 		datePublished: post.data.pubDate,
-		image: `https://theosoti.com/${type}/${post.data.heroImage}`,
 		description: post.data.description,
 	};
 });

@@ -56,7 +56,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
 					that goes beyond the surface.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" type="blog" />)}
+					{posts.map((post) => <Card post={post} width="720" height="360" />)}
 				</ul>
 			</section>
 		</main>

@@ -5,9 +5,9 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
 import { getCollection } from 'astro:content';
-import Card from '../components/Card.astro';
+import ShortList from '../components/ShortList.astro';
 
-const { title, description, pubDate, updatedDate, heroImage, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, slug } = Astro.props;
 const posts = (await getCollection('short'))
 	.filter((post) => post.slug !== slug)
 	.sort((a, b) => {
@@ -17,7 +17,7 @@ const posts = (await getCollection('short'))
 		const bScore = b.slug.charCodeAt(0) ^ seed;
 		return aScore - bScore;
 	})
-	.slice(0, 3);
+	.slice(0, 6);
 ---
 
 <html lang="en">
@@ -87,23 +87,7 @@ const posts = (await getCollection('short'))
 			}
 			.post-header {
 				position: relative;
-				padding: 5em 1em;
-				border-bottom: 4px solid var(--border);
-			}
-			.post-image {
-				position: absolute;
-				background-repeat: no-repeat;
-				background-size: cover;
-				background-position: center;
-				inset: 0;
-				z-index: -1;
-			}
-			.post-image:after {
-				content: '';
-				position: absolute;
-				opacity: 0.8;
-				inset: 0;
-				background: var(--background);
+				padding: 1em 1em 0 1em;
 			}
 			h1 {
 				counter-reset: h2counter;
@@ -159,18 +143,10 @@ const posts = (await getCollection('short'))
 	<body>
 		<Header />
 		<div class="post-header">
-			<div class="post-image" style=`background-image: url(${heroImage})`></div>
 			<div class="title">
 				<h1>{title}</h1>
 				<div class="date">
 					<FormattedDate date={pubDate} />
-					{
-						updatedDate && (
-							<div class="last-updated-on">
-								Last updated on <FormattedDate date={updatedDate} />
-							</div>
-						)
-					}
 				</div>
 			</div>
 		</div>
@@ -187,11 +163,11 @@ const posts = (await getCollection('short'))
 					high-performance websites.
 				</p>
 				<ul>
-					{posts.map((post) => <Card post={post} type="short" width="720" height="360" />)}
+					{posts.map((post) => <ShortList post={post} type="short" width="720" height="360" />)}
 				</ul>
 			</section>
 		</main>
 		<Footer />
-		<BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate, heroImage }} />
+		<BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate }} />
 	</body>
 </html>
