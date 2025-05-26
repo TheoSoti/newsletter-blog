@@ -1,0 +1,41 @@
+---
+title: 'Clean Up Your CSS with :is() and :where() Selectors'
+description: 'Simplify complex CSS selectors using :is() and :where(). Write cleaner, more maintainable styles while managing specificity with ease and broad browser support.'
+pubDate: 'May 24 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/05-2025/new-grouping-selectors.jpeg"
+	alt="CSS code example using :is() and :where() selectors for cleaner, grouped styling"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+	format="webp"
+/>
+
+## Write smarter CSS with :is() and :where().
+
+Writing CSS selectors can be tedious, especially when repeating long lists of elements.
+
+Thankfully, :is() and :where() make things much cleaner.
+
+Both of them let you group selectors, reducing redundancy and improving readability.
+
+There is one key difference between the 2: specificity.
+
+- :is() inherits the highest specificity from the elements inside it. If one of its child selectors has high specificity, the whole rule does too.
+- :where() always has zero specificity. It won’t override other styles unless there’s no conflicting rule.
+
+The best part ?
+They are widely supported in all modern browsers.
+With over 95% support!
+
+These selectors clean up your CSS, make maintenance easier, and help avoid specificity battles.
+
+---
+
+I'm working on an ebook called "You Don't Need JavaScript".
+
+To get notified when it launches 👉 https://theosoti.com/you-dont-need-js/
