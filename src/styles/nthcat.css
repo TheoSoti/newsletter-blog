@@ -1,0 +1,284 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.game-container {
+	border: 4px solid black;
+	max-width: 600px;
+	width: 100%;
+	text-align: center;
+	margin: 2em 0;
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	color: #222;
+}
+
+.subtitle {
+	font-size: 1rem;
+	color: #666;
+	margin-bottom: 2rem;
+}
+
+.level-info {
+	margin-bottom: 2rem;
+}
+
+.level-title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.level-description {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 1rem;
+}
+
+.cats-container {
+	margin-bottom: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cat {
+	width: 50px;
+	height: 50px;
+	background-color: #fff;
+	border: 2px solid #ddd;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	transition: all 0.3s ease;
+	cursor: default;
+	flex: 0 0 calc(16.666% - 8px);
+}
+
+.cat:nth-child(6n + 1) {
+	clear: left;
+}
+
+.cat.target {
+	border-color: #333;
+	background-color: #f0f0f0;
+}
+
+.cat.selected {
+	border-color: #4a90e2;
+	background-color: #e3f2fd;
+}
+
+.cat.correct {
+	border-color: #4caf50 !important;
+	background-color: #e8f5e8 !important;
+	animation: jump 0.6s ease-in-out infinite;
+}
+
+.cat.incorrect {
+	background-color: #ffebee !important;
+}
+
+@keyframes jump {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-15px);
+	}
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-5px);
+	}
+	75% {
+		transform: translateX(5px);
+	}
+}
+
+.shake {
+	animation: shake 0.5s ease-in-out;
+}
+
+.input-section {
+	margin-bottom: 2rem;
+}
+
+.input-label {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.selector-input {
+	font-family: 'Courier New', monospace;
+	font-size: 1.1rem;
+	padding: 12px 16px;
+	border: 2px solid #ddd;
+	border-radius: 8px;
+	background-color: #fff;
+	width: 200px;
+	text-align: center;
+	transition: all 0.3s ease;
+}
+
+.selector-input:focus {
+	outline: none;
+	border-color: #333;
+}
+
+.selector-prefix {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 1rem;
+}
+
+button {
+	font-family: 'Courier New', monospace;
+	font-size: 0.9rem;
+	padding: 10px 20px;
+	border: 2px solid #333;
+	border-radius: 8px;
+	background-color: #fff;
+	color: #333;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+button:hover {
+	background-color: #333;
+	color: #fff;
+}
+
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+button:disabled:hover {
+	background-color: #fff;
+	color: #333;
+}
+
+.next-button {
+	background-color: #333;
+	color: #fff;
+	display: none;
+}
+
+.next-button:hover {
+	background-color: #555;
+}
+
+.feedback {
+	min-height: 20px;
+	margin-bottom: 1rem;
+}
+
+.error-message {
+	color: #d32f2f;
+	font-size: 0.9rem;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.error-message.show {
+	opacity: 1;
+}
+
+.hint {
+	color: #666;
+	font-size: 0.9rem;
+	font-style: italic;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.hint.show {
+	opacity: 1;
+}
+
+.progress {
+	font-size: 0.8rem;
+	color: #666;
+	margin-top: 2rem;
+}
+
+.completion-message {
+	text-align: center;
+	margin-top: 2rem;
+	display: none;
+}
+
+.completion-message h2 {
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+	color: #333;
+}
+
+.completion-message p {
+	color: #666;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+	h1 {
+		font-size: 2rem;
+	}
+
+	.cats-container {
+		max-width: 320px;
+	}
+
+	.cat {
+		width: 40px;
+		height: 40px;
+		font-size: 1.2rem;
+		flex: 0 0 calc(16.666% - 6px);
+	}
+
+	.selector-input {
+		width: 180px;
+		font-size: 1rem;
+	}
+
+	.buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+}

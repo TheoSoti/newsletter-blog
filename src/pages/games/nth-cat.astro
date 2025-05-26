@@ -1,0 +1,382 @@
+---
+import '../../styles/nthcat.css';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<html lang="en">
+	<head>
+		<BaseHead
+			title="nth-cat - CSS nth-child Practice"
+			description="Find all the correct cats in this little javascript game to practice your use of nth-child selectors"
+		/>
+	</head>
+
+	<body>
+		<Header />
+		<main class="game-container">
+			<h1>Nth-cat</h1>
+			<p class="subtitle">Practice CSS :nth-child() selectors</p>
+
+			<div class="level-info">
+				<div class="level-title" id="level-title">Level 1 of 5</div>
+			</div>
+
+			<div class="cats-container" id="cats-container"></div>
+
+			<div class="input-section">
+				<div class="selector-prefix" id="selector-prefix">:nth-child(</div>
+				<input type="text" class="selector-input" id="selector-input" placeholder="3n+1" autocomplete="off" />
+				<div class="selector-prefix" id="selector-suffix">)</div>
+			</div>
+
+			<div class="buttons">
+				<button id="check-button">Check Answer</button>
+				<button id="hint-button">Hint</button>
+				<button id="next-button" class="next-button">Next Level</button>
+			</div>
+
+			<div class="feedback">
+				<div class="error-message" id="error-message"></div>
+				<div class="hint" id="hint-text"></div>
+			</div>
+
+			<div class="completion-message" id="completion-message">
+				<h2>🎉 Congratulations!</h2>
+				<p>You've mastered the basics of :nth-child() selectors!</p>
+			</div>
+		</main>
+
+		<script is:inline>
+			const levels = [
+				{
+					level: 1,
+					targetIndices: [3, 6, 9, 12],
+					hint: 'Select every 3rd cat',
+				},
+				{
+					level: 2,
+					targetIndices: [2, 4, 6, 8, 10, 12],
+					hint: 'Select all even-positioned cats',
+				},
+				{
+					level: 3,
+					targetIndices: [1, 2, 11, 12],
+					hint: 'Try combining two nth-child selectors with a comma',
+					allowFullSelector: true,
+				},
+				{
+					level: 4,
+					targetIndices: [2, 6, 10],
+					hint: 'Select every 4th cat starting from the 2nd',
+				},
+				{
+					level: 5,
+					targetIndices: [5, 7, 9, 11],
+					hint: 'Select all odd cats except the first 3',
+				},
+			];
+
+			// Game state
+			let currentLevel = 0;
+			let hintUsed = false;
+
+			// DOM elements
+			const levelTitle = document.getElementById('level-title');
+			const catsContainer = document.getElementById('cats-container');
+			const selectorInput = document.getElementById('selector-input');
+			const selectorPrefix = document.getElementById('selector-prefix');
+			const selectorSuffix = document.getElementById('selector-suffix');
+			const checkButton = document.getElementById('check-button');
+			const hintButton = document.getElementById('hint-button');
+			const nextButton = document.getElementById('next-button');
+			const errorMessage = document.getElementById('error-message');
+			const hintText = document.getElementById('hint-text');
+			const completionMessage = document.getElementById('completion-message');
+
+			// Initialize game
+			function initGame() {
+				createCats();
+				loadLevel(currentLevel);
+				setupEventListeners();
+			}
+
+			// Create cat elements (12 total in one container, displayed as 2 rows)
+			function createCats() {
+				const container = document.getElementById('cats-container');
+
+				// Clear existing cats
+				container.innerHTML = '';
+
+				// Create 12 cats in a single container
+				for (let i = 1; i <= 12; i++) {
+					const cat = document.createElement('div');
+					cat.className = 'cat';
+					cat.textContent = '🐱';
+					cat.dataset.index = i;
+					container.appendChild(cat);
+				}
+			}
+
+			// Load current level
+			function loadLevel(levelIndex) {
+				if (levelIndex >= levels.length) {
+					showCompletion();
+					return;
+				}
+
+				const level = levels[levelIndex];
+				levelTitle.textContent = `Level ${level.level} of ${levels.length}`;
+
+				// Update input UI based on level type
+				if (level.allowFullSelector) {
+					selectorPrefix.textContent = "the cat's selector is '.cat'";
+					selectorSuffix.textContent = '';
+					selectorInput.placeholder = '.cat:nth-child(n), .cat:nth-child(n)';
+					selectorInput.style.width = '300px';
+				} else {
+					selectorPrefix.textContent = ':nth-child(';
+					selectorSuffix.textContent = ')';
+					selectorInput.placeholder = '5n+1';
+					selectorInput.style.width = '200px';
+				}
+
+				// Reset UI state
+				selectorInput.value = '';
+				selectorInput.disabled = false;
+				checkButton.disabled = false;
+				nextButton.style.display = 'none';
+				hintButton.disabled = false;
+				hintUsed = false;
+				hideError();
+				hideHint();
+
+				// Show target cats
+				showTargetCats(level.targetIndices);
+			}
+
+			// Show which cats are targets for this level
+			function showTargetCats(targetIndices) {
+				const cats = document.querySelectorAll('.cat');
+				cats.forEach((cat, index) => {
+					cat.classList.remove('target', 'correct', 'selected', 'incorrect');
+					if (targetIndices.includes(index + 1)) {
+						cat.classList.add('target');
+					}
+				});
+			}
+
+			// Show currently selected cats based on user input
+			function showSelectedCats() {
+				const userInput = selectorInput.value.trim();
+				const currentLevelData = levels[currentLevel] || levels[0];
+				const cats = document.querySelectorAll('.cat');
+
+				// Clear previous selections
+				cats.forEach((cat) => {
+					cat.classList.remove('selected', 'correct', 'incorrect');
+					if (cat.classList.contains('target')) {
+						cat.classList.add('target'); // Keep target styling
+					}
+				});
+
+				if (!userInput) {
+					return;
+				}
+
+				try {
+					let selector;
+					if (currentLevelData.allowFullSelector) {
+						// Use the full selector as entered
+						selector = userInput;
+					} else {
+						// Validate nth-child expression and wrap it
+						if (!isValidNthChild(userInput)) {
+							return;
+						}
+						selector = `.cat:nth-child(${userInput})`;
+					}
+
+					// Apply selector to show what they're selecting
+					const selectedCats = document.querySelectorAll(selector);
+					selectedCats.forEach((cat) => {
+						cat.classList.add('selected');
+					});
+				} catch (error) {
+					// Invalid selector, do nothing
+				}
+			}
+
+			// Validate nth-child expression
+			function isValidNthChild(expression) {
+				// Allow common patterns: n, 2n, 3n+1, even, odd, numbers, etc.
+				const patterns = [
+					/^n$/, // n
+					/^\d*n$/, // 2n, 3n, etc.
+					/^\d*n[+-]\d+$/, // 2n+1, 3n-2, etc.
+					/^[+-]?\d+$/, // 1, -1, +3, etc.
+					/^even$/, // even
+					/^odd$/, // odd
+					/^-n\+\d+$/, // -n+3
+				];
+
+				return patterns.some((pattern) => pattern.test(expression.trim()));
+			}
+
+			// Check user's answer
+			function checkAnswer() {
+				const userInput = selectorInput.value.trim();
+				const currentLevelData = levels[currentLevel];
+
+				if (!userInput) {
+					showError('Please enter a selector');
+					return;
+				}
+
+				try {
+					let selector;
+					if (currentLevelData.allowFullSelector) {
+						// Use the full selector as entered
+						selector = userInput;
+						// Basic validation for full selectors
+						if (!userInput.includes(':nth-child(') || !userInput.includes('.cat')) {
+							showError('Please use .cat with :nth-child() selectors');
+							return;
+						}
+					} else {
+						// Validate nth-child expression and wrap it
+						if (!isValidNthChild(userInput)) {
+							showError('Invalid nth-child expression');
+							return;
+						}
+						selector = `.cat:nth-child(${userInput})`;
+					}
+
+					// Test the selector on our cats
+					const allCats = document.querySelectorAll('.cat');
+					const selectedCats = document.querySelectorAll(selector);
+					const selectedIndices = Array.from(selectedCats).map((cat) => parseInt(cat.dataset.index));
+
+					// Get correct answer for current level
+					const correctIndices = currentLevelData.targetIndices.sort();
+					const userIndices = selectedIndices.sort();
+
+					// Clear all previous states
+					allCats.forEach((cat) => {
+						cat.classList.remove('selected', 'correct', 'incorrect');
+					});
+
+					// Compare arrays
+					if (arraysEqual(correctIndices, userIndices)) {
+						// Mark correct cats green
+						selectedCats.forEach((cat) => cat.classList.add('correct'));
+						handleCorrectAnswer();
+					} else {
+						// Mark selected cats red only (don't show correct answer)
+						selectedCats.forEach((cat) => cat.classList.add('incorrect'));
+
+						showError('Not quite right. Try again!');
+						shakeContainer();
+					}
+				} catch (error) {
+					showError('Invalid selector syntax');
+					shakeContainer();
+				}
+			}
+
+			// Handle correct answer
+			function handleCorrectAnswer() {
+				// Disable input and check button
+				selectorInput.disabled = true;
+				checkButton.disabled = true;
+				hintButton.disabled = true;
+
+				// Show next button
+				nextButton.style.display = 'inline-block';
+
+				hideError();
+				hideHint();
+			}
+
+			// Go to next level
+			function nextLevel() {
+				currentLevel++;
+				loadLevel(currentLevel);
+			}
+
+			// Show hint for current level
+			function showHint() {
+				if (hintUsed) return;
+
+				const currentLevelData = levels[currentLevel];
+				hintText.textContent = currentLevelData.hint;
+				hintText.classList.add('show');
+				hintButton.disabled = true;
+				hintUsed = true;
+			}
+
+			// Show error message with animation
+			function showError(message) {
+				errorMessage.textContent = message;
+				errorMessage.classList.add('show');
+				setTimeout(() => hideError(), 3000);
+			}
+
+			// Hide error message
+			function hideError() {
+				errorMessage.classList.remove('show');
+			}
+
+			// Hide hint
+			function hideHint() {
+				hintText.classList.remove('show');
+			}
+
+			// Shake animation for wrong answers
+			function shakeContainer() {
+				catsContainer.classList.add('shake');
+				setTimeout(() => catsContainer.classList.remove('shake'), 500);
+			}
+
+			// Show completion message
+			function showCompletion() {
+				document.querySelector('.level-info').style.display = 'none';
+				catsContainer.style.display = 'none';
+				document.querySelector('.input-section').style.display = 'none';
+				document.querySelector('.buttons').style.display = 'none';
+				document.querySelector('.feedback').style.display = 'none';
+				completionMessage.style.display = 'block';
+			}
+
+			// Utility function to compare arrays
+			function arraysEqual(a, b) {
+				return a.length === b.length && a.every((val, index) => val === b[index]);
+			}
+
+			// Setup event listeners
+			function setupEventListeners() {
+				checkButton.addEventListener('click', checkAnswer);
+				nextButton.addEventListener('click', nextLevel);
+				hintButton.addEventListener('click', showHint);
+
+				// Allow Enter key to check answer
+				selectorInput.addEventListener('keypress', (e) => {
+					if (e.key === 'Enter' && !checkButton.disabled) {
+						checkAnswer();
+					}
+				});
+
+				// Clear error when user starts typing and show current selection
+				selectorInput.addEventListener('input', () => {
+					hideError();
+					showSelectedCats();
+				});
+			}
+
+			// Start the game
+			initGame();
+		</script>
+		<Footer isNewsletter="false" />
+	</body>
+</html>
