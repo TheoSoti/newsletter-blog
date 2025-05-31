@@ -2,7 +2,6 @@
 import '../../styles/nthcat.css';
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 ---
 
 <html lang="en">
@@ -15,66 +14,126 @@ import Footer from '../../components/Footer.astro';
 
 	<body>
 		<Header />
-		<main class="game-container">
-			<h1>Nth-cat</h1>
-			<p class="subtitle">Practice CSS :nth-child() selectors</p>
+		<main>
+			<aside class="rules">
+				<h2>Rules</h2>
+				<p>
+					You are given a list of cats and a selector. Your goal is to select the correct cats using nth-child
+					properties.
+				</p>
+				<p>🙀 = cats you <u>don't want</u> to select</p>
+				<p>😻 = cats you <u>want</u> to select</p>
+			</aside>
 
-			<div class="level-info">
-				<div class="level-title" id="level-title">Level 1 of 5</div>
-			</div>
+			<section class="game-container">
+				<h1>Nth-cat</h1>
+				<p class="subtitle">A game to practice CSS :nth-child() selectors.</p>
 
-			<div class="cats-container" id="cats-container"></div>
+				<div class="level-info">
+					<div class="level-title" id="level-title">Level 1 of 5</div>
+				</div>
 
-			<div class="input-section">
-				<div class="selector-prefix" id="selector-prefix">:nth-child(</div>
-				<input type="text" class="selector-input" id="selector-input" placeholder="3n+1" autocomplete="off" />
-				<div class="selector-prefix" id="selector-suffix">)</div>
-			</div>
+				<div class="cats-container" id="cats-container"></div>
 
-			<div class="buttons">
-				<button id="check-button">Check Answer</button>
-				<button id="hint-button">Hint</button>
-				<button id="next-button" class="next-button">Next Level</button>
-			</div>
+				<div class="input-section">
+					<div class="selector-prefix" id="selector-prefix">:nth-child</div>
+					<input type="text" class="selector-input" id="selector-input" placeholder="3n+1" autocomplete="off" />
+				</div>
 
-			<div class="feedback">
-				<div class="error-message" id="error-message"></div>
-				<div class="hint" id="hint-text"></div>
-			</div>
+				<div class="buttons">
+					<button id="check-button">Check Answer</button>
+					<button id="next-button" class="next-button">Next Level</button>
 
-			<div class="completion-message" id="completion-message">
-				<h2>🎉 Congratulations!</h2>
-				<p>You've mastered the basics of :nth-child() selectors!</p>
-			</div>
+					<button id="hint-button">Get a hint</button>
+				</div>
+
+				<div class="feedback">
+					<div class="error-message" id="error-message"></div>
+					<div class="hint" id="hint-text"></div>
+				</div>
+
+				<div class="completion-message" id="completion-message">
+					<h2>🎉 Congratulations!</h2>
+					<p>You've mastered the basics of :nth-child() selectors!</p>
+				</div>
+			</section>
 		</main>
-
 		<script is:inline>
 			const levels = [
 				{
 					level: 1,
-					targetIndices: [3, 6, 9, 12],
-					hint: 'Select every 3rd cat',
+					targetIndices: [1],
+					hint: 'Indexes start at 1. Select the second cat.',
+				},
+				{
+					level: 1,
+					targetIndices: [7],
+					hint: 'Indexes start at 1. Select the second cat.',
 				},
 				{
 					level: 2,
-					targetIndices: [2, 4, 6, 8, 10, 12],
-					hint: 'Select all even-positioned cats',
+					targetIndices: [3, 6, 9],
+					hint: 'Select every 3rd cat. You might want to start using "n"',
 				},
 				{
 					level: 3,
-					targetIndices: [1, 2, 11, 12],
-					hint: 'Try combining two nth-child selectors with a comma',
-					allowFullSelector: true,
+					targetIndices: [2, 4, 6, 8, 10],
+					hint: 'Select all even-positioned cats',
 				},
 				{
 					level: 4,
+					targetIndices: [1, 3, 5, 7, 9],
+					hint: 'Select all odd-positioned cats',
+				},
+				{
+					level: 5,
+					targetIndices: [6, 7, 8, 9, 10],
+					hint: 'You have to add "n" to the selector',
+				},
+				{
+					level: 6,
+					targetIndices: [1, 2, 3, 4, 5, 6, 7],
+					hint: 'Maybe try counting backwards?',
+				},
+				{
+					level: 7,
 					targetIndices: [2, 6, 10],
 					hint: 'Select every 4th cat starting from the 2nd',
 				},
 				{
-					level: 5,
-					targetIndices: [5, 7, 9, 11],
+					level: 8,
+					targetIndices: [5, 7, 9],
 					hint: 'Select all odd cats except the first 3',
+				},
+				{
+					level: 9,
+					targetIndices: [4, 5, 6, 7],
+					hint: 'Try combining two nth-child selectors',
+					allowFullSelector: true,
+				},
+				{
+					level: 10,
+					targetIndices: [1, 2, 9, 10],
+					hint: 'Try combining two nth-child selectors',
+					allowFullSelector: true,
+				},
+				{
+					level: 11,
+					targetIndices: [4, 6, 8],
+					hint: 'You need a start, an end, and a step.',
+					allowFullSelector: true,
+				},
+				{
+					level: 12,
+					targetIndices: [3, 5, 7],
+					hint: 'Same as the level before, but with odd numbers.',
+					allowFullSelector: true,
+				},
+				{
+					level: 13,
+					targetIndices: [4, 10],
+					hint: 'highlight children 1, 4, 7 & 10 and then remove the 1st and 7th',
+					allowFullSelector: true,
 				},
 			];
 
@@ -87,7 +146,6 @@ import Footer from '../../components/Footer.astro';
 			const catsContainer = document.getElementById('cats-container');
 			const selectorInput = document.getElementById('selector-input');
 			const selectorPrefix = document.getElementById('selector-prefix');
-			const selectorSuffix = document.getElementById('selector-suffix');
 			const checkButton = document.getElementById('check-button');
 			const hintButton = document.getElementById('hint-button');
 			const nextButton = document.getElementById('next-button');
@@ -109,11 +167,11 @@ import Footer from '../../components/Footer.astro';
 				// Clear existing cats
 				container.innerHTML = '';
 
-				// Create 12 cats in a single container
-				for (let i = 1; i <= 12; i++) {
+				// Create 10 cats in a single container
+				for (let i = 1; i <= 10; i++) {
 					const cat = document.createElement('div');
 					cat.className = 'cat';
-					cat.textContent = '🐱';
+					cat.textContent = '🙀';
 					cat.dataset.index = i;
 					container.appendChild(cat);
 				}
@@ -131,13 +189,11 @@ import Footer from '../../components/Footer.astro';
 
 				// Update input UI based on level type
 				if (level.allowFullSelector) {
-					selectorPrefix.textContent = "the cat's selector is '.cat'";
-					selectorSuffix.textContent = '';
-					selectorInput.placeholder = '.cat:nth-child(n), .cat:nth-child(n)';
+					selectorPrefix.textContent = "The cat's selector is '.cat'";
+					selectorInput.placeholder = '.cat:nth-child(n)';
 					selectorInput.style.width = '300px';
 				} else {
-					selectorPrefix.textContent = ':nth-child(';
-					selectorSuffix.textContent = ')';
+					selectorPrefix.textContent = ':nth-child';
 					selectorInput.placeholder = '5n+1';
 					selectorInput.style.width = '200px';
 				}
@@ -162,7 +218,10 @@ import Footer from '../../components/Footer.astro';
 				cats.forEach((cat, index) => {
 					cat.classList.remove('target', 'correct', 'selected', 'incorrect');
 					if (targetIndices.includes(index + 1)) {
+						cat.textContent = '😻';
 						cat.classList.add('target');
+					} else {
+						cat.textContent = '🙀';
 					}
 				});
 			}
@@ -310,7 +369,7 @@ import Footer from '../../components/Footer.astro';
 				if (hintUsed) return;
 
 				const currentLevelData = levels[currentLevel];
-				hintText.textContent = currentLevelData.hint;
+				hintText.textContent = `hint: ${currentLevelData.hint}`;
 				hintText.classList.add('show');
 				hintButton.disabled = true;
 				hintUsed = true;
@@ -377,6 +436,5 @@ import Footer from '../../components/Footer.astro';
 			// Start the game
 			initGame();
 		</script>
-		<Footer isNewsletter="false" />
 	</body>
 </html>

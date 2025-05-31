@@ -5,7 +5,6 @@
 }
 
 body {
-	color: #333;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,16 +12,43 @@ body {
 	padding: 20px;
 }
 
-.game-container {
-	border: 4px solid black;
-	max-width: 600px;
-	width: 100%;
-	text-align: center;
+main {
+	display: flex;
+	align-items: start;
+	gap: 1em;
 	margin: 2em 0;
 }
 
+.rules {
+	max-width: 335px;
+	width: 100%;
+	border: 4px solid black;
+	padding: 1em 1.5em;
+	color: #222;
+	background-color: hsl(32, 100%, 97%);
+}
+
+.rules p:last-child {
+	margin-bottom: 0;
+}
+
+.rules h2 {
+	margin-top: 0;
+	font-size: 2rem;
+	color: #222;
+	margin-bottom: 0.5rem;
+}
+
+.game-container {
+	border: 4px solid black;
+	text-align: center;
+	padding: 2em;
+	width: 100%;
+	background-color: hsl(32, 100%, 97%);
+}
+
 h1 {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-weight: bold;
 	margin-bottom: 0.5rem;
 	color: #222;
@@ -30,7 +56,7 @@ h1 {
 
 .subtitle {
 	font-size: 1rem;
-	color: #666;
+	color: #222;
 	margin-bottom: 2rem;
 }
 
@@ -41,29 +67,30 @@ h1 {
 .level-title {
 	font-size: 1.2rem;
 	font-weight: bold;
+	color: #222;
 	margin-bottom: 0.5rem;
 }
 
 .level-description {
 	font-size: 0.9rem;
-	color: #666;
+	color: #222;
 	margin-bottom: 1rem;
 }
 
 .cats-container {
 	margin-bottom: 2rem;
-	display: flex;
-	flex-wrap: wrap;
 	justify-content: center;
 	gap: 8px;
 	max-width: 400px;
 	margin-left: auto;
 	margin-right: auto;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
 }
 
 .cat {
-	width: 50px;
-	height: 50px;
+	position: relative;
+	aspect-ratio: 1;
 	background-color: #fff;
 	border: 2px solid #ddd;
 	border-radius: 8px;
@@ -73,11 +100,14 @@ h1 {
 	font-size: 1.5rem;
 	transition: all 0.3s ease;
 	cursor: default;
-	flex: 0 0 calc(16.666% - 8px);
 }
 
-.cat:nth-child(6n + 1) {
-	clear: left;
+.cat:before {
+	content: attr(data-index);
+	position: absolute;
+	top: 0;
+	left: 4px;
+	font-size: 0.8rem;
 }
 
 .cat.target {
@@ -128,24 +158,27 @@ h1 {
 }
 
 .input-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 8px;
 	margin-bottom: 2rem;
 }
 
 .input-label {
 	font-size: 0.9rem;
-	color: #666;
+	color: #222;
 	margin-bottom: 0.5rem;
 	display: block;
 }
 
 .selector-input {
-	font-family: 'Courier New', monospace;
 	font-size: 1.1rem;
 	padding: 12px 16px;
 	border: 2px solid #ddd;
 	border-radius: 8px;
 	background-color: #fff;
-	width: 200px;
 	text-align: center;
 	transition: all 0.3s ease;
 }
@@ -156,21 +189,21 @@ h1 {
 }
 
 .selector-prefix {
-	font-size: 0.9rem;
-	color: #666;
-	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	color: #222;
+	margin-bottom: 0;
 }
 
 .buttons {
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	gap: 12px;
 	margin-bottom: 1rem;
 }
 
 button {
-	font-family: 'Courier New', monospace;
-	font-size: 0.9rem;
+	font-size: 1.2rem;
 	padding: 10px 20px;
 	border: 2px solid #333;
 	border-radius: 8px;
@@ -195,8 +228,18 @@ button:disabled:hover {
 	color: #333;
 }
 
+button#hint-button {
+	border: none;
+	font-size: 0.9rem;
+	background-color: inherit;
+}
+
+button#hint-button:hover {
+	color: #000;
+}
+
 .next-button {
-	background-color: #333;
+	background-color: var(--secondary);
 	color: #fff;
 	display: none;
 }
@@ -222,7 +265,7 @@ button:disabled:hover {
 }
 
 .hint {
-	color: #666;
+	color: #222;
 	font-size: 0.9rem;
 	font-style: italic;
 	opacity: 0;
@@ -235,7 +278,7 @@ button:disabled:hover {
 
 .progress {
 	font-size: 0.8rem;
-	color: #666;
+	color: #222;
 	margin-top: 2rem;
 }
 
@@ -252,33 +295,16 @@ button:disabled:hover {
 }
 
 .completion-message p {
-	color: #666;
+	color: #222;
 	font-size: 0.9rem;
 }
 
-@media (max-width: 480px) {
-	h1 {
-		font-size: 2rem;
-	}
-
-	.cats-container {
-		max-width: 320px;
-	}
-
-	.cat {
-		width: 40px;
-		height: 40px;
-		font-size: 1.2rem;
-		flex: 0 0 calc(16.666% - 6px);
-	}
-
-	.selector-input {
-		width: 180px;
-		font-size: 1rem;
-	}
-
-	.buttons {
+@media (max-width: 900px) {
+	main {
 		flex-direction: column;
-		align-items: center;
+	}
+
+	.rules {
+		max-width: 100%;
 	}
 }
