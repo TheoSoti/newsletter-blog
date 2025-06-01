@@ -12,11 +12,21 @@ body {
 	padding: 20px;
 }
 
-main {
+.game-header {
+	text-align: center;
+	width: 1100px;
+	max-width: calc(100% - 2em);
+	padding: 1em;
+	margin-top: 2.5em;
+	background-color: var(--white);
+	border: 4px solid black;
+}
+
+main.container {
 	display: flex;
 	align-items: start;
 	gap: 1em;
-	margin: 2em 0;
+	padding: 1em 0;
 }
 
 .rules {
@@ -32,23 +42,24 @@ main {
 	margin-bottom: 0;
 }
 
-.rules h2 {
+.rules .h2 {
 	margin-top: 0;
-	font-size: 2rem;
+	font-size: 1.2rem;
 	color: #222;
 	margin-bottom: 0.5rem;
+	font-weight: bold;
 }
 
 .game-container {
 	border: 4px solid black;
 	text-align: center;
-	padding: 2em;
+	padding: 1em;
 	width: 100%;
 	background-color: hsl(32, 100%, 97%);
 }
 
-h1 {
-	font-size: 2rem;
+h1.title {
+	font-size: 2.5rem;
 	font-weight: bold;
 	margin-bottom: 0.5rem;
 	color: #222;
@@ -57,7 +68,7 @@ h1 {
 .subtitle {
 	font-size: 1rem;
 	color: #222;
-	margin-bottom: 2rem;
+	margin-bottom: 0;
 }
 
 .level-info {
@@ -179,8 +190,11 @@ h1 {
 	border: 2px solid #ddd;
 	border-radius: 8px;
 	background-color: #fff;
-	text-align: center;
 	transition: all 0.3s ease;
+}
+
+.selector-input::placeholder {
+	color: #c0c0c0;
 }
 
 .selector-input:focus {
@@ -297,6 +311,12 @@ button#hint-button:hover {
 .completion-message p {
 	color: #222;
 	font-size: 0.9rem;
+}
+
+@media (min-width: 680px) {
+	.game-header {
+		margin-top: 1em;
+	}
 }
 
 @media (max-width: 900px) {
