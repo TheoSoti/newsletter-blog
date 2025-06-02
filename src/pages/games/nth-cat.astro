@@ -27,8 +27,8 @@ import Header from '../../components/Header.astro';
 					You are given a list of cats and a selector. Your goal is to select the correct cats using nth-child
 					properties.
 				</p>
-				<p>🙀 = cats you <u>don't want</u> to select</p>
-				<p>😻 = cats you <u>want</u> to select</p>
+				<p class="example-cat"><span>🙀</span> = cats you don't want to select</p>
+				<p class="example-cat"><span>😻</span> = cats you want to select</p>
 			</aside>
 
 			<section class="game-container">
@@ -213,6 +213,12 @@ import Header from '../../components/Header.astro';
 
 				// Show target cats
 				showTargetCats(level.targetIndices);
+
+				// Auto-focus the input field
+
+				setTimeout(() => {
+					selectorInput.focus();
+				}, 100);
 			}
 
 			// Show which cats are targets for this level

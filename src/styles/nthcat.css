@@ -33,9 +33,10 @@ main.container {
 	max-width: 335px;
 	width: 100%;
 	border: 4px solid black;
-	padding: 1em 1.5em;
+	padding: 1em;
 	color: #222;
 	background-color: hsl(32, 100%, 97%);
+	font-size: 0.9em;
 }
 
 .rules p:last-child {
@@ -48,6 +49,30 @@ main.container {
 	color: #222;
 	margin-bottom: 0.5rem;
 	font-weight: bold;
+}
+
+.example-cat {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.example-cat span {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	aspect-ratio: 1;
+	width: 2em;
+	border-radius: 10px;
+	background-color: #fff;
+	border: 2px solid #ddd;
+	font-size: 1.5rem;
+}
+
+.example-cat ~ .example-cat span {
+	background-color: #f0f0f0;
+	border: 2px solid #222;
 }
 
 .game-container {
