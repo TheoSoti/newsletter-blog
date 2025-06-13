@@ -1,0 +1,60 @@
+---
+title: 'End CSS Specificity Battles with Native CSS Layers'
+description: 'Control style priority and prevent overrides using CSS Layers—an organized, scalable way to manage specificity in modern stylesheets.'
+pubDate: 'Jun 13 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/06-2025/layer-scoping-property.jpg"
+	alt="Comparison of classic CSS specificity vs. layered CSS showing how CSS Layers control style priority"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Tired of battling CSS specificity wars?
+
+Meet CSS Layers.
+
+A native solution to organise and control your stylesheets more effectively.
+
+Why use them?
+
+- Manage specificity and source order with ease.
+- Avoid unintended overrides from third-party styles or components.
+- Enhance maintainability in large codebases.
+
+How to implement:
+This part shows how to set up and organize your styles using CSS Layers:
+
+```css
+@layer secondary, main;
+```
+
+This line declares the order of your layers. It's like a priority list:
+
+- `secondary` layer loads first (lowest priority)
+- `main` comes after (highest priority)
+
+Then, you define your actual styles inside those layers:
+
+```css
+@layer main {
+	/* your style */
+}
+@layer secondary {
+	/* your style */
+}
+```
+
+Each layer is scoped, and the order you define them in the initial @layer line determines their priority.
+
+⬇ out the visual:
+Left = classic CSS behavior → body h1 wins with higher specificity
+Right = layered CSS → h1 in the main layer wins, even with lower specificity
+
+95%+ browser support makes this a no-brainer to start using now.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
