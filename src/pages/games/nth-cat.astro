@@ -33,12 +33,14 @@ import Header from '../../components/Header.astro';
 
 			<section class="game-container">
 				<div class="level-info">
-					<div class="level-title" id="level-title">Level 1 of 5</div>
+					<div class="level-title" id="level-title">Level 1 of 15</div>
 				</div>
 
 				<div class="cats-container" id="cats-container"></div>
 
 				<div class="input-section">
+					<div class="input-helper" id="input-helper"></div>
+
 					<div class="selector-prefix" id="selector-prefix">:nth-child</div>
 					<input type="text" class="selector-input" id="selector-input" placeholder="123" autocomplete="off" />
 				</div>
@@ -152,8 +154,8 @@ import Header from '../../components/Header.astro';
 				},
 				{
 					level: 11,
-					targetIndices: [1, 2, 9, 10],
-					hint: 'Try combining two nth-child selectors but differently',
+					targetIndices: [1, 2, 4, 5, 6, 7, 8, 9, 10],
+					hint: 'Try combining the :not() and the :nth-child()selectors',
 					allowFullSelector: true,
 				},
 				{
@@ -170,6 +172,12 @@ import Header from '../../components/Header.astro';
 				},
 				{
 					level: 14,
+					targetIndices: [1, 2, 9, 10],
+					hint: 'Try combining two nth-child selectors but differently',
+					allowFullSelector: true,
+				},
+				{
+					level: 15,
 					targetIndices: [4, 10],
 					hint: 'highlight children 1, 4, 7 & 10 and then remove the 1st and 7th',
 					allowFullSelector: true,
@@ -228,13 +236,16 @@ import Header from '../../components/Header.astro';
 
 				// Update input UI based on level type
 				if (level.allowFullSelector) {
-					selectorPrefix.textContent = "The cat's selector is '.cat'";
-					selectorInput.placeholder = '.cat:nth-child(n)';
+					selectorPrefix.textContent = '.cat';
+					selectorInput.placeholder = ':nth-child(...)';
 					selectorInput.style.width = '300px';
+					document.getElementById('input-helper').textContent =
+						'😼 You now have to write full selectors like :nth-child(2n):nth-child(n+4)';
 				} else {
 					selectorPrefix.textContent = ':nth-child';
 					selectorInput.placeholder = '123';
 					selectorInput.style.width = '200px';
+					document.getElementById('input-helper').textContent = '';
 				}
 
 				// Reset UI state
@@ -328,6 +339,34 @@ import Header from '../../components/Header.astro';
 				return patterns.some((pattern) => pattern.test(expression.trim()));
 			}
 
+			// Validate full selector expression
+			function isValidFullSelector(expression) {
+				// Split by :nth-child to validate each part
+				const parts = expression.split(':nth-child');
+
+				// Must start with :nth-child
+				if (!expression.startsWith(':nth-child')) {
+					return false;
+				}
+
+				// Check each part after :nth-child
+				for (let i = 1; i < parts.length; i++) {
+					const part = parts[i];
+					// Each part must be wrapped in parentheses
+					if (!part.startsWith('(') || !part.endsWith(')')) {
+						return false;
+					}
+					// Extract the content between parentheses
+					const content = part.slice(1, -1);
+					// Validate the content using the same patterns as nth-child
+					if (!isValidNthChild(content)) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+
 			// Check user's answer
 			function checkAnswer() {
 				const userInput = selectorInput.value.trim();
@@ -341,13 +380,8 @@ import Header from '../../components/Header.astro';
 				try {
 					let selector;
 					if (currentLevelData.allowFullSelector) {
-						// Use the full selector as entered
-						selector = userInput;
-						// Basic validation for full selectors
-						if (!userInput.includes(':nth-child(') || !userInput.includes('.cat')) {
-							showError('Please use .cat with :nth-child() selectors');
-							return;
-						}
+						// Wrap the full selector with .cat
+						selector = `.cat${userInput}`;
 					} else {
 						// Validate nth-child expression and wrap it
 						if (!isValidNthChild(userInput)) {
