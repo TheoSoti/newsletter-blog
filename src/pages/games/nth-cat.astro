@@ -102,7 +102,7 @@ import Header from '../../components/Header.astro';
 
 		<script is:inline>
 			const levels = [
-				{
+				/*{
 					level: 1,
 					targetIndices: [1],
 					hint: 'Indexes start at 1. Select the first cat.',
@@ -152,7 +152,7 @@ import Header from '../../components/Header.astro';
 					targetIndices: [4, 5, 6, 7],
 					hint: 'Try combining two nth-child selectors',
 					allowFullSelector: true,
-				},
+				},*/
 				{
 					level: 11,
 					targetIndices: [1, 2, 4, 5, 6, 7, 8, 9, 10],
@@ -304,6 +304,10 @@ import Header from '../../components/Header.astro';
 				try {
 					let selector;
 					if (currentLevelData.allowFullSelector) {
+						if (!isValidFullSelector(userInput)) {
+							showError('The syntax is not correct. You can only use :nth-child() and :not()');
+							return;
+						}
 						// Use the full selector as entered
 						selector = userInput;
 					} else {
@@ -342,27 +346,14 @@ import Header from '../../components/Header.astro';
 
 			// Validate full selector expression
 			function isValidFullSelector(expression) {
-				// Split by :nth-child to validate each part
-				const parts = expression.split(':nth-child');
-
-				// Must start with :nth-child
-				if (!expression.startsWith(':nth-child')) {
+				// Check for commas
+				if (expression.includes(',')) {
 					return false;
 				}
 
-				// Check each part after :nth-child
-				for (let i = 1; i < parts.length; i++) {
-					const part = parts[i];
-					// Each part must be wrapped in parentheses
-					if (!part.startsWith('(') || !part.endsWith(')')) {
-						return false;
-					}
-					// Extract the content between parentheses
-					const content = part.slice(1, -1);
-					// Validate the content using the same patterns as nth-child
-					if (!isValidNthChild(content)) {
-						return false;
-					}
+				// Must start with :nth-child
+				if (!expression.startsWith(':')) {
+					return false;
 				}
 
 				return true;
