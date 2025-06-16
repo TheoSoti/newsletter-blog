@@ -371,6 +371,7 @@ button#hint-button:hover {
 }
 
 .completion-message h3 {
+	color: black;
 	font-size: 1.1em;
 	margin-bottom: 1em;
 }
