@@ -1,0 +1,48 @@
+---
+title: 'Trim Text Box Space in CSS with text-box-trim & text-box-edge'
+description: 'Use text-box-trim and text-box-edge to remove excess space around text for cleaner UI layouts—perfect for buttons, labels, and tight spacing.'
+pubDate: 'Jun 19 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/06-2025/text-box-trim.gif"
+	alt="Visual example of trimmed text boxes using text-box-trim and text-box-edge for precise vertical alignment in UI elements"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Tired of inconsistent text spacing in your UI?
+
+CSS has a new fix: `text-box-trim` and `text-box-edge`.
+
+These properties let you trim excess space around text for tighter, more predictable layouts.
+
+Here’s the syntax:
+
+text-box-trim: trim-start | trim-end | trim-both;
+text-box-edge: cap | ex | alphabetic | text;
+
+What they do:
+
+- `text-box-trim`: controls which edge(s) of the text box to trim.
+- `text-box-edge`: defines what the top and bottom of the box align to.
+
+Key values:
+
+- `cap`: aligns to the cap height of the font (great for uppercase headers).
+- `alphabetic`: aligns with the text’s baseline (standard for most Latin scripts).
+- `ex`: based on the height of a lowercase “x”, useful for lowercase-heavy text.
+- `text`: uses the full visual bounds of the glyphs (like accents or descenders).
+
+Pairing `trim-both` with `cap alphabetic` gives you ultra-clean vertical alignment. Perfect for buttons, labels, and tight UI layouts.
+
+Browser support is still limited with ~80%.
+
+But unsupported browsers will ignore them and fall back to the default text box behaviour.
+
+Here's the codepen: https://codepen.io/theosoti/pen/azORoJZ
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

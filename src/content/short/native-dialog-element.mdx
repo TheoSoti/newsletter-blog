@@ -1,0 +1,37 @@
+---
+title: 'Unlock the Power of the Native <dialog> Element in HTML'
+description: 'Use the HTML <dialog> element for accessible, stylable modals with built-in focus trap, keyboard support, and native transitions—no extra JS needed.'
+pubDate: 'Jun 17 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/06-2025/native-dialog-element.gif"
+	alt="UI example of a styled native HTML <dialog> element with backdrop and transition effects"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## The native `<dialog>` element is more capable than you think.
+
+It's not a new element, but it’s often overlooked in favor of custom modal components.
+
+Yet it handles a lot out of the box:
+
+- Built-in open/close API (.showModal() and method="dialog")
+- Automatically traps focus for accessibility
+- Keyboard support (like closing on Escape)
+- Native backdrop with the ::backdrop pseudo-element
+- Easily stylable with modern CSS
+- Supports transitions with @starting-style and transition-behavior: allow-discrete
+
+If you’ve been building modal systems from scratch, the native dialog might deserve a second look.
+
+It’s simple, accessible, and works with the tools you already use.
+Have you used `<dialog>` in production?
+
+Here's the codepen: https://codepen.io/theosoti/pen/WbvJXvZ
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
