@@ -1,10 +1,11 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 
-type Props = CollectionEntry<'short'>['data'];
+type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate } = Astro.props as Props;
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props as Props;
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = heroImage ? import.meta.env.SITE + heroImage : undefined;
 
 const structuredData = {
 	'@context': 'https://schema.org',
@@ -19,6 +20,7 @@ const structuredData = {
 		width: 720,
 		height: 360,
 		caption: title,
+		url: imageUrl,
 	},
 };
 ---
