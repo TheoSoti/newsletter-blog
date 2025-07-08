@@ -1,0 +1,37 @@
+---
+title: 'Smooth Scrolling in CSS with scroll-behavior and scroll-margin'
+description: 'Enhance anchor navigation with smooth scrolling and better section spacing using pure CSS—no JavaScript required.'
+pubDate: 'july 03 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/07-2025/smooth-scroll.gif"
+	alt="Example of smooth anchor link scrolling using CSS scroll-behavior and scroll-margin-top for better UX"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Jumping straight to a section feels rough.
+
+Smooth scrolling makes navigation feel effortless.
+
+When users click an anchor link, the browser jumps abruptly to the section.
+This can be jarring, especially on long pages.
+
+Instead of relying on JavaScript for smooth scrolling, CSS has a built-in solution: “scroll-behavior: smooth”.
+With just this, your page transitions fluidly between sections.
+
+But what if the content feels too close to the edge?
+By default, scrolling stops at the very top of the section, sometimes cutting off important content.
+
+Fix this with `scroll-padding` or `scroll-margin`: scroll-margin-top: 20px;
+Now, every scroll lands in a comfortable, readable position.
+
+It’s lightweight, easy to implement, and widely supported (more than 95,5%).
+
+Here's the codepen: https://codepen.io/theosoti/pen/KKOGJjZ
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

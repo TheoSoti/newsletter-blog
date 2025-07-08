@@ -1,0 +1,43 @@
+---
+title: 'Build Smarter Layouts with CSS Container Queries'
+description: 'Make components truly responsive with CSS container queries. Style elements based on parent size, not screen width.'
+pubDate: 'july 05 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/07-2025/container-queries.gif"
+	alt="Shows responsive layout using CSS container queries based on parent element size"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Responsive design isn’t just about screen size anymore.
+
+Container queries give components the power to adapt on their own.
+Responsive design isn’t just about screen size anymore.
+
+Container queries give components the power to adapt on their own.
+That’s where CSS container queries come in.
+They let you apply styles based on the size of the parent, not the window.
+
+What makes them special:
+
+- Components become truly reusable and context-aware.
+- You can build layouts that behave consistently in any environment.
+- No more overrides based on where a component happens to land.
+
+How it works:
+
+- Set a container with `container-type: inline-size;`.
+- Inside that container, use `@container` rules to style elements based on width.
+
+Browser support is already strong at ~94%.
+Just keep in mind: unsupported browsers will skip `@container` rules entirely.
+So be sure your base styles hold up without them.
+
+Don't hesitate to read the full article on my blog: https://theosoti.com/blog/container-queries/
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

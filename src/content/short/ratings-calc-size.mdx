@@ -1,0 +1,41 @@
+---
+title: 'Smarter Layouts with CSS calc-size() without JS'
+description: 'Use the new calc-size() CSS function to size elements dynamically from layout and attribute values—no JS, just responsive, flexible UI.'
+pubDate: 'jun 25 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/07-2025/ratings-calc-size.gif"
+	alt="Dynamic UI example using CSS calc-size() to adjust element size based on layout and attributes like data-rating"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Smarter sizing with just one CSS function.
+
+Let your content define the layout... dynamically.
+You can now use calc-size() to compute size values based on both layout constraints and live attributes.
+Why is that a big deal?
+
+Because it makes things like this rating system possible with:
+
+- No JS
+- No inline styles
+- No custom properties
+
+Just pure CSS, reacting to attributes like data-rating.
+The calc-size() function is a new addition to CSS.
+
+It allows you to perform calculations using intrinsic size values like auto, min-content, max-content, or fit-content.
+
+These values aren’t supported in regular calc(), which makes calc-size() a powerful new tool.
+You can also use this function to animate an element’s height to auto!
+
+It’s powerful, it’s expressive, and it unlocks a new level of flexibility for dynamic UI design.
+
+Here's the codepen link: https://codepen.io/theosoti/pen/gbOVBVp
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

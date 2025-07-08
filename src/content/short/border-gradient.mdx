@@ -1,0 +1,52 @@
+---
+title: 'Create Animated Gradient Borders with Pure CSS'
+description: 'Build clean, animated gradient borders using only CSS—no extra elements, fully responsive, and JavaScript-free.'
+pubDate: 'july 02 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/07-2025/border-gradient.gif"
+	alt="CSS element with an animated gradient border created using border-box, padding-box, and custom properties"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## You can create gradient borders in pure CSS.
+
+No extra elements. No pseudo-elements.
+Here’s how it works:
+
+Set a thick transparent border.
+
+Then layer two backgrounds:
+
+- A solid fill using `padding-box`
+- A gradient using `border-box`
+
+The transparent border acts as space for the gradient to show through.
+
+It works seamlessly with `border-radius`.
+And because it's just one element, it keeps your HTML clean.
+
+Now let’s go a step further: animation.
+
+With the `@property` rule, you can register custom values, like an angle.
+
+That allows CSS to transition between them smoothly.
+
+Define something like `--angle` for your gradient direction.
+
+Update it on hover or with a keyframe.
+
+CSS will animate the change automatically, no JavaScript needed.
+
+This opens up subtle, lightweight effects for buttons, cards, and more.
+
+And since it's based on native CSS features, it's well-supported and performant.
+
+Here's the codepen: https://codepen.io/theosoti/pen/myJzeKN
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
