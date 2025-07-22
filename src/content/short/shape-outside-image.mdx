@@ -1,0 +1,47 @@
+---
+title: 'Crop and Zoom Images with CSS object-view-box'
+description: 'Use object-view-box in CSS to crop and zoom images precisely—no image editing, just clean, flexible layout control.'
+pubDate: 'july 16 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/07-2025/crop-images-precision.png"
+	alt="Image cropped and zoomed using CSS object-view-box with object-fit for precise visual framing without editing"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Crop images with precision, directly in CSS.
+
+Forget `clip-path` and forget editing assets.
+
+With `object-view-box`, you can zoom and crop right from your stylesheet.
+It's like `viewBox` in SVG, but for any element using `object-fit`.
+
+```css
+img {
+	object-fit: cover;
+	object-view-box: inset(20% 0 0 0);
+}
+```
+
+The syntax is familiar: use `inset()` or even `rect()` to define your cropping zone.
+This works alongside `object-fit` to give you complete control over what portion of the image is displayed.
+
+Need to zoom on a specific part of an image?
+Want to highlight just a region inside a video or iframe?
+
+No JavaScript. No image editing. No container tricks.
+Just pure CSS.
+
+Browser support is still experimental (~76%), so don’t use it in production yet.
+But it’s available behind flags or in dev builds for testing.
+
+This property is the kind of thing you’ll soon wonder how you ever built layouts without.
+
+Checkout the codepen: https://codepen.io/theosoti/pen/yyYeENV
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
