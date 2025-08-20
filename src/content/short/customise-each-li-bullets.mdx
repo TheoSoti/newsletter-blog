@@ -1,0 +1,51 @@
+---
+title: 'Custom List Bullets in CSS with @counter-style'
+description: 'Discover how to customize each list bullet in CSS using @counter-style and list-style-type. Unique symbols, emojis, or characters in just a few lines.'
+pubDate: 'august 12 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/CSS-counter-style-list.jpeg"
+	alt="Illustration of custom CSS list bullets using emojis and symbols"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Ever wanted to customise each `<li>` bullets individually?
+
+There is a way to do it in less than 5 lines of CSS!
+
+We only need 2 things to make it work:
+
+- The function “@counter-style” with some setup
+- The property “list-style-type”
+
+"list-style-type" is a pretty common property.
+
+It allows you to change the style of the bullet or to remove it completely.
+
+But here we will combine it with the @counter-style function.
+
+Here how it works:
+
+First, name your counter style (in this case, “cat-list”).
+
+Then add some key properties:
+
+- “symbols”: a list of elements (numbers, letters, emojis, special characters, etc.) that replace standard bullets.
+- “system”: defines the algorithm to convert a counter’s value into a character string.
+- “prefix”: adds characters before the symbol.
+- “suffix”: adds characters after the symbol. By default, this is a dot.
+
+The “system” property offers several options like “cyclic,” “numeric,” “alphabetic,” “symbolic,” “additive,” and “fixed.”
+
+Here, we chose “cyclic,” which means that if the list exceeds the number of symbols provided, it will loop back to the first one.
+
+Once everything is set up, link your custom style to “list-style-type" like so: “list-style-type: cat-list;".
+
+And voilà, you now have a list with unique, customised bullets.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

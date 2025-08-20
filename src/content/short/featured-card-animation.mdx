@@ -1,0 +1,52 @@
+---
+title: 'CSS Light Sweep Animation for Cards without JavaScript'
+description: 'Learn how to create a smooth light sweep effect on cards using only CSS gradients and keyframes. Simple, reusable, and no JavaScript required.'
+pubDate: 'august 11 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/feature-card-animation.gif"
+	alt="Example card showing animated CSS light sweep highlight effect"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Ever wondered how to do a light sweep animation?
+
+It’s pretty easy when you understand the logic.
+I’ll show you here how to do it for a featured card.
+
+But this can be declined for every components you need.
+And no JavaScript needed.
+Let's break it down into three key parts:
+
+1- The card itself
+
+Start with a container. Add a child div for the animation.
+Style it however you like, but don’t forget `position: relative`. This anchors everything in place.
+
+2- The animation Effect
+
+The rotating light effect uses CSS animations combined with a conic gradient.
+The animation layer fills the card with `position: absolute` and `inset: 0`.
+Use a custom CSS property to control the rotation value.
+
+It makes the animation flexible and easy to tweak.
+
+Next, define a keyframe to rotate the light beam 360 degrees.
+This will create that smooth sweep effect.
+
+3- Superposing the :after element
+
+To make the card complete, we overlay an :after pseudo-element on the effect.
+It should sit on top with a slight inset (e.g., 4px) to create a border.
+This frames the animation and gives it a polished look.
+
+This approach is simple yet powerful.
+
+With just CSS, you can create a dynamic, visually engaging elements that grabs attention.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

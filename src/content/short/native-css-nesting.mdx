@@ -1,0 +1,45 @@
+---
+title: 'Native CSS Nesting vs Preprocessors, no more excuses'
+description: 'CSS nesting is now natively supported with 91% browser coverage. Learn why you may not need Sass preprocessors anymore and how to switch smoothly.'
+pubDate: 'august 16 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/native-CSS-nesting.jpeg"
+	alt="Code example comparing native CSS nesting with Sass nesting"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Stop using CSS preprocessor!
+
+CSS nesting is now natively supported.
+
+If you were using a preprocessor only for this feature,
+
+It might be time to go back to plain CSS.
+
+(Otherwise you can stick with it).
+
+1/ No build tools required
+
+- It makes the development setup easier.
+- It also reduces the project’s build time.
+
+2/ Reduced file size
+
+- Sass expands rules during compilation, increasing the final CSS size.
+- CSS nesting doesn't expand rules, resulting in smaller CSS.
+
+Browser support is already strong at 91.3%.
+
+But keep in mind that unsupported browsers will fail to parse nested rules.
+
+If you need full compatibility, consider using a build step until support is universal.
+
+If nesting was the only thing keeping you tied to a preprocessor… maybe it’s time to go vanilla.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

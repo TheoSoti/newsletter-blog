@@ -1,0 +1,42 @@
+---
+title: 'Dynamic Layouts with CSS :has() without JavaScript'
+description: 'Learn how to build interactive layouts using CSS :has() and :checked. Create dynamic grids, galleries, and dashboards without JavaScript.'
+pubDate: 'august 15 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/switching-layout-in-CSS.gif"
+	alt="CSS example showing layout change using :has and :checked selectors"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Stop using Javascript to change your layout dynamically.
+
+You can do it entirely with CSS.
+
+Here’s how it works:
+
+- 1. Use input elements (checkbox or radio) to mimic click actions.
+- 2. The :has() pseudo-class lets a parent element respond to a child’s state.
+
+--> Example: `.container:has(input) .child {}`
+
+- 3. Use :checked to detect if an input is selected.
+
+--> Example: `input[type="radio"]:checked {}`
+
+- 4. Combine :has() and :checked to target specific states and apply styles dynamically.
+
+--> Example: `.container:has(input:checked) .child {}`
+
+In the example below, we just change the grid-template-columns values when a specific checkbox has been checked.
+
+You can use this for multiple things like e-commerce product, portfolio galleries, dashboards, blog layout, ...
+
+Modern CSS makes it easier than ever to create interactive layouts.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

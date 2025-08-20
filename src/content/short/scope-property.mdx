@@ -1,0 +1,51 @@
+---
+title: 'CSS @scope: Encapsulated Styles Without CSS-in-JS'
+description: 'Discover how CSS @scope lets you limit style leakage, write cleaner HTML, and gain true encapsulation—no BEM, utility classes, or CSS-in-JS needed.'
+pubDate: 'august 14 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/scope-property.jpeg"
+	alt="Code example showing CSS @scope restricting paragraph styles"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Ever felt like your CSS is leaking all over the place?
+
+You’re not alone, it’s a familiar pain.
+
+But now, we have `@scope`.
+It lets you define where your styles begin, and where they end.
+
+Think of it like local styles, without the need for CSS-in-JS, BEM, or tons of utility classes.
+
+```css
+@scope (.container) to (.post) {
+	p {
+		color: blue;
+	}
+}
+```
+
+That `p` won’t be styled if it’s inside `.post`. Simple and clean.
+
+Here’s why this matters:
+
+- Styles don’t leak outside components
+- Fewer class names, cleaner HTML
+- Control over specificity and proximity
+- Donut scopes (yes, really)
+
+Even better, you can nest scopes.
+You can keep styles modular without naming gymnastics.
+
+This is real encapsulation, built into CSS itself.
+If you’ve ever wished CSS had better boundaries, this is it.
+
+The only downside is its browser support with only 86.56%.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

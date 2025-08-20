@@ -1,0 +1,41 @@
+---
+title: 'CSS Safe Area Insets: Protect Content from Phone Notches'
+description: 'Learn how CSS safe area insets keep your UI visible on phones with notches, rounded corners, and gesture bars, with broad browser support.'
+pubDate: 'august 10 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/08-2025/safe-area-insets.jpeg"
+	alt="Illustration of CSS safe area insets preventing UI from phone notch"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Stop your content from being cut off by phone notches.
+
+CSS safe area insets solve this problem easily.
+
+Today’s smartphones come with notches, rounded corners, and gesture bars.
+
+If you’re not accounting for them, your content risks being clipped or hidden.
+
+Enter CSS safe area insets with `env().`
+
+They keep your UI visible and out of those unsafe zones.
+
+With just a few lines:
+
+padding-bottom: 48px;
+
+padding-bottom: env(safe-area-inset-bottom);
+
+- Your sticky navbar or bottom buttons stay tap-friendly
+- Works automatically on devices with notches, rounded corners, or gesture bars
+- Falls back gracefully on devices that don’t need it
+
+The best part? This has a browser support of 96.78%!
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
