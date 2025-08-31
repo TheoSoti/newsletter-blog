@@ -1,0 +1,38 @@
+---
+title: 'Pure CSS Typing Animation Effect without JavaScript'
+description: 'Learn how to create a typing text animation with pure CSS. Use overflow, keyframes, steps(), and a blinking caret for a smooth typewriter effect supported by 96% of browsers.'
+pubDate: 'august 27 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/08-2025/typewrite-effect.gif"
+  alt="CSS typing animation effect showing text being revealed character by character with a blinking caret."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Make your text type itself. With pure CSS.
+
+How it works
+
+- overflow: hidden hides the unrevealed text.
+- white-space: nowrap keeps everything on one line.
+- Animate width from 0 to 100% with @keyframes typing.
+- Use steps(n) to reveal characters one by one. Set n close to the character count for a crisp tick.
+- A 1px border-right acts as the caret. A second animation toggles its color to “blink”.
+- Add animation-fill-mode: forwards so the text stays visible at the end.
+
+Practical tips
+
+- Prefer a monospace font for perfectly even steps, or tune the steps() value if letters have different widths.
+- If the string changes, update the steps() count.
+- Respect users with @media (prefers-reduced-motion: reduce) to disable or simplify the effect.
+
+The best part? It's supported by almost 96% of browsers!
+
+Would you use this in a hero, headline, or code sample?
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
