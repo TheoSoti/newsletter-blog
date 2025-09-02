@@ -1,0 +1,40 @@
+---
+title: 'Create Multi-Column Layouts with CSS Columns. No Grid or Flex Needed'
+description: 'Learn how to build column layouts using the CSS columns property. Add spacing, separators, and spanning elements in just 2 lines of code. No grid or flexbox required.'
+pubDate: 'august 30 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/08-2025/simple-columns.gif"
+  alt="CSS multi-column layout example using the columns property with gaps and separators."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Did you know you can create a column layout without grid or flex?
+
+It only takes 2 lines of CSS and can be useful!
+
+One key advantage is the ability to easily add separators between columns.
+
+So how to implement it?
+
+Apply the `columns` property to your container. This property accepts up to two values:
+
+- The minimum width of a column (not mandatory)
+- The number of desired columns (mandatory)
+
+And just with that it works!
+
+But you can go further by:
+
+- Using the `gap` property to create spacing between columns.
+- Adding separator with the “column-rule” property (it works just like `border`).
+- Make an element span across all columns with the `column-span` property.
+
+Don’t hesitate to use it in your next project!
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
