@@ -1,0 +1,41 @@
+---
+title: 'Style Scrollbars with CSS scrollbar-color & scrollbar-width'
+description: 'Customize scrollbars to match your UI using scrollbar-color and scrollbar-width. Control colors, size, and accessibility. All with just two CSS properties.'
+pubDate: 'september 17 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/09-2025/scrollbar-customisation.gif"
+  alt="Custom CSS scrollbar styled with scrollbar-color and scrollbar-width for a modern UI look."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Make your scrollbars match your UI. Do it with only two CSS properties.
+
+`scrollbar-color `sets the colors.
+First value is the thumb. Second is the track.
+Example: `scrollbar-color: hashtag#8aaa8a hashtag#294b29;`
+
+`scrollbar-width` controls size.
+Use auto, thin, or none to hide it.
+Example: `scrollbar-width: thin;`
+
+Apply these on any scrollable container.
+Or put them on `:root to style the page scrollbars.
+
+It respects user settings like overlay scrollbars.
+So on macOS they appear when scrolling and keep your colors.
+
+Accessibility tip.
+Pick a thumb color with strong contrast against the track.
+
+For the browser support, it's not great for now.
+~73% for the `scrollbar-color` property.
+~83% for the `scrollbar-width` property.
+But they graciously fallback to default style if not supported.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

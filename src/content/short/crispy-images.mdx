@@ -1,0 +1,36 @@
+---
+title: 'CSS image-rendering: pixelated. Scale Pixel Art Without Blur'
+description: 'Preserve sharp edges when scaling pixel art, icons, retro screenshots, or QR codes with image-rendering: pixelated;. One line of CSS keeps graphics crisp across modern browsers.'
+pubDate: 'september 15 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/09-2025/crispy-images.gif"
+  alt="Upscaled pixel art example showing sharp, blocky edges preserved with CSS image-rendering: pixelated."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Scale pixel art without blur. Keep it crisp with one line.
+
+By default, browsers smooth images when you scale them, which makes sprites and icons look muddy.
+
+image-rendering: pixelated; forces nearest-neighbor scaling so every pixel stays sharp.
+
+Use it when you upscale low-res assets: pixel art, icons, retro screenshots, QR codes.
+
+Skip it for photos or illustrations that should stay smooth.
+Apply it to the element you’re resizing (img, canvas).
+
+It takes effect when the rendered size differs from the image’s intrinsic size.
+If you’re using background images, test in your target browsers since support can vary.
+
+No extra assets. Smaller downloads. Clean, crunchy results.
+Modern browser support is broad with ~95%.
+
+Don't hesitate to share projects where you used this property!
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

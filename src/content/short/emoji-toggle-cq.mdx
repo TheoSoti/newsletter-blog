@@ -1,0 +1,39 @@
+---
+title: 'Responsive Components with CSS Container Queries Without JavaScript'
+description: 'Use CSS container queries to make components respond to their parent’s size, not the viewport. Create adaptive layouts and icons with clean, modern CSS.'
+pubDate: 'september 20 2025'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/09-2025/emoji-toggle-cq.gif"
+  alt="CSS container queries example showing a component that changes state based on its parent container’s height."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Make components responsive to their parent. Not the viewport.
+
+In the demo, the icon changes based on the content's height.
+All with CSS container queries.
+
+Step 1 - declare a container.
+Set `container-type: size;` on the wrapper (optionally `container-name: box;`).
+
+Step 2 - define a default state.
+Use `.content:after { content: "default"; }` or your base icon.
+
+Step 3 - react to the container, not the page.
+Write `@container (height > 60px) { .content:after { content: "state-1"; } }`.
+Add another for a larger breakpoint, e.g. `(height > 240px)`.
+
+As the content grows or shrinks, the pseudo-element swaps automatically.
+No JavaScript. No viewport media queries.
+Works inside grids, flex layouts, and nested components.
+
+Support is solid in modern browsers with almost 93%.
+Ship a sensible default so it still looks fine where `@container` isn’t supported.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
