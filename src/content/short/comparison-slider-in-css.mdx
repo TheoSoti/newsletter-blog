@@ -2,16 +2,17 @@
 title: 'CSS-Powered Before/After Slider with Minimal JS'
 description: 'Create a before/after image slider with just 1 line of JavaScript! Learn how CSS masking and grid make it efficient, simple, and widely supported.'
 pubDate: 'Mar 12 2025'
+heroImage: '/short/03-2025/comparison-slider-in-css.gif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/03-2025/comparison-slider-in-css.gif"
-	alt="Comparison slider made in CSS"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/03-2025/comparison-slider-in-css.gif"
+  alt="Comparison slider made in CSS"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Before/after slider with just 1 line of JavaScript?
@@ -38,36 +39,36 @@ This technique is perfect for image comparisons, UI demos, and interactive befor
 
 ```html
 <div class="compare">
-	<section class="before">I'm the left section</section>
-	<section class="after">I'm the right section</section>
-	<input type="range" id="range" step="0.1" />
+  <section class="before">I'm the left section</section>
+  <section class="after">I'm the right section</section>
+  <input type="range" id="range" step="0.1" />
 </div>
 ```
 
 ```css
 .compare {
-	display: grid;
+  display: grid;
 
-	> * {
-		grid-area: 1 / 1;
-	}
+  > * {
+    grid-area: 1 / 1;
+  }
 }
 
 section {
-	display: grid;
-	align-items: center;
-	justify-content: center;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .before {
-	background-color: #fff8f0;
-	mask: linear-gradient(to right, #000 0, var(--pos, 50%), transparent 0);
+  background-color: #fff8f0;
+  mask: linear-gradient(to right, #000 0, var(--pos, 50%), transparent 0);
 }
 
 .after {
-	background-color: #122b1f;
-	mask: linear-gradient(to right, transparent 0, var(--pos, 50%), #000 0);
-	color: #fff8f0;
+  background-color: #122b1f;
+  mask: linear-gradient(to right, transparent 0, var(--pos, 50%), #000 0);
+  color: #fff8f0;
 }
 ```
 

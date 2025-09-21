@@ -2,16 +2,17 @@
 title: 'New way of declaring media queries'
 description: 'CSS container queries let elements adapt to their container, not just the viewport. Making layouts more flexible and reusable.'
 pubDate: 'Feb 13 2025'
+heroImage: '/short/02-2025/container-queries.gif'
 ---
 
 import { Image } from 'astro:assets';
 
 <Image
-	src="/short/02-2025/container-queries.gif"
-	alt="Illustration of a layout adapting to container size using CSS container queries for responsiveness."
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/02-2025/container-queries.gif"
+  alt="Illustration of a layout adapting to container size using CSS container queries for responsiveness."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Are you still relying only on media queries for responsive design?
@@ -50,29 +51,29 @@ And with 93% browser support, they’re ready for production.
 
 ```html
 <div class="container">
-	<p class="resize">Some content</p>
+  <p class="resize">Some content</p>
 </div>
 ```
 
 ```css
 .container {
-	container: example / inline-size;
+  container: example / inline-size;
 }
 
 .resize {
-	background-color: #065f46;
+  background-color: #065f46;
 }
 
 @container example (width < 20ch) {
-	.resize {
-		background-color: #fc5757;
-	}
+  .resize {
+    background-color: #fc5757;
+  }
 }
 
 @container example (width > 30ch) {
-	.resize {
-		background-color: #27ae60;
-	}
+  .resize {
+    background-color: #27ae60;
+  }
 }
 ```
 

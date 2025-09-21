@@ -2,16 +2,17 @@
 title: 'CSS Gets Dynamic with the New attr() Function'
 description: 'Explore the enhanced CSS attr() function in Chrome 133—now supporting all properties and data types for more dynamic, JS-free styling possibilities.'
 pubDate: 'Mar 3 2025'
+heroImage: '/short/03-2025/evolved-attr-function.png'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/03-2025/evolved-attr-function.png"
-	alt="New attr() function in CSS"
-	width="600"
-	height="800"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/03-2025/evolved-attr-function.png"
+  alt="New attr() function in CSS"
+  width="600"
+  height="800"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## CSS just got smarter!
@@ -45,7 +46,7 @@ Example 1:
 
 ```css
 div {
-	color: attr(data-foo type(<color>), red);
+  color: attr(data-foo type(<color>), red);
 }
 ```
 
@@ -53,17 +54,17 @@ Example 2:
 
 ```html
 <div class="cards">
-	<div class="card" id="card-1"></div>
-	<div class="card" id="card-2"></div>
-	<div class="card" id="card-3"></div>
+  <div class="card" id="card-1"></div>
+  <div class="card" id="card-2"></div>
+  <div class="card" id="card-3"></div>
 </div>
 ```
 
 ```css
 .card {
-	/* card-1, card-2, card-3, etc. */
-	view-transition-name: attr(id type(<custom--ident>), none);
-	view-transition-class: card;
+  /* card-1, card-2, card-3, etc. */
+  view-transition-name: attr(id type(<custom--ident>), none);
+  view-transition-class: card;
 }
 ```
 
@@ -75,7 +76,7 @@ Example 3:
 
 ```css
 div {
-	font-size: attr(data-size px);
+  font-size: attr(data-size px);
 }
 ```
 

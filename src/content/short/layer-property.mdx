@@ -2,16 +2,17 @@
 title: 'End CSS Specificity Battles with Native CSS Layers'
 description: 'Control style priority and prevent overrides using CSS Layers—an organized, scalable way to manage specificity in modern stylesheets.'
 pubDate: 'Jun 13 2025'
+heroImage: '/short/06-2025/layer-scoping-property.jpg'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/06-2025/layer-scoping-property.jpg"
-	alt="Comparison of classic CSS specificity vs. layered CSS showing how CSS Layers control style priority"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/06-2025/layer-scoping-property.jpg"
+  alt="Comparison of classic CSS specificity vs. layered CSS showing how CSS Layers control style priority"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Tired of battling CSS specificity wars?
@@ -42,10 +43,10 @@ Then, you define your actual styles inside those layers:
 
 ```css
 @layer main {
-	/* your style */
+  /* your style */
 }
 @layer secondary {
-	/* your style */
+  /* your style */
 }
 ```
 

@@ -2,16 +2,17 @@
 title: 'Create a responsive grid layout with just 1 line of CSS'
 description: 'Responsive layouts in one line of CSS? Discover the power of flexible, media-query-free design for seamless adaptation to any screen.'
 pubDate: 'Feb 28 2025'
+heroImage: '/short/02-2025/one-liner-responsive-layout.gif'
 ---
 
 import { Image } from 'astro:assets';
 
 <Image
-	src="/short/02-2025/one-liner-responsive-layout.gif"
-	alt="Create a responsive grid layout with just 1 line of CSS"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/02-2025/one-liner-responsive-layout.gif"
+  alt="Create a responsive grid layout with just 1 line of CSS"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Achieve responsive layouts now with one line of CSS
@@ -44,26 +45,26 @@ Let’s discuss in the comments!
 
 ```html
 <div class="container">
-	<div class="card"></div>
-	<div class="card"></div>
-	<div class="card"></div>
-	<div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
 </div>
 ```
 
 ```css
 .container {
-	display: grid;
-	gap: 1rem;
+  display: grid;
+  gap: 1rem;
 
-	/* this line does it all */
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
+  /* this line does it all */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
 }
 
 .card {
-	height: 12.5rem;
-	background: #fff;
-	border: 4px solid #000;
+  height: 12.5rem;
+  background: #fff;
+  border: 4px solid #000;
 }
 ```
 

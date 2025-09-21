@@ -2,17 +2,18 @@
 title: '4 Reusable CSS Snippets for Faster, Cleaner Code'
 description: 'Discover 4 practical CSS snippets: circle shapes, text truncation, centering, and responsive grids. Reusable, efficient, and no JavaScript needed.'
 pubDate: 'May 27 2025'
+heroImage: '/short/05-2025/4-css-snipets.png'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/05-2025/4-css-snipets.png"
-	alt="Four practical CSS code snippets for common layout and design tasks"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
-	format="webp"
+  src="/short/05-2025/4-css-snipets.png"
+  alt="Four practical CSS code snippets for common layout and design tasks"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  format="webp"
 />
 
 ## CSS snippets you’ll actually reuse.
@@ -26,8 +27,8 @@ In this image, I’ve shared four essentials:
 
 ```css
 .circle {
-	aspect-ratio: 1;
-	border-radius: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
 }
 ```
 
@@ -35,10 +36,10 @@ In this image, I’ve shared four essentials:
 
 ```css
 .cut {
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 ```
 
@@ -46,9 +47,9 @@ In this image, I’ve shared four essentials:
 
 ```css
 .center {
-	position: fixed;
-	inset: 0;
-	margin: auto;
+  position: fixed;
+  inset: 0;
+  margin: auto;
 }
 ```
 
@@ -56,8 +57,8 @@ In this image, I’ve shared four essentials:
 
 ```css
 .grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 ```
 

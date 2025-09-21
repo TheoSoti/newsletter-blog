@@ -2,16 +2,17 @@
 title: 'Great visuals with mask effects'
 description: 'With mask-image, you can create ink effects, smooth transitions, and elegant content reveals, without heavy graphics or extra elements.'
 pubDate: 'Feb 15 2025'
+heroImage: '/short/02-2025/css-custom-mask.png'
 ---
 
 import { Image } from 'astro:assets';
 
 <Image
-	src="/short/02-2025/css-custom-mask.png"
-	alt="Presenting the power css mask effect with above an image"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/02-2025/css-custom-mask.png"
+  alt="Presenting the power css mask effect with above an image"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## One property. Endless creative possibilities. Let’s explore CSS masks.
@@ -35,25 +36,25 @@ And It already has more than 96% browser support.
 
 ```html
 <div class="banner">
-	<div class="content">
-		<h1>Theosoti.com</h1>
-	</div>
+  <div class="content">
+    <h1>Theosoti.com</h1>
+  </div>
 </div>
 ```
 
 ```css
 .banner:before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	background-image: url('image.jpeg');
-	background-size: cover;
-	background-position: top;
-	z-index: -1;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('image.jpeg');
+  background-size: cover;
+  background-position: top;
+  z-index: -1;
 
-	mask-image: url(mask.png);
-	mask-size: cover;
-	mask-position: center;
+  mask-image: url(mask.png);
+  mask-size: cover;
+  mask-position: center;
 }
 ```
 

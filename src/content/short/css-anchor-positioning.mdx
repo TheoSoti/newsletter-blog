@@ -2,10 +2,11 @@
 title: 'CSS Anchor Positioning: Simplify Dynamic UI Layouts'
 description: 'Learn how CSS Anchor Positioning makes UI layout easier by allowing elements to be positioned dynamically—no more complex JS or layout shifts!'
 pubDate: 'Mar 10 2025'
+heroImage: '/short/03-2025/CSS-anchors.mp4'
 ---
 
 <video controls class="video">
-	<source src="/short/03-2025/CSS-anchors.mp4" type="video/mp4" />
+  <source src="/short/03-2025/CSS-anchors.mp4" type="video/mp4" />
 </video>
 
 ## Positioning UI elements just got easier.
@@ -39,22 +40,22 @@ With features like this, CSS is proving once again that it's becoming more power
 
 ```html
 <div class="container">
-	<button class="anchor-button">Anchor</button>
-	<div class="notice">I'm a great notice!</div>
+  <button class="anchor-button">Anchor</button>
+  <div class="notice">I'm a great notice!</div>
 </div>
 ```
 
 ```css
 .anchor-button {
-	anchor-name: --anchor-el;
+  anchor-name: --anchor-el;
 }
 
 .notice {
-	position-anchor: --anchor-el;
-	position: absolute;
-	bottom: anchor(top);
-	justify-self: anchor-center;
-	margin: 0.5rem 0;
+  position-anchor: --anchor-el;
+  position: absolute;
+  bottom: anchor(top);
+  justify-self: anchor-center;
+  margin: 0.5rem 0;
 }
 ```
 

@@ -2,16 +2,17 @@
 title: 'Simplify layouts with CSS display: contents'
 description: 'Use display: contents to restructure layouts without extra markup. Works with Flexbox & Grid for cleaner, more flexible designs.'
 pubDate: 'Mar 30 2025'
+heroImage: '/short/03-2025/smarter-layouts-with-display-contents.gif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/03-2025/smarter-layouts-with-display-contents.gif"
-	alt="Visual example of CSS display: contents simplifying a layout"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/03-2025/smarter-layouts-with-display-contents.gif"
+  alt="Visual example of CSS display: contents simplifying a layout"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Did you know CSS has a hidden gem called display: contents?
@@ -37,30 +38,30 @@ But be aware, this property has some accessibility issues, especially with scree
 
 ```html
 <section>
-	<div class="first"></div>
+  <div class="first"></div>
 
-	<div class="container">
-		<div class="second"></div>
-		<div class="third"></div>
-	</div>
+  <div class="container">
+    <div class="second"></div>
+    <div class="third"></div>
+  </div>
 </section>
 ```
 
 ```css
 section {
-	grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
 }
 .container {
-	display: contents;
+  display: contents;
 }
 .first {
-	order: 2;
+  order: 2;
 }
 .second {
-	order: 1;
+  order: 1;
 }
 .third {
-	order: 3;
+  order: 3;
 }
 ```
 

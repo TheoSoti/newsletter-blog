@@ -2,15 +2,16 @@
 title: 'Create custom form validation with CSS only'
 description: 'Validate forms with CSS! Use :valid and :user-invalid pseudo-classes for dynamic input styling without JavaScript. Enhance UX effortlessly.'
 pubDate: 'Mar 05 2025'
+heroImage: '/short/03-2025/form-validation-css-only.gif'
 ---
 
 <p
-	data-height="520"
-	data-theme-id="0"
-	data-slug-hash="ogNZzdJ"
-	data-default-tab="result"
-	data-embed-version="2"
-	class="codepen"
+  data-height="520"
+  data-theme-id="0"
+  data-slug-hash="ogNZzdJ"
+  data-default-tab="result"
+  data-embed-version="2"
+  class="codepen"
 ></p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
@@ -41,20 +42,20 @@ Codepen link: https://codepen.io/theosoti/pen/ogNZzdJ
 
 ```html
 <div class="field">
-	<label for="email">Input Email</label>
-	<input
-		id="email"
-		required="required"
-		aria-describedby="input-message"
-		type="email"
-		pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-	/>
-	<ul class="validation" role="list">
-		<li data-matches="valid">🔵 Input <code>:valid</code></li>
-		<li data-matches="invalid">🟠 Input <code>:invalid</code></li>
-		<li data-matches="user-valid">🟢 Input <code>:user-valid</code></li>
-		<li data-matches="user-invalid">🔴 Input <code>:user-invalid</code></li>
-	</ul>
+  <label for="email">Input Email</label>
+  <input
+    id="email"
+    required="required"
+    aria-describedby="input-message"
+    type="email"
+    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+  />
+  <ul class="validation" role="list">
+    <li data-matches="valid">🔵 Input <code>:valid</code></li>
+    <li data-matches="invalid">🟠 Input <code>:invalid</code></li>
+    <li data-matches="user-valid">🟢 Input <code>:user-valid</code></li>
+    <li data-matches="user-invalid">🔴 Input <code>:user-invalid</code></li>
+  </ul>
 </div>
 ```
 

@@ -2,16 +2,17 @@
 title: 'How CSS subgrid fixes alignment issues for good'
 description: 'Master CSS Subgrid for perfect layout alignment! Build consistent pricing cards, blog listings, and dashboards with ease.'
 pubDate: 'Feb 17 2025'
+heroImage: '/short/02-2025/css-subgrid-layout-comparison.png'
 ---
 
 import { Image } from 'astro:assets';
 
 <Image
-	src="/short/02-2025/css-subgrid-layout-comparison.png"
-	alt="Presenting the power of the subgrid layout"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/02-2025/css-subgrid-layout-comparison.png"
+  alt="Presenting the power of the subgrid layout"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Subgrid is your new best friend.
@@ -48,31 +49,31 @@ Here is the code:
 
 ```html
 <section class="container">
-	<div class="card">
-		<h2>First plan - super long title</h2>
-		<p>Content</p>
-		<button>Super Cheap</button>
-	</div>
-	<div class="card">
-		<h2>Best plan</h2>
-		<p>Content</p>
-		<button>Great Value</button>
-	</div>
-	...
+  <div class="card">
+    <h2>First plan - super long title</h2>
+    <p>Content</p>
+    <button>Super Cheap</button>
+  </div>
+  <div class="card">
+    <h2>Best plan</h2>
+    <p>Content</p>
+    <button>Great Value</button>
+  </div>
+  ...
 </section>
 ```
 
 ```css
 .container {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
 }
 
 .card {
-	display: grid;
-	grid-template-rows: subgrid;
-	grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
 }
 ```
 

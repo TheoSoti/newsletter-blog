@@ -7,167 +7,167 @@ import BlogPosting from '../components/microdatas/BlogPosting.astro';
 import { getCollection } from 'astro:content';
 import ShortList from '../components/ShortList.astro';
 
-const { title, description, pubDate, updatedDate, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, slug, heroImage } = Astro.props;
 const posts = (await getCollection('short'))
-	.filter((post) => post.slug !== slug)
-	.sort((a, b) => {
-		// Randomize the order of related posts based on the first character of the slug
-		const seed = slug.charCodeAt(0);
-		const aScore = a.slug.charCodeAt(0) ^ seed;
-		const bScore = b.slug.charCodeAt(0) ^ seed;
-		return aScore - bScore;
-	})
-	.slice(0, 6);
+  .filter((post) => post.slug !== slug)
+  .sort((a, b) => {
+    // Randomize the order of related posts based on the first character of the slug
+    const seed = slug.charCodeAt(0);
+    const aScore = a.slug.charCodeAt(0) ^ seed;
+    const bScore = b.slug.charCodeAt(0) ^ seed;
+    return aScore - bScore;
+  })
+  .slice(0, 6);
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			@media (prefers-reduced-motion: no-preference) {
-				html {
-					scroll-behavior: smooth;
-				}
-			}
-			html {
-				scroll-padding: calc(80px + 2em);
-			}
-			main {
-				max-width: 100%;
-				padding-top: 0;
-			}
-			.container {
-				width: calc(100% - 2em);
-				margin: auto;
-			}
-			section.container {
-				margin: 2em auto;
-			}
-			section.container ul {
-				list-style: none;
-			}
-			section.container h2 {
-				margin-top: 0;
-			}
-			ul {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 20px;
-				list-style-type: none;
-				padding: 0;
-				margin-bottom: 0;
-			}
-			.prose {
-				max-width: 100%;
-				margin: auto;
-			}
-			.title {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				max-width: 1100px;
-				text-align: center;
-				padding: 1.5em 2em;
-				margin: auto;
-				border: 4px solid var(--border);
-				border-bottom-width: 8px;
-				background: var(--bg-light);
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-				max-width: 1024px;
-				counter-reset: h2counter;
-			}
-			.date {
-				margin-bottom: 0;
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-			.post-header {
-				position: relative;
-				padding: 1em 1em 0 1em;
-			}
-			h1 {
-				counter-reset: h2counter;
-			}
-			.prose h2 {
-				counter-increment: h2counter;
-				counter-reset: h3counter;
-			}
-			.prose h2:before {
-				content: counter(h2counter) '.';
-			}
-			.prose h3:before {
-				content: counter(h2counter) '.' counter(h3counter) '.';
-				counter-increment: h3counter;
-			}
-			@media (min-width: 600px) {
-				.post-header {
-					margin-bottom: 2em;
-				}
-				ul {
-					grid-template-columns: 1fr 1fr;
-				}
-			}
-			@media (min-width: 900px) {
-				main {
-					width: 100%;
-					padding-bottom: 2em;
-				}
-				.container {
-					display: flex;
-					flex-wrap: nowrap;
-					align-items: flex-start;
-					max-width: 1100px;
-					gap: 40px;
-				}
-				section.container {
-					display: block;
-				}
-				.prose {
-					max-width: calc(100% - 2em);
-					width: clamp(530px, calc(100% - 340px), 760px);
-					margin-top: -2em;
-				}
-			}
-			@media (min-width: 1024px) {
-				ul {
-					grid-template-columns: 1fr 1fr 1fr;
-				}
-			}
-		</style>
-	</head>
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      html {
+        scroll-padding: calc(80px + 2em);
+      }
+      main {
+        max-width: 100%;
+        padding-top: 0;
+      }
+      .container {
+        width: calc(100% - 2em);
+        margin: auto;
+      }
+      section.container {
+        margin: 2em auto;
+      }
+      section.container ul {
+        list-style: none;
+      }
+      section.container h2 {
+        margin-top: 0;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
+      .prose {
+        max-width: 100%;
+        margin: auto;
+      }
+      .title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 1100px;
+        text-align: center;
+        padding: 1.5em 2em;
+        margin: auto;
+        border: 4px solid var(--border);
+        border-bottom-width: 8px;
+        background: var(--bg-light);
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+        max-width: 1024px;
+        counter-reset: h2counter;
+      }
+      .date {
+        margin-bottom: 0;
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+      .post-header {
+        position: relative;
+        padding: 1em 1em 0 1em;
+      }
+      h1 {
+        counter-reset: h2counter;
+      }
+      .prose h2 {
+        counter-increment: h2counter;
+        counter-reset: h3counter;
+      }
+      .prose h2:before {
+        content: counter(h2counter) '.';
+      }
+      .prose h3:before {
+        content: counter(h2counter) '.' counter(h3counter) '.';
+        counter-increment: h3counter;
+      }
+      @media (min-width: 600px) {
+        .post-header {
+          margin-bottom: 2em;
+        }
+        ul {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 900px) {
+        main {
+          width: 100%;
+          padding-bottom: 2em;
+        }
+        .container {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: flex-start;
+          max-width: 1100px;
+          gap: 40px;
+        }
+        section.container {
+          display: block;
+        }
+        .prose {
+          max-width: calc(100% - 2em);
+          width: clamp(530px, calc(100% - 340px), 760px);
+          margin-top: -2em;
+        }
+      }
+      @media (min-width: 1024px) {
+        ul {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
 
-	<body>
-		<Header />
-		<div class="post-header">
-			<div class="title">
-				<h1>{title}</h1>
-				<div class="date">
-					<FormattedDate date={pubDate} />
-				</div>
-			</div>
-		</div>
-		<main>
-			<div class="container">
-				<article class="prose">
-					<slot />
-				</article>
-			</div>
-			<section class="container">
-				<h2>Related Articles</h2>
-				<p>
-					Explore more articles on front-end development, covering HTML, CSS and JavaScript for building
-					high-performance websites.
-				</p>
-				<ul>
-					{posts.map((post) => <ShortList post={post} type="short" width="720" height="360" />)}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-		<BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate }} />
-	</body>
+  <body>
+    <Header />
+    <div class="post-header">
+      <div class="title">
+        <h1>{title}</h1>
+        <div class="date">
+          <FormattedDate date={pubDate} />
+        </div>
+      </div>
+    </div>
+    <main>
+      <div class="container">
+        <article class="prose">
+          <slot />
+        </article>
+      </div>
+      <section class="container">
+        <h2>Related Articles</h2>
+        <p>
+          Explore more articles on front-end development, covering HTML, CSS and JavaScript for building
+          high-performance websites.
+        </p>
+        <ul>
+          {posts.map((post) => <ShortList post={post} type="short" width="720" height="360" />)}
+        </ul>
+      </section>
+    </main>
+    <Footer />
+    <BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate, heroImage }} />
+  </body>
 </html>

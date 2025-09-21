@@ -2,16 +2,17 @@
 title: 'Scroll-Linked CSS Progress Bar Without JavaScript'
 description: 'Create a scroll-synced progress bar using pure CSS and animation-timeline—no JavaScript needed. Lightweight, and performant.'
 pubDate: 'Mar 7 2025'
+heroImage: '/short/03-2025/progress-bar-full-css.gif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/03-2025/progress-bar-full-css.gif"
-	alt="progress bar creation in CSS only"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/03-2025/progress-bar-full-css.gif"
+  alt="progress bar creation in CSS only"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Use only CSS for progress bar
@@ -42,23 +43,23 @@ If you want to deep dive into this subject, you can check it out here: https://l
 
 ```html
 <header>
-	<div class="progress"></div>
+  <div class="progress"></div>
 </header>
 ```
 
 ```css
 .progress {
-	background: #55ad9b;
-	width: 0;
-	height: 8px;
-	animation: grow linear forwards;
-	animation-timeline: scroll();
+  background: #55ad9b;
+  width: 0;
+  height: 8px;
+  animation: grow linear forwards;
+  animation-timeline: scroll();
 }
 
 @keyframes grow {
-	to {
-		width: 100%;
-	}
+  to {
+    width: 100%;
+  }
 }
 ```
 

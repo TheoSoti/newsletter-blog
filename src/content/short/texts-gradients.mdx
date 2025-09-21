@@ -2,16 +2,17 @@
 title: 'CSS Text Gradients: Stunning Effects in 3 Lines'
 description: 'Enhance your typography with CSS text gradients! No images, no extra elements—just pure CSS magic for bold, eye-catching UI design.'
 pubDate: 'Mar 14 2025'
+heroImage: '/short/03-2025/texts-gradients.gif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-	src="/short/03-2025/texts-gradients.gif"
-	alt="CSS Text Gradients"
-	width="400"
-	height="600"
-	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+  src="/short/03-2025/texts-gradients.gif"
+  alt="CSS Text Gradients"
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Good design is in the details.
@@ -42,19 +43,19 @@ And if you want to go even further, you can animate it with @property variables 
 
 ```html
 <article>
-	<h1>Theosoti.com</h1>
-	<p>For best CSS content</p>
+  <h1>Theosoti.com</h1>
+  <p>For best CSS content</p>
 </article>
 ```
 
 ```css
 article {
-	background: linear-gradient(to right, deeppink, orange);
-	background-clip: text;
-	color: transparent;
+  background: linear-gradient(to right, deeppink, orange);
+  background-clip: text;
+  color: transparent;
 
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 ```
 
