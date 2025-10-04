@@ -322,6 +322,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </div>
     </div>
 
+    <section class="cta">
+      <h2 class="cta__title">Curious? Get a look inside.</h2>
+      <p class="cta__description">Get a free preview of the ebook.</p>
+      <div class="cta__button"><a class="button" href="/ebook.pdf" target="_blank">Get the preview</a></div>
+    </section>
+
     <section class="testimonials">
       <h2 class="testimonials__title">Loved by the community</h2>
       <div class="switcher">
@@ -527,103 +533,135 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </div>
     </div>
 
-    <section class="faq">
-      <h2 class="faq__title">Frequently asked questions</h2>
-
-      <ul class="faq__container">
-        <li class="accordion">
-          <details open>
-            <summary aria-describedby="accordion1">
-              <p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
-            </summary>
-          </details>
-
-          <div class="content">
-            <p class="inner" role="definition" id="accordion1">
-              If you're a web developer who wants to build interactive components without relying on JavaScript — and
-              you care about performance, clean code, and saving time — this book is for you.
-            </p>
+    <section class="pricing">
+      <h2 class="pricing__title">START LEARNING TODAY</h2>
+      <div class="pricing__container">
+        <div class="pricing__item">
+          <h3 class="pricing__item-title">Basic</h3>
+          <div class="pricing__item-container">
+            <span class="pricing__item-old-price">$39</span>
+            <p class="pricing__item-price"><sup>$</sup>29</p>
           </div>
-        </li>
 
-        <li class="accordion">
-          <details>
-            <summary aria-describedby="accordion2">
-              <p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
-            </summary>
-          </details>
-
-          <div class="content">
-            <p class="inner" role="definition" id="accordion2">
-              You don't need to be an expert, but a basic understanding of CSS is recommended. The ebook is
-              beginner-friendly, yet packed with tips and techniques that even seasoned developers will find valuable.
-              You'll learn step-by-step through clear, practical examples.
-            </p>
+          <hr />
+          <ul class="pricing__item-list">
+            <li>125-page PDF</li>
+            <li>27 practical examples</li>
+            <li>Lifetime access & Free updates</li>
+          </ul>
+          <a class="button" href="/ebook.pdf" target="_blank">Get the ebook</a>
+        </div>
+        <div class="pricing__item pricing__item-popular">
+          <div class="pricing__item-tag">Most popular</div>
+          <h3 class="pricing__item-title">Complete bundle</h3>
+          <div class="pricing__item-container">
+            <span class="pricing__item-old-price">$69</span>
+            <p class="pricing__item-price"><sup>$</sup>49</p>
           </div>
-        </li>
-
-        <li class="accordion">
-          <details>
-            <summary aria-describedby="accordion3">
-              <p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
-            </summary>
-          </details>
-
-          <div class="content">
-            <p class="inner" role="definition" id="accordion3">
-              You'll learn how to create real-world UI components (like tabs, modals, dropdowns) using only CSS. Plus,
-              you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
-            </p>
-          </div>
-        </li>
-
-        <li class="accordion">
-          <details>
-            <summary aria-describedby="accordion4">
-              <p class="accordion__title" role="term"><span>When will the ebook be available?</span></p>
-            </summary>
-          </details>
-
-          <div class="content">
-            <p class="inner" role="definition" id="accordion4">
-              The ebook is currently in preparation. Sign up with your email and you'll be the first to know as soon as
-              it launches — and get an exclusive discount!
-            </p>
-          </div>
-        </li>
-
-        <li class="accordion">
-          <details>
-            <summary aria-describedby="accordion5">
-              <p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
-            </summary>
-          </details>
-
-          <div class="content">
-            <p class="inner" role="definition" id="accordion5">
-              Nope, I only used pure HTML & CSS! The only JavaScript I used is for the email form and the small tracking
-              script.
-            </p>
-          </div>
-        </li>
-      </ul>
+          <hr />
+          <ul class="pricing__item-list">
+            <li>125-page PDF</li>
+            <li>27 practical examples</li>
+            <li>Lifetime access & Free updates</li>
+            <li>Component library of 27 components ready for you to copy & paste</li>
+          </ul>
+          <a class="button" href="/ebook.pdf" target="_blank">Get the bundle</a>
+        </div>
+      </div>
     </section>
-
-    <section class="cta">
-      <h2 class="cta__title">Ready to build faster, cleaner, and greener?</h2>
-      <p class="cta__description">Sign up now and get a surprise when the book launches.</p>
-    </section>
-
-    <footer>
-      <h2 class="footer__title">Have questions or feedback?</h2>
-      <p class="footer__description">Please get in touch at hey@theosoti.com</p>
-    </footer>
-
-    <script
-      is:inline
-      id="fairlytics-id-ajcu6jd9k7ysd6"
-      data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
-      src="https://app.fairlytics.tech/tag/tag.js"
-      async></script>
   </body>
+
+  <section class="faq">
+    <h2 class="faq__title">Frequently asked questions</h2>
+
+    <ul class="faq__container">
+      <li class="accordion">
+        <details open>
+          <summary aria-describedby="accordion1">
+            <p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion1">
+            If you're a web developer who wants to build interactive components without relying on JavaScript — and you
+            care about performance, clean code, and saving time — this book is for you.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion2">
+            <p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion2">
+            You don't need to be an expert, but a basic understanding of CSS is recommended. The ebook is
+            beginner-friendly, yet packed with tips and techniques that even seasoned developers will find valuable.
+            You'll learn step-by-step through clear, practical examples.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion3">
+            <p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion3">
+            You'll learn how to create real-world UI components (like tabs, modals, dropdowns) using only CSS. Plus,
+            you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion4">
+            <p class="accordion__title" role="term"><span>When will the ebook be available?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion4">
+            The ebook is currently in preparation. Sign up with your email and you'll be the first to know as soon as it
+            launches — and get an exclusive discount!
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion5">
+            <p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion5">
+            Nope, I only used pure HTML & CSS! The only JavaScript I used is for the email form and the small tracking
+            script.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <h2 class="footer__title">Have questions or feedback?</h2>
+    <p class="footer__description">Please get in touch at hey@theosoti.com</p>
+  </footer>
+
+  <script
+    is:inline
+    id="fairlytics-id-ajcu6jd9k7ysd6"
+    data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
+    src="https://app.fairlytics.tech/tag/tag.js"
+    async></script>
 </html>
