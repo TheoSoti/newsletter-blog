@@ -738,8 +738,17 @@
     grid-template-columns: repeat(auto-fit, minmax(clamp(16rem, 50%, 20rem), 1fr));
   }
 
+  .testimonials__regular .testimonial__list {
+    display: block;
+    width: 100%;
+    column-width: 200px;
+    column-gap: 1rem;
+    column-count: 2;
+  }
+
   .testimonial {
     z-index: 1;
+    position: relative;
     gap: var(--pad-12-16);
     background-color: var(--white);
     padding: var(--pad-12-16);
@@ -747,6 +756,11 @@
     border: 2px solid var(--border);
 
     box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+
+    break-inside: avoid;
+    page-break-inside: avoid; /* pour compatibilité avec certains navigateurs */
+    -webkit-column-break-inside: avoid; /* ancien prefixe utile pour Safari */
+    margin-bottom: 1rem;
 
     picture {
       flex-shrink: 0;
@@ -786,6 +800,14 @@
     font-size: var(--fs-1);
     margin: 0;
     line-height: 1.5;
+  }
+
+  .rotate-right {
+    transform: rotate(8deg);
+  }
+
+  .rotate-left {
+    transform: rotate(-4deg);
   }
 }
 
