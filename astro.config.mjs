@@ -7,15 +7,19 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://theosoti.com',
-	integrations: [
-		mdx(),
-		sitemap({
-			filter: (page) => page !== 'https://theosoti.com/newsletter-success/',
-		}),
-		partytown(),
-		react({
-			include: ['**/react/*'],
-		}),
-	],
+  site: 'https://theosoti.com',
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => {
+        return (
+          page !== 'https://theosoti.com/newsletter-success/' && page !== 'https://theosoti.com/you-dont-need-js-v2/'
+        );
+      },
+    }),
+    partytown(),
+    react({
+      include: ['**/react/*'],
+    }),
+  ],
 });
