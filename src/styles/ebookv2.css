@@ -47,6 +47,7 @@
   }
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -242,11 +243,11 @@
       transform: translate(-50%, -50%);
       z-index: 0;
       top: 0%;
-      animation: spin 40s linear infinite;
+      animation: rotate 40s linear infinite;
     }
   }
 
-  @keyframes spin {
+  @keyframes rotate {
     from {
       transform: rotate(0deg);
     }
