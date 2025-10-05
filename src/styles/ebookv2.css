@@ -13,7 +13,6 @@
     --main: #8955ff;
     --secondary: hsl(170.43deg 60% 22.55%);
     --yellow: #f7c86d;
-    --error: #b82f2f;
     --background: rgb(255, 248, 240);
     --bg-light: hsl(17 89.74% 92.35%);
     --white: hsl(230, 100%, 99%);
@@ -151,30 +150,6 @@
     font-size: var(--fs-2);
   }
 
-  .hero__button {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero__old-price {
-    font-size: var(--fs-1);
-    position: relative;
-  }
-
-  .hero__old-price:before {
-    content: '';
-    height: 2px;
-    background-color: var(--error);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%) rotateZ(-15deg);
-  }
-
   .hero__new-price {
     font-weight: bold;
     color: var(--black);
@@ -283,11 +258,6 @@
   @media screen and (min-width: 43.75em) {
     .hero__container {
       text-align: left;
-    }
-
-    .hero__button {
-      flex-direction: row;
-      justify-content: start;
     }
 
     .hero__image {
@@ -412,8 +382,8 @@
     gap: 1rem;
     padding-inline: var(--pad-12-16);
     border: 2px solid var(--border);
-    background: var(--secondary);
-    color: white;
+
+    color: var(--black);
     border-radius: 0.5rem;
   }
 
@@ -798,7 +768,7 @@
   }
 
   .slider .list .item {
-    --time: 20s;
+    --time: 60s;
 
     display: flex;
     align-items: baseline;
@@ -965,6 +935,10 @@
   }
 
   .pricing__container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
     max-width: 68.75em;
     margin-inline: auto;
     padding: 0;
@@ -976,12 +950,6 @@
     margin-bottom: var(--pad-xl);
   }
 
-  .pricing__container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
   .pricing__item {
     display: flex;
     flex-direction: column;
@@ -991,6 +959,13 @@
     border: 2px solid var(--border);
     flex: 1;
     position: relative;
+  }
+
+  .pricing__item .button:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
   }
 
   .pricing__item-container {
@@ -1012,7 +987,8 @@
     position: absolute;
     top: -20px;
     right: 1em;
-    background-color: var(--main);
+    background-color: var(--secondary);
+    font-weight: bold;
     color: var(--white);
     border: 2px solid var(--border);
     font-size: var(--fs-1);
@@ -1070,43 +1046,52 @@
     width: 100%;
     margin-top: auto;
   }
-}
 
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
 
-.pricing__item.pricing__item-popular {
-  border: none;
-  position: relative;
-  background-color: var(--white) !important;
-  border-radius: 0.5rem;
-}
+  .pricing__item.pricing__item-popular {
+    border: none;
+    position: relative;
+    background-color: var(--white) !important;
+    border-radius: 0.5rem;
+  }
 
-.pricing__item.pricing__item-popular::after,
-.pricing__item.pricing__item-popular::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  z-index: -1;
-  border-radius: inherit;
-  border-radius: 0.7rem;
+  .pricing__item.pricing__item-popular::after,
+  .pricing__item.pricing__item-popular::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    z-index: -1;
+    border-radius: inherit;
+    border-radius: 0.7rem;
 
-  background: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    background: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
 
-  animation: spin 3s linear infinite;
-}
+    animation: spin 3s linear infinite;
+  }
 
-.pricing__item.pricing__item-popular::before {
-  filter: blur(1.5rem);
-  opacity: 0.8;
-}
+  .pricing__item.pricing__item-popular::before {
+    filter: blur(1.5rem);
+    opacity: 0.8;
+  }
 
-@keyframes spin {
-  to {
-    --angle: 360deg;
+  @keyframes spin {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @media screen and (min-width: 43.75em) {
+    .pricing__container {
+      flex-direction: row;
+    }
+    .pricing__item-popular {
+      order: 2;
+    }
   }
 }
 

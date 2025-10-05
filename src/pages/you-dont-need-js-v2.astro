@@ -63,20 +63,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <section class="hero">
       <div class="hero__container">
         <div class="hero__content">
-          <h1 class="hero__title">A practical guide to building modern components with CSS</h1>
+          <h1 class="hero__title">A practical book for building modern components with CSS</h1>
           <p class="hero__subtitle">
-            A complete, 125-page guide packed with modern CSS techniques, real-world examples, and step-by-step
-            tutorials. Learn how to replace unnecessary JavaScript with lightweight CSS components that are faster,
-            easier to maintain, and future-proof.
+            You Don’t Need JavaScript is a complete, 125-page book packed with modern CSS techniques, real-world
+            examples, and step-by-step tutorials. Learn how to replace unnecessary JavaScript with lightweight CSS
+            components that are faster, easier to maintain, and future-proof.
           </p>
 
-          <div class="hero__button">
-            <a href="#pricing" class="button">Buy the book</a>
-            <p class="hero__info">
-              — Only for <span class="hero__old-price">$39</span>
-              <span class="hero__new-price">$29</span>
-            </p>
-          </div>
+          <a href="#pricing" class="button">Buy now</a>
+          <p>Do you want to see a preview first? <a href="/ebook.pdf" target="_blank">Download a preview.</a></p>
         </div>
         <div class="hero__image">
           <div class="background"></div>
@@ -392,7 +387,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               <p class="testimonial__author">Pierre Liegard<br /> <span>Front-end Developer</span></p>
             </div>
             <blockquote class="testimonial__text">
-              Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
+              This book offers a welcome reminder of the latest CSS developments at a time when performance matters more
+              than ever.
             </blockquote>
           </li>
 
@@ -530,11 +526,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </div>
 
           <p class="about__description">
-            Over the years, I've helped businesses bring their ideas to life through responsive design, modern CSS,
-            fluid and pixel-perfect layouts.
-            <br />This ebook is my way of sharing what I've learned: real-world techniques, smart CSS tricks, and a
-            simpler way to build for the web. Whether you're just starting your front-end journey or looking to
-            modernize your workflow, I hope this book helps you get there, with less JavaScript, and more joy.
+            For the past eight years, I’ve been helping businesses and teams turn ideas into beautiful, responsive
+            interfaces first inside tech companies , then as a freelancer.
+            <br />
+            Along the way, I started sharing what I learned online. That small habit grew into a community of 16,000+ developers
+            on LinkedIn reaching over 9 million impressions in a year and 1,500 newsletter subscribers.<br />
+            You Don’t Need JavaScript collects my best CSS techniques and patterns for building fast, modern interfaces with
+            less code and more joy.
           </p>
         </div>
         <div class="about__background"></div>
@@ -572,23 +570,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <section class="pricing" id="pricing">
       <h2 class="pricing__title">START LEARNING TODAY</h2>
       <div class="pricing__container">
-        <div class="pricing__item">
-          <h3 class="pricing__item-title">Basic</h3>
-          <div class="pricing__item-container">
-            <span class="pricing__item-old-price">$39</span>
-            <p class="pricing__item-price"><sup>$</sup>29</p>
-          </div>
-
-          <hr />
-          <ul class="pricing__item-list">
-            <li>125-page PDF</li>
-            <li>27 practical examples</li>
-            <li>Lifetime access & Free updates</li>
-          </ul>
-          <a class="button" href="/ebook.pdf" target="_blank">Get the ebook</a>
-        </div>
         <div class="pricing__item pricing__item-popular">
-          <div class="pricing__item-tag">Most popular</div>
+          <div class="pricing__item-tag">30% off</div>
           <h3 class="pricing__item-title">Complete bundle</h3>
           <div class="pricing__item-container">
             <span class="pricing__item-old-price">$69</span>
@@ -603,90 +586,137 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </ul>
           <a class="button" href="/ebook.pdf" target="_blank">Get the bundle</a>
         </div>
+
+        <div class="pricing__item">
+          <div class="pricing__item-tag">25% off</div>
+          <h3 class="pricing__item-title">Basic</h3>
+          <div class="pricing__item-container">
+            <span class="pricing__item-old-price">$39</span>
+            <p class="pricing__item-price"><sup>$</sup>29</p>
+          </div>
+
+          <hr />
+          <ul class="pricing__item-list">
+            <li>125-page PDF</li>
+            <li>27 practical examples</li>
+            <li>Lifetime access & Free updates</li>
+          </ul>
+          <a class="button" href="/ebook.pdf" target="_blank">Get the ebook</a>
+        </div>
       </div>
     </section>
+
+    <section class="faq">
+      <h2 class="faq__title">Frequently asked questions</h2>
+
+      <ul class="faq__container">
+        <li class="accordion">
+          <details open>
+            <summary aria-describedby="accordion1">
+              <p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion1">
+              If you're a web developer who wants to build interactive components without relying on JavaScript. If you
+              care about performance, clean code, and saving time. Then this book is for you.
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion2">
+              <p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion2">
+              You don't need to be an expert, but a basic understanding of CSS is necessary. The ebook is packed with
+              tips and techniques that even seasoned developers will find valuable. You'll learn step-by-step through
+              clear, practical examples.
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion3">
+              <p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion3">
+              You'll learn how to create real-world UI components (like tabs, modals, dropdowns, etc.) using only CSS.
+              Plus, you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion4">
+              <p class="accordion__title" role="term"><span>What format is the book available in? </span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion4">
+              The book comes as a PDF, so you can read it anywhere. It’s lightweight, easy to navigate, and beautifully
+              formatted for any screen size.
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion4">
+              <p class="accordion__title" role="term"><span>Will the book be updated in the future? </span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion4">
+              Yes! Whenever I update You Don’t Need JavaScript with new examples or CSS features, you’ll get all future
+              updates for free!
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion4">
+              <p class="accordion__title" role="term"><span>What if I don’t like the book? </span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion4">
+              No worries. If you buy the book and feel it’s not for you, you can ask for a full refund within 30 days.
+              No hard feelings, no questions asked. I want you to feel completely confident about your purchase.
+            </p>
+          </div>
+        </li>
+
+        <li class="accordion">
+          <details>
+            <summary aria-describedby="accordion5">
+              <p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
+            </summary>
+          </details>
+
+          <div class="content">
+            <p class="inner" role="definition" id="accordion5">
+              Nope, I only used pure HTML & CSS! The only JavaScript in the page is the small tracking script.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
   </body>
-
-  <section class="faq">
-    <h2 class="faq__title">Frequently asked questions</h2>
-
-    <ul class="faq__container">
-      <li class="accordion">
-        <details open>
-          <summary aria-describedby="accordion1">
-            <p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
-          </summary>
-        </details>
-
-        <div class="content">
-          <p class="inner" role="definition" id="accordion1">
-            If you're a web developer who wants to build interactive components without relying on JavaScript — and you
-            care about performance, clean code, and saving time — this book is for you.
-          </p>
-        </div>
-      </li>
-
-      <li class="accordion">
-        <details>
-          <summary aria-describedby="accordion2">
-            <p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
-          </summary>
-        </details>
-
-        <div class="content">
-          <p class="inner" role="definition" id="accordion2">
-            You don't need to be an expert, but a basic understanding of CSS is recommended. The ebook is
-            beginner-friendly, yet packed with tips and techniques that even seasoned developers will find valuable.
-            You'll learn step-by-step through clear, practical examples.
-          </p>
-        </div>
-      </li>
-
-      <li class="accordion">
-        <details>
-          <summary aria-describedby="accordion3">
-            <p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
-          </summary>
-        </details>
-
-        <div class="content">
-          <p class="inner" role="definition" id="accordion3">
-            You'll learn how to create real-world UI components (like tabs, modals, dropdowns) using only CSS. Plus,
-            you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
-          </p>
-        </div>
-      </li>
-
-      <li class="accordion">
-        <details>
-          <summary aria-describedby="accordion4">
-            <p class="accordion__title" role="term"><span>When will the ebook be available?</span></p>
-          </summary>
-        </details>
-
-        <div class="content">
-          <p class="inner" role="definition" id="accordion4">
-            The ebook is currently in preparation. Sign up with your email and you'll be the first to know as soon as it
-            launches — and get an exclusive discount!
-          </p>
-        </div>
-      </li>
-
-      <li class="accordion">
-        <details>
-          <summary aria-describedby="accordion5">
-            <p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
-          </summary>
-        </details>
-
-        <div class="content">
-          <p class="inner" role="definition" id="accordion5">
-            Nope, I only used pure HTML & CSS! The only JavaScript I used is for the small tracking script.
-          </p>
-        </div>
-      </li>
-    </ul>
-  </section>
 
   <footer>
     <h2 class="footer__title">Have questions or feedback?</h2>
