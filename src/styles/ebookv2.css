@@ -148,7 +148,15 @@
     text-align: center;
   }
 
+  .hero__title {
+    font-size: var(--fs-2);
+  }
+
   .hero__subtitle {
+    font-size: var(--fs-4);
+  }
+
+  .hero__description {
     font-size: var(--fs-2);
   }
 
@@ -221,6 +229,12 @@
       z-index: 0;
       top: 0%;
       animation: rotate 40s linear infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .hero__image .background {
+      animation: none;
     }
   }
 
@@ -484,6 +498,7 @@
     padding: var(--pad-xl) var(--pad-16-32);
     background-color: var(--main);
     overflow: hidden;
+    position: relative;
   }
 
   .about picture {
@@ -820,6 +835,13 @@
   .slider:hover .item {
     animation-play-state: paused;
   }
+
+  @media (prefers-reduced-motion) {
+    .slider .list .item {
+      animation-play-state: paused;
+    }
+  }
+
   @keyframes autoRun {
     from {
       left: 100%;
@@ -948,8 +970,8 @@
 
   .pricing__description {
     text-align: center;
-    background-color: #b81b1b;
-    color: var(--white);
+    background-color: var(--yellow);
+    color: var(--black);
     font-weight: bold;
     padding: var(--pad-4-8) var(--pad-12-16);
     border-radius: 0.5rem;
@@ -1004,9 +1026,9 @@
     position: absolute;
     top: -20px;
     right: 1em;
-    background-color: #b81b1b;
+    background-color: var(--yellow);
     font-weight: bold;
-    color: var(--white);
+    color: var(--black);
     border: 2px solid var(--border);
     font-size: var(--fs-1);
     padding: 0 0.5rem;
@@ -1096,6 +1118,13 @@
     opacity: 0.8;
   }
 
+  @media (prefers-reduced-motion) {
+    .pricing__item.pricing__item-popular::after,
+    .pricing__item.pricing__item-popular::before {
+      animation: none;
+    }
+  }
+
   @keyframes spin {
     to {
       --angle: 360deg;
@@ -1124,7 +1153,7 @@
   }
 
   .cta__button .button {
-    background-color: var(--main);
+    background-color: var(--secondary);
   }
 
   .cta__title {
