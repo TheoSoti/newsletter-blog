@@ -15,6 +15,7 @@ import testimonial_lionel from '../assets/ebook/lionel.png';
 import testimonial_utsav from '../assets/ebook/utsav.png';
 import testimonial_pierre from '../assets/ebook/pierre.png';
 import testimonial_virgile from '../assets/ebook/virgile.png';
+import testimonial_paul from '../assets/ebook/paul.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -410,13 +411,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               <p class="testimonial__author">Virgile Gouala<br /> <span>Engineering Manager</span></p>
             </div>
             <blockquote class="testimonial__text">
-              Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
+              “You Don’t Need JavaScript” introduced me to the “Rule of Least Power”, a principle that is both simple
+              and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more
+              ecological, thoughtful, and handcrafted approach to development, reminding us that elegance and impact
+              often arise from simplicity.
             </blockquote>
           </li>
           <li class="testimonial">
             <div class="testimonial__content">
               <Picture
-                src={testimonial_utsav}
+                src={testimonial_paul}
                 formats={['avif', 'webp', 'jpg']}
                 width="168"
                 height="168"
@@ -705,7 +709,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <div class="content">
             <p class="inner" role="definition" id="accordion4">
               No worries. If you buy the book and feel it’s not for you, you can ask for a full refund within 30 days.
-              No hard feelings, no questions asked. I want you to feel completely confident about your purchase.
+              No hard feelings, no questions asked. I want you to feel completely confident about your purchase. Send me
+              an email at hey@theosoti.com and I'll refund you right away.
             </p>
           </div>
         </li>
