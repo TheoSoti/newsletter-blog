@@ -71,7 +71,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </p>
 
           <a href="#pricing" class="button">Buy now</a>
-          <p>Do you want to see a preview first? <a href="/ebook.pdf" target="_blank">Download a preview.</a></p>
+          <p>
+            Do you want to see a preview first? <a href="/YDNJS-preview.pdf" target="_blank">Download a preview.</a>
+          </p>
         </div>
         <div class="hero__image">
           <div class="background"></div>
@@ -318,9 +320,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </div>
 
     <section class="cta">
-      <h2 class="cta__title">Curious? Get a look inside.</h2>
-      <p class="cta__description">Get a free preview of the ebook.</p>
-      <div class="cta__button"><a class="button" href="/ebook.pdf" target="_blank">Get the preview</a></div>
+      <h2 class="cta__title">30-Day Money-Back Guarantee</h2>
+      <p class="cta__description">
+        Not completely satisfied? No problem. <br />Just send me an email at hey@theosoti.com within 30 days and you’ll
+        get a full refund.<br />
+      </p>
+      <div class="cta__button"><a class="button" href="#pricing">Buy now</a></div>
     </section>
 
     <section class="testimonials">
@@ -418,12 +423,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 alt="Second testimonial"
                 class="testimonial__image"
               />
-              <p class="testimonial__author">Utsav Meena <br /> <span>CSS Content Creator</span></p>
+              <p class="testimonial__author">Paul Wright <br /> <span>Full Stack Web Developer</span></p>
             </div>
             <blockquote class="testimonial__text">
-              It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on
-              accessibility, troubleshooting, and browser compatibility. <br />Hopefully, this will help people
-              appreciate CSS a bit more.
+              Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
+              chapter. You Don’t Need JavaScript is a breath of fresh air packed with “wait… CSS can do that?!” moments.
+              Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design
+              doesn’t always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity
+              often live right there in your stylesheet.
             </blockquote>
           </li>
           <li class="testimonial">
@@ -569,6 +576,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <section class="pricing" id="pricing">
       <h2 class="pricing__title">START LEARNING TODAY</h2>
+      <p class="pricing__description">Limited Time Offer: Special discount ends this Saturday!</p>
       <div class="pricing__container">
         <div class="pricing__item pricing__item-popular">
           <div class="pricing__item-tag">30% off</div>
@@ -583,6 +591,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <li>27 practical examples</li>
             <li>Lifetime access & Free updates</li>
             <li>Component library of 27 components ready for you to copy & paste</li>
+            <li>A cheat sheet featuring every property mentioned in the book</li>
           </ul>
           <a class="button" href="/ebook.pdf" target="_blank">Get the bundle</a>
         </div>

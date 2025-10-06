@@ -33,6 +33,8 @@
     --pad-12-16: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
     --pad-16-32: clamp(1rem, 0.5897rem + 2.0513vw, 2rem);
     --pad-xl: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+
+    --container-width: 68.75rem;
   }
 
   *:focus-visible {
@@ -76,7 +78,7 @@
   }
 
   main {
-    width: 1100px;
+    width: var(--container-width);
     max-width: calc(100% - 2em);
     margin: auto;
     padding: 3em 0;
@@ -140,7 +142,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
     gap: clamp(2rem, -10.8571rem + 27.4286vw, 8rem);
     text-align: center;
@@ -291,7 +293,7 @@
   }
 
   .learning__container {
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
   }
 
@@ -431,7 +433,7 @@
   }
 
   .features__container {
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
   }
 
@@ -496,7 +498,7 @@
   }
 
   .about__container {
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
     position: relative;
   }
@@ -583,7 +585,7 @@
   }
 
   .testimonials__container {
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
     position: relative;
 
@@ -753,7 +755,7 @@
   }
 
   .slider__container {
-    max-width: 1100px;
+    max-width: var(--container-width);
     height: var(--height);
     mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
     margin-inline: auto;
@@ -836,7 +838,7 @@
   }
 
   .faq__container {
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
     padding: 0;
   }
@@ -939,9 +941,24 @@
     flex-direction: column;
     flex-wrap: wrap;
     gap: 2rem;
-    max-width: 68.75em;
+    max-width: var(--container-width);
     margin-inline: auto;
     padding: 0;
+  }
+
+  .pricing__description {
+    text-align: center;
+    background-color: #b81b1b;
+    color: var(--white);
+    font-weight: bold;
+    padding: var(--pad-4-8) var(--pad-12-16);
+    border-radius: 0.5rem;
+    font-size: var(--fs-1);
+    margin-bottom: var(--pad-xl);
+    border: 2px solid var(--border);
+    max-width: var(--container-width);
+    width: fit-content;
+    margin-inline: auto;
   }
 
   .pricing__title {
@@ -987,7 +1004,7 @@
     position: absolute;
     top: -20px;
     right: 1em;
-    background-color: var(--secondary);
+    background-color: #b81b1b;
     font-weight: bold;
     color: var(--white);
     border: 2px solid var(--border);
@@ -1064,7 +1081,7 @@
   .pricing__item.pricing__item-popular::before {
     content: '';
     position: absolute;
-    inset: -4px;
+    inset: -2px;
     z-index: -1;
     border-radius: inherit;
     border-radius: 0.7rem;
@@ -1116,6 +1133,8 @@
   }
 
   .cta__description {
+    max-width: var(--container-width);
+    margin-inline: auto;
     text-align: center;
     font-size: var(--fs-2);
   }
@@ -1124,7 +1143,7 @@
 @layer footer {
   footer {
     padding: var(--pad-xl) var(--pad-16-32);
-    background-color: var(--white);
+    background-color: var(--yellow);
     text-align: center;
   }
 

@@ -21,10 +21,10 @@ In this article, I'll show you five ways to transition an element's height. We'l
 All the examples I provide below are interactive, so feel free to experiment with them!
 
 <Picture
-	src={transition}
-	alt="Height Transition Demo"
-	width="400"
-	style="border: 2px solid var(--border);
+  src={transition}
+  alt="Height Transition Demo"
+  width="400"
+  style="border: 2px solid var(--border);
     border-radius: 0;
     display: block; 
 		margin: auto;"
@@ -42,7 +42,7 @@ Here is the HTML:
 <button>Toggle dropdown</button>
 
 <div class="dropdown hide">
-	<div>Some content</div>
+  <div>Some content</div>
 </div>
 ```
 
@@ -50,14 +50,14 @@ Here is the CSS:
 
 ```css
 .dropdown {
-	overflow: hidden;
-	height: 210px; /* example 1 */
-	height: auto; /* example 2 */
-	transition: height 0.5s ease;
+  overflow: hidden;
+  height: 210px; /* example 1 */
+  height: auto; /* example 2 */
+  transition: height 0.5s ease;
 }
 
 .hide {
-	height: 0px;
+  height: 0px;
 }
 ```
 
@@ -71,7 +71,7 @@ On the demo below you can see:
 import HeightTransition1 from '../components/HeightTransition/1.astro';
 
 <Wrapper>
-	<HeightTransition1 />
+  <HeightTransition1 />
 </Wrapper>
 
 ## Transitioning the max-height in CSS
@@ -87,13 +87,13 @@ Here is the CSS:
 
 ```css
 .dropdown {
-	overflow: hidden;
-	max-height: 100px; /* | 400px | 1000px */
-	transition: height 0.5s ease;
+  overflow: hidden;
+  max-height: 100px; /* | 400px | 1000px */
+  transition: height 0.5s ease;
 }
 
 .hide {
-	max-height: 0px;
+  max-height: 0px;
 }
 ```
 
@@ -102,7 +102,7 @@ Try toggling the content by clicking the button and changing the <code>max-heigh
 import HeightTransition2 from '../components/HeightTransition/2.astro';
 
 <Wrapper>
-	<HeightTransition2 />
+  <HeightTransition2 />
 </Wrapper>
 
 You see that if the <code>max-height</code> has a value too big, the animation is too quick and delayed.<br/>
@@ -118,9 +118,9 @@ The HTML structure changes a bit (there is one more div inside the dropdown):
 <button>Toggle dropdown</button>
 
 <div class="dropdown hide">
-	<div>
-		<div class="inner">Some content</div>
-	</div>
+  <div>
+    <div class="inner">Some content</div>
+  </div>
 </div>
 ```
 
@@ -128,17 +128,17 @@ And the CSS looks like that:
 
 ```css
 .dropdown {
-	display: flex;
+  display: flex;
 }
 
 .inner {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.5s linear;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s linear;
 }
 
 .dropdown:not(.hide) .inner {
-	max-height: 100%;
+  max-height: 100%;
 }
 ```
 
@@ -147,7 +147,7 @@ See the example below:
 import HeightTransition3 from '../components/HeightTransition/3.astro';
 
 <Wrapper>
-	<HeightTransition3 />
+  <HeightTransition3 />
 </Wrapper>
 
 It works, but there are still two issues:
@@ -169,7 +169,7 @@ Here’s the updated HTML:
 <button>Toggle dropdown</button>
 
 <div class="dropdown hide">
-	<div class="inner">Some content</div>
+  <div class="inner">Some content</div>
 </div>
 ```
 
@@ -177,17 +177,17 @@ And the CSS:
 
 ```css
 .dropdown {
-	grid-template-rows: 0fr;
-	transition: grid-template-rows 0.5s ease;
-	display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease;
+  display: grid;
 }
 
 .inner {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .dropdown:not(.hide) {
-	grid-template-rows: 1fr !important;
+  grid-template-rows: 1fr !important;
 }
 ```
 
@@ -199,7 +199,7 @@ In this example:
 import HeightTransition4 from '../components/HeightTransition/4.astro';
 
 <Wrapper>
-	<HeightTransition4 />
+  <HeightTransition4 />
 </Wrapper>
 
 With Grid, there’s no need for extra wrapper divs, and the container height adjusts smoothly along with its content.
@@ -216,17 +216,17 @@ Here is what it looks like:
 
 ```css
 .dropdown {
-	height: 0;
-	overflow: hidden;
-	transition: height 0.3s;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s;
 }
 
 .dropdown:not(.hide) {
-	height: calc-size(auto);
+  height: calc-size(auto);
 }
 ```
 
-The support is almost inexistant as today. But I belive it will spread soon to all major browsers!
+The support is almost inexistant as today. But I believe it will spread soon to all major browsers!
 
 ## Support My Work
 
