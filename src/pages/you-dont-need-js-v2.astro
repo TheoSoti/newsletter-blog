@@ -17,6 +17,7 @@ import testimonial_pierre from '../assets/ebook/pierre.png';
 import testimonial_virgile from '../assets/ebook/virgile.png';
 import testimonial_paul from '../assets/ebook/paul.png';
 import testimonial_thomas from '../assets/ebook/thomas.png';
+import testimonial_cedric from '../assets/ebook/cedric.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -65,7 +66,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <section class="hero">
       <div class="hero__container">
         <div class="hero__content">
-          <h1 class="hero__title">You Don't Need JavaScript</h1>
+          <h1 class="hero__title"><i>You Don't Need JavaScript</i></h1>
           <h2 class="hero__subtitle">A practical guide for building modern components with CSS</h2>
           <p class="hero__description">
             <i>You Don’t Need JavaScript</i> is a complete, 125-page book packed with modern CSS techniques, real-world examples,
@@ -221,7 +222,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <section class="features">
       <div class="features__container">
-        <h2 class="features__title">What makes the book unique</h2>
+        <h2 class="features__title">What makes this guide unique</h2>
 
         <ul class="features__list">
           <li class="feature">
@@ -395,6 +396,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <li class="testimonial">
             <div class="testimonial__content">
               <Picture
+                src={testimonial_cedric}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Cedric Molla<br /> <span>Web Developer</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made
+              me want to revisit old projects and try a lighter, CSS-first approach.
+            </blockquote>
+          </li>
+
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
                 src={testimonial_virgile}
                 formats={['avif', 'webp', 'jpg']}
                 width="168"
@@ -405,10 +424,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               <p class="testimonial__author">Virgile Gouala<br /> <span>Engineering Manager</span></p>
             </div>
             <blockquote class="testimonial__text">
-              “You Don’t Need JavaScript” introduced me to the “Rule of Least Power”, a principle that is both simple
-              and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more
-              ecological, thoughtful, and handcrafted approach to development, reminding us that elegance and impact
-              often arise from simplicity.
+              <i>You Don’t Need JavaScript</i> introduced me to the “Rule of Least Power”, a principle that is both simple
+              and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological,
+              thoughtful, and handcrafted approach to development, reminding us that elegance and impact often arise from
+              simplicity.
             </blockquote>
           </li>
           <li class="testimonial">
@@ -425,10 +444,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             </div>
             <blockquote class="testimonial__text">
               Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
-              chapter. You Don’t Need JavaScript is a breath of fresh air packed with “wait… CSS can do that?!” moments.
-              Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design
-              doesn’t always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity
-              often live right there in your stylesheet.
+              chapter. <i>You Don’t Need JavaScript</i> is a breath of fresh air packed with “wait… CSS can do that?!” moments.
+              Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t
+              always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity often live right
+              there in your stylesheet.
             </blockquote>
           </li>
           <li class="testimonial">
@@ -441,12 +460,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 alt="Second testimonial"
                 class="testimonial__image"
               />
-              <p class="testimonial__author">Thomas Palef <br /> <span>Writer of Discover Phaser</span></p>
+              <p class="testimonial__author">Thomas Palef <br /> <span>Author of Make 2D Games</span></p>
             </div>
             <blockquote class="testimonial__text">
-              It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on
-              accessibility, troubleshooting, and browser compatibility. <br />Hopefully, this will help people
-              appreciate CSS a bit more.
+              I thought I knew CSS, but I was wrong... this book taught me new CSS properties at almost every page!
             </blockquote>
           </li>
         </ul>
@@ -551,7 +568,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <li>1,500 newsletter subscribers</li>
           </ul>
           <p class="about__description">
-            You Don’t Need JavaScript collects my best CSS techniques and patterns for building fast, modern interfaces
+            <i>You Don’t Need JavaScript</i> collects my best CSS techniques and patterns for building fast, modern interfaces
             with less code and more joy.
           </p>
         </div>
@@ -621,6 +638,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <ul class="pricing__item-list">
           <li>125-page PDF with 27 practical examples</li>
           <li>Lifetime access & Free updates</li>
+          <li class="princing__item-cross">✗<span>A library of 27 ready-to-use components</span></li>
+          <li class="princing__item-cross">✗<span>A cheat sheet with every property from the book</span></li>
         </ul>
         <a class="button" href="https://buy.stripe.com/3cIdRb0kB3ICafF5Fo1Fe02" target="_blank">Get the ebook</a>
       </div>
@@ -702,7 +721,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <div class="content">
           <p class="inner" role="definition" id="accordion4">
-            Yes! Whenever I update You Don’t Need JavaScript with new examples or CSS features, you’ll get all future
+            Yes! Whenever I update <i>You Don’t Need JavaScript</i> with new examples or CSS features, you’ll get all future
             updates for free!
           </p>
         </div>

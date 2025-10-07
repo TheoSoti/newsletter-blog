@@ -258,7 +258,7 @@
     display: inline-block;
     text-align: center;
     border-radius: 0.2em;
-    background-color: var(--secondary);
+    background-color: var(--main);
     border: 2px solid var(--border);
     box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
     transition-duration: 0.2s;
@@ -1082,10 +1082,24 @@
     margin-bottom: 2rem;
   }
 
-  .pricing__item-list li::before {
+  .pricing__item-list li:before {
     content: '✓';
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
     color: var(--secondary);
+  }
+
+  .pricing__item-list .princing__item-cross span {
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+    color: var(--black);
+  }
+
+  .pricing__item-list .princing__item-cross:before {
+    content: none;
+  }
+
+  .pricing__item-list .princing__item-cross {
+    color: brown;
   }
 
   .pricing hr {
