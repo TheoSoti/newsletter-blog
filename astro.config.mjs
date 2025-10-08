@@ -13,7 +13,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         return (
-          page !== 'https://theosoti.com/newsletter-success/' && page !== 'https://theosoti.com/you-dont-need-js-v2/'
+          page !== 'https://theosoti.com/newsletter-success/' && page !== 'https://theosoti.com/you-dont-need-js-v0/'
         );
       },
     }),

@@ -1,649 +1,773 @@
 ---
-import '../styles/ebook.css';
+import '../styles/ebookv2.css';
 
 import { Picture } from 'astro:assets';
 import profile from '../assets/profile.png';
 import ebook from '../assets/ebook/ebook.png';
 import content1 from '../assets/ebook/content1.mp4';
 import content2 from '../assets/ebook/content2.mp4';
-import content3 from '../assets/ebook/content3.mp4';
 import content4 from '../assets/ebook/content4.mp4';
 import content5 from '../assets/ebook/content5.mp4';
-import comingSoon from '../assets/ebook/coming-soon.png';
-import testimonial2 from '../assets/ebook/melon-tusk.png';
-import testimonial4 from '../assets/ebook/parry-lage.png';
-import testimonial5 from '../assets/ebook/beff-jezos.png';
+import testimonial_fun_1 from '../assets/ebook/melon-tusk.png';
+import testimonial_fun_2 from '../assets/ebook/parry-lage.png';
+import testimonial_fun_3 from '../assets/ebook/beff-jezos.png';
+import testimonial_lionel from '../assets/ebook/lionel.png';
+import testimonial_utsav from '../assets/ebook/utsav.png';
+import testimonial_pierre from '../assets/ebook/pierre.png';
+import testimonial_virgile from '../assets/ebook/virgile.png';
+import testimonial_paul from '../assets/ebook/paul.png';
+import testimonial_thomas from '../assets/ebook/thomas.png';
+import testimonial_cedric from '../assets/ebook/cedric.png';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
-	<head>
-		<!-- Global Metadata -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- Canonical URL -->
-		<link rel="canonical" href={canonicalURL} />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
 
-		<!-- Primary Meta Tags -->
-		<title>You Don’t Need JavaScript | A Practical CSS eBook</title>
-		<meta name="title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
-		<meta
-			name="description"
-			content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this practical ebook."
-		/>
+    <!-- Primary Meta Tags -->
+    <title>You Don’t Need JavaScript | A Practical CSS eBook</title>
+    <meta name="title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
+    <meta
+      name="description"
+      content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this practical ebook."
+    />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
-		<meta
-			property="og:description"
-			content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
-		/>
-		<meta property="og:image" content={new URL('ebook.png', Astro.site)} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
+    <meta
+      property="og:description"
+      content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
+    />
+    <meta property="og:image" content={new URL('ebook.png', Astro.site)} />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
-		<meta
-			property="twitter:description"
-			content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
-		/>
-		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
-		<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
-	</head>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
+    <meta
+      property="twitter:description"
+      content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS—no JavaScript required."
+    />
+    <meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
+  </head>
 
-	<body>
-		<section class="hero">
-			<div class="hero__container">
-				<div class="hero__content">
-					<h1 class="hero__title">A practical guide to building modern components with CSS</h1>
-					<p class="hero__subtitle">
-						Learn how to build lightweight CSS components without JavaScript. Improve your site's speed, reduce bugs,
-						and develop faster with real-world methods.
-					</p>
+  <body>
+    <section class="hero">
+      <div class="hero__container">
+        <div class="hero__content">
+          <h1 class="hero__title"><i>You Don't Need JavaScript</i></h1>
+          <h2 class="hero__subtitle">A practical guide for building modern components with CSS</h2>
+          <p class="hero__description">
+            <i>You Don’t Need JavaScript</i> is a complete, 125-page book packed with modern CSS techniques, real-world examples,
+            and step-by-step tutorials. Learn how to replace unnecessary JavaScript with lightweight CSS components that
+            are faster, easier to maintain, and future-proof.
+          </p>
 
-					<p class="hero__info">Sign up now and get a surprise when the book launches.</p>
-					<form
-						action="https://app.kit.com/forms/7980076/subscriptions"
-						class="seva-form formkit-form"
-						method="post"
-						data-sv-form="7980076"
-						data-uid="d8415b0024"
-						data-format="inline"
-						data-version="5"
-					>
-						<div data-style="clean">
-							<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-							<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-								<div class="formkit-field">
-									<input
-										class="formkit-input"
-										name="email_address"
-										aria-label="Email Address"
-										placeholder="Email Address"
-										required
-										type="email"
-									/>
-								</div>
-								<button
-									type="submit"
-									data-element="submit"
-									class="formkit-submit formkit-submit button"
-									aria-label="Notify me"
-								>
-									Notify Me
-								</button>
-								<svg
-									fill="#696969"
-									version="1.1"
-									viewBox="0 0 367.339 367.34"
-									xml:space="preserve"
-									transform="rotate(260)"
-								>
-									<path
-										d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-									></path>
-								</svg>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="hero__image">
-					<div class="background"></div>
-					<Picture
-						src={comingSoon}
-						formats={['avif', 'webp', 'jpg']}
-						width="200"
-						height="200"
-						alt="Coming soon badge"
-						class="coming-soon"
-					/>
-					<Picture
-						src={ebook}
-						formats={['avif', 'webp', 'png']}
-						width="500"
-						class="book"
-						height="800"
-						alt="You don't need JavaScript ebook cover"
-					/>
-				</div>
-			</div>
-		</section>
+          <a href="#pricing" class="button">Buy now</a>
+          <p>
+            Do you want to see a preview first? <a href="/YDNJS-preview.pdf" target="_blank">Download a preview.</a>
+          </p>
+        </div>
+        <div class="hero__image">
+          <div class="background"></div>
+          <Picture
+            src={ebook}
+            formats={['avif', 'webp', 'png']}
+            width="500"
+            class="book"
+            height="800"
+            alt="You don't need JavaScript ebook cover"
+          />
+        </div>
+      </div>
+    </section>
 
-		<section class="learning">
-			<div class="learning__container">
-				<h2 class="learning__title">What you will learn</h2>
+    <section class="learning">
+      <div class="learning__container">
+        <h2 class="learning__title">What you will learn</h2>
 
-				<div class="learning__steps">
-					<div class="step">
-						<div>
-							<h3 class="step__title">Create a popover menu with pure CSS</h3>
-							<p class="step__description">
-								Thanks to the Popover API, you can build an accessible drawer menu that works seamlessly across almost
-								all devices. This technique can be extended to create a variety of interactive components.
-							</p>
-						</div>
-						<video autoplay loop muted playsinline width="300" class="step__video">
-							<source src={content1} type="video/mp4" />
-						</video>
-						<svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve" transform="rotate(90)">
-							<path
-								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-							></path>
-						</svg>
-					</div>
+        <div class="learning__steps">
+          <div class="step">
+            <div>
+              <h3 class="step__title">Create a popover menu with pure CSS</h3>
+              <p class="step__description">
+                Thanks to the Popover API, you can build an accessible drawer menu that works seamlessly across almost
+                all devices. This technique can be extended to create a variety of interactive components.
+              </p>
+            </div>
+            <video autoplay loop muted playsinline width="300" class="step__video">
+              <source src={content1} type="video/mp4" />
+            </video>
+            <svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve">
+              <path
+                d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+              ></path>
+            </svg>
+          </div>
 
-					<div class="step">
-						<div>
-							<h3 class="step__title">Create accessible accordions easily in CSS</h3>
-							<p class="step__description">
-								Using semantic HTML and modern CSS, you can build accordions that are fully accessible and work
-								seamlessly across devices. Perfect for FAQs, content toggles, and more.
-							</p>
-						</div>
-						<video autoplay loop muted playsinline width="300" class="step__video">
-							<source src={content2} type="video/mp4" />
-						</video>
+          <div class="step">
+            <div>
+              <h3 class="step__title">Create accessible accordions easily in CSS</h3>
+              <p class="step__description">
+                Using semantic HTML and modern CSS, you can build accordions that are fully accessible and work
+                seamlessly across devices. Perfect for FAQs, content toggles, and more.
+              </p>
+            </div>
+            <video autoplay loop muted playsinline width="300" class="step__video">
+              <source src={content2} type="video/mp4" />
+            </video>
 
-						<svg
-							fill="#696969"
-							version="1.1"
-							viewBox="0 0 367.339 367.34"
-							xml:space="preserve"
-							transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)"
-						>
-							<path
-								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-							></path>
-						</svg>
-					</div>
+            <svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve">
+              <path
+                d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+              ></path>
+            </svg>
+          </div>
 
-					<div class="step">
-						<div>
-							<h3 class="step__title">Create awesome looping sliders free of JavaScript</h3>
-							<p class="step__description">
-								Learn how to build smooth, infinite-loop sliders with pure CSS techniques. Great for carousels,
-								testimonials, and interactive galleries—no JavaScript required.
-							</p>
-						</div>
-						<video autoplay loop muted playsinline width="300" class="step__video">
-							<source src={content3} type="video/mp4" />
-						</video>
-						<svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve" transform="rotate(90)">
-							<path
-								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-							></path>
-						</svg>
-					</div>
+          <div class="step">
+            <div>
+              <h3 class="step__title">Create stunning scroll-driven animations 100% CSS</h3>
+              <p class="step__description">
+                Discover how to use CSS and a sprinkle of modern APIs to animate elements on scroll, adding
+                interactivity and depth to your pages while keeping performance in mind.
+              </p>
+            </div>
+            <video autoplay loop muted playsinline width="300" class="step__video">
+              <source src={content4} type="video/mp4" />
+            </video>
+            <svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve">
+              <path
+                d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
+              ></path>
+            </svg>
+          </div>
 
-					<div class="step">
-						<div>
-							<h3 class="step__title">Create stunning scroll-driven animations 100% CSS</h3>
-							<p class="step__description">
-								Discover how to use CSS and a sprinkle of modern APIs to animate elements on scroll, adding
-								interactivity and depth to your pages while keeping performance in mind.
-							</p>
-						</div>
-						<video autoplay loop muted playsinline width="300" class="step__video">
-							<source src={content4} type="video/mp4" />
-						</video>
-						<svg
-							fill="#696969"
-							version="1.1"
-							viewBox="0 0 367.339 367.34"
-							xml:space="preserve"
-							transform="rotate(270)matrix(-1, 0, 0, 1, 0, 0)"
-						>
-							<path
-								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-							></path>
-						</svg>
-					</div>
+          <div class="step">
+            <div>
+              <h3 class="step__title">And a lot more...</h3>
+              <p class="step__description">
+                Explore advanced components you never thought possible with pure CSS. Like dark mode toggles, comparison
+                sliders, anchor navigation, and powerful effects using <code>:has()</code>...
+              </p>
+            </div>
+            <video autoplay loop muted playsinline width="300" class="step__video">
+              <source src={content5} type="video/mp4" />
+            </video>
+          </div>
 
-					<div class="step">
-						<div>
-							<h3 class="step__title">And a lot more...</h3>
-							<p class="step__description">
-								Explore advanced components you never thought possible with pure CSS. Like dark mode toggles, comparison
-								sliders, anchor navigation, and powerful effects using <code>:has()</code>...
-							</p>
-						</div>
-						<video autoplay loop muted playsinline width="300" class="step__video">
-							<source src={content5} type="video/mp4" />
-						</video>
-					</div>
-				</div>
-			</div>
-		</section>
+          <div class="toc">
+            <h3 class="toc__title">COMPLETE TABLE OF CONTENTS</h3>
+            <div class="toc__list">
+              <div class="toc__list-title">
+                <h4>PART 1 - Everyday Features</h4>
+                <span>8 chapters</span>
+              </div>
+              <ol>
+                <li><p>Conditionally Styling with :has() <span>5</span></p></li>
+                <li><p>Dark Mode in CSS <span>12</span></p></li>
 
-		<section class="features">
-			<div class="features__container">
-				<h2 class="features__title">What makes the book unique</h2>
+                <li><p>Smooth Scrolling to Sections <span>18</span></p></li>
+                <li>
+                  <p>
+                    Native Modals with {`<dialog>`}
+                    <span>22</span>
+                  </p>
+                </li>
+                <li><p>Accordions with Pure CSS <span>27</span></p></li>
+                <li><p>Pure-CSS Automatic Slider <span>32</span></p></li>
+                <li><p>Auto-Numbered Headings <span>39</span></p></li>
+                <li><p>Other Use-Case of Counter <span>43</span></p></li>
+              </ol>
 
-				<ul class="features__list">
-					<li class="feature">
-						<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
-							<path
-								d="M16 8V5L19 2L20 4L22 5L19 8H16ZM16 8L12 11.9999M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"></path>
-						</svg>
-						<div>
-							<h3 class="feature__title">Clear and direct approach</h3>
-							<p class="feature__description">
-								If you're a visual learner, this book is for you. It focuses more on actionable advice and tips.
-							</p>
-						</div>
-					</li>
+              <div class="toc__list-title">
+                <h4>PART 2 - Modern CSS Power Moves</h4>
+                <span>5 chapters</span>
+              </div>
+              <ol>
+                <li><p>Custom Border Animations<span>48</span></p></li>
+                <li><p>View Transitions<span>55</span></p></li>
+                <li><p>CSS Motion Path<span>59</span></p></li>
+                <li><p>CSS Mask Effects<span>68</span></p></li>
+                <li><p>CSS-Only Form Validation<span>77</span></p></li>
+              </ol>
 
-					<li class="feature">
-						<svg width="64px" height="64px" viewBox="0 0 20 20" fill="none">
-							<path
-								fill="currentColor"
-								fill-rule="evenodd"
-								d="M3 10a7 7 0 019.307-6.611 1 1 0 00.658-1.889 9 9 0 105.98 7.501 1 1 0 00-1.988.22A7 7 0 113 10zm14.75-5.338a1 1 0 00-1.5-1.324l-6.435 7.28-3.183-2.593a1 1 0 00-1.264 1.55l3.929 3.2a1 1 0 001.38-.113l7.072-8z"
-							></path>
-						</svg>
-						<div>
-							<h3 class="feature__title">Real-life examples</h3>
-							<p class="feature__description">
-								All the examples in the book are things that you face in your day to day work. Nothing is abstract.
-							</p>
-						</div>
-					</li>
+              <div class="toc__list-title">
+                <h4>PART 3 - A Glimpse of the Future</h4>
+                <span>6 chapters</span>
+              </div>
+              <ol>
+                <li><p>Scroll-Driven Animations<span>83</span></p></li>
+                <li><p>Native Popovers<span>90</span></p></li>
+                <li><p>Customized Selects<span>97</span></p></li>
+                <li><p>Anchor Positioning<span>106</span></p></li>
+                <li><p>Native CSS Carousels<span>112</span></p></li>
+                <li><p>And more to come...<span>118</span></p></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-					<li class="feature">
-						<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
-							<path
-								d="M8 5C7.44772 5 7 5.44772 7 6C7 6.55228 7.44772 7 8 7H12.2344L8.50386 9.13176C8.11017 9.35672 7.91712 9.81842 8.0335 10.2567C8.14988 10.6949 8.54657 11 9 11H13.8C13.9105 11 14 11.0895 14 11.2V13.5029C14 13.556 13.9789 13.6069 13.9414 13.6444L12.1414 15.4444C12.0633 15.5225 11.9367 15.5225 11.8586 15.4444L9.70711 13.2929C9.31658 12.9024 8.68342 12.9024 8.2929 13.2929C7.90237 13.6834 7.90237 14.3166 8.2929 14.7071L11.2929 17.7071C11.6834 18.0976 12.3166 18.0976 12.7071 17.7071L15.7071 14.7071C15.8946 14.5196 16 14.2652 16 14V10C16 9.44772 15.5523 9 15 9H12.7656L16.4961 6.86824C16.8898 6.64328 17.0829 6.18158 16.9665 5.74333C16.8501 5.30509 16.4534 5 16 5H8Z"
-								fill="currentColor"></path>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M4.30602 1C2.48038 1 1.07799 2.61696 1.33617 4.42426L2.90519 15.4074C3.00668 16.1178 3.35946 16.7683 3.89953 17.2409L10.0245 22.6002C11.1556 23.5899 12.8444 23.5899 13.9755 22.6002L20.1005 17.2409C20.6405 16.7683 20.9933 16.1178 21.0948 15.4074L22.6638 4.42426C22.922 2.61696 21.5196 1 19.694 1H4.30602ZM3.31607 4.14142C3.23001 3.53899 3.69747 3 4.30602 3H19.694C20.3025 3 20.77 3.53899 20.6839 4.14142L19.1149 15.1245C19.0811 15.3613 18.9635 15.5782 18.7835 15.7357L12.6585 21.095C12.2815 21.4249 11.7185 21.4249 11.3415 21.095L5.21653 15.7357C5.03651 15.5782 4.91892 15.3613 4.88509 15.1245L3.31607 4.14142Z"
-								fill="currentColor"></path>
-						</svg>
-						<div>
-							<h3 class="feature__title">Modern CSS techniques</h3>
-							<p class="feature__description">
-								Learn the latest CSS features and best practices that make JavaScript unnecessary for many UI
-								interactions.
-							</p>
-						</div>
-					</li>
+    <section class="features">
+      <div class="features__container">
+        <h2 class="features__title">What makes this guide unique</h2>
 
-					<li class="feature">
-						<svg fill="currentColor" width="64px" height="64px" viewBox="0 0 32 32">
-							<path
-								d="M30.039 2.719c-0.143-0.544-0.631-0.939-1.211-0.939-0.395 0-0.748 0.184-0.977 0.47l-0.002 0.002c-1.639 1.931-3.786 3.384-6.235 4.158l-0.096 0.026c-1.66 0.54-3.592 0.925-5.588 1.079l-0.086 0.005c-2.296 0.094-4.448 0.609-6.414 1.468l0.114-0.045c-3.466 1.876-5.78 5.485-5.78 9.633 0 0.064 0.001 0.127 0.002 0.19l-0-0.010c0.010 0.318 0.031 0.631 0.068 0.945 0.144 1.149 0.443 2.193 0.877 3.163l-0.028-0.070c-1.472 1.947-2.758 4.166-3.758 6.536l-0.076 0.204c-0.064 0.145-0.101 0.314-0.101 0.492 0 0.512 0.309 0.953 0.75 1.146l0.008 0.003c0.144 0.064 0.311 0.102 0.487 0.102 0.001 0 0.003 0 0.004 0h-0c0 0 0.001 0 0.001 0 0.512 0 0.953-0.308 1.146-0.75l0.003-0.008c0.863-2.053 1.833-3.813 2.96-5.455l-0.066 0.102c1.149 1.549 2.642 2.78 4.37 3.593l0.070 0.030c1.482 0.678 3.216 1.072 5.041 1.072 0.026 0 0.052-0 0.077-0l-0.004 0c1.957-0.008 3.82-0.406 5.517-1.119l-0.095 0.035c5.424-2.452 9.281-7.517 9.983-13.546l0.008-0.079c0.151-1.153 0.237-2.486 0.237-3.839 0-3.061-0.441-6.020-1.264-8.815l0.056 0.22zM28.537 14.781c-0.578 5.22-3.848 9.56-8.373 11.642l-0.090 0.037c-1.28 0.561-2.772 0.888-4.34 0.888-1.522 0-2.972-0.308-4.292-0.864l0.073 0.027c-1.604-0.758-2.91-1.921-3.822-3.358l-0.022-0.037c3.354-3.495 8.014-5.715 13.193-5.872l0.029-0.001c0.636-0.064 1.129-0.596 1.129-1.244 0-0.69-0.56-1.25-1.25-1.25-0.043 0-0.085 0.002-0.126 0.006l0.005-0c-5.472 0.226-10.391 2.428-14.097 5.906l0.012-0.011c-0.102-0.347-0.188-0.766-0.242-1.196l-0.004-0.042c-0.027-0.24-0.045-0.482-0.051-0.723-0.001-0.048-0.002-0.105-0.002-0.162 0-3.16 1.757-5.909 4.348-7.325l0.044-0.022c1.6-0.679 3.456-1.104 5.402-1.174l0.027-0.001c2.288-0.177 4.409-0.604 6.429-1.258l-0.195 0.055c2.238-0.74 4.171-1.848 5.83-3.267l-0.023 0.020c0.404 1.735 0.635 3.727 0.635 5.773 0 1.216-0.082 2.414-0.24 3.587l0.015-0.137z"
-							></path>
-						</svg>
-						<div>
-							<h3 class="feature__title">Faster and greener</h3>
-							<p class="feature__description">
-								Building with pure CSS means lighter pages, faster load times, and a smaller carbon footprint.
-							</p>
-						</div>
-					</li>
-				</ul>
+        <ul class="features__list">
+          <li class="feature">
+            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M16 8V5L19 2L20 4L22 5L19 8H16ZM16 8L12 11.9999M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <div>
+              <h3 class="feature__title">Clear and direct approach</h3>
+              <p class="feature__description">
+                If you're a visual learner, this book is for you. It focuses more on actionable advice and tips.
+              </p>
+            </div>
+          </li>
 
-				<form
-					action="https://app.kit.com/forms/7980076/subscriptions"
-					class="seva-form formkit-form"
-					method="post"
-					data-sv-form="7980076"
-					data-uid="d8415b0024"
-					data-format="inline"
-					data-version="5"
-				>
-					<p>Sign up now and get a surprise when the book launches.</p>
-					<div data-style="clean">
-						<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-							<div class="formkit-field">
-								<input
-									class="formkit-input"
-									name="email_address"
-									aria-label="Email Address"
-									placeholder="Email Address"
-									required
-									type="email"
-								/>
-							</div>
-							<button
-								type="submit"
-								data-element="submit"
-								class="formkit-submit formkit-submit button"
-								aria-label="Notify me"
-							>
-								Notify Me
-							</button>
-							<svg
-								fill="#696969"
-								version="1.1"
-								viewBox="0 0 367.339 367.34"
-								xml:space="preserve"
-								transform="rotate(260)"
-							>
-								<path
-									d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-								></path>
-							</svg>
-						</div>
-					</div>
-				</form>
-			</div>
-		</section>
+          <li class="feature">
+            <svg width="64px" height="64px" viewBox="0 0 20 20" fill="none">
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M3 10a7 7 0 019.307-6.611 1 1 0 00.658-1.889 9 9 0 105.98 7.501 1 1 0 00-1.988.22A7 7 0 113 10zm14.75-5.338a1 1 0 00-1.5-1.324l-6.435 7.28-3.183-2.593a1 1 0 00-1.264 1.55l3.929 3.2a1 1 0 001.38-.113l7.072-8z"
+              ></path>
+            </svg>
+            <div>
+              <h3 class="feature__title">Real-life examples</h3>
+              <p class="feature__description">
+                All the examples in the book are things that you face in your day to day work. Nothing is abstract.
+              </p>
+            </div>
+          </li>
 
-		<div class="slider" style="--width: 270px; --height: 68px; --quantity: 7;">
-			<div class="slider__container">
-				<div class="list">
-					<div class="item" style="--position: 1;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 2;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 3;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 4;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 5;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 6;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 7;" aria-hidden="true">
-						<span class="starburst"></span>You don't need JS!
-					</div>
-				</div>
-			</div>
-		</div>
+          <li class="feature">
+            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M8 5C7.44772 5 7 5.44772 7 6C7 6.55228 7.44772 7 8 7H12.2344L8.50386 9.13176C8.11017 9.35672 7.91712 9.81842 8.0335 10.2567C8.14988 10.6949 8.54657 11 9 11H13.8C13.9105 11 14 11.0895 14 11.2V13.5029C14 13.556 13.9789 13.6069 13.9414 13.6444L12.1414 15.4444C12.0633 15.5225 11.9367 15.5225 11.8586 15.4444L9.70711 13.2929C9.31658 12.9024 8.68342 12.9024 8.2929 13.2929C7.90237 13.6834 7.90237 14.3166 8.2929 14.7071L11.2929 17.7071C11.6834 18.0976 12.3166 18.0976 12.7071 17.7071L15.7071 14.7071C15.8946 14.5196 16 14.2652 16 14V10C16 9.44772 15.5523 9 15 9H12.7656L16.4961 6.86824C16.8898 6.64328 17.0829 6.18158 16.9665 5.74333C16.8501 5.30509 16.4534 5 16 5H8Z"
+                fill="currentColor"></path>
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.30602 1C2.48038 1 1.07799 2.61696 1.33617 4.42426L2.90519 15.4074C3.00668 16.1178 3.35946 16.7683 3.89953 17.2409L10.0245 22.6002C11.1556 23.5899 12.8444 23.5899 13.9755 22.6002L20.1005 17.2409C20.6405 16.7683 20.9933 16.1178 21.0948 15.4074L22.6638 4.42426C22.922 2.61696 21.5196 1 19.694 1H4.30602ZM3.31607 4.14142C3.23001 3.53899 3.69747 3 4.30602 3H19.694C20.3025 3 20.77 3.53899 20.6839 4.14142L19.1149 15.1245C19.0811 15.3613 18.9635 15.5782 18.7835 15.7357L12.6585 21.095C12.2815 21.4249 11.7185 21.4249 11.3415 21.095L5.21653 15.7357C5.03651 15.5782 4.91892 15.3613 4.88509 15.1245L3.31607 4.14142Z"
+                fill="currentColor"></path>
+            </svg>
+            <div>
+              <h3 class="feature__title">Modern CSS techniques</h3>
+              <p class="feature__description">
+                Learn the latest CSS features and best practices that make JavaScript unnecessary for many UI
+                interactions.
+              </p>
+            </div>
+          </li>
 
-		<section class="testimonials">
-			<h2 class="testimonials__title">Loved by the community</h2>
+          <li class="feature">
+            <svg fill="currentColor" width="64px" height="64px" viewBox="0 0 32 32">
+              <path
+                d="M30.039 2.719c-0.143-0.544-0.631-0.939-1.211-0.939-0.395 0-0.748 0.184-0.977 0.47l-0.002 0.002c-1.639 1.931-3.786 3.384-6.235 4.158l-0.096 0.026c-1.66 0.54-3.592 0.925-5.588 1.079l-0.086 0.005c-2.296 0.094-4.448 0.609-6.414 1.468l0.114-0.045c-3.466 1.876-5.78 5.485-5.78 9.633 0 0.064 0.001 0.127 0.002 0.19l-0-0.010c0.010 0.318 0.031 0.631 0.068 0.945 0.144 1.149 0.443 2.193 0.877 3.163l-0.028-0.070c-1.472 1.947-2.758 4.166-3.758 6.536l-0.076 0.204c-0.064 0.145-0.101 0.314-0.101 0.492 0 0.512 0.309 0.953 0.75 1.146l0.008 0.003c0.144 0.064 0.311 0.102 0.487 0.102 0.001 0 0.003 0 0.004 0h-0c0 0 0.001 0 0.001 0 0.512 0 0.953-0.308 1.146-0.75l0.003-0.008c0.863-2.053 1.833-3.813 2.96-5.455l-0.066 0.102c1.149 1.549 2.642 2.78 4.37 3.593l0.070 0.030c1.482 0.678 3.216 1.072 5.041 1.072 0.026 0 0.052-0 0.077-0l-0.004 0c1.957-0.008 3.82-0.406 5.517-1.119l-0.095 0.035c5.424-2.452 9.281-7.517 9.983-13.546l0.008-0.079c0.151-1.153 0.237-2.486 0.237-3.839 0-3.061-0.441-6.020-1.264-8.815l0.056 0.22zM28.537 14.781c-0.578 5.22-3.848 9.56-8.373 11.642l-0.090 0.037c-1.28 0.561-2.772 0.888-4.34 0.888-1.522 0-2.972-0.308-4.292-0.864l0.073 0.027c-1.604-0.758-2.91-1.921-3.822-3.358l-0.022-0.037c3.354-3.495 8.014-5.715 13.193-5.872l0.029-0.001c0.636-0.064 1.129-0.596 1.129-1.244 0-0.69-0.56-1.25-1.25-1.25-0.043 0-0.085 0.002-0.126 0.006l0.005-0c-5.472 0.226-10.391 2.428-14.097 5.906l0.012-0.011c-0.102-0.347-0.188-0.766-0.242-1.196l-0.004-0.042c-0.027-0.24-0.045-0.482-0.051-0.723-0.001-0.048-0.002-0.105-0.002-0.162 0-3.16 1.757-5.909 4.348-7.325l0.044-0.022c1.6-0.679 3.456-1.104 5.402-1.174l0.027-0.001c2.288-0.177 4.409-0.604 6.429-1.258l-0.195 0.055c2.238-0.74 4.171-1.848 5.83-3.267l-0.023 0.020c0.404 1.735 0.635 3.727 0.635 5.773 0 1.216-0.082 2.414-0.24 3.587l0.015-0.137z"
+              ></path>
+            </svg>
+            <div>
+              <h3 class="feature__title">Faster and greener</h3>
+              <p class="feature__description">
+                Building with pure CSS means lighter pages, faster load times, and a smaller carbon footprint.
+              </p>
+            </div>
+          </li>
+        </ul>
+        <div class="cta__button"><a class="button" href="#pricing">Buy now</a></div>
+      </div>
+    </section>
 
-			<div class="testimonials__container">
-				<div class="heart heart-1"></div>
-				<ul class="testimonial__list">
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial2}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Melon Tusk <br /> <span>Former Framework Addict</span></p>
-						</div>
-						<blockquote class="testimonial__text">
-							This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
-						</blockquote>
-					</li>
+    <div class="slider" style="--width: 270px; --height: 68px; --quantity: 7;">
+      <div class="slider__container">
+        <div class="list">
+          <div class="item" style="--position: 1;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 2;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 3;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 4;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 5;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 6;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+          <div class="item" style="--position: 7;" aria-hidden="true">
+            <span class="starburst"></span>You don't need JS!
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial4}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Parry Lage <br /> <span>Proud jQuery Defender</span></p>
-						</div>
-						<blockquote class="testimonial__text">
-							Tried the CSS-only dropdown technique. It worked instantly. Honestly, it felt wrong.
-						</blockquote>
-					</li>
+    <section class="testimonials">
+      <h2 class="testimonials__title">Loved by the community</h2>
+      <div class="switcher">
+        <input type="radio" name="switcher" value="regular" id="regular" checked />
+        <label for="regular">Regular</label>
 
-					<li class="testimonial">
-						<div class="testimonial__content">
-							<Picture
-								src={testimonial5}
-								formats={['avif', 'webp', 'jpg']}
-								width="168"
-								height="168"
-								alt="Second testimonial"
-								class="testimonial__image"
-							/>
-							<p class="testimonial__author">Beff Jezos <br /> <span>JavaScript Maximalist</span></p>
-						</div>
-						<blockquote class="testimonial__text">
-							Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
-						</blockquote>
-					</li>
-				</ul>
-				<div class="heart heart-2"></div>
-			</div>
-		</section>
+        <input type="radio" name="switcher" value="fun" id="fun" />
+        <label for="fun">Fun Mode</label>
+      </div>
 
-		<section class="about">
-			<div class="about__container">
-				<h2 class="about__title">About the author</h2>
-				<div class="about__content">
-					<div class="about__author">
-						<Picture
-							src={profile}
-							formats={['avif', 'webp', 'jpg']}
-							width="160"
-							height="160"
-							alt="Theo Soti profile"
-							class="coming-soon"
-						/>
-						<div class="author__info">
-							<p class="author__name">Theo Soti</p>
-							<p class="author__title">Webdesigner & Front-end Developer</p>
-						</div>
-					</div>
+      <div class="testimonials__container testimonials__regular">
+        <div class="heart heart-1"></div>
+        <ul class="testimonial__list">
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_utsav}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Utsav Meena <br /> <span>CSS Content Creator</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on
+              accessibility, troubleshooting, and browser compatibility. <br />Hopefully, this will help people
+              appreciate CSS a bit more.
+            </blockquote>
+          </li>
 
-					<p class="about__description">
-						Over the years, I've helped businesses bring their ideas to life through responsive design, modern CSS,
-						fluid and pixel-perfect layouts.
-						<br />This ebook is my way of sharing what I've learned: real-world techniques, smart CSS tricks, and a
-						simpler way to build for the web. Whether you're just starting your front-end journey or looking to
-						modernize your workflow, I hope this book helps you get there, with less JavaScript, and more joy.
-					</p>
-				</div>
-				<div class="about__background"></div>
-			</div>
-		</section>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_lionel}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Lionel Péramo <br /> <span>Fullstack Developer & Content Creator</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Theo brilliantly shows how modern CSS can replace complex JavaScript without losing creativity or
+              functionality. The examples are clear, practical, and inspiring. A refreshing reminder that the simplest
+              tools often create the best results. A must-read for any developer.
+            </blockquote>
+          </li>
 
-		<div class="slider" style="--width: 265px; --height: 68px; --quantity: 7;">
-			<div class="slider__container">
-				<div class="list">
-					<div class="item" style="--position: 1;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 2;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 3;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 4;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 5;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 6;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-					<div class="item" style="--position: 7;" aria-hidden="true">
-						<span class="sparkle"></span>You don't need JS!
-					</div>
-				</div>
-			</div>
-		</div>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_pierre}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Pierre Liegard<br /> <span>Front-end Developer</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              This book offers a welcome reminder of the latest CSS developments at a time when performance matters more
+              than ever.
+            </blockquote>
+          </li>
 
-		<section class="faq">
-			<h2 class="faq__title">Frequently asked questions</h2>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_cedric}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Cedric Molla<br /> <span>Web Developer</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made
+              me want to revisit old projects and try a lighter, CSS-first approach.
+            </blockquote>
+          </li>
 
-			<ul class="faq__container">
-				<li class="accordion">
-					<details open>
-						<summary aria-describedby="accordion1">
-							<p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
-						</summary>
-					</details>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_virgile}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Virgile Gouala<br /> <span>Engineering Manager</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              <i>You Don’t Need JavaScript</i> introduced me to the “Rule of Least Power”, a principle that is both simple
+              and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological,
+              thoughtful, and handcrafted approach to development, reminding us that elegance and impact often arise from
+              simplicity.
+            </blockquote>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_paul}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Paul Wright <br /> <span>Full Stack Web Developer</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
+              chapter. <i>You Don’t Need JavaScript</i> is a breath of fresh air packed with “wait… CSS can do that?!” moments.
+              Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t
+              always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity often live right
+              there in your stylesheet.
+            </blockquote>
+          </li>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_thomas}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Thomas Palef <br /> <span>Author of Make 2D Games</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              I thought I knew CSS, but I was wrong... this book taught me new CSS properties at almost every page!
+            </blockquote>
+          </li>
+        </ul>
+        <div class="heart heart-2"></div>
+      </div>
 
-					<div class="content">
-						<p class="inner" role="definition" id="accordion1">
-							If you're a web developer who wants to build interactive components without relying on JavaScript — and
-							you care about performance, clean code, and saving time — this book is for you.
-						</p>
-					</div>
-				</li>
+      <div class="testimonials__container testimonials__fun">
+        <div class="heart heart-1"></div>
+        <ul class="testimonial__list">
+          <li class="testimonial rotate-right">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_fun_1}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Melon Tusk <br /> <span>Former Framework Addict</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
+            </blockquote>
+          </li>
 
-				<li class="accordion">
-					<details>
-						<summary aria-describedby="accordion2">
-							<p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
-						</summary>
-					</details>
+          <li class="testimonial">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_fun_2}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Parry Lage <br /> <span>Proud jQuery Defender</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Tried the CSS-only dropdown technique. It worked instantly. Honestly, it felt wrong.
+            </blockquote>
+          </li>
 
-					<div class="content">
-						<p class="inner" role="definition" id="accordion2">
-							You don't need to be an expert, but a basic understanding of CSS is recommended. The ebook is
-							beginner-friendly, yet packed with tips and techniques that even seasoned developers will find valuable.
-							You'll learn step-by-step through clear, practical examples.
-						</p>
-					</div>
-				</li>
+          <li class="testimonial rotate-left">
+            <div class="testimonial__content">
+              <Picture
+                src={testimonial_fun_3}
+                formats={['avif', 'webp', 'jpg']}
+                width="168"
+                height="168"
+                alt="Second testimonial"
+                class="testimonial__image"
+              />
+              <p class="testimonial__author">Beff Jezos <br /> <span>JavaScript Maximalist</span></p>
+            </div>
+            <blockquote class="testimonial__text">
+              Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
+            </blockquote>
+          </li>
+        </ul>
+        <div class="heart heart-2"></div>
+      </div>
+    </section>
 
-				<li class="accordion">
-					<details>
-						<summary aria-describedby="accordion3">
-							<p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
-						</summary>
-					</details>
+    <section class="cta">
+      <h2 class="cta__title">30-Day Money-Back Guarantee</h2>
+      <p class="cta__description">
+        If you buy the ebook, but you are not completely satisfied, no worries! <br />Just send me an email at
+        hey@theosoti.com within 30 days and you’ll get a full refund.
+      </p>
+      <!-- <div class="cta__button"><a class="button" href="#pricing">Buy now</a></div> -->
+    </section>
 
-					<div class="content">
-						<p class="inner" role="definition" id="accordion3">
-							You'll learn how to create real-world UI components (like tabs, modals, dropdowns) using only CSS. Plus,
-							you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
-						</p>
-					</div>
-				</li>
+    <section class="about">
+      <div class="about__container">
+        <h2 class="about__title">About the author</h2>
+        <div class="about__content">
+          <div class="about__author">
+            <Picture
+              src={profile}
+              formats={['avif', 'webp', 'jpg']}
+              width="160"
+              height="160"
+              alt="Theo Soti profile"
+              class="coming-soon"
+            />
+            <div class="author__info">
+              <p class="author__name">Theo Soti</p>
+              <p class="author__title">Webdesigner & Front-end Developer</p>
+            </div>
+          </div>
 
-				<li class="accordion">
-					<details>
-						<summary aria-describedby="accordion4">
-							<p class="accordion__title" role="term"><span>When will the ebook be available?</span></p>
-						</summary>
-					</details>
+          <p class="about__description">
+            For the last eight years, I’ve worked with teams to design and build fast, responsive interfaces using
+            modern CSS.
+            <br />
+            Along the way, I started sharing what I learned online. That small habit grew into a community of:
+          </p>
+          <ul class="about__description">
+            <li>16,000+ developers on LinkedIn</li>
+            <li>9 million impressions in a year</li>
+            <li>1,500 newsletter subscribers</li>
+          </ul>
+          <p class="about__description">
+            <i>You Don’t Need JavaScript</i> collects my best CSS techniques and patterns for building fast, modern interfaces
+            with less code and more joy.
+          </p>
+        </div>
+      </div>
+      <div class="about__background"></div>
+    </section>
+  </body>
 
-					<div class="content">
-						<p class="inner" role="definition" id="accordion4">
-							The ebook is currently in preparation. Sign up with your email and you'll be the first to know as soon as
-							it launches — and get an exclusive discount!
-						</p>
-					</div>
-				</li>
+  <div class="slider" style="--width: 265px; --height: 68px; --quantity: 7;">
+    <div class="slider__container">
+      <div class="list">
+        <div class="item" style="--position: 1;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 2;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 3;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 4;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 5;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 6;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+        <div class="item" style="--position: 7;" aria-hidden="true">
+          <span class="sparkle"></span>You don't need JS!
+        </div>
+      </div>
+    </div>
+  </div>
 
-				<li class="accordion">
-					<details>
-						<summary aria-describedby="accordion5">
-							<p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
-						</summary>
-					</details>
+  <section class="pricing" id="pricing">
+    <h2 class="pricing__title">START LEARNING TODAY</h2>
+    <p class="pricing__description">Limited Time Offer: Special discount ends this Saturday!</p>
+    <div class="pricing__container">
+      <div class="pricing__item pricing__item-popular">
+        <div class="pricing__item-tag">30% off</div>
+        <h3 class="pricing__item-title">Complete bundle</h3>
+        <div class="pricing__item-container">
+          <span class="pricing__item-old-price">$69</span>
+          <p class="pricing__item-price"><sup>$</sup>49</p>
+        </div>
+        <hr />
+        <ul class="pricing__item-list">
+          <li>125-page PDF with 27 practical examples</li>
+          <li>Lifetime access & Free updates</li>
+          <li>A library of 27 ready-to-use components</li>
+          <li>A cheat sheet with every property from the book</li>
+        </ul>
+        <a class="button" href="https://buy.stripe.com/cNibJ31oFeng4Vl7Nw1Fe01" target="_blank">Get the bundle</a>
+      </div>
 
-					<div class="content">
-						<p class="inner" role="definition" id="accordion5">
-							Nope, I only used pure HTML & CSS! The only JavaScript I used is for the email form and the small tracking
-							script.
-						</p>
-					</div>
-				</li>
-			</ul>
-		</section>
+      <div class="pricing__item">
+        <div class="pricing__item-tag">25% off</div>
+        <h3 class="pricing__item-title">Basic</h3>
+        <div class="pricing__item-container">
+          <span class="pricing__item-old-price">$39</span>
+          <p class="pricing__item-price"><sup>$</sup>29</p>
+        </div>
 
-		<section class="cta">
-			<h2 class="cta__title">Ready to build faster, cleaner, and greener?</h2>
-			<p class="cta__description">Sign up now and get a surprise when the book launches.</p>
-			<form
-				action="https://app.kit.com/forms/7980076/subscriptions"
-				class="seva-form formkit-form"
-				method="post"
-				data-sv-form="7980076"
-				data-uid="d8415b0024"
-				data-format="inline"
-				data-version="5"
-			>
-				<div data-style="clean">
-					<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-						<div class="formkit-field">
-							<input
-								class="formkit-input"
-								name="email_address"
-								aria-label="Email Address"
-								placeholder="Email Address"
-								required
-								type="email"
-							/>
-						</div>
-						<button
-							type="submit"
-							data-element="submit"
-							class="formkit-submit formkit-submit button"
-							aria-label="Notify me"
-						>
-							Notify Me
-						</button>
-						<svg fill="#696969" version="1.1" viewBox="0 0 367.339 367.34" xml:space="preserve" transform="rotate(260)">
-							<path
-								d="M337.591,0.932c-13.464,6.12-26.315,12.852-39.168,20.196c-11.628,6.12-25.704,12.24-35.496,21.42 c-5.508,4.896,0,15.3,7.344,12.852c0,0,0.612,0,0.612-0.612c1.836,1.224,3.061,2.448,4.896,4.284c0,0.612,0.611,1.836,0.611,2.448 c0.612,1.224,1.836,2.448,3.061,3.672c-17.748,33.048-34.272,66.096-55.08,96.696c-6.12,9.18-12.853,17.748-20.808,25.704 c-19.584-31.212-51.409-67.32-89.965-60.588c-50.796,9.18-23.256,63.647,3.06,82.008c31.212,22.644,58.14,21.42,85.068,0 c12.24,20.808,20.809,44.063,19.584,66.708c-1.836,54.468-50.796,63.647-91.8,49.571c6.12-15.912,7.956-34.271,4.284-50.184 c-6.12-28.764-50.184-54.468-75.888-34.272c-25.092,20.196,22.032,71.604,37.332,82.009c4.284,3.06,9.18,6.119,14.076,8.567 c-0.612,0.612-0.612,1.225-1.224,1.836c-28.152,44.064-65.484,6.12-82.62-25.092c-2.448-4.896-9.18-0.612-7.344,4.284 c14.076,32.436,42.84,70.38,81.396,48.348c9.18-5.508,17.136-13.464,22.644-23.256c33.66,13.464,72.829,13.464,97.308-17.136 c29.376-36.72,11.017-84.456-8.567-119.952c0.611-0.612,0.611-0.612,1.224-1.224c34.884-33.66,56.304-81.396,78.336-124.236 c4.284,3.06,9.181,6.12,13.464,9.18c3.061,1.836,7.345,1.224,9.792-1.224c17.748-20.808,31.212-45.9,35.496-73.44 C351.055,2.768,344.324-2.128,337.591,0.932z M178.471,207.787c-23.256,13.464-46.512-3.06-63.648-18.972 c-22.644-20.808-16.524-54.468,18.36-47.735c17.748,3.672,31.824,19.584,43.452,32.436c6.12,6.732,12.241,14.687,17.749,23.255 C189.488,201.056,183.979,204.728,178.471,207.787z M116.047,319.171C116.047,319.171,115.435,319.171,116.047,319.171 c-16.524-8.567-28.764-20.808-38.556-36.107c-4.284-6.732-7.956-14.076-9.792-22.032c-6.12-20.808,26.928-10.404,35.496-6.12 C126.451,267.764,124.615,297.14,116.047,319.171z M306.379,67.028c-0.612,0-0.612-0.612-1.224-0.612 c0-1.836-1.225-3.672-3.672-4.896c-4.284-1.836-8.568-4.284-12.853-6.732c-1.836-1.224-5.508-4.896-5.508-3.672 c0-0.612-0.612-1.224-1.224-1.224c6.731-3.672,13.464-8.568,20.195-12.24c8.568-4.896,17.748-9.792,26.929-14.688 C324.74,38.264,316.784,53.564,306.379,67.028z"
-							></path>
-						</svg>
-					</div>
-				</div>
-			</form>
-		</section>
+        <hr />
+        <ul class="pricing__item-list">
+          <li>125-page PDF with 27 practical examples</li>
+          <li>Lifetime access & Free updates</li>
+          <li class="princing__item-cross">✗<span>A library of 27 ready-to-use components</span></li>
+          <li class="princing__item-cross">✗<span>A cheat sheet with every property from the book</span></li>
+        </ul>
+        <a class="button" href="https://buy.stripe.com/3cIdRb0kB3ICafF5Fo1Fe02" target="_blank">Get the ebook</a>
+      </div>
+    </div>
+    <p class="pricing__money-back">30 day money back guaranteed</p>
+  </section>
 
-		<footer>
-			<h2 class="footer__title">Have questions or feedback?</h2>
-			<p class="footer__description">Please get in touch at hey@theosoti.com</p>
-		</footer>
+  <section class="faq">
+    <h2 class="faq__title">Frequently asked questions</h2>
 
-		<script
-			is:inline
-			id="fairlytics-id-ajcu6jd9k7ysd6"
-			data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
-			src="https://app.fairlytics.tech/tag/tag.js"
-			async></script>
-	</body>
+    <ul class="faq__container">
+      <li class="accordion">
+        <details open>
+          <summary aria-describedby="accordion1">
+            <p class="accordion__title" role="term"><span>Who is this ebook for?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion1">
+            If you're a web developer who wants to build interactive components without relying on JavaScript. If you
+            care about performance, clean code, and saving time. Then this book is for you.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion2">
+            <p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion2">
+            You don't need to be an expert, but a basic understanding of CSS is necessary. The ebook is packed with tips
+            and techniques that even seasoned developers will find valuable. You'll learn step-by-step through clear,
+            practical examples.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion3">
+            <p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion3">
+            You'll learn how to create real-world UI components (like tabs, modals, dropdowns, etc.) using only CSS.
+            Plus, you'll discover methods to speed up your pages, write maintainable code, and reduce bugs.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion4">
+            <p class="accordion__title" role="term"><span>What format is the book available in? </span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion4">
+            The book comes as a PDF, so you can read it anywhere. It’s lightweight, easy to navigate, and beautifully
+            formatted for any screen size.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion4">
+            <p class="accordion__title" role="term"><span>Will the book be updated in the future? </span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion4">
+            Yes! Whenever I update <i>You Don’t Need JavaScript</i> with new examples or CSS features, you’ll get all future
+            updates for free!
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion4">
+            <p class="accordion__title" role="term"><span>What if I don’t like the book? </span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion4">
+            No worries. If you buy the book and feel it’s not for you, you can ask for a full refund within 30 days. No
+            hard feelings, no questions asked. I want you to feel completely confident about your purchase. Send me an
+            email at hey@theosoti.com and I'll refund you right away.
+          </p>
+        </div>
+      </li>
+
+      <li class="accordion">
+        <details>
+          <summary aria-describedby="accordion5">
+            <p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
+          </summary>
+        </details>
+
+        <div class="content">
+          <p class="inner" role="definition" id="accordion5">
+            Nope, I only used pure HTML & CSS! The only JavaScript in the page is the small tracking script.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
 </html>
+
+<footer>
+  <h2 class="footer__title">Have questions or feedback?</h2>
+  <p class="footer__description">Please get in touch at hey@theosoti.com</p>
+</footer>
+
+<script
+  is:inline
+  id="fairlytics-id-ajcu6jd9k7ysd6"
+  data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
+  src="https://app.fairlytics.tech/tag/tag.js"
+  async></script>
