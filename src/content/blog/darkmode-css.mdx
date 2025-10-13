@@ -1,6 +1,6 @@
 ---
 title: 'How to Build a Dark Mode Toggle in Pure CSS'
-description: 'Implement a clean, accessible dark mode for your site using just CSS — no JavaScript needed. Includes system preference support and toggle logic.'
+description: 'Implement a clean, accessible dark mode for your site using just CSS. No JavaScript needed. Includes system preference support and toggle logic.'
 pubDate: 'Sep 30 2024'
 heroImage: '/darkmode.png'
 readingTime: '7 min read'
@@ -27,14 +27,14 @@ We'll need a **checkbox** and **some content**.
 
 ```html
 <main class="demo">
-	<input id="demo-darkmode" type="checkbox" />
-	<label for="demo-darkmode">
-		<!-- Checkbox's label -->
-	</label>
+  <input id="demo-darkmode" type="checkbox" />
+  <label for="demo-darkmode">
+    <!-- Checkbox's label -->
+  </label>
 
-	<div class="demo-content">
-		<!-- Your website's content -->
-	</div>
+  <div class="demo-content">
+    <!-- Your website's content -->
+  </div>
 </main>
 ```
 
@@ -42,7 +42,7 @@ import DarkMode1 from '../components/DarkMode/DarkMode1.astro';
 import Wrapper from '../components/Wrapper.astro';
 
 <Wrapper>
-	<DarkMode1 />
+  <DarkMode1 />
 </Wrapper>
 
 We have our HTML structure, now let's set the colors.
@@ -55,9 +55,9 @@ We declare 1 for the text, 1 for the background and one for the links.
 
 ```css
 :root {
-	--c-text: #493c37;
-	--c-background: #eddfe0;
-	--c-primary: #b392f0;
+  --c-text: #493c37;
+  --c-background: #eddfe0;
+  --c-primary: #b392f0;
 }
 ```
 
@@ -66,15 +66,15 @@ Now let's link these variables to their elements.
 ```css
 h1,
 p {
-	color: var(--c-text);
+  color: var(--c-text);
 }
 
 main {
-	background-color: var(--c-background);
+  background-color: var(--c-background);
 }
 
 a {
-	color: var(--c-primary);
+  color: var(--c-primary);
 }
 ```
 
@@ -85,7 +85,7 @@ You can try and change the color values in the interactive example below.
 import DarkMode2 from '../components/DarkMode/DarkMode2.astro';
 
 <Wrapper>
-	<DarkMode2 />
+  <DarkMode2 />
 </Wrapper>
 
 Now we have our HTML and CSS variables set up, but we still miss the main part: the darkmode.<br/>
@@ -98,16 +98,16 @@ Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in
 ```css
 /* Default variables values */
 :root {
-	--c-text: #493c37;
-	--c-background: #eddfe0;
-	--c-primary: #b392f0;
+  --c-text: #493c37;
+  --c-background: #eddfe0;
+  --c-primary: #b392f0;
 }
 
 /* Variables values when the input is checked */
 :root:has(#demo-darkmode:checked) {
-	--c-text: #fff;
-	--c-background: #333;
-	--c-primary: #98fb98;
+  --c-text: #fff;
+  --c-background: #333;
+  --c-primary: #98fb98;
 }
 ```
 
@@ -117,7 +117,7 @@ You can try it out in the interactive demo below.
 import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
 
 <Wrapper>
-	<DarkMode3 />
+  <DarkMode3 />
 </Wrapper>
 
 Our darkmode is working 🎉<br/>
@@ -139,7 +139,7 @@ const checkbox = document.querySelector('#demo-darkmode');
 
 // When the checkbox state change, we store its state in the localStorage
 checkbox.addEventListener('change', function (event) {
-	localStorage.setItem('demo-darkmode', event.currentTarget.checked);
+  localStorage.setItem('demo-darkmode', event.currentTarget.checked);
 });
 
 // Change the checkbox state depending of the value stored in the localStorage
@@ -151,7 +151,7 @@ If you check the checkbox below and reload the page, the interactive demo should
 import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 
 <Wrapper>
-	<DarkMode4 />
+  <DarkMode4 />
 </Wrapper>
 
 In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br/>
@@ -160,13 +160,13 @@ It's functional, easy to implement, easy to maintain, and supported by over 88% 
 Want to see all the code in one place ? Check out [the CodePen](https://codepen.io/theosoti/pen/bGPpvZg) I created.
 
 <p
-	class="codepen"
-	data-height="300"
-	data-default-tab="html"
-	data-slug-hash="qBeOdpE"
-	data-pen-title="DarkMode - Minimal JS"
-	data-user="theosoti"
-	style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+  class="codepen"
+  data-height="300"
+  data-default-tab="html"
+  data-slug-hash="qBeOdpE"
+  data-pen-title="DarkMode - Minimal JS"
+  data-user="theosoti"
+  style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
 ></p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 

@@ -1,6 +1,6 @@
 ---
 title: 'Mastering CSS Container Queries for Adaptive Layouts'
-description: 'Discover how CSS Container Queries let components adapt to their container size—enabling flexible, reusable designs across any screen.'
+description: 'Discover how CSS Container Queries let components adapt to their container size, enabling flexible, reusable designs across any screen.'
 pubDate: 'Apr 04 2025'
 heroImage: '/container-queries.png'
 readingTime: '5 min read'
@@ -14,11 +14,11 @@ import Newsletter from '../../../src/components/Newsletter.astro';
 ## The next step in responsive design: container queries.
 
 <Picture
-	src={transition}
-	alt="Illustration of a layout adapting to container size using CSS container queries for responsiveness."
-	width="400"
-	height="213"
-	style="border: 2px solid var(--border);
+  src={transition}
+  alt="Illustration of a layout adapting to container size using CSS container queries for responsiveness."
+  width="400"
+  height="213"
+  style="border: 2px solid var(--border);
     border-radius: 0;
     display: block; 
 		margin: auto;"
@@ -42,7 +42,7 @@ To use container queries, the first step is to tell CSS which parent element sho
 ```css
 /* Define a container */
 .parent {
-	container-type: inline-size;
+  container-type: inline-size;
 }
 ```
 
@@ -50,13 +50,13 @@ What this does is let the `.parent` element report its **inline size** (basicall
 
 ```css
 .child {
-	/* Default styles go here */
+  /* Default styles go here */
 }
 
 @container (min-width: 40rem) {
-	.child {
-		/* Apply these styles when the container's width is at least 40rem */
-	}
+  .child {
+    /* Apply these styles when the container's width is at least 40rem */
+  }
 }
 ```
 
@@ -71,7 +71,7 @@ In a **small container**, you might want to stack everything inside the card:
 import CQ1 from '../components/ContainerQueries/1.astro';
 
 <Wrapper title="List of cards" overflow="scroll">
-	<CQ1 />
+  <CQ1 />
 </Wrapper>
 
 But in a larger container, you’d want a more horizontal layout inside the card:
@@ -79,20 +79,20 @@ But in a larger container, you’d want a more horizontal layout inside the card
 import CQ2 from '../components/ContainerQueries/2.astro';
 
 <Wrapper title="Single card" overflow="scroll">
-	<CQ2 />
+  <CQ2 />
 </Wrapper>
 
 Here's the html I used for the card:
 
 ```html
 <section class="container">
-	<div class="card">
-		<div class="card__avatar">
-			<img src="..." alt="Avatar" width="120" height="120" />
-		</div>
-		<div class="card__info">...</div>
-		<div class="card__actions">...</div>
-	</div>
+  <div class="card">
+    <div class="card__avatar">
+      <img src="..." alt="Avatar" width="120" height="120" />
+    </div>
+    <div class="card__info">...</div>
+    <div class="card__actions">...</div>
+  </div>
 </section>
 ```
 
@@ -100,30 +100,30 @@ With container queries, you can define a flexible design for this. Just mark the
 
 ```css
 .card {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-areas:
-		'avatar'
-		'infos'
-		'actions';
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'avatar'
+    'infos'
+    'actions';
 }
 .card__avatar {
-	grid-area: avatar;
+  grid-area: avatar;
 }
 .card__info {
-	grid-area: infos;
+  grid-area: infos;
 }
 .card__actions {
-	grid-area: actions;
+  grid-area: actions;
 }
 
 @container (min-width: 18rem) {
-	.card {
-		grid-template-columns: 120px 1fr;
-		grid-template-areas:
-			'avatar infos'
-			'actions actions';
-	}
+  .card {
+    grid-template-columns: 120px 1fr;
+    grid-template-areas:
+      'avatar infos'
+      'actions actions';
+  }
 }
 ```
 
@@ -132,7 +132,7 @@ Try removing and adding cards to see how the layout changes. The card will adapt
 import CQ3 from '../components/ContainerQueries/3.astro';
 
 <Wrapper title="Remove or add cards" overflow="scroll">
-	<CQ3 />
+  <CQ3 />
 </Wrapper>
 
 See how that works? The layout adjusts automatically depending on the space the component has to work with.
@@ -149,8 +149,8 @@ Here’s how it works:
 
 ```css
 .sidebar {
-	container-type: inline-size;
-	container-name: sidebar;
+  container-type: inline-size;
+  container-name: sidebar;
 }
 ```
 
@@ -158,9 +158,9 @@ Now that this container is named, you can write a query like this:
 
 ```css
 @container sidebar (min-width: 30rem) {
-	.widget {
-		/* Styles specific to when the sidebar is wide enough */
-	}
+  .widget {
+    /* Styles specific to when the sidebar is wide enough */
+  }
 }
 ```
 
@@ -170,14 +170,14 @@ Quick tip: You can also set both the type and name in one line like this:
 
 ```css
 .container {
-	container: sidebar / inline-size;
+  container: sidebar / inline-size;
 }
 ```
 
 The format is:
 container: `<name> / <type>`;
 
-This makes your CSS more predictable and your components easier to manage—especially in more complex layouts.
+This makes your CSS more predictable and your components easier to manage, especially in more complex layouts.
 
 ## New units for container queries
 
@@ -187,7 +187,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	width: 50cqw; /* 50% of the container's width */
+     width: 50cqw; /* 50% of the container's width */
    }
    ```
 
@@ -195,7 +195,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	height: 20cqh; /* 20% of the container's height */
+     height: 20cqh; /* 20% of the container's height */
    }
    ```
 
@@ -203,7 +203,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	margin-left: 5cqi; /* 5% of the container’s inline size */
+     margin-left: 5cqi; /* 5% of the container’s inline size */
    }
    ```
 
@@ -211,7 +211,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	padding-bottom: 2cqb; /* 2% of the container's block size */
+     padding-bottom: 2cqb; /* 2% of the container's block size */
    }
    ```
 
@@ -219,7 +219,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	font-size: 2cqmin; /* 2% of the container's smallest dimension */
+     font-size: 2cqmin; /* 2% of the container's smallest dimension */
    }
    ```
 
@@ -227,7 +227,7 @@ Container queries also introduce some exciting new units that make it easier to 
 
    ```css
    .child {
-   	font-size: 3cqmax; /* 3% of the container's largest dimension */
+     font-size: 3cqmax; /* 3% of the container's largest dimension */
    }
    ```
 

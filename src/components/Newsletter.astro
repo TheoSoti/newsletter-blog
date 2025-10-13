@@ -1,174 +1,174 @@
 <section class="newsletter">
-	<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
-	<div class="container">
-		<p class="subscribe-text">
-			Join 1,000+ developers by subscribing to my newsletter
-			<span> for bi-monthly CSS tips and tricks.</span>
-		</p>
+  <script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
+  <div class="container">
+    <p class="subscribe-text">
+      Join 1,500+ developers by subscribing to my newsletter
+      <span> for bi-monthly CSS tips and tricks.</span>
+    </p>
 
-		<form
-			action="https://app.kit.com/forms/7124812/subscriptions"
-			class="seva-form formkit-form"
-			method="post"
-			data-sv-form="7124812"
-			data-uid="db7a3d5935"
-			data-format="inline"
-			data-version="5"
-		>
-			<div data-style="clean">
-				<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
-				<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-					<div class="formkit-field">
-						<input
-							class="formkit-input"
-							name="email_address"
-							aria-label="Email Address"
-							placeholder="Email Address"
-							required=""
-							type="email"
-						/>
-					</div>
-					<button
-						type="submit"
-						data-element="submit"
-						class="formkit-submit formkit-submit button"
-						aria-label="Join the newsletter"
-					>
-						<div class="formkit-spinner">
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-						Join newsletter
-					</button>
-				</div>
-			</div>
-			<p class="nospam">No strings attached, unsubscribe anytime!</p>
-		</form>
-	</div>
+    <form
+      action="https://app.kit.com/forms/7124812/subscriptions"
+      class="seva-form formkit-form"
+      method="post"
+      data-sv-form="7124812"
+      data-uid="db7a3d5935"
+      data-format="inline"
+      data-version="5"
+    >
+      <div data-style="clean">
+        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+        <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+          <div class="formkit-field">
+            <input
+              class="formkit-input"
+              name="email_address"
+              aria-label="Email Address"
+              placeholder="Email Address"
+              required=""
+              type="email"
+            />
+          </div>
+          <button
+            type="submit"
+            data-element="submit"
+            class="formkit-submit formkit-submit button"
+            aria-label="Join the newsletter"
+          >
+            <div class="formkit-spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            Join newsletter
+          </button>
+        </div>
+      </div>
+      <p class="nospam">No strings attached, unsubscribe anytime!</p>
+    </form>
+  </div>
 </section>
 <style>
-	.newsletter {
-		container-type: inline-size;
-		width: calc(100% - 2em);
-		margin: 1em auto;
-	}
-	.formkit-alert-error {
-		padding: 0;
-		list-style-type: none;
-		color: #b82f2f;
-	}
-	.nospam {
-		margin: 5px 0 0;
-		font-size: 0.8em;
-		color: var(--small-text);
-		text-align: center;
-	}
-	.container {
-		border: 4px solid var(--border);
-		background: var(--bg-light);
-		border-bottom-width: 8px;
-		max-width: 1100px;
-		padding: 1em;
-		width: 100%;
-		margin: 0 auto;
-	}
-	form {
-		margin: 1em 0 0;
-	}
-	ul {
-		margin: 0;
-	}
-	.subscribe-text {
-		font-size: 1.2em;
-		margin: 0 0 0.5em;
-		line-height: 1.2;
-		flex: 1 1 auto;
-		text-align: center;
-	}
-	.subscribe-text span {
-		display: block;
-	}
-	.formkit-fields {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-		justify-content: center;
-	}
-	.formkit-field {
-		flex: 1;
-		min-width: 180px;
-		max-width: 240px;
-		margin: 0;
-	}
-	button.button.formkit-submit {
-		padding: 0 0.5em;
-	}
-	.formkit-input {
-		width: 100%;
-		padding: 0 1em;
-		background-color: var(--bg-light);
-		color: var(--text);
-		transition: outline 0.2s ease;
-	}
-	.formkit-input::placeholder {
-		color: var(--small-text);
-		opacity: 1;
-	}
-	.formkit-input:hover,
-	.formkit-input:focus {
-		box-shadow: 0 0 var(--black);
-	}
-	.formkit-input,
-	.button {
-		height: 45px;
-		font-family:
-			system-ui,
-			-apple-system,
-			BlinkMacSystemFont,
-			'Segoe UI',
-			Roboto,
-			Oxygen,
-			Ubuntu,
-			Cantarell,
-			'Open Sans',
-			'Helvetica Neue',
-			sans-serif;
-		border: 2px solid var(--border);
-		border-radius: 6px;
-		font-size: 1em;
-		flex-shrink: 0;
-		font-weight: 500;
-	}
-	@container (min-width: 600px) {
-		.container {
-			padding: 1.5em 2em;
-		}
-		.subscribe-text {
-			margin-bottom: 0;
-		}
-	}
+  .newsletter {
+    container-type: inline-size;
+    width: calc(100% - 2em);
+    margin: 1em auto;
+  }
+  .formkit-alert-error {
+    padding: 0;
+    list-style-type: none;
+    color: #b82f2f;
+  }
+  .nospam {
+    margin: 5px 0 0;
+    font-size: 0.8em;
+    color: var(--small-text);
+    text-align: center;
+  }
+  .container {
+    border: 4px solid var(--border);
+    background: var(--bg-light);
+    border-bottom-width: 8px;
+    max-width: 1100px;
+    padding: 1em;
+    width: 100%;
+    margin: 0 auto;
+  }
+  form {
+    margin: 1em 0 0;
+  }
+  ul {
+    margin: 0;
+  }
+  .subscribe-text {
+    font-size: 1.2em;
+    margin: 0 0 0.5em;
+    line-height: 1.2;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .subscribe-text span {
+    display: block;
+  }
+  .formkit-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .formkit-field {
+    flex: 1;
+    min-width: 180px;
+    max-width: 240px;
+    margin: 0;
+  }
+  button.button.formkit-submit {
+    padding: 0 0.5em;
+  }
+  .formkit-input {
+    width: 100%;
+    padding: 0 1em;
+    background-color: var(--bg-light);
+    color: var(--text);
+    transition: outline 0.2s ease;
+  }
+  .formkit-input::placeholder {
+    color: var(--small-text);
+    opacity: 1;
+  }
+  .formkit-input:hover,
+  .formkit-input:focus {
+    box-shadow: 0 0 var(--black);
+  }
+  .formkit-input,
+  .button {
+    height: 45px;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 1em;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  @container (min-width: 600px) {
+    .container {
+      padding: 1.5em 2em;
+    }
+    .subscribe-text {
+      margin-bottom: 0;
+    }
+  }
 
-	@container (min-width: 740px) {
-		.container {
-			display: flex;
-			gap: 50px;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-		}
+  @container (min-width: 740px) {
+    .container {
+      display: flex;
+      gap: 50px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-		.subscribe-text {
-			flex-shrink: 0;
-			text-align: left;
-		}
+    .subscribe-text {
+      flex-shrink: 0;
+      text-align: left;
+    }
 
-		form {
-			margin-top: 0;
-		}
+    form {
+      margin-top: 0;
+    }
 
-		.nospam {
-			text-align: left;
-		}
-	}
+    .nospam {
+      text-align: left;
+    }
+  }
 </style>
