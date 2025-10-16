@@ -7,29 +7,29 @@ import { SITE_DESCRIPTION } from '../consts';
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title="Successfully subscribed to the newsletter" description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Success!</h1>
-			<p>You have successfully subscribed to the newsletter.</p>
-		</main>
-		<Footer isNewsletter="false" />
-	</body>
+  <head>
+    <BaseHead title="Successfully subscribed to the newsletter" description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Success!</h1>
+      <p>You have successfully subscribed to the newsletter.</p>
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style>
-	main {
-		padding: 5em 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	h1,
-	p {
-		text-align: center;
-	}
+  main {
+    padding: 5em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h1,
+  p {
+    text-align: center;
+  }
 </style>

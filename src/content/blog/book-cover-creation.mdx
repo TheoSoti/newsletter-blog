@@ -1,5 +1,5 @@
 ---
-title: 'How I Designed My Ebook Cover'
+title: 'My Iterative Process to Create a Book Cover'
 description: 'A behind the scenes look at how I designed my ebook cover, from AI drafts and Photopea mockups to color matching and a clean, minimal design style.'
 pubDate: 'Oct 14 2025'
 heroImage: '/book-cover-creation.png'
@@ -13,11 +13,13 @@ import backgroundpattern from '../../assets/blog/ebook-creation/background-patte
 import finalbookcover from '../../assets/blog/ebook-creation/final-book-cover.png';
 import photopea from '../../assets/blog/ebook-creation/photopea.png';
 import covercreation from '../../assets/blog/ebook-creation/book-cover-creation.png';
+import flatcover from '../../assets/blog/ebook-creation/flat-cover-1.png';
+import comparison from '../../assets/blog/ebook-creation/comparison-feedback.png';
 import Newsletter from '../../../src/components/Newsletter.astro';
 
 ## Introduction
 
-When I started working on the cover for my ebook [You Don’t Need JavaScript](https://theosoti.com/you-dont-need-js/), I thought it would be quick.
+When I started working on the cover for my book [You Don’t Need JavaScript](https://theosoti.com/you-dont-need-js/), I thought it would be quick.
 Turns out, I went through a few different experiments before getting something that actually felt right.
 
 Design is rarely linear. It’s more like a loop of small tests, tweaks, and re-thinking. This cover was exactly that kind of loop: a mix of experiments, quick wins, and a few dead ends that eventually shaped the final look.
@@ -60,28 +62,87 @@ The titles came out fuzzy, the fonts weren’t consistent, and sometimes letters
 
 So instead of relying on it for the final image, I decided to use it more like a brainstorming partner. It gave me a few directions, but I knew I’d need to design the real thing by hand.
 
-## Defining the Colors
+## Starting Fresh in Photopea
 
-Color was one of the key things I wanted to get right. I didn’t want the ebook to look disconnected from my website.
-The blog uses a warm, cream background with black outlines and a dark green accent for the call-to-action button. The overall feel is minimal and calm.
+With that in mind, I opened [Photopea](https://www.photopea.com/), my favorite free Photoshop alternative.
+It is online and does almost everything I need for design.
 
-For the book, I wanted to keep that tone but make it stand out as its own object.
-I used a deeper green, close to the blog’s accent color but richer and more saturated. Then I adjusted the text to an off-white tone, slightly warmer than pure white, to soften the contrast and match the paper-like background of the site.
+I started with a blank canvas. No mockup, no 3D, just the flat cover.
+That way, I could focus purely on the basics: layout, typography, and color.
 
-That small color shift made a big difference. The ebook feels like it belongs to the same world as the blog, but with its own identity.
-No gradients, no glossy effects. Just color, typography, and composition doing the work.
+I reused the green from my blog, but made it a bit deeper.
+For the text, I picked an off-white instead of pure white. It felt calmer and softer on the eyes.
+Then I chose a clean sans-serif font and started playing with letter spacing and sizing until it felt balanced.
 
-## Finding a Mockup
+I also worked on the central illustration.
+I had asked ChatGPT to generate a few icon ideas: panels, sliders, and simple shapes that would hint at user interfaces and CSS.
+One of those sketches had the right vibe, so I redrew and simplified it by hand. The result looked technical but friendly, which fit the ebook perfectly.
 
-Once I had a sense of direction, I wanted to see the design in context, not just flat on a screen, but as a book.
-That meant finding a mockup: a 3D “skeleton” of a blank book that you can overlay your design onto. It gives you a realistic preview without having to render the object yourself.
-
-After browsing a bit, I found a nice `.psd` file that fit perfectly: clean angles, soft shadows, and a neutral perspective. I found it on [mockups-design.com](https://mockups-design.com/free-book-mockups/).
+The first version looked okay, but it was missing something.
+Flat colors and clean typography alone made it feel a bit too sterile.
 
 <figure>
   <Picture
-    src={emptybook}
-    alt="The book mockup"
+    src={flatcover}
+    alt="First version of the book cover"
+    width="1396"
+    height="592"
+    style="border: 2px solid var(--border);
+    border-radius: 0;
+    display: block; 
+		margin: auto;
+		max-width: 300px;"
+  />
+  <figcaption>First version of the book cover</figcaption>
+</figure>
+
+## Creating the Background Pattern
+
+To bring some life into it, I decided to create a subtle background pattern.
+Again, I started with ChatGPT to generate a base texture: small geometric shapes and lines that echoed a "code-like" rhythm.
+
+After exporting the pattern, I edited it manually in Photopea. I simplified the shapes, adjusted spacing, and reduced opacity until it was barely visible.
+The idea was to make it something you feel rather than see, a quiet layer that gives the cover depth without distracting from the text.
+
+That small detail made a huge difference.
+It suddenly looked less flat, more tangible, and more polished. For the first time, I felt like I was getting close.
+
+<figure>
+  <Picture
+    src={backgroundpattern}
+    alt="Final background pattern"
+    width="1024"
+    height="1536"
+    style="border: 2px solid var(--border);
+    border-radius: 0;
+    display: block; 
+		margin: auto;
+		max-width: 300px;"
+  />
+  <figcaption>Final background pattern</figcaption>
+</figure>
+
+## Getting Feedback
+
+Once I was happy with this new version, I sent it to a friend for feedback.
+He is honest and has a good eye, which is exactly what you need at that stage.
+
+He pointed out a few things I had not noticed:
+
+- The letter spacing in the title was a bit too tight
+- The illustration was oversized
+- One of the icons in the illustration wasn't representing the theme of the book well
+- The subtitle could be more clear and impactful
+- Delimitating my name from the subtitle
+
+All small things, but he was right about all of them.
+
+It was subtle tweaks, but the difference was obvious when comparing both versions side by side.
+
+<figure>
+  <Picture
+    src={comparison}
+    alt="The comparison between the first and second version of the book cover"
     width="1741"
     height="964"
     style="border: 2px solid var(--border);
@@ -89,25 +150,25 @@ After browsing a bit, I found a nice `.psd` file that fit perfectly: clean angle
     display: block; 
 		margin: auto;"
   />
-  <figcaption>The book mockup</figcaption>
+  <figcaption>The comparison between the first and second version of the book cover</figcaption>
 </figure>
 
-The only issue was that it required Photoshop… and I don’t have Photoshop.
+That feedback round really helped.
+When you work on something for too long, you stop seeing it clearly.
+Having a fresh set of eyes was what made it finally click.
 
-## Discovering Photopea
+## Wrapping It in a Mockup
 
-That’s when I remembered [Photopea](https://www.photopea.com/)
-.
-It’s a free, browser-based alternative to Photoshop, and it’s honestly incredible how powerful it is for something that runs entirely online.
+Once the design felt right, I wanted to see it in context, as an actual book.
+So I found a mockup on [mockups-design.com](https://mockups-design.com/free-book-mockups/), a clean .psd file with nice perspective and lighting.
 
-I opened the `.psd` mockup in Photopea and everything worked perfectly.
-All the layers, effects, and masks were preserved. It even recognized the smart objects (called “dynamic objects” in French) that make mockups so efficient.
+I opened it in Photopea again, and that is when I really started to appreciate smart objects.
+You can double-click the placeholder, paste your flat design, save it, and the mockup automatically updates in 3D.
+It is a small thing, but it feels like magic every time.
 
-These dynamic layers let you double-click the cover area, edit it as a flat image, and then automatically update the 3D version once you save.
-That’s how the “magic” happens: you don’t have to re-render or manually distort anything, Photopea handles the projection for you.
-
-It’s such a neat system. I replaced the placeholder with my design, hit save, and immediately saw it wrapped around the virtual book in the preview.
-For a web-based app, it felt almost surreal how smoothly it worked.
+The first time I saw my flat design wrapped around that 3D book, I smiled.
+All the small iterations, the adjustments, and the feedback suddenly came together.
+It looked real, and more importantly, it looked like something I had made.
 
 <figure>
   <Picture
@@ -123,64 +184,16 @@ For a web-based app, it felt almost surreal how smoothly it worked.
   <figcaption>The book canva in Photopea</figcaption>
 </figure>
 
-## Creating the Background Pattern
-
-Flat colors alone looked a bit too plain, so I wanted a subtle texture that would keep the surface interesting without pulling attention away from the text.
-
-I asked ChatGPT to generate a few background patterns, something geometric and modern but lightweight enough to blend in.
-The results were surprisingly close to what I had in mind: simple shapes, lines, and small details that gave depth without clutter.
-
-<figure>
-  <Picture
-    src={backgroundpattern}
-    alt="Background pattern generated by ChatGPT"
-    width="1024"
-    height="1536"
-    style="border: 2px solid var(--border);
-    border-radius: 0;
-    display: block; 
-		margin: auto;
-		max-width: 300px;"
-  />
-  <figcaption>Background pattern generated by ChatGPT</figcaption>
-</figure>
-
-Still, I spent some time editing them manually.
-I cleaned up rough edges, toned down the contrast, and adjusted spacing until the pattern almost disappeared into the background. The goal was for you to feel it more than see it.
-It’s one of those things you only notice when it’s missing.
-
-## Assembling Everything
-
-Once all the parts were ready (the colors, the pattern, and the text) I brought them together in the mockup.
-The title and subtitle were the last steps. I wanted them to stand out clearly while keeping that same quiet confidence that runs through the ebook.
-
-The typography stayed simple: a clean sans-serif for clarity and balance, paired with small spacing tweaks to make it feel intentional.
-I used the off-white color for the text, which pops nicely against the darker green background.
-
-After a few test exports and minor alignment adjustments, it finally felt right.
-Nothing flashy, just cohesive. It looked like something I’d actually pick up and read.
-
-<figure>
-  <Picture
-    src={finalbookcover}
-    alt="The final book cover"
-    width="1024"
-    height="1536"
-    style="border: 2px solid var(--border);
-    border-radius: 0;
-    display: block; 
-		margin: auto;
-		max-width: 300px;"
-  />
-  <figcaption>The final book cover</figcaption>
-</figure>
-
 ## Final Thoughts
 
-Designing the cover turned out to be a mix of AI, improvisation, and human touches.
-ChatGPT helped me brainstorm ideas, Photopea made the practical part easy, and some manual fine-tuning tied everything together.
+Designing this cover took way longer than I expected.
+I probably spent three or four evenings on it, tweaking, testing, and overthinking.
+But that process made it better. Each version taught me something new about simplicity, balance, and restraint.
 
-It’s a good reminder that even with all the new tools available, the final step always comes down to taste and iteration.
+The funny part is that it follows the same philosophy as the ebook itself.
+You do not always need the biggest tools or the fanciest effects, just clear thinking, good structure, and a few smart iterations.
 
-If you haven’t seen it yet, the ebook [You Don’t Need JavaScript](https://theosoti.com/you-dont-need-js/) is available.
-It’s a practical guide to creating modern websites and interfaces using (almost) only CSS.
+I am really happy with how it turned out. It feels connected to my blog, consistent with my work, and simple enough to let the content speak first.
+
+If you have not seen it yet, [You Don’t Need JavaScript](https://theosoti.com/you-dont-need-js/) is available here.
+It is a practical guide to building modern interfaces using only CSS, and the cover was designed with that same "less is more" mindset.

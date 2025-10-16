@@ -5,62 +5,64 @@ import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import ShortList from '../../components/ShortList.astro';
 import ItemList from '../../components/microdatas/ItemList.astro';
+import Newsletter from '../../components/Newsletter.astro';
 
 const posts = (await getCollection('short')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead
-			title="Find all the short articles written by Theo Soti"
-			description="Discover quick and insightful reads on web development, design, and tech. These bite-sized articles deliver valuable knowledge in under a minute."
-		/>
-		<style>
-			main {
-				width: 1100px;
-				max-width: calc(100% - 2em);
-			}
-			h2 {
-				margin-top: 0;
-				font-weight: 400;
-			}
-			ul {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 20px;
-				list-style-type: none;
-				padding: 0;
-			}
-			@media (min-width: 600px) {
-				ul {
-					grid-template-columns: 1fr 1fr;
-				}
-			}
-			@media (min-width: 1024px) {
-				ul {
-					grid-template-columns: 1fr 1fr 1fr;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<h1>Short Articles</h1>
-				<h2>Looking for quick insights?</h2>
-				<p>
-					Curious to learn more without diving into lengthy articles? Discover our "Short Articles," quick and
-					captivating reads that offer a concise overview of various topics. Perfect for satisfying your curiosity and
-					broadening your horizons in a flash.
-				</p>
-				<ul>
-					{posts.map((post) => <ShortList post={post} />)}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-		<ItemList posts={posts} type="short" />
-	</body>
+  <head>
+    <BaseHead
+      title="Find all the short articles written by Theo Soti"
+      description="Discover quick and insightful reads on web development, design, and tech. These bite-sized articles deliver valuable knowledge in under a minute."
+    />
+    <style>
+      main {
+        width: 1100px;
+        max-width: calc(100% - 2em);
+      }
+      h2 {
+        margin-top: 0;
+        font-weight: 400;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        list-style-type: none;
+        padding: 0;
+      }
+      @media (min-width: 600px) {
+        ul {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        ul {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <h1>Short Articles</h1>
+        <h2>Looking for quick insights?</h2>
+        <p>
+          Curious to learn more without diving into lengthy articles? Discover our "Short Articles," quick and
+          captivating reads that offer a concise overview of various topics. Perfect for satisfying your curiosity and
+          broadening your horizons in a flash.
+        </p>
+        <ul>
+          {posts.map((post) => <ShortList post={post} />)}
+        </ul>
+      </section>
+    </main>
+    <Newsletter />
+    <Footer />
+    <ItemList posts={posts} type="short" />
+  </body>
 </html>

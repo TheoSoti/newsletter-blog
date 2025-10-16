@@ -5,62 +5,64 @@ import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import Card from '../../components/Card.astro';
 import ItemList from '../../components/microdatas/ItemList.astro';
+import Newsletter from '../../components/Newsletter.astro';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead
-			title="Find all the blog posts written by Theo Soti"
-			description="Stay updated on front-end development! Explore articles on HTML, CSS, JavaScript, frameworks, and best practices for building high-performance websites."
-		/>
-		<style>
-			main {
-				width: 1100px;
-				max-width: calc(100% - 2em);
-			}
-			h2 {
-				margin-top: 0;
-				font-weight: 400;
-			}
-			ul {
-				display: grid;
-				grid-template-columns: 1fr;
-				gap: 20px;
-				list-style-type: none;
-				padding: 0;
-			}
-			@media (min-width: 600px) {
-				ul {
-					grid-template-columns: 1fr 1fr;
-				}
-			}
-			@media (min-width: 1024px) {
-				ul {
-					grid-template-columns: 1fr 1fr 1fr;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<h1 class="title">Blog Articles</h1>
-				<h2>Discover in-depth articles covering a variety of topics.</h2>
-				<p>
-					These longer reads, designed for 5+ minutes of thoughtful engagement, offer valuable insights, detailed
-					analysis, and expert perspectives. Dive deep into subjects that matter, and expand your knowledge with content
-					that goes beyond the surface.
-				</p>
-				<ul>
-					{posts.map((post) => <Card post={post} width="720" height="360" />)}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-		<ItemList posts={posts} type="blog" />
-	</body>
+  <head>
+    <BaseHead
+      title="Find all the blog posts written by Theo Soti"
+      description="Stay updated on front-end development! Explore articles on HTML, CSS, JavaScript, frameworks, and best practices for building high-performance websites."
+    />
+    <style>
+      main {
+        width: 1100px;
+        max-width: calc(100% - 2em);
+      }
+      h2 {
+        margin-top: 0;
+        font-weight: 400;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        list-style-type: none;
+        padding: 0;
+      }
+      @media (min-width: 600px) {
+        ul {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        ul {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <h1 class="title">Blog Articles</h1>
+        <h2>Discover in-depth articles covering a variety of topics.</h2>
+        <p>
+          These longer reads, designed for 5+ minutes of thoughtful engagement, offer valuable insights, detailed
+          analysis, and expert perspectives. Dive deep into subjects that matter, and expand your knowledge with content
+          that goes beyond the surface.
+        </p>
+        <ul>
+          {posts.map((post) => <Card post={post} width="720" height="360" />)}
+        </ul>
+      </section>
+    </main>
+    <Newsletter />
+    <Footer />
+    <ItemList posts={posts} type="blog" />
+  </body>
 </html>

@@ -6,6 +6,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
 import { getCollection } from 'astro:content';
 import ShortList from '../components/ShortList.astro';
+import Newsletter from '../components/Newsletter.astro';
 
 const { title, description, pubDate, updatedDate, slug, heroImage } = Astro.props;
 const posts = (await getCollection('short'))
@@ -156,6 +157,7 @@ const posts = (await getCollection('short'))
           <slot />
         </article>
       </div>
+      <Newsletter />
       <section class="container">
         <h2>Other short articles you might like</h2>
         <p>
