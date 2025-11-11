@@ -15,25 +15,30 @@ import { Picture } from 'astro:assets';
   style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
-## Make your text type itself. With pure CSS.
+## Serve sharp backgrounds without extra code.
 
-How it works
+Let the browser pick the right asset.
 
-- overflow: hidden hides the unrevealed text.
-- white-space: nowrap keeps everything on one line.
-- Animate width from 0 to 100% with @keyframes typing.
-- Use steps(n) to reveal characters one by one. Set n close to the character count for a crisp tick.
-- A 1px border-right acts as the caret. A second animation toggles its color to “blink”.
-- Add animation-fill-mode: forwards so the text stays visible at the end.
+`image-set()` is like `srcset`, but for CSS.
 
-Practical tips
+You give multiple sources. The browser chooses the best one for the screen.
 
-- Prefer a monospace font for perfectly even steps, or tune the steps() value if letters have different widths.
-- If the string changes, update the steps() count.
-- Respect users with @media (prefers-reduced-motion: reduce) to disable or simplify the effect.
+Why use it:
 
-The best part? It's supported by almost 96% of browsers!
+- Retina screens get crisp images.
+- Regular screens download smaller files.
+- No JavaScript. No hacks.
 
-Would you use this in a hero, headline, or code sample?
+It also works in other image-accepting properties like content, list-style-image, and border-image(but with less browser support).
+
+Using `image-set()` in a background-image property has almost 96% browser support!
+
+Practical tips:
+
+- Add a plain fallback first for older browsers:
+  `background-image: url("evee.png");` then the `image-set()`.
+- Keep file names consistent (@1x, @2x) to simplify builds.
+- Pair with background-size: cover/contain as needed.
+- Test AVIF/WEBP plus JPEG/PNG as a safe fallback.
 
 **To learn more tips about CSS, make sure to join my newsletter below ❤️**
