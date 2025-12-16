@@ -1,0 +1,424 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import { Picture } from 'astro:assets';
+import profile from '../assets/profile.png';
+
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title="Newsletter" description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+
+    <section class="hero">
+      <div class="container">
+        <h1>Ship Better Websites With Less JavaScript.</h1>
+        <p class="description">
+          This email course will help you understand modern HTML & CSS for building more accessible and performant
+          websites. Without JavaScript bloat.
+        </p>
+        <form
+          action="https://app.kit.com/forms/7124812/subscriptions"
+          class="seva-form formkit-form"
+          method="post"
+          data-sv-form="7124812"
+          data-uid="db7a3d5935"
+          data-format="inline"
+          data-version="5"
+        >
+          <div data-style="clean">
+            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+            <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+              <div class="formkit-field">
+                <input
+                  class="formkit-input"
+                  name="email_address"
+                  aria-label="Enter your email"
+                  placeholder="you@example.com"
+                  required=""
+                  type="email"
+                />
+              </div>
+              <button
+                type="submit"
+                data-element="submit"
+                class="formkit-submit formkit-submit button"
+                aria-label="Subscribe to the newsletter"
+              >
+                <div class="formkit-spinner">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                Subscribe
+              </button>
+            </div>
+          </div>
+          <p class="nospam">Up to 2 emails per month · No spam · Unsubscribe anytime</p>
+        </form>
+      </div>
+    </section>
+
+    <main>
+      <section class="benefits">
+        <h2>What you'll get</h2>
+        <ul>
+          <li>
+            <p>HTML patterns that reduce JavaScript complexity</p>
+          </li>
+          <li>
+            <p>Modern CSS techniques for layouts and theming</p>
+          </li>
+          <li>
+            <p>Accessibility improvements that don't slow teams down</p>
+          </li>
+          <li>
+            <p>Performance wins that actually matter</p>
+          </li>
+          <li>
+            <p>Progressive enhancement and resilient UI patterns</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="for-you">
+        <h2>Is this for you?</h2>
+        <div class="for-you__content">
+          <div class="for-you__ok">
+            <p>For you if:</p>
+            <ul>
+              <li>You care about performance and accessibility</li>
+              <li>You prefer solid HTML & CSS over heavy JS</li>
+              <li>You enjoy thoughtful, opinionated frontend writing</li>
+            </ul>
+          </div>
+          <div class="for-you__not">
+            <p>Not for you if:</p>
+            <ul>
+              <li>You prefer JavaScript-first solutions for everything</li>
+              <li>You're not interested in frontend development</li>
+              <li>You only want framework or tooling news</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="about">
+        <Picture
+          src={profile}
+          formats={['avif', 'webp', 'jpg']}
+          class="profile"
+          width="440"
+          height="440"
+          alt="Theo Soti profile picture"
+        />
+        <div class="about__content">
+          <h2>Theo Soti</h2>
+          <p>
+            Frontend developer writing about modern HTML & CSS. I share practical ideas from real projects to reduce
+            JavaScript, improve accessibility, and ship faster websites.
+          </p>
+        </div>
+      </section>
+
+      <section class="newsletter">
+        <h2>Join this course and get practical frontend tips</h2>
+        <form
+          action="https://app.kit.com/forms/7124812/subscriptions"
+          class="seva-form formkit-form"
+          method="post"
+          data-sv-form="7124812"
+          data-uid="db7a3d5935"
+          data-format="inline"
+          data-version="5"
+        >
+          <div data-style="clean">
+            <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+            <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+              <div class="formkit-field">
+                <input
+                  class="formkit-input"
+                  name="email_address"
+                  aria-label="Enter your email"
+                  placeholder="you@example.com"
+                  required=""
+                  type="email"
+                />
+              </div>
+              <button
+                type="submit"
+                data-element="submit"
+                class="formkit-submit formkit-submit button"
+                aria-label="Subscribe to the newsletter"
+              >
+                <div class="formkit-spinner">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                Subscribe
+              </button>
+            </div>
+          </div>
+          <p class="nospam">Up to 2 emails per month · No spam · Unsubscribe anytime</p>
+        </form>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  :root {
+    --fs-1: clamp(1rem, 0.913rem + 0.4348vw, 1.25rem);
+    --fs-2: clamp(1.2rem, 1.0739rem + 0.6304vw, 1.5625rem);
+    --fs-2-5: clamp(1.944rem, 1.7399rem + 1.0203vw, 2.4414rem);
+    --fs-3: clamp(2.3328rem, 2.0378rem + 1.4748vw, 3.0518rem);
+    --fs-4: clamp(2.7994rem, 2.3828rem + 2.0827vw, 3.8147rem);
+    --fs-5: clamp(4rem, 2.3828rem + 2.0827vw, 5rem);
+
+    --pad-4-8: clamp(0.25rem, 0.163rem + 0.4348vw, 0.5rem);
+    --pad-8-12: clamp(0.5rem, 0.463rem + 0.1743vw, 0.625rem);
+    --pad-12-16: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
+    --pad-16-32: clamp(1rem, 0.5897rem + 2.0513vw, 2rem);
+    --pad-xl: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1em 5em;
+    width: 100%;
+  }
+
+  h1 {
+    font-family: 'BebasNeue', sans-serif;
+    margin-bottom: 0;
+    font-size: var(--fs-4);
+    font-weight: 800;
+  }
+
+  .hero {
+    background-color: var(--bg-light);
+    border-bottom: 2px solid var(--border);
+
+    .container {
+      max-width: 760px;
+      margin: auto;
+      padding: 5em 1em;
+    }
+  }
+
+  .description {
+    font-size: var(--fs-1);
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  .benefits {
+    margin-top: 3em;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 0;
+      list-style-type: none;
+      margin-bottom: 0;
+    }
+
+    li {
+      padding-block: 0em;
+      padding-inline: 0.5em;
+      margin-bottom: 0.5em;
+      background-color: var(--bg-light);
+      border: 1px solid hsl(36 20% 80%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      &:before {
+        content: '→';
+        margin-right: 0.5em;
+        font-size: 1.2em;
+        color: var(--secondary);
+        font-weight: 800;
+      }
+    }
+  }
+
+  .for-you {
+    .for-you__content {
+      display: flex;
+      gap: 1.5em;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      ul {
+        padding-left: 0;
+        list-style-type: none;
+        margin-bottom: 0;
+      }
+
+      li {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 0.5em;
+      }
+
+      li:before {
+        margin-right: 0.5em;
+        font-size: 1em;
+      }
+
+      .for-you__ok {
+        max-width: 340px;
+        p {
+          color: var(--secondary);
+          font-weight: 500;
+        }
+        li:before {
+          content: '✓';
+          color: var(--secondary);
+        }
+      }
+
+      .for-you__not {
+        max-width: 340px;
+
+        p {
+          color: var(--small-text);
+          font-weight: 500;
+        }
+        li:before {
+          content: '✗';
+          color: var(--small-text);
+        }
+      }
+    }
+  }
+
+  .about {
+    display: flex;
+    gap: 1em;
+    margin-top: 3em;
+    border: 1px solid hsl(36 20% 80%);
+    border-left: 4px solid var(--secondary);
+    padding: 1em;
+    background-color: var(--bg-light);
+    border-radius: 6px;
+
+    picture {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+
+      img {
+        border: 2px solid var(--border);
+      }
+    }
+
+    .about__content {
+      flex: 1;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .newsletter {
+    background-color: var(--bg-light);
+    border: 2px solid var(--border);
+    padding: 1.5em;
+    border-radius: 6px;
+    margin-top: 3em;
+    box-shadow: var(--box-shadow);
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  .formkit-alert-error {
+    padding: 0;
+    list-style-type: none;
+    color: #b82f2f;
+  }
+  .nospam {
+    margin: 5px 0 0;
+    font-size: 0.8em;
+    color: var(--small-text);
+  }
+  form {
+    margin: 1em 0 0;
+    width: 100%;
+  }
+  .formkit-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  .formkit-field {
+    flex: 1;
+    min-width: 180px;
+    margin: 0;
+  }
+  button.button.formkit-submit {
+    padding: 0 0.5em;
+    height: 55px;
+  }
+  .formkit-input {
+    width: 100%;
+    padding: 0 1em;
+    background-color: var(--bg-light);
+    color: var(--text);
+    transition: outline 0.2s ease;
+  }
+  .formkit-input::placeholder {
+    color: var(--small-text);
+    opacity: 1;
+  }
+  .formkit-input:hover,
+  .formkit-input:focus {
+    box-shadow: 0 0 var(--black);
+  }
+  .formkit-input,
+  .button {
+    height: 60px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 1em;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  @container (min-width: 740px) {
+    form {
+      margin-top: 0;
+    }
+
+    .nospam {
+      text-align: left;
+    }
+  }
+</style>
