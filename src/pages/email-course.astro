@@ -249,7 +249,7 @@ import { SITE_DESCRIPTION } from '../consts';
       align-items: center;
 
       .content {
-        flex: 1 1 500px;
+        flex: 1 1 460px;
         min-width: 280px;
       }
 
@@ -494,8 +494,9 @@ import { SITE_DESCRIPTION } from '../consts';
   @media screen and (min-width: 600px) {
     .joined {
       position: absolute;
-      bottom: -20px;
+      bottom: -40px;
       right: -15px;
+      max-width: 160px;
 
       &:before {
         content: '⤴';
@@ -506,6 +507,10 @@ import { SITE_DESCRIPTION } from '../consts';
         font-weight: 100;
         rotate: -50deg;
       }
+    }
+
+    .newsletter {
+      padding-bottom: 3rem;
     }
   }
 
