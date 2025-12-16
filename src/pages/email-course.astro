@@ -60,10 +60,10 @@ import { SITE_DESCRIPTION } from '../consts';
                   </div>
                   Join course
                 </button>
-                <span class="joined"> Over 1700 developers already joined. </span>
               </div>
             </div>
             <p class="nospam">No strings attached, unsubscribe anytime!</p>
+            <span class="joined"> Over 1700 developers already joined. </span>
           </form>
         </div>
         <Picture
@@ -177,10 +177,10 @@ import { SITE_DESCRIPTION } from '../consts';
                 </div>
                 Join course
               </button>
-              <span class="joined"> Over 1700 developers already joined. </span>
             </div>
           </div>
           <p class="nospam">No strings attached, unsubscribe anytime!</p>
+          <span class="joined"> Over 1700 developers already joined. </span>
         </form>
       </section>
     </main>
@@ -348,24 +348,13 @@ import { SITE_DESCRIPTION } from '../consts';
   }
 
   .joined {
-    position: absolute;
-    bottom: -20px;
-    right: -15px;
     background: var(--background);
     padding: 0.5em 1em;
     border: 1px solid black;
     border-radius: 6px;
     font-size: 0.7em;
-
-    &:before {
-      content: '⤴';
-      position: absolute;
-      top: -33px;
-      right: -5px;
-      font-size: 2em;
-      font-weight: 100;
-      rotate: -50deg;
-    }
+    display: block;
+    text-align: center;
   }
 
   .about {
@@ -476,6 +465,24 @@ import { SITE_DESCRIPTION } from '../consts';
     font-size: 1em;
     flex-shrink: 0;
     font-weight: 500;
+  }
+
+  @media screen and (min-width: 600px) {
+    .joined {
+      position: absolute;
+      bottom: -20px;
+      right: -15px;
+
+      &:before {
+        content: '⤴';
+        position: absolute;
+        top: -33px;
+        right: -5px;
+        font-size: 2em;
+        font-weight: 100;
+        rotate: -50deg;
+      }
+    }
   }
 
   @container (min-width: 740px) {
