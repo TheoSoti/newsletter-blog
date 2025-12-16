@@ -19,7 +19,7 @@ import { SITE_DESCRIPTION } from '../consts';
     <section class="hero">
       <div class="container">
         <div class="content">
-          <p class="subtitle">A free email course on modern HTML & CSS.</p>
+          <p class="subtitle">A <mark>free email course</mark> on modern HTML & CSS.</p>
 
           <h1>Ship Better Websites With Less JavaScript.</h1>
           <p class="description">
@@ -69,8 +69,8 @@ import { SITE_DESCRIPTION } from '../consts';
         <Picture
           src={letter}
           formats={['avif', 'webp', 'jpg']}
-          width="400"
-          height="400"
+          width="800"
+          height="800"
           alt="Illustration for this email course"
         />
       </div>
@@ -134,7 +134,7 @@ import { SITE_DESCRIPTION } from '../consts';
           <p>
             Frontend developer writing about modern HTML & CSS. I share practical ideas from real projects to reduce
             JavaScript, improve accessibility, and ship faster websites.<br />
-            Author of "You Don't Need JavaScript" ebook.<br />
+            Author of <a href="/you-dont-need-js">You Don't Need JavaScript</a> ebook.<br />
             Over 17 000 followers on LinkedIn, and over 9 million views in a year.
           </p>
         </div>
@@ -202,6 +202,22 @@ import { SITE_DESCRIPTION } from '../consts';
     --pad-16-32: clamp(1rem, 0.5897rem + 2.0513vw, 2rem);
     --pad-xl: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
   }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  mark {
+    border: 2px solid var(--border);
+    padding-inline: 0.5rem;
+    background-color: var(--secondary);
+    color: var(--white);
+    border-radius: 6px;
+    rotate: -3deg;
+    display: inline-block;
+    margin: 0 0.2rem;
+  }
+
   main {
     display: flex;
     flex-direction: column;
@@ -233,7 +249,7 @@ import { SITE_DESCRIPTION } from '../consts';
       align-items: center;
 
       .content {
-        flex: 1 1 500px; /* base = 500px, peut grandir, peut rétrécir */
+        flex: 1 1 500px;
         min-width: 280px;
       }
 
@@ -246,6 +262,7 @@ import { SITE_DESCRIPTION } from '../consts';
           object-fit: cover;
           height: 370px;
           min-width: 280px;
+          max-width: 400px;
         }
       }
     }
@@ -258,7 +275,7 @@ import { SITE_DESCRIPTION } from '../consts';
   }
 
   .benefits {
-    margin-top: 3em;
+    margin-top: 3rem;
 
     h2 {
       margin-top: 0;
@@ -271,9 +288,9 @@ import { SITE_DESCRIPTION } from '../consts';
     }
 
     li {
-      padding-block: 0em;
-      padding-inline: 0.5em;
-      margin-bottom: 0.5em;
+      padding-block: 0;
+      padding-inline: 0.5rem;
+      margin-bottom: 0.5rem;
       background-color: var(--bg-light);
       border: 1px solid hsl(36 20% 80%);
       border-radius: 6px;
@@ -287,8 +304,8 @@ import { SITE_DESCRIPTION } from '../consts';
 
       &:before {
         content: '→';
-        margin-right: 0.5em;
-        font-size: 1.2em;
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
         color: var(--secondary);
         font-weight: 800;
       }
@@ -298,7 +315,7 @@ import { SITE_DESCRIPTION } from '../consts';
   .for-you {
     .for-you__content {
       display: flex;
-      gap: 1.5em;
+      gap: 1.5rem;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -312,12 +329,12 @@ import { SITE_DESCRIPTION } from '../consts';
       li {
         display: flex;
         align-items: baseline;
-        margin-bottom: 0.5em;
+        margin-bottom: 0.5rem;
       }
 
       li:before {
-        margin-right: 0.5em;
-        font-size: 1em;
+        margin-right: 0.5rem;
+        font-size: 1rem;
       }
 
       .for-you__ok {
@@ -349,21 +366,23 @@ import { SITE_DESCRIPTION } from '../consts';
 
   .joined {
     background: var(--background);
-    padding: 0.5em 1em;
+    padding: 0.5rem 1rem;
     border: 1px solid black;
     border-radius: 6px;
-    font-size: 0.7em;
+    font-size: 0.7rem;
     display: block;
     text-align: center;
+    margin-top: 0.5rem;
   }
 
   .about {
     display: flex;
-    gap: 1em;
-    margin-top: 3em;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
     border: 1px solid hsl(36 20% 80%);
     border-left: 4px solid var(--secondary);
-    padding: 1em;
+    padding: 1rem;
     background-color: var(--bg-light);
     border-radius: 6px;
 
@@ -378,7 +397,8 @@ import { SITE_DESCRIPTION } from '../consts';
     }
 
     .about__content {
-      flex: 1;
+      flex: 1 1 300px;
+      min-width: 200px;
 
       p {
         margin: 0;
@@ -393,9 +413,9 @@ import { SITE_DESCRIPTION } from '../consts';
   .newsletter {
     background-color: var(--bg-light);
     border: 2px solid var(--border);
-    padding: 1.5em;
+    padding: 1.5rem;
     border-radius: 6px;
-    margin-top: 3em;
+    margin-top: 3rem;
     box-shadow: var(--box-shadow);
 
     h2 {
@@ -417,11 +437,11 @@ import { SITE_DESCRIPTION } from '../consts';
   }
   .nospam {
     margin: 5px 0 0;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: var(--small-text);
   }
   form {
-    margin: 1em 0 0;
+    margin: 1rem 0 0;
     width: 100%;
   }
   .formkit-fields {
@@ -436,19 +456,14 @@ import { SITE_DESCRIPTION } from '../consts';
     margin: 0;
   }
   button.button.formkit-submit {
-    padding: 0 1em;
+    padding: 0 1rem;
     height: 55px;
+    font-weight: bold;
   }
   .formkit-form {
     position: relative;
   }
-  .formkit-input {
-    width: 100%;
-    padding: 0 1em;
-    background-color: var(--bg-light);
-    color: var(--text);
-    transition: outline 0.2s ease;
-  }
+
   .formkit-input::placeholder {
     color: var(--small-text);
     opacity: 1;
@@ -462,9 +477,18 @@ import { SITE_DESCRIPTION } from '../consts';
     height: 60px;
     border: 2px solid var(--border);
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 1rem;
     flex-shrink: 0;
     font-weight: 500;
+  }
+
+  .formkit-input {
+    width: 100%;
+    padding: 0 1rem;
+    border-color: var(--text);
+    background-color: var(--bg-light);
+    color: var(--text);
+    transition: outline 0.2s ease;
   }
 
   @media screen and (min-width: 600px) {
@@ -478,7 +502,7 @@ import { SITE_DESCRIPTION } from '../consts';
         position: absolute;
         top: -33px;
         right: -5px;
-        font-size: 2em;
+        font-size: 1.6rem;
         font-weight: 100;
         rotate: -50deg;
       }
