@@ -1,0 +1,118 @@
+---
+import { Picture } from 'astro:assets';
+import book from '../assets/ebook/ebook.png';
+---
+
+<section class="buybook">
+  <script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
+  <div class="container">
+    <Picture
+      src={book}
+      formats={['avif', 'webp', 'jpg']}
+      class="book"
+      width="440"
+      height="440"
+      alt="You don't need JavaScript ebook cover"
+    />
+    <div class="content">
+      <p class="subscribe-text">Want to build modern interfaces with less JavaScript?</p>
+      <p class="description">
+        I wrote a book about building modern UI with HTML and CSS first. It covers practical patterns you can use before
+        reaching for JavaScript.
+      </p>
+      <a href="https://theosoti.com/you-dont-need-js/" class="button">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .buybook {
+    margin: 1rem auto;
+    text-align: center;
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      border: 4px solid var(--border);
+      background: var(--bg-light);
+      border-bottom-width: 8px;
+      max-width: 1100px;
+      padding: 1em;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .subscribe-text {
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem;
+      line-height: 1.5;
+      font-weight: 500;
+      flex: 1 1 auto;
+    }
+
+    picture {
+      min-width: 160px;
+      margin: 0 auto;
+    }
+
+    .book {
+      width: 160px;
+      display: block;
+    }
+
+    .button {
+      height: 45px;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Open Sans',
+        'Helvetica Neue',
+        sans-serif;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      font-size: 1em;
+      flex-shrink: 0;
+      font-weight: 500;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto;
+
+      &:hover {
+        color: var(--white);
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    .buybook {
+      text-align: left;
+      .container {
+        padding: 1.5em 2em;
+      }
+      .subscribe-text {
+        margin-bottom: 0;
+      }
+
+      .content {
+        max-width: calc(100% - 200px);
+        min-width: 200px;
+      }
+
+      .button {
+        margin: 0;
+      }
+    }
+  }
+</style>
