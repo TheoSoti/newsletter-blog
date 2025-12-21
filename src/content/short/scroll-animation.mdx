@@ -1,0 +1,85 @@
+---
+title: 'Scroll-Driven Animations in CSS with @starting-style'
+description: 'Learn how to combine entry animations and scroll-driven motion using modern CSS. Use @starting-style, custom properties, and scroll timelines.'
+pubDate: 'dec 20 2025'
+heroImage: '/short/12-2025/slide-in.gif'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+  src="/short/12-2025/slide-in.gif"
+  alt="CSS scroll-driven animation example showing elements fading in on load and animating based on scroll position."
+  width="400"
+  height="600"
+  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## You can combine scroll-driven animations with `@starting-style` in CSS.
+
+The goal is simple.  
+Fade elements in on page load.  
+Then animate them based on scroll.
+
+At first glance, it sounds easy.  
+In practice, scroll timelines behave differently from classic animations.  
+So you need a small setup.
+
+### Register a custom property
+
+Instead of animating opacity directly,  
+animate a numeric value you control.
+
+```css
+@property --progress {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+```
+
+This gives you a stable value to work with.
+
+### Define the entry state
+
+Use `@starting-style` to handle the initial fade-in.
+
+```css
+@starting-style {
+  opacity: 0;
+}
+```
+
+Now the browser knows the element’s starting point,  
+even if it appears dynamically.
+
+### Drive the animation with scroll
+
+Animate the custom property using a scroll timeline.
+
+```css
+animation: progress linear both;
+animation-timeline: view();
+```
+
+Then map it back to real styles.
+
+```css
+opacity: var(--progress);
+```
+
+That’s the pattern.
+
+Smooth entry animation.  
+Scroll-linked motion.  
+No hacks.  
+No JavaScript.
+
+Just modern CSS doing modern UI work.
+
+This kind of setup shows how far CSS has evolved.  
+And how much interaction it can handle on its own.
+
+Have you started experimenting with scroll-driven animations yet?!
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
