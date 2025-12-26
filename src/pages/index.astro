@@ -12,95 +12,96 @@ import { getCollection } from 'astro:content';
 import ItemList from '../components/microdatas/ItemList.astro';
 
 const posts = (await getCollection('blog'))
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-  .slice(-6)
-  .reverse();
+	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+	.slice(-6)
+	.reverse();
 
 const shorts = (await getCollection('short'))
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
-  .slice(-9)
-  .reverse();
+	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+	.slice(-9)
+	.reverse();
 ---
 
 <html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <Hero />
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<Hero />
 
-    <main>
-      <section>
-        <h2>Latest Blog Articles</h2>
-        <p>
-          Discover in-depth articles covering a variety of topics. <br />
-          These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
-        </p>
-        <ul>
-          {posts.map((post) => <Card post={post} width="720" height="360" />)}
-        </ul>
-      </section>
+		<main>
+			<section>
+				<h2>Latest Blog Articles</h2>
+				<p>
+					Discover in-depth articles covering a variety of topics. <br />
+					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
+				</p>
+				<ul>
+					{posts.map((post) => <Card post={post} width="720" height="360" />)}
+				</ul>
+				<a href="/blog/" class="button"> View more articles </a>
+			</section>
 
-      <section>
-        <h2>Latest Short Articles</h2>
-        <p>
-          Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
-          you're short on time but still want valuable content.
-        </p>
-        <ul>
-          {shorts.map((short) => <ShortList post={short} />)}
-        </ul>
-        <a href="/short/" class="button"> View more articles </a>
-      </section>
-    </main>
-    <Newsletter />
-    <Footer />
-    <ItemList posts={posts} type="blog" />
-    <ItemList posts={shorts} type="short" />
-  </body>
+			<section>
+				<h2>Latest Short Articles</h2>
+				<p>
+					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
+					you're short on time but still want valuable content.
+				</p>
+				<ul>
+					{shorts.map((short) => <ShortList post={short} />)}
+				</ul>
+				<a href="/short/" class="button"> View more articles </a>
+			</section>
+		</main>
+		<Newsletter />
+		<Footer />
+		<ItemList posts={posts} type="blog" />
+		<ItemList posts={shorts} type="short" />
+	</body>
 </html>
 
 <style>
-  main {
-    padding: 1em 0 1.5em;
-  }
-  section:first-child {
-    margin-bottom: 3em;
-  }
-  h2 {
-    margin-top: 0;
-  }
-  ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    list-style-type: none;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .button {
-    padding: 0.3em 0.5em;
-    margin: 1.5em auto 0;
-    display: flex;
-    width: fit-content;
-    justify-content: center;
-    text-decoration: none;
-  }
-  .button:hover {
-    color: var(--white);
-  }
-  @media (min-width: 600px) {
-    main {
-      padding: 2em 0 2.5em;
-    }
-    ul {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  @media (min-width: 1024px) {
-    ul {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
+	main {
+		padding: 1em 0 1.5em;
+	}
+	section:first-child {
+		margin-bottom: 3em;
+	}
+	h2 {
+		margin-top: 0;
+	}
+	ul {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 20px;
+		list-style-type: none;
+		padding: 0;
+		margin-bottom: 0;
+	}
+	.button {
+		padding: 0.3em 0.5em;
+		margin: 1.5em auto 0;
+		display: flex;
+		width: fit-content;
+		justify-content: center;
+		text-decoration: none;
+	}
+	.button:hover {
+		color: var(--white);
+	}
+	@media (min-width: 600px) {
+		main {
+			padding: 2em 0 2.5em;
+		}
+		ul {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (min-width: 1024px) {
+		ul {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
 </style>
