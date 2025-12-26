@@ -3,7 +3,6 @@ import Card from './Card.jsx';
 
 const containerStyle = {
 	maxWidth: '700px',
-	backgroundColor: 'white',
 	display: 'flex',
 	justifyContent: 'space-between',
 	gap: '0.5em',
@@ -15,7 +14,6 @@ const buttonsStyle = {
 	alignItems: 'center',
 	gap: '1em',
 	paddingTop: '1em',
-	backgroundColor: 'var(--white)',
 };
 
 export default function Demo() {

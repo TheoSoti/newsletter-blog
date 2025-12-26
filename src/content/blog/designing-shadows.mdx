@@ -1,0 +1,190 @@
+---
+title: 'Designing Better CSS Shadows (Without Guessing)'
+description: 'Stop using fuzzy gray boxes. Build consistent, layered, color-matched shadows that make your UI feel real.'
+pubDate: 'Dec 25 2025'
+heroImage: '/designing-shadows.png'
+readingTime: '8 min read'
+---
+
+import Wrapper from '../components/Wrapper.astro';
+import Shadow1 from '../components/Shadows/1.astro';
+import Shadow2 from '../components/Shadows/2.astro';
+import Shadow3 from '../components/Shadows/3.astro';
+import Shadow4 from '../components/Shadows/4.astro';
+import BuyBook from '../../components/BuyBook.astro';
+
+## Shadows are not decoration
+
+Most shadows on the web look like fuzzy gray borders. They technically separate layers, but they don't feel _real_. If you want a UI to feel tactile, shadows are the cheapest way to fake depth.
+
+This article is inspired by Josh W. Comeau's deep dive on shadows, but I'll focus on a practical recipe you can reuse in your own components.
+
+## Elevation is the real purpose
+
+Shadows are a visual cue for elevation. Bigger shadow = closer to the user.
+That's why elevation also controls focus and attention: your eyes naturally go to the closest thing.
+
+Here's a simple slider that controls the elevation value used to build the shadow:
+
+<Wrapper title="Elevation slider">
+	<Shadow1 />
+</Wrapper>
+
+## Pick a single light source
+
+In the real world, shadows depend on a light source.  
+In CSS, the "light source" is just your **x and y offsets**.
+
+Pick a direction (top-left is the usual choice), and keep it consistent across the page:
+
+```css
+:root {
+	--shadow-color: hsl(220deg 20% 20% / 0.25);
+	--shadow-x: 2px;
+	--shadow-y: 4px;
+}
+
+.card {
+	box-shadow: var(--shadow-x) var(--shadow-y) 12px var(--shadow-color);
+}
+```
+
+If every component uses a different angle or offset, the page will feel messy, even if each shadow looks nice in isolation.
+
+## Build a tiny recipe
+
+Instead of guessing numbers, build a small formula that scales with elevation:
+
+```css
+.card {
+	--elevation: 8;
+	--x: calc(var(--elevation) * 0.25px);
+	--y: calc(var(--elevation) * 0.9px);
+	--blur: calc(var(--elevation) * 1.6px + 6px);
+	--spread: calc(var(--elevation) * -0.15px);
+
+	box-shadow: var(--x) var(--y) var(--blur) var(--spread) hsl(220deg 20% 20% / 0.25);
+}
+```
+
+Once the formula feels right, every component can share it.
+
+The idea is simple:
+
+- **Offset** (`--x` and `--y`) keeps a consistent light direction.
+- **Blur** grows faster than elevation so higher cards feel softer.
+- **Negative spread** keeps the shadow from bloating outward.
+
+You can tweak the multipliers, but keep the relationship. That is what makes the shadow system feel coherent across the page.
+
+<BuyBook />
+
+## Layering makes shadows feel real
+
+A single shadow rarely looks natural.  
+Real shadows are layered: a tight shadow near the object, and softer ones farther away.
+
+Try toggling the layers to see how they combine:
+
+<Wrapper title="Layered shadows">
+	<Shadow2 />
+</Wrapper>
+
+The simplest pattern is **3 layers**:
+
+```css
+.card {
+	box-shadow:
+		0 2px 4px hsl(220deg 20% 20% / 0.18),
+		0 8px 14px hsl(220deg 25% 20% / 0.14),
+		0 20px 32px hsl(220deg 30% 20% / 0.12);
+}
+```
+
+Think of these as three zones:
+
+- **Contact shadow** (first line): short blur, higher opacity. This anchors the card to the surface.
+- **Mid shadow** (second line): medium blur, slightly lighter. It adds body and depth.
+- **Ambient shadow** (third line): large blur, faint opacity. This creates the soft halo that feels natural.
+
+Notice how the blur radius grows faster than the offset, and the opacity decreases as the shadow gets larger. That balance is what keeps the shadow feeling realistic instead of heavy.
+
+## Color-match your shadows
+
+Neutral gray shadows are okay on a white background, but they break on colorful surfaces.  
+If the surface is warm, the shadow should be warm too.
+
+This demo keeps the hue and saturation from the surface and only darkens the lightness:
+
+<Wrapper title="Color-matched shadows">
+	<Shadow3 />
+</Wrapper>
+
+This tiny change makes shadows feel grounded instead of pasted on top.
+
+## Putting it together
+
+Combine the recipe, the layers, and a color-matched shadow, and you get a reusable system:
+
+```css
+.card {
+	--elevation: 12;
+	--shadow-color: hsl(18deg 40% 20% / 0.28);
+
+	box-shadow:
+		0 2px 4px var(--shadow-color),
+		0 8px 16px hsl(18deg 40% 20% / 0.2),
+		0 18px 30px hsl(18deg 40% 20% / 0.16);
+}
+```
+
+At this point, you can map `--elevation` to design tokens and scale across your UI.
+
+## Bonus: drop-shadow
+
+`box-shadow` always uses the element's box.  
+`filter: drop-shadow()` follows the _actual rendered shape_, including transparent parts.
+
+It's perfect for speech bubbles, cutouts, or icons:
+
+<Wrapper title="Box shadow vs drop-shadow">
+	<Shadow4 />
+</Wrapper>
+
+Here is the basic HTML and the tiny CSS that creates the bubble tip:
+
+```html
+<div class="bubble">Bubble text</div>
+```
+
+```css
+.bubble {
+	position: relative;
+	background: white;
+	padding: 1rem 1.2rem;
+	border-radius: 10px;
+}
+.bubble::after {
+	content: '';
+	position: absolute;
+	left: 24px;
+	bottom: -14px;
+	width: 24px;
+	height: 18px;
+	background: inherit;
+	clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+```
+
+```css
+.bubble {
+	filter: drop-shadow(0 10px 18px hsl(220deg 20% 20% / 0.18));
+}
+```
+
+## Final thoughts
+
+Shadows don't need to be complicated.  
+Pick a light source, scale your numbers, layer your blur, and tint the color.
+
+That's enough to make your UI feel more intentional and more real.

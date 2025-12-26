@@ -12,14 +12,21 @@ const { title = 'Result', overflow } = Astro.props;
 
 <style>
 	.wrapper {
-		border: 2px solid var(--border);
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.075),
+			0 2px 2px hsl(0deg 0% 0% / 0.075),
+			0 4px 4px hsl(0deg 0% 0% / 0.075),
+			0 8px 8px hsl(0deg 0% 0% / 0.075),
+			0 16px 16px hsl(0deg 0% 0% / 0.075);
 		background: var(--bg-light);
 		margin: 1em 0 2em;
-		padding: 0 0.3em 0.3em;
+		padding: 0.2rem 1rem 1rem;
+		border-radius: 0.5rem;
 	}
 
 	.content {
 		border: 2px solid var(--border);
+		background: var(--bg-light);
 	}
 
 	.content.scroll {

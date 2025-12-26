@@ -1,0 +1,111 @@
+<main class="shadow-lab">
+	<div class="shadow-lab__scene">
+		<div class="shadow-lab__card">
+			<p class="shadow-lab__title">Shadow Card</p>
+			<p>Slide the elevation to change the shadow.</p>
+			<button class="shadow-lab__button">Primary action</button>
+		</div>
+	</div>
+
+	<label class="shadow-lab__control">
+		<span class="shadow-lab__control-text">
+			Elevation: <span class="shadow-lab__value">8</span>px
+		</span>
+		<input class="shadow-lab__range" type="range" min="0" max="24" value="8" />
+	</label>
+	<label class="shadow-lab__control">
+		<span class="shadow-lab__control-text">
+			Sun angle: <span class="shadow-lab__angle">240</span>deg
+		</span>
+		<input class="shadow-lab__range shadow-lab__angle-range" type="range" min="160" max="320" value="240" />
+	</label>
+</main>
+
+<script is:inline>
+	document.querySelectorAll('.shadow-lab').forEach((lab) => {
+		const range = lab.querySelector('.shadow-lab__range');
+		const value = lab.querySelector('.shadow-lab__value');
+		const angleRange = lab.querySelector('.shadow-lab__angle-range');
+		const angleValue = lab.querySelector('.shadow-lab__angle');
+
+		const updateShadow = () => {
+			const elevation = Number(range.value);
+			const angle = Number(angleRange.value);
+			const radians = (angle * Math.PI) / 180;
+
+			const shadowX = -Math.cos(radians) * elevation * 0.55;
+			const shadowY = -Math.sin(radians) * elevation * 0.95;
+
+			lab.style.setProperty('--elevation', elevation);
+			lab.style.setProperty('--shadow-x', `${shadowX.toFixed(2)}px`);
+			lab.style.setProperty('--shadow-y', `${shadowY.toFixed(2)}px`);
+
+			value.textContent = range.value;
+			angleValue.textContent = angleRange.value;
+		};
+
+		range.addEventListener('input', updateShadow);
+		angleRange.addEventListener('input', updateShadow);
+		updateShadow();
+	});
+</script>
+
+<style>
+	.shadow-lab {
+		--elevation: 8;
+		--shadow-color: hsl(220deg 20% 20% / 0.25);
+		--shadow-x: 2px;
+		--shadow-y: 7px;
+		background: white;
+		padding: 1rem;
+		display: grid;
+		gap: 1rem;
+		max-width: 100%;
+		color: black;
+	}
+	.shadow-lab__scene {
+		position: relative;
+		padding: 2.5rem 1.5rem;
+		border: 2px solid var(--border);
+		background: linear-gradient(0deg, hsl(210deg 25% 96%) 0%, hsl(210deg 30% 98%) 100%),
+			linear-gradient(90deg, hsl(210deg 20% 90% / 0.5) 1px, transparent 1px);
+		background-size:
+			100% 100%,
+			16px 16px;
+	}
+	.shadow-lab__card {
+		--blur: calc(var(--elevation) * 1.6px + 6px);
+		--spread: calc(var(--elevation) * -0.15px);
+		max-width: 320px;
+		margin: 0 auto;
+		padding: 1.2rem;
+		border-radius: 10px;
+		background: white;
+		box-shadow: var(--shadow-x) var(--shadow-y) var(--blur) var(--spread) var(--shadow-color);
+	}
+	.shadow-lab__title {
+		margin: 0 0 0.4rem;
+		font-weight: 600;
+	}
+	.shadow-lab__button {
+		margin-top: 0.8rem;
+		border: 2px solid var(--border);
+		background: hsl(210deg 90% 95%);
+		padding: 0.5rem 0.9rem;
+		font-size: 0.95rem;
+	}
+	.shadow-lab__control {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.95rem;
+	}
+	.shadow-lab__control-text {
+		display: block;
+	}
+	.shadow-lab__range {
+		width: 100%;
+	}
+	p {
+		margin: 0;
+	}
+</style>
