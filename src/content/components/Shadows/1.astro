@@ -36,7 +36,7 @@
 			const shadowX = -Math.cos(radians) * elevation * 0.55;
 			const shadowY = -Math.sin(radians) * elevation * 0.95;
 
-			lab.style.setProperty('--elevation', elevation);
+			lab.style.setProperty('--elevation', `${elevation}px`);
 			lab.style.setProperty('--shadow-x', `${shadowX.toFixed(2)}px`);
 			lab.style.setProperty('--shadow-y', `${shadowY.toFixed(2)}px`);
 
@@ -52,8 +52,9 @@
 
 <style>
 	.shadow-lab {
-		--elevation: 8;
-		--shadow-color: hsl(220deg 20% 20% / 0.25);
+		--elevation: 8px;
+		--shadow-color: 220deg 20% 20%;
+		--shadow-opacity: 0.25;
 		--shadow-x: 2px;
 		--shadow-y: 7px;
 		background: white;
@@ -74,14 +75,15 @@
 			16px 16px;
 	}
 	.shadow-lab__card {
-		--blur: calc(var(--elevation) * 1.6px + 6px);
-		--spread: calc(var(--elevation) * -0.15px);
+		--blur: calc(var(--elevation) * 1.6 + 6px);
+		--spread: calc(var(--elevation) * -0.15);
 		max-width: 320px;
 		margin: 0 auto;
 		padding: 1.2rem;
 		border-radius: 10px;
 		background: white;
-		box-shadow: var(--shadow-x) var(--shadow-y) var(--blur) var(--spread) var(--shadow-color);
+		box-shadow: var(--shadow-x) var(--shadow-y) var(--blur) var(--spread)
+			hsl(var(--shadow-color) / var(--shadow-opacity));
 	}
 	.shadow-lab__title {
 		margin: 0 0 0.4rem;

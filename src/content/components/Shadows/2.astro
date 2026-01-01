@@ -1,9 +1,11 @@
 <main class="layer-demo">
 	<div class="layer-demo__controls">
 		<p class="layer-demo__label">Layer toggles</p>
-		<label><input type="checkbox" data-layer="1" checked /> Tight shadow</label>
-		<label><input type="checkbox" data-layer="2" checked /> Soft shadow</label>
-		<label><input type="checkbox" data-layer="3" checked /> Bloom shadow</label>
+		<label><input type="checkbox" data-layer="1" checked /> 1px layer</label>
+		<label><input type="checkbox" data-layer="2" checked /> 2px layer</label>
+		<label><input type="checkbox" data-layer="3" checked /> 4px layer</label>
+		<label><input type="checkbox" data-layer="4" checked /> 8px layer</label>
+		<label><input type="checkbox" data-layer="5" checked /> 16px layer</label>
 	</div>
 
 	<div class="layer-demo__grid">
@@ -18,9 +20,11 @@
 	const toggles = demo.querySelectorAll('input[type="checkbox"]');
 
 	const layers = {
-		1: '0 2px 4px hsl(220deg 20% 20% / 0.18)',
-		2: '0 8px 14px hsl(220deg 25% 20% / 0.14)',
-		3: '0 20px 32px hsl(220deg 30% 20% / 0.12)',
+		1: '0 1px 1px hsl(0deg 0% 0% / 0.075)',
+		2: '0 2px 2px hsl(0deg 0% 0% / 0.075)',
+		3: '0 4px 4px hsl(0deg 0% 0% / 0.075)',
+		4: '0 8px 8px hsl(0deg 0% 0% / 0.075)',
+		5: '0 16px 16px hsl(0deg 0% 0% / 0.075)',
 	};
 
 	const update = () => {
@@ -65,10 +69,10 @@
 		text-align: center;
 	}
 	.layer-demo__card--single {
-		box-shadow: 0 10px 24px hsl(220deg 15% 15% / 0.16);
+		box-shadow: 0 6px 6px hsl(0deg 0% 0% / 0.3);
 	}
 	.layer-demo__card--layered {
-		box-shadow: var(--layer-1), var(--layer-2), var(--layer-3);
+		box-shadow: var(--layer-1), var(--layer-2), var(--layer-3), var(--layer-4), var(--layer-5);
 	}
 	p {
 		margin: 0;
