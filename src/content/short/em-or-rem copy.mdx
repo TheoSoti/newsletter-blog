@@ -1,0 +1,77 @@
+---
+title: 'Position Elements relative to their Sibling with CSS sibling-index()'
+description: 'Learn how CSS sibling-index() lets elements position themselves based on sibling order. Use pure CSS math for layouts without JavaScript or nth-child selectors.'
+pubDate: 'jan 13 2026'
+heroImage: '/short/01-2026/sibling-index.gif'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/01-2026/sibling-index.gif"
+	alt="CSS sibling-index() demo showing dots arranged in a circle based on their sibling position using trigonometry."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Place elements relative to their siblings.
+
+With one CSS function.
+
+Meet sibling-index().
+
+It gives each element a number.
+Based on its position among siblings.
+
+That number can drive layout.
+No extra classes.
+No :nth-child() chains.
+No JavaScript.
+
+Here’s the trick I used to place dots in a circle.
+
+Each dot computes its own angle.
+
+```css
+.dot {
+	--angle: calc(sibling-index() * 9deg);
+	--radius: 240px;
+
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	transform: translate(-50%, -50%);
+
+	top: calc(50% + sin(var(--angle)) * var(--radius));
+	left: calc(50% + cos(var(--angle)) * var(--radius));
+}
+```
+
+Here’s what happens.
+
+sibling-index() returns the position of the dot.
+You multiply it by 9deg.
+That spreads 40 dots across a full circle.
+
+Then sin() and cos() convert the angle into coordinates.
+top uses sin().
+left uses cos().
+
+The circle is centered with 50%.
+The dot is centered with translate(-50%, -50%).
+
+Simple math.
+Pure CSS.
+Very little markup.
+
+Browser support is still limited.
+About 69.3% today.
+And there is no Firefox support yet.
+
+But the idea is powerful.
+CSS is getting real logic now.
+
+What would you build with sibling-index()?
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**

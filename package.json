@@ -2,6 +2,9 @@
 	"name": "new-blog",
 	"type": "module",
 	"version": "0.0.1",
+	"engines": {
+		"node": ">=18.17.1"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",

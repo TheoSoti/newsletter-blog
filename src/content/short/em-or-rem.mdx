@@ -1,0 +1,56 @@
+---
+title: 'When Relative Units Behave Differently: EM vs REM in CSS'
+description: 'Understand the difference between CSS em and rem units. Learn how em compounds, why rem stays consistent, and when to use each for scalable, predictable layouts.'
+pubDate: 'jan 10 2026'
+heroImage: '/short/01-2026/EM-REM.jpeg'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/01-2026/EM-REM.jpeg"
+	alt="Diagram illustrating the difference between CSS em and rem units and how em values compound inside components."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## EM and REM look the same. Until they don’t.
+
+Both are relative units.
+But they reference different things.
+
+rem is always based on the root font size.
+Usually the html element.
+
+em is based on the computed font size of the element.
+Or its parent, depending on what you are sizing.
+
+Here’s the part that confuses people.
+em can compound.
+
+If you set font-size in em, the element’s font size changes.
+Then every em value inside that element scales from this new size.
+Padding. Margin. Gaps. Everything.
+
+rem does not compound.
+It always goes back to the root.
+
+A quick mental model.
+
+Use rem when you want consistency across the page.
+Typography scale. Spacing scale. Layout rhythm.
+
+Use em when you want a component to scale with its own text.
+Buttons. Chips. Badges. Cards with internal spacing tied to font size.
+
+Rule of thumb.
+rem for global rules.
+em for local rules.
+
+If you ever got a button that grows too much inside a container,
+it was probably em compounding.
+
+Do you default to rem everywhere?
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
