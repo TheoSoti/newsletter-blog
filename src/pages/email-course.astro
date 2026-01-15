@@ -20,9 +20,9 @@ import letter from '../assets/letter.png';
 		<section class="hero">
 			<div class="container">
 				<div class="content">
-					<p class="subtitle">A 7-day <mark>free email course</mark> on modern HTML & CSS.</p>
+					<p class="subtitle">A 7-day free email course</p>
 
-					<h1>Ship Better Websites With Less JavaScript.</h1>
+					<h1>Ship Better Websites <span class="highlight">With Less JavaScript.</span></h1>
 					<p class="description">
 						Understand modern HTML & CSS for building more accessible and performant websites. Without JavaScript bloat.
 					</p>
@@ -48,22 +48,28 @@ import letter from '../assets/letter.png';
 										type="email"
 									/>
 								</div>
-								<button
-									type="submit"
-									data-element="submit"
-									class="formkit-submit formkit-submit button"
-									aria-label="Join the course"
-								>
+								<button type="submit" data-element="submit" class="formkit-submit button" aria-label="Join the course">
+									<svg
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+									>
+									Start learning
+
 									<div class="formkit-spinner">
 										<div></div>
 										<div></div>
 										<div></div>
 									</div>
-									Join course
 								</button>
 							</div>
 						</div>
-						<p class="nospam">Join 1800 developers No strings attached, unsubscribe anytime!</p>
+						<p class="nospam">Join over 1900 developers. No strings attached, unsubscribe anytime!</p>
 					</form>
 				</div>
 				<Picture
@@ -77,45 +83,173 @@ import letter from '../assets/letter.png';
 		</section>
 
 		<main>
-			<section class="benefits">
-				<h2>What you'll get</h2>
-				<ul>
-					<li>
-						<p>HTML patterns that reduce JavaScript complexity</p>
-					</li>
-					<li>
-						<p>Modern CSS techniques for layouts and theming</p>
-					</li>
-					<li>
-						<p>Accessibility improvements that don't slow teams down</p>
-					</li>
-					<li>
-						<p>Performance wins that actually matter</p>
-					</li>
-					<li>
-						<p>Progressive enhancement and resilient UI patterns</p>
-					</li>
-				</ul>
+			<section class="for-you">
+				<h2>You're here because you're <span class="highlight-2">tired</span> of...</h2>
+				<div class="for-you__content">
+					<ul class="for-you__not">
+						<li>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M18 6 6 18"></path>
+								<path d="m6 6 12 12"></path>
+							</svg>
+							Adding JavaScript for every small UI interaction
+						</li>
+						<li>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M18 6 6 18"></path>
+								<path d="m6 6 12 12"></path>
+							</svg>
+							Fighting scroll libraries that break on edge cases
+						</li>
+						<li>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M18 6 6 18"></path>
+								<path d="m6 6 12 12"></path>
+							</svg>
+							Maintaining JS code that CSS could handle natively
+						</li>
+						<li>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M18 6 6 18"></path>
+								<path d="m6 6 12 12"></path>
+							</svg>
+							Guessing syntax instead of knowing what's possible
+						</li>
+					</ul>
+				</div>
+
+				<p class="for-you__course">
+					<span class="highlight-3">That's exactly why I created this email course.</span> I'll give you a clear CSS mental
+					map, not a list to memorize, but a way to know what's possible, so you can reach for simpler solutions.
+				</p>
 			</section>
 
-			<section class="for-you">
-				<h2>Is this for you?</h2>
-				<div class="for-you__content">
-					<div class="for-you__ok">
-						<p>For you if:</p>
-						<ul>
-							<li>You care about performance and accessibility</li>
-							<li>You prefer solid HTML & CSS over heavy JS</li>
-							<li>You enjoy thoughtful, opinionated frontend writing</li>
-						</ul>
+			<section class="benefits">
+				<h2>Build a Stronger CSS Mental Map</h2>
+				<p class="subtitle">
+					Most CSS wins happen when you remember a CSS tool exists that you thought needed JavaScript.
+				</p>
+				<div class="container">
+					<div class="benefit">
+						<svg
+							width="24"
+							height="24"
+							viewBox="-12 -12 48 48"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M12.586 12.586 19 19"></path>
+							<path
+								d="M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z"
+							></path>
+						</svg>
+						<h3>The :has() selector</h3>
+						<p class="description">
+							Style elements based on what they contain. Replace JS state management with pure CSS selectors.
+						</p>
 					</div>
-					<div class="for-you__not">
-						<p>Not for you if:</p>
-						<ul>
-							<li>You prefer JavaScript-first solutions for everything</li>
-							<li>You're not interested in frontend development</li>
-							<li>You only want framework or tooling news</li>
-						</ul>
+
+					<div class="benefit">
+						<svg
+							width="24"
+							height="24"
+							viewBox="-12 -12 48 48"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"
+							></path>
+							<path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
+							<path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
+						</svg>
+						<h3>Scroll-driven animations</h3>
+						<p class="description">
+							Tie animations to scroll progress without wiring up any JavaScript event listeners.
+						</p>
+					</div>
+
+					<div class="benefit">
+						<svg
+							width="24"
+							height="24"
+							viewBox="-12 -12 48 48"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<polyline points="16 18 22 12 16 6"></polyline>
+							<polyline points="8 6 2 12 8 18"></polyline>
+						</svg>
+						<h3>CSS Motion Path</h3>
+						<p class="description">
+							Animate elements along custom curves. Create polished UI motion with minimal code.
+						</p>
+					</div>
+
+					<div class="benefit">
+						<svg
+							width="24"
+							height="24"
+							viewBox="-12 -12 48 48"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"
+							></path>
+						</svg>
+						<h3>Native state in CSS</h3>
+						<p class="description">
+							Use :checked, :target, details[open] and other built-in states for rich interactions.
+						</p>
 					</div>
 				</div>
 			</section>
@@ -139,9 +273,13 @@ import letter from '../assets/letter.png';
 					</p>
 				</div>
 			</section>
-
-			<section class="newsletter">
-				<h2>Start the free email course and level up your frontend skills.</h2>
+		</main>
+		<footer class="newsletter">
+			<div class="container">
+				<h2>Ready to Build Your CSS Mental Map?</h2>
+				<p class="subtitle">
+					Start the free 7-day course and discover CSS patterns that replace JavaScript complexity.
+				</p>
 				<form
 					action="https://app.kit.com/forms/8881601/subscriptions"
 					class="seva-form formkit-form"
@@ -170,19 +308,29 @@ import letter from '../assets/letter.png';
 								class="formkit-submit formkit-submit button"
 								aria-label="Join the course"
 							>
+								<svg
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+								>
+								Start learning
 								<div class="formkit-spinner">
 									<div></div>
 									<div></div>
 									<div></div>
 								</div>
-								Join course
 							</button>
 						</div>
 					</div>
-					<p class="nospam">Join 1800 developers. No strings attached, unsubscribe anytime!</p>
+					<p class="nospam">Join over 1900 developers. No strings attached, unsubscribe anytime!</p>
 				</form>
-			</section>
-		</main>
+			</div>
+		</footer>
 	</body>
 </html>
 
@@ -200,6 +348,14 @@ import letter from '../assets/letter.png';
 		--pad-12-16: clamp(0.75rem, 0.663rem + 0.4348vw, 1rem);
 		--pad-16-32: clamp(1rem, 0.5897rem + 2.0513vw, 2rem);
 		--pad-xl: clamp(3rem, 2.7391rem + 1.3043vw, 3.75rem);
+
+		--input-bg: hsl(147, 22%, 28%);
+		--input-color: hsl(142, 15%, 71%);
+		--primary: hsl(145 45% 35%);
+		--highlight: hsl(38 92% 50%);
+		--highlight-2: 0 84.2% 60.2%;
+		--background-mail: hsl(145, 40%, 18%);
+		--nospam: hsl(0, 0%, 75%);
 	}
 
 	body {
@@ -236,8 +392,17 @@ import letter from '../assets/letter.png';
 
 	.hero {
 		text-align: center;
-		background-color: var(--bg-light);
+		background-color: var(--background-mail);
 		border-bottom: 2px solid var(--border);
+		color: var(--white);
+
+		.subtitle {
+			color: var(--nospam);
+			font-size: var(--fs-1);
+			text-transform: uppercase;
+			font-weight: normal;
+			margin: 0;
+		}
 
 		.container {
 			width: 1100px;
@@ -277,6 +442,17 @@ import letter from '../assets/letter.png';
 		margin-bottom: 0;
 	}
 
+	.highlight {
+		color: var(--highlight);
+	}
+
+	.highlight-2 {
+		color: hsl(var(--highlight-2));
+	}
+	.highlight-3 {
+		color: var(--primary);
+	}
+
 	.benefits {
 		margin-top: 3rem;
 
@@ -284,29 +460,34 @@ import letter from '../assets/letter.png';
 			margin-top: 0;
 		}
 
-		ul {
-			padding-left: 0;
-			list-style-type: none;
-			margin-bottom: 0;
+		.subtitle {
+			font-weight: 200;
 		}
 
-		li {
-			padding-block: 0;
-			padding-inline: 1rem;
-			margin-bottom: 0.5rem;
-			background-color: var(--bg-light);
-			border: 1px solid hsl(36 20% 80%);
-			border-radius: 6px;
-			display: flex;
-			align-items: center;
+		.container {
+			display: grid;
+			gap: 1rem;
+			grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr));
+		}
 
-			p {
-				width: 100%;
+		.benefit {
+			border: 2px solid var(--border);
+			box-shadow: var(--box-shadow);
+			background: var(--bg-light);
+			padding: 1rem;
+			border-radius: 6px;
+
+			svg {
+				color: var(--primary);
+
+				background-color: hsl(92deg 22.68% 91.31%);
+				border-radius: 6px;
+				width: 48px;
+				height: 48px;
 			}
 
-			&:last-child {
-				margin-bottom: 0;
-				padding-bottom: 0;
+			h3 {
+				margin-top: 1rem;
 			}
 		}
 	}
@@ -327,25 +508,29 @@ import letter from '../assets/letter.png';
 
 			li {
 				display: flex;
-				align-items: baseline;
-				margin-bottom: 0.5rem;
+				align-items: center;
+				text-align: left;
+				gap: 1rem;
+				margin-bottom: 1rem;
 			}
-			.for-you__ok {
-				max-width: 340px;
-				p {
-					color: var(--secondary);
-					font-weight: 500;
-				}
-			}
+		}
+		svg {
+			background-color: hsl(var(--highlight-2) / 0.1);
+			border-radius: 50%;
+			padding: 0.3rem;
+			color: red;
+		}
 
-			.for-you__not {
-				max-width: 340px;
+		.for-you__course {
+			margin-top: 2rem;
+			padding: 1rem;
+			border: 2px solid var(--border);
+			box-shadow: var(--box-shadow);
+			color: black;
 
-				p {
-					color: var(--small-text);
-					font-weight: 500;
-				}
-			}
+			text-align: center;
+			border-radius: 6px;
+			background-color: hsl(92deg 22.68% 91.31%);
 		}
 	}
 
@@ -354,7 +539,7 @@ import letter from '../assets/letter.png';
 		flex-wrap: wrap;
 		gap: 1rem;
 		margin-top: 3rem;
-		border: 1px solid hsl(36 20% 80%);
+		border: 2px solid var(--secondary);
 		border-left: 4px solid var(--secondary);
 		padding: 1rem;
 		background-color: var(--bg-light);
@@ -372,7 +557,7 @@ import letter from '../assets/letter.png';
 		}
 
 		.about__content {
-			flex: 1 1 300px;
+			flex: 1 1 420px;
 			min-width: 200px;
 
 			p {
@@ -386,23 +571,37 @@ import letter from '../assets/letter.png';
 	}
 
 	.newsletter {
-		background-color: var(--bg-light);
-		border: 2px solid var(--border);
-		padding: 1.5rem;
-		border-radius: 6px;
-		margin-top: 3rem;
-		box-shadow: var(--box-shadow);
+		text-align: center;
+		background-color: var(--background-mail);
+		border-bottom: 2px solid var(--border);
+		color: var(--white);
+		margin-top: 1rem;
+		border-top: 2px solid var(--border);
+
+		.subtitle {
+			max-width: 600px;
+			margin: 0;
+			font-weight: 100;
+		}
+
+		.container {
+			max-width: 760px;
+			margin: auto;
+			padding: var(--pad-xl) 1rem;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+		}
+
+		form.formkit-form {
+			max-width: 550px;
+		}
 
 		h2 {
+			font-size: var(--fs-2-5);
 			margin-top: 0;
 		}
-	}
-
-	.subtitle {
-		color: var(--secondary);
-		font-size: var(--fs-2);
-		font-weight: normal;
-		margin: 0;
 	}
 
 	.formkit-alert-error {
@@ -413,7 +612,7 @@ import letter from '../assets/letter.png';
 	.nospam {
 		margin: 5px 0 0;
 		font-size: 0.8rem;
-		color: var(--small-text);
+		color: var(--nospam);
 	}
 	form {
 		margin: 1rem 0 0;
@@ -431,16 +630,25 @@ import letter from '../assets/letter.png';
 		margin: 0;
 	}
 	button.button.formkit-submit {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
 		padding: 0 1rem;
 		height: 55px;
 		font-weight: bold;
+
+		svg {
+			transform: rotate(180deg);
+			width: 1rem;
+		}
 	}
 	.formkit-form {
 		position: relative;
 	}
 
 	.formkit-input::placeholder {
-		color: var(--small-text);
+		color: var(--input-color);
 		opacity: 1;
 	}
 	.formkit-input:hover,
@@ -449,63 +657,35 @@ import letter from '../assets/letter.png';
 	}
 	.formkit-input,
 	.button {
+		background-color: var(--highlight);
+		color: var(--black);
 		height: 60px;
 		border: 2px solid var(--border);
 		border-radius: 6px;
 		font-size: 1rem;
 		flex-shrink: 0;
-		font-weight: 500;
 	}
 
 	.formkit-input {
 		width: 100%;
 		padding: 0 1rem;
-		border-color: var(--text);
-		background-color: var(--bg-light);
-		color: var(--text);
+		border-width: 1px;
+		border-color: var(--input-color);
+		background-color: var(--input-bg);
+		color: var(--white);
 		transition: outline 0.2s ease;
 	}
 
 	@media screen and (min-width: 600px) {
 		main,
-		.hero {
+		.hero,
+		.for-you .for-you__course {
 			text-align: left;
-		}
-
-		.benefits li::before {
-			content: '→';
-			margin-right: 0.5rem;
-			font-size: 1.2rem;
-			color: var(--secondary);
-			font-weight: 800;
-		}
-
-		.newsletter {
-			padding-bottom: 3rem;
 		}
 
 		.for-you {
 			.for-you__content {
 				justify-content: space-between;
-
-				li:before {
-					margin-right: 0.5rem;
-					font-size: 1rem;
-				}
-
-				.for-you__ok {
-					li:before {
-						content: '✓';
-						color: var(--secondary);
-					}
-				}
-
-				.for-you__not {
-					li:before {
-						content: '✗';
-						color: var(--small-text);
-					}
-				}
 			}
 		}
 	}
