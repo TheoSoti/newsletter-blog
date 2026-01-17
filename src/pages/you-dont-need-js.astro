@@ -34,11 +34,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Primary Meta Tags -->
-		<title>You Don’t Need JavaScript | A Practical CSS eBook</title>
+		<title>You Don’t Need JavaScript | A complete CSS guide to build components without JavaScript</title>
 		<meta name="title" content="You Don’t Need JavaScript | A Practical CSS eBook" />
 		<meta
 			name="description"
-			content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this practical ebook."
+			content="Learn to build accessible components without JavaScript using pure CSS. 
+125-page guide with real-world examples, tutorials & modern CSS techniques."
 		/>
 
 		<!-- Open Graph / Facebook -->
@@ -66,8 +67,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<section class="hero">
 			<div class="hero__container">
 				<div class="hero__content">
-					<h1 class="hero__title"><i>You Don't Need JavaScript</i></h1>
-					<h2 class="hero__subtitle">A practical guide for building modern components with CSS</h2>
+					<i class="hero__title"> You Don't Need JavaScript</i>
+					<h1 class="hero__subtitle">A practical guide for building modern components with CSS</h1>
 					<p class="hero__description">
 						<i>You Don’t Need JavaScript</i> is a complete, 125-page book packed with modern CSS techniques, real-world examples,
 						and step-by-step tutorials. Learn how to replace unnecessary JavaScript with lightweight CSS components that
@@ -100,7 +101,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 				<div class="learning__steps">
 					<div class="step">
 						<div>
-							<h3 class="step__title">Create a popover menu with pure CSS</h3>
+							<h3 class="step__title">Build interactive popovers with pure CSS</h3>
 							<p class="step__description">
 								Thanks to the Popover API, you can build an accessible drawer menu that works seamlessly across almost
 								all devices. This technique can be extended to create a variety of interactive components.
@@ -654,11 +655,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	<section class="faq">
 		<h2 class="faq__title">Frequently asked questions</h2>
 
-		<ul class="faq__container">
+		<ul class="faq__container" role="list">
 			<li class="accordion">
 				<details open>
 					<summary aria-describedby="accordion1">
-						<p class="accordion__title" role="term"><span>Who is this book for?</span></p>
+						<h3 class="accordion__title" role="term">Who is this book for?</h3>
 					</summary>
 				</details>
 
@@ -673,7 +674,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion2">
-						<p class="accordion__title" role="term"><span>Do I need to be a CSS expert to follow along?</span></p>
+						<h3 class="accordion__title" role="term">Do I need to be a CSS expert to follow along?</h3>
 					</summary>
 				</details>
 
@@ -689,7 +690,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion3">
-						<p class="accordion__title" role="term"><span>What exactly will I learn?</span></p>
+						<h3 class="accordion__title" role="term">What exactly will I learn?</h3>
 					</summary>
 				</details>
 
@@ -704,7 +705,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion4">
-						<p class="accordion__title" role="term"><span>What format is the book available in? </span></p>
+						<h3 class="accordion__title" role="term">What format is the book available in?</h3>
 					</summary>
 				</details>
 
@@ -719,7 +720,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion4">
-						<p class="accordion__title" role="term"><span>Will the book be updated in the future? </span></p>
+						<h3 class="accordion__title" role="term">Will the book be updated in the future?</h3>
 					</summary>
 				</details>
 
@@ -734,7 +735,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion4">
-						<p class="accordion__title" role="term"><span>What if I don’t like the book? </span></p>
+						<h3 class="accordion__title" role="term">What if I don’t like the book?</h3>
 					</summary>
 				</details>
 
@@ -750,7 +751,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<li class="accordion">
 				<details>
 					<summary aria-describedby="accordion5">
-						<p class="accordion__title" role="term"><span>Did you use JavaScript for creating this page?</span></p>
+						<h3 class="accordion__title" role="term">Did you use JavaScript for creating this page?</h3>
 					</summary>
 				</details>
 
