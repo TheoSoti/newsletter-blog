@@ -1,5 +1,6 @@
 ---
 import type { InferEntrySchema, Render } from 'astro:content';
+import { getShortSlug } from '../../utils/shortSlug';
 
 type Post = {
 	id: string;
@@ -17,11 +18,13 @@ type Props = {
 
 const { posts, type } = Astro.props as Props;
 
+const getPostSlug = (post: Post) => (type === 'short' ? getShortSlug(post.slug) : post.slug);
+
 const structuredData = (posts || []).map((post) => {
 	return {
 		'@type': 'ItemList',
 		headline: post.data.title,
-		url: `https://theosoti.com/${type}/${post.slug}`,
+		url: `https://theosoti.com/${type}/${getPostSlug(post)}`,
 		datePublished: post.data.pubDate,
 		description: post.data.description,
 	};

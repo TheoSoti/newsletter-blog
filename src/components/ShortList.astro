@@ -1,10 +1,13 @@
 ---
-const { post } = Astro.props;
 import FormattedDate from './FormattedDate.astro';
+import { getShortSlug } from '../utils/shortSlug';
+
+const { post } = Astro.props;
+const shortSlug = getShortSlug(post.slug);
 ---
 
 <li class="card">
-	<a href={`/short/${post.slug}/`}>
+	<a href={`/short/${shortSlug}/`}>
 		<span>
 			<FormattedDate date={post.data.pubDate} />
 		</span>
