@@ -42,6 +42,7 @@ const displayedHeadings = headings.filter((heading) => heading.depth === 2);
 			max-height: calc(100vh - 160px); /* fallback */
 			max-height: calc(100dvh - 160px);
 			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 		span {
 			display: block;
@@ -54,6 +55,8 @@ const displayedHeadings = headings.filter((heading) => heading.depth === 2);
 			list-style-type: none;
 			padding-left: 0;
 			margin: 0;
+
+			scroll-target-group: auto;
 		}
 		a {
 			display: block;
@@ -62,6 +65,11 @@ const displayedHeadings = headings.filter((heading) => heading.depth === 2);
 			padding: 0.5em 2em 0.5em 0.5em;
 			position: relative;
 			border-bottom: 1px solid var(--border);
+		}
+		a:target-current {
+			background-color: var(--bg-accent);
+			color: var(--secondary);
+			transform: translateX(5px);
 		}
 		li:last-child a {
 			border-bottom: 0;
