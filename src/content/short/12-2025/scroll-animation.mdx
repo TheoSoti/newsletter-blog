@@ -2,17 +2,17 @@
 title: 'Scroll-Driven Animations in CSS with @starting-style'
 description: 'Learn how to combine entry animations and scroll-driven motion using modern CSS. Use @starting-style, custom properties, and scroll timelines.'
 pubDate: 'dec 20 2025'
-heroImage: '/short/12-2025/slide-in.gif'
+heroImage: '/short/12-2025/slide-in.avif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-  src="/short/12-2025/slide-in.gif"
-  alt="CSS scroll-driven animation example showing elements fading in on load and animating based on scroll position."
-  width="400"
-  height="600"
-  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+	src="/short/12-2025/slide-in.avif"
+	alt="CSS scroll-driven animation example showing elements fading in on load and animating based on scroll position."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## You can combine scroll-driven animations with `@starting-style` in CSS.
@@ -32,9 +32,9 @@ animate a numeric value you control.
 
 ```css
 @property --progress {
-  syntax: '<number>';
-  inherits: false;
-  initial-value: 0;
+	syntax: '<number>';
+	inherits: false;
+	initial-value: 0;
 }
 ```
 
@@ -46,7 +46,7 @@ Use `@starting-style` to handle the initial fade-in.
 
 ```css
 @starting-style {
-  opacity: 0;
+	opacity: 0;
 }
 ```
 

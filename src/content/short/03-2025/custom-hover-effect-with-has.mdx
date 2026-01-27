@@ -2,17 +2,17 @@
 title: 'Create an inverted hover effect with CSS :has()'
 description: 'Achieve a smooth inverted hover effect using CSS :has()—no JavaScript, no hacks! Style parent elements dynamically with clean, native CSS.'
 pubDate: 'Mar 28 2025'
-heroImage: '/short/03-2025/custom-hover-effect-with-has.gif'
+heroImage: '/short/03-2025/custom-hover-effect-with-has.avif'
 ---
 
 import { Picture } from 'astro:assets';
 
 <Picture
-  src="/short/03-2025/custom-hover-effect-with-has.gif"
-  alt="Example of an inverted hover effect using CSS :has()"
-  width="400"
-  height="600"
-  style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+	src="/short/03-2025/custom-hover-effect-with-has.avif"
+	alt="Example of an inverted hover effect using CSS :has()"
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
 />
 
 ## Have you ever wanted to create an inverted hover effect?
@@ -48,16 +48,16 @@ With over 93% browser support, it’s pretty safe to use.
 
 ```html
 <ul class="cardlist">
-  <li class="card">...</li>
-  <li class="card">...</li>
-  <li class="card">...</li>
-  <li class="card">...</li>
+	<li class="card">...</li>
+	<li class="card">...</li>
+	<li class="card">...</li>
+	<li class="card">...</li>
 </ul>
 ```
 
 ```css
 .cardlist:has(.card:hover) .card:not(:hover) {
-  filter: blur(4px);
+	filter: blur(4px);
 }
 ```
 
