@@ -1,0 +1,42 @@
+---
+title: 'Align Numbers Perfectly with CSS tabular-nums'
+description: 'Fix misaligned numbers in tables and UI by enabling tabular figures in CSS. Use font-variant-numeric and OpenType features for cleaner, more readable data layouts.'
+pubDate: 'jan 26 2026'
+heroImage: '/short/01-2026/tabular-nums.avif'
+---
+
+import { Picture } from 'astro:assets';
+
+<Picture
+	src="/short/01-2026/tabular-nums.avif"
+	alt="Comparison of misaligned proportional numbers and aligned tabular numbers using CSS font-variant-numeric."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Ever noticed how numbers often look misaligned?
+
+That's because most fonts use proportional numbers by default.
+Each digit takes up a different amount of space.
+
+But there's a fix for that.
+
+In CSS, you can opt in to tabular numbers, where all digits have the same width.
+That makes columns of numbers line up perfectly.
+
+Here's how to enable it:
+
+```css
+.after {
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'tnum';
+}
+```
+
+This works best with fonts that support OpenType features.
+But most system fonts and many web fonts do.
+
+Clearer layouts, cleaner data tables, and a subtle polish your UI users will feel.
+
+**To learn more tips about CSS, make sure to join my newsletter below ❤️**
