@@ -1,0 +1,89 @@
+<article class="static-callout">
+	<p class="static-callout__eyebrow">Design note</p>
+	<p class="static-callout__title">Tone-aware callout</p>
+	<p class="static-callout__text">
+		This card uses one base color, then derives border, shadow, and emphasis text from it.
+	</p>
+	<p class="static-callout__text">
+		<strong>Tip:</strong> Keep all accents tied to the same hue for a clean system.
+	</p>
+</article>
+
+<!-- <script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.static-callout').forEach((root) => {
+				const utils = window.RelativeColorUtils;
+				if (!utils || utils.supportsRelative) return;
+
+				const tone = '#4B6BFF';
+				const strong = utils.shiftHsl(tone, { l: -12 });
+				const soft = utils.shiftHsl(tone, { s: -20, l: 28 });
+				const text = utils.shiftHsl(tone, { s: -35, l: -15 });
+				const eyebrow = utils.shiftHsl(tone, { s: -10, l: 8 });
+
+				root.style.backgroundColor = soft;
+				root.style.borderColor = utils.rgbaFromHex(tone, 0.2);
+				root.style.boxShadow = `0 12px 24px ${utils.rgbaFromHex(tone, 0.25)}`;
+				root.style.color = text;
+
+				const eyebrowEl = root.querySelector('.static-callout__eyebrow');
+				if (eyebrowEl) eyebrowEl.style.color = eyebrow;
+
+				root.querySelectorAll('.static-callout__text strong').forEach((el) => {
+					el.style.color = strong;
+				});
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script> -->
+
+<style>
+	.static-callout {
+		--tone: #4b6bff;
+		--tone-strong: hsl(from var(--tone) h s calc(l * 0.78));
+		--tone-soft: hsl(from var(--tone) h calc(s * 0.8) calc(l * 1.43));
+		--tone-border: rgb(from var(--tone) r g b / 0.2);
+		--tone-shadow: rgb(from var(--tone) r g b / 0.25);
+		border: 1px solid var(--tone-border);
+		box-shadow: 0 12px 24px var(--tone-shadow);
+		padding: 1.2rem;
+		border-radius: 16px;
+		margin: 1.2rem;
+		display: grid;
+		gap: 0.5rem;
+		border: 1px solid var(--tone-border);
+		background-color: var(--tone-soft);
+		color: var(--tone);
+		box-shadow: 0 12px 24px var(--tone-shadow);
+	}
+
+	.static-callout__eyebrow {
+		margin: 0;
+		font-size: 0.85rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.static-callout__title {
+		margin: 0;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--tone-strong);
+	}
+
+	.static-callout__text {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.static-callout__text strong {
+		color: var(--tone-strong);
+	}
+</style>

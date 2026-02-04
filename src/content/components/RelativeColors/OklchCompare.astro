@@ -1,0 +1,223 @@
+<div class="oklch-compare">
+	<div class="oklch-compare__controls">
+		<label class="oklch-compare__field">
+			<span>Base color</span>
+			<input class="oklch-compare__color" type="color" value="#ff4f4f" data-base-input />
+		</label>
+		<label class="oklch-compare__field">
+			<span>Hue shift</span>
+			<input
+				class="oklch-compare__range"
+				type="range"
+				min="30"
+				max="150"
+				step="1"
+				value="90"
+				data-shift-input
+			/>
+		</label>
+		<span class="oklch-compare__value" data-shift-value>90deg</span>
+	</div>
+
+	<div class="oklch-compare__grid">
+		<div class="oklch-compare__column">
+			<p class="oklch-compare__title">HSL</p>
+			<div class="oklch-compare__pair">
+				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-base">Base</div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-shift">Shift</div>
+			</div>
+			<code class="oklch-compare__code">hsl(from var(--brand) h s l)</code>
+			<code class="oklch-compare__code">hsl(from var(--brand) calc(h + var(--shift)) s l)</code>
+		</div>
+
+		<div class="oklch-compare__column">
+			<p class="oklch-compare__title">OKLCH</p>
+			<div class="oklch-compare__pair">
+				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-base">Base</div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-shift">Shift</div>
+			</div>
+			<code class="oklch-compare__code">oklch(from var(--brand) l c h)</code>
+			<code class="oklch-compare__code">oklch(from var(--brand) l c calc(h + var(--shift)))</code>
+		</div>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.oklch-compare').forEach((root) => {
+				const baseInput = root.querySelector('[data-base-input]');
+				const shiftInput = root.querySelector('[data-shift-input]');
+				const shiftValue = root.querySelector('[data-shift-value]');
+				const utils = window.RelativeColorUtils;
+
+				const hslBaseSwatch = root.querySelector('.oklch-compare__swatch--hsl-base');
+				const hslShiftSwatch = root.querySelector('.oklch-compare__swatch--hsl-shift');
+				const oklchBaseSwatch = root.querySelector('.oklch-compare__swatch--oklch-base');
+				const oklchShiftSwatch = root.querySelector('.oklch-compare__swatch--oklch-shift');
+
+				const update = () => {
+					const base = baseInput.value.toUpperCase();
+					const shift = Number(shiftInput.value);
+
+					root.style.setProperty('--brand', base);
+					root.style.setProperty('--shift', `${shift}deg`);
+					shiftValue.textContent = `${shift}deg`;
+
+					if (utils && !utils.supportsRelative) {
+						const hslShift = utils.shiftHsl(base, { h: shift });
+						const oklchShift = utils.shiftOklchHue(base, shift);
+
+						if (hslBaseSwatch) {
+							hslBaseSwatch.style.backgroundColor = base;
+							hslBaseSwatch.style.color = utils.contrastFromHex(base);
+						}
+						if (hslShiftSwatch) {
+							hslShiftSwatch.style.backgroundColor = hslShift;
+							hslShiftSwatch.style.color = utils.contrastFromHex(hslShift);
+						}
+						if (oklchBaseSwatch) {
+							oklchBaseSwatch.style.backgroundColor = base;
+							oklchBaseSwatch.style.color = utils.contrastFromHex(base);
+						}
+						if (oklchShiftSwatch) {
+							oklchShiftSwatch.style.backgroundColor = oklchShift;
+							oklchShiftSwatch.style.color = utils.contrastFromHex(oklchShift);
+						}
+					}
+				};
+
+				baseInput.addEventListener('input', update);
+				shiftInput.addEventListener('input', update);
+				update();
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script>
+
+<style>
+	.oklch-compare {
+		--brand: #ff4f4f;
+		--shift: 90deg;
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+	}
+
+	.oklch-compare__controls {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 0.75rem;
+		align-items: end;
+		font-size: 0.9rem;
+	}
+
+	.oklch-compare__field {
+		display: grid;
+		gap: 0.35rem;
+	}
+
+	.oklch-compare__color {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		border: 2px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+		font-size: 16px;
+	}
+
+	.oklch-compare__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		touch-action: manipulation;
+		font-size: 16px;
+	}
+
+	.oklch-compare__value {
+		font-variant-numeric: tabular-nums;
+		color: #3b3b3b;
+	}
+
+	.oklch-compare__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+
+	.oklch-compare__column {
+		display: grid;
+		gap: 0.6rem;
+		padding: 0.75rem;
+		border-radius: 12px;
+		background: #f7f8ff;
+		border: 1px solid rgba(23, 23, 23, 0.1);
+	}
+
+	.oklch-compare__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 1rem;
+	}
+
+	.oklch-compare__pair {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(80px, 1fr));
+		gap: 0.6rem;
+	}
+
+	.oklch-compare__swatch {
+		display: grid;
+		place-items: center;
+		min-height: 80px;
+		border-radius: 12px;
+		font-weight: 600;
+		border: 1px solid rgba(23, 23, 23, 0.12);
+		color: hsl(from var(--swatch-color) h 20% calc(100% - l));
+		background: var(--swatch-color);
+	}
+
+	.oklch-compare__swatch--hsl-base {
+		--swatch-color: hsl(from var(--brand) h s l);
+	}
+
+	.oklch-compare__swatch--hsl-shift {
+		--swatch-color: hsl(from var(--brand) calc(h + var(--shift)) s l);
+	}
+
+	.oklch-compare__swatch--oklch-base {
+		--swatch-color: oklch(from var(--brand) l c h);
+	}
+
+	.oklch-compare__swatch--oklch-shift {
+		--swatch-color: oklch(from var(--brand) l c calc(h + var(--shift)));
+	}
+
+	.oklch-compare__code {
+		font-size: 0.85rem;
+		background: white;
+		padding: 0.3rem 0.4rem;
+		border-radius: 6px;
+		border: 1px solid rgba(23, 23, 23, 0.1);
+	}
+
+	.oklch-compare__color:focus-visible,
+	.oklch-compare__range:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+</style>

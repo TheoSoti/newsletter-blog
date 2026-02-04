@@ -1,0 +1,85 @@
+<div class="static-saturation">
+	<div class="static-saturation__swatch static-saturation__swatch--base"><span>Base</span></div>
+	<div class="static-saturation__swatch static-saturation__swatch--muted"><span>Muted</span></div>
+	<div class="static-saturation__swatch static-saturation__swatch--ink"><span>Ink</span></div>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.static-saturation').forEach((root) => {
+				const utils = window.RelativeColorUtils;
+				if (!utils || utils.supportsRelative) return;
+
+				const brand = '#4B6BFF';
+				const muted = utils.shiftHsl(brand, { s: -35, l: 12 });
+				const ink = utils.shiftHsl(brand, { s: -40, l: -20 });
+
+				const baseSwatch = root.querySelector('.static-saturation__swatch--base');
+				const mutedSwatch = root.querySelector('.static-saturation__swatch--muted');
+				const inkSwatch = root.querySelector('.static-saturation__swatch--ink');
+
+				if (baseSwatch) {
+					baseSwatch.style.backgroundColor = brand;
+					baseSwatch.style.color = utils.contrastFromHex(brand);
+				}
+				if (mutedSwatch) {
+					mutedSwatch.style.backgroundColor = muted;
+					mutedSwatch.style.color = utils.contrastFromHex(muted);
+				}
+				if (inkSwatch) {
+					inkSwatch.style.backgroundColor = ink;
+					inkSwatch.style.color = utils.contrastFromHex(ink);
+				}
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script>
+
+<style>
+	.static-saturation {
+		--brand: #4b6bff;
+		--muted: hsl(from var(--brand) h calc(s - 35%) calc(l + 12%));
+		--ink: hsl(from var(--brand) h calc(s - 40%) calc(l - 20%));
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 0.8rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+	}
+
+	.static-saturation__swatch {
+		min-height: 90px;
+		display: grid;
+		place-items: center;
+		border-radius: 14px;
+		font-weight: 600;
+		border: 1px solid rgba(23, 23, 23, 0.12);
+
+		span {
+			color: white;
+		}
+	}
+
+	.static-saturation__swatch--base {
+		background: var(--brand);
+		color: hsl(from var(--brand) h 20% calc(100% - l));
+	}
+
+	.static-saturation__swatch--muted {
+		background: var(--muted);
+		color: hsl(from var(--muted) h 20% calc(100% - l));
+	}
+
+	.static-saturation__swatch--ink {
+		background: var(--ink);
+		color: hsl(from var(--ink) h 20% calc(100% - l));
+	}
+</style>

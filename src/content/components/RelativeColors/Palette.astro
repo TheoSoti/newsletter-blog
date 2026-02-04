@@ -1,0 +1,315 @@
+<div class="relative-palette">
+	<div class="relative-palette__controls">
+		<label class="relative-palette__field">
+			<span class="relative-palette__label">Base color</span>
+			<span class="relative-palette__control">
+				<input class="relative-palette__color" type="color" value="#3734D5" data-base-input />
+				<span class="relative-palette__value" data-base-value>#3734D5</span>
+			</span>
+		</label>
+
+		<label class="relative-palette__field" style="display: none;">
+			<span class="relative-palette__label">Strength</span>
+			<span class="relative-palette__control relative-palette__control--range">
+				<input class="relative-palette__range" type="range" min="6" max="24" step="1" value="12" data-strength-input />
+				<span class="relative-palette__value" aria-live="polite" data-strength-value>12%</span>
+			</span>
+		</label>
+	</div>
+
+	<ul class="relative-palette__grid">
+		<li class="relative-palette__swatch relative-palette__swatch--base">
+			<span class="relative-palette__swatch-name">Base</span>
+			<span class="relative-palette__swatch-note">Primary</span>
+		</li>
+		<li class="relative-palette__swatch relative-palette__swatch--strong">
+			<span class="relative-palette__swatch-name">Strong</span>
+			<span class="relative-palette__swatch-note">Hover or active</span>
+		</li>
+		<li class="relative-palette__swatch relative-palette__swatch--soft">
+			<span class="relative-palette__swatch-name">Soft</span>
+			<span class="relative-palette__swatch-note">Surface</span>
+		</li>
+		<li class="relative-palette__swatch relative-palette__swatch--accent">
+			<span class="relative-palette__swatch-name">Accent</span>
+			<span class="relative-palette__swatch-note">Detail</span>
+		</li>
+		<li class="relative-palette__swatch relative-palette__swatch--border">
+			<span class="relative-palette__swatch-name">Border</span>
+			<span class="relative-palette__swatch-note">Low alpha</span>
+		</li>
+		<li class="relative-palette__swatch relative-palette__swatch--shadow">
+			<span class="relative-palette__swatch-name">Shadow</span>
+			<span class="relative-palette__swatch-note">Soft depth</span>
+		</li>
+	</ul>
+
+	<p class="relative-palette__fallback" role="status">Relative colors are not supported in this browser yet.</p>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			const isTransparent = (value) => !value || value === 'transparent' || value === 'rgba(0, 0, 0, 0)';
+
+			document.querySelectorAll('.relative-palette').forEach((root) => {
+				const baseInput = root.querySelector('[data-base-input]');
+				const baseValue = root.querySelector('[data-base-value]');
+				const strengthValue = root.querySelector('[data-strength-value]');
+				const utils = window.RelativeColorUtils;
+
+				const swatchBase = root.querySelector('.relative-palette__swatch--base');
+				const swatchStrong = root.querySelector('.relative-palette__swatch--strong');
+				const swatchSoft = root.querySelector('.relative-palette__swatch--soft');
+				const swatchAccent = root.querySelector('.relative-palette__swatch--accent');
+				const swatchBorder = root.querySelector('.relative-palette__swatch--border');
+				const swatchShadow = root.querySelector('.relative-palette__swatch--shadow');
+				let forceFallback = false;
+
+				const clearInline = () => {
+					[swatchBase, swatchStrong, swatchSoft, swatchAccent, swatchBorder, swatchShadow].forEach((swatch) => {
+						if (!swatch) return;
+						swatch.style.removeProperty('background-color');
+						swatch.style.removeProperty('color');
+						swatch.style.removeProperty('border');
+						swatch.style.removeProperty('box-shadow');
+					});
+				};
+
+				const needsInlineFallback = () => {
+					const swatches = [swatchStrong, swatchSoft, swatchAccent].filter(Boolean);
+
+					if (!swatches.length) return false;
+					return swatches.some((swatch) => isTransparent(getComputedStyle(swatch).backgroundColor));
+				};
+
+				const update = () => {
+					const base = baseInput.value.toUpperCase();
+					const strength = 20;
+					console.log(strength);
+
+					root.style.setProperty('--brand', base);
+					root.style.setProperty('--strength', `${strength}%`);
+
+					baseValue.textContent = base;
+					strengthValue.textContent = `${strength}%`;
+
+					const shouldFallback = utils && (!utils.supportsRelative || forceFallback || needsInlineFallback());
+
+					if (!utils) return;
+
+					if (shouldFallback) {
+						forceFallback = true;
+						const strong = utils.shiftHsl(base, { l: -strength });
+						const soft = utils.shiftHsl(base, { s: -18, l: strength + 10 });
+						const accent = utils.shiftHsl(base, { h: 20 });
+						const border = utils.rgbaFromHex(base, 0.18);
+						const shadow = utils.rgbaFromHex(base, 0.3);
+
+						if (swatchBase) {
+							swatchBase.style.backgroundColor = base;
+							swatchBase.style.color = utils.contrastFromHex(base);
+						}
+						if (swatchStrong) {
+							swatchStrong.style.backgroundColor = strong;
+							swatchStrong.style.color = utils.contrastFromHex(strong);
+						}
+						if (swatchSoft) {
+							swatchSoft.style.backgroundColor = soft;
+							swatchSoft.style.color = utils.contrastFromHex(soft);
+						}
+						if (swatchAccent) {
+							swatchAccent.style.backgroundColor = accent;
+							swatchAccent.style.color = utils.contrastFromHex(accent);
+						}
+						if (swatchBorder) {
+							swatchBorder.style.backgroundColor = '#FFFFFF';
+							swatchBorder.style.border = `2px solid ${border}`;
+							swatchBorder.style.boxShadow = 'none';
+							swatchBorder.style.color = utils.contrastFromHex(base);
+						}
+						if (swatchShadow) {
+							swatchShadow.style.backgroundColor = '#FFFFFF';
+							swatchShadow.style.border = '1px solid rgba(23, 23, 23, 0.08)';
+							swatchShadow.style.boxShadow = `0 14px 26px ${shadow}`;
+							swatchShadow.style.color = utils.contrastFromHex(base);
+						}
+					} else {
+						clearInline();
+					}
+				};
+
+				baseInput.addEventListener('input', update);
+
+				update();
+			});
+		};
+
+		const utilsReady = window.RelativeColorUtilsReady;
+
+		if (window.RelativeColorUtils && !utilsReady) {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		} else {
+			run();
+		}
+	})();
+</script>
+
+<style>
+	.relative-palette {
+		--brand: #4b6bff;
+		--strength: 12%;
+		--strong-color: oklch(from var(--brand) calc(l - var(--strength)) c h);
+		--soft-color: oklch(from var(--brand) calc(l + var(--strength) + 10%) calc(c - 18%) h);
+		--accent-color: oklch(from var(--brand) l c calc(h + 20deg));
+		--border-color: rgb(from var(--brand) r g b / 0.18);
+		--shadow-color: rgb(from var(--brand) r g b / 0.3);
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		-webkit-tap-highlight-color: rgba(23, 23, 23, 0.2);
+	}
+
+	.relative-palette input {
+		font-size: 16px;
+	}
+
+	.relative-palette__controls {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.relative-palette__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.95rem;
+	}
+
+	.relative-palette__label {
+		font-weight: 600;
+	}
+
+	.relative-palette__control {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.relative-palette__control--range {
+		gap: 1rem;
+	}
+
+	.relative-palette__color {
+		border: 1px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.relative-palette__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		font-size: 1rem;
+		touch-action: manipulation;
+	}
+
+	.relative-palette__color:focus-visible,
+	.relative-palette__range:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+
+	.relative-palette__value {
+		font-variant-numeric: tabular-nums;
+		font-size: 0.95rem;
+		color: #353535;
+	}
+
+	.relative-palette__grid {
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 1rem;
+	}
+
+	.relative-palette__swatch {
+		--swatch-bg: var(--brand);
+		display: grid;
+		align-content: space-between;
+		gap: 0.2rem;
+		min-height: 110px;
+		padding: 0.8rem;
+		border-radius: 14px;
+		background: var(--swatch-bg);
+		color: lch(from var(--swatch-bg) calc(100% - l) 20% h);
+		border: 1px solid rgba(23, 23, 23, 0.12);
+		box-shadow: 0 12px 18px rgba(17, 17, 17, 0.1);
+	}
+
+	.relative-palette__swatch-name {
+		mix-blend-mode: difference;
+		color: white !important;
+		font-weight: 600;
+	}
+
+	.relative-palette__swatch-note {
+		font-size: 0.85rem;
+		mix-blend-mode: difference;
+		color: white !important;
+		opacity: 0.9;
+	}
+
+	.relative-palette__swatch--base {
+		--swatch-bg: var(--brand);
+	}
+
+	.relative-palette__swatch--strong {
+		--swatch-bg: var(--strong-color);
+	}
+
+	.relative-palette__swatch--soft {
+		--swatch-bg: var(--soft-color);
+	}
+
+	.relative-palette__swatch--accent {
+		--swatch-bg: var(--accent-color);
+	}
+
+	.relative-palette__swatch--border,
+	.relative-palette__swatch--shadow {
+		--swatch-bg: #fff;
+		color: lch(from var(--brand) calc(100% - l) 20% h);
+	}
+
+	.relative-palette__swatch--border {
+		border: 2px solid var(--border-color);
+		box-shadow: none;
+	}
+
+	.relative-palette__swatch--shadow {
+		border: 1px solid rgba(23, 23, 23, 0.08);
+		box-shadow: 0 14px 26px var(--shadow-color);
+	}
+
+	.relative-palette__fallback {
+		display: none;
+		margin: 0;
+		padding: 0.75rem 1rem;
+		border-radius: 10px;
+		background: #fff3f3;
+		border: 1px solid #f2b3b3;
+		color: #8a1f1f;
+		font-size: 0.95rem;
+	}
+
+	@supports not (color: lch(from white l c h)) {
+		.relative-palette__fallback {
+			display: block;
+		}
+	}
+</style>

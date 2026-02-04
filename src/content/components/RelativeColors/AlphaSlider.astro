@@ -1,0 +1,195 @@
+<div class="alpha-slider">
+	<p class="alpha-slider__lead">
+		Get me an RGB color from the hex one and set its alpha to
+		<span class="alpha-slider__value" data-alpha-label>0.10</span>.
+	</p>
+
+	<div class="alpha-slider__formula" aria-label="Relative color formula">
+		<span class="alpha-slider__token">rgb</span>(
+		<span class="alpha-slider__token">from</span>
+		<span class="alpha-slider__chip" data-color-chip>#000000</span>
+		<span class="alpha-slider__token">r</span>
+		<span class="alpha-slider__token">g</span>
+		<span class="alpha-slider__token">b</span>
+		/
+		<span class="alpha-slider__token" data-alpha-code>0.10</span>
+		)
+	</div>
+
+	<div class="alpha-slider__controls">
+		<label class="alpha-slider__field">
+			<span>Color</span>
+			<input class="alpha-slider__color" type="color" value="#000000" data-color-input />
+		</label>
+		<label class="alpha-slider__field">
+			<span>Alpha</span>
+			<input
+				class="alpha-slider__range"
+				type="range"
+				min="0"
+				max="1"
+				step="0.05"
+				value="0.1"
+				data-alpha-input
+			/>
+		</label>
+	</div>
+
+	<div class="alpha-slider__preview">
+		<button class="alpha-slider__button" type="button">Submit</button>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.alpha-slider').forEach((root) => {
+				const colorInput = root.querySelector('[data-color-input]');
+				const alphaInput = root.querySelector('[data-alpha-input]');
+				const alphaLabel = root.querySelector('[data-alpha-label]');
+				const alphaCode = root.querySelector('[data-alpha-code]');
+				const colorChip = root.querySelector('[data-color-chip]');
+				const button = root.querySelector('.alpha-slider__button');
+				const utils = window.RelativeColorUtils;
+
+				const update = () => {
+					const color = colorInput.value.toUpperCase();
+					const alpha = Number(alphaInput.value);
+
+					root.style.setProperty('--brand', color);
+					root.style.setProperty('--alpha', alpha.toString());
+
+					alphaLabel.textContent = alpha.toFixed(2);
+					alphaCode.textContent = alpha.toFixed(2);
+					colorChip.textContent = color;
+
+					if (utils && !utils.supportsRelative && button) {
+						button.style.borderColor = utils.rgbaFromHex(color, alpha);
+						button.style.boxShadow = `0 10px 18px ${utils.rgbaFromHex(color, alpha * 0.7)}`;
+					}
+				};
+
+				colorInput.addEventListener('input', update);
+				alphaInput.addEventListener('input', update);
+				update();
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script>
+
+<style>
+	.alpha-slider {
+		--brand: #000000;
+		--alpha: 0.1;
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+	}
+
+	.alpha-slider__lead {
+		margin: 0;
+		font-size: 0.95rem;
+		color: #3b3b3b;
+		font-family: inherit;
+	}
+
+	.alpha-slider__value {
+		font-weight: 700;
+		color: #1f1f1f;
+	}
+
+	.alpha-slider__formula {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		align-items: center;
+		font-size: 1rem;
+	}
+
+	.alpha-slider__token {
+		padding: 0.1rem 0.35rem;
+		border-radius: 6px;
+		background: #f2f4ff;
+	}
+
+	.alpha-slider__chip {
+		padding: 0.1rem 0.4rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--brand);
+		color: hsl(from var(--brand) h 20% calc(100% - l));
+		font-weight: 600;
+	}
+
+	.alpha-slider__controls {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 1rem;
+		font-family: inherit;
+	}
+
+	.alpha-slider__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+	}
+
+	.alpha-slider__color {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		border: 2px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+		font-size: 16px;
+	}
+
+	.alpha-slider__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		touch-action: manipulation;
+		font-size: 16px;
+	}
+
+	.alpha-slider__preview {
+		display: flex;
+		justify-content: center;
+		padding: 1rem 0.5rem;
+		border-radius: 12px;
+		background: #f7f7fb;
+	}
+
+	.alpha-slider__button {
+		border: 2px solid rgb(from var(--brand) r g b / var(--alpha));
+		background: white;
+		padding: 0.6rem 1.4rem;
+		border-radius: 999px;
+		min-height: 44px;
+		font-size: 1rem;
+		font-weight: 600;
+		box-shadow: 0 10px 18px rgb(from var(--brand) r g b / calc(var(--alpha) * 0.7));
+		color: #1f1f1f;
+		touch-action: manipulation;
+	}
+
+	.alpha-slider__color:focus-visible,
+	.alpha-slider__range:focus-visible,
+	.alpha-slider__button:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+</style>

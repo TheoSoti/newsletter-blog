@@ -1,0 +1,265 @@
+---
+title: 'CSS Relative Colors: Build UI Palettes Without a Color Picker'
+description: 'Generate hover states, borders, shadows, and accents from a single base color using CSS relative colors.'
+pubDate: 'Jan 26 2026'
+heroImage: '/relative-colors.svg'
+readingTime: '14 min read'
+---
+
+import Wrapper from '../components/Wrapper.astro';
+import SyntaxMap from '../components/RelativeColors/SyntaxMap.astro';
+import AlphaSlider from '../components/RelativeColors/AlphaSlider.astro';
+import HslThreshold from '../components/RelativeColors/HslThreshold.astro';
+import OklchCompare from '../components/RelativeColors/OklchCompare.astro';
+import StaticSaturation from '../components/RelativeColors/StaticSaturation.astro';
+import Palette from '../components/RelativeColors/Palette.astro';
+import StaticStates from '../components/RelativeColors/StaticStates.astro';
+import StaticCallout from '../components/RelativeColors/StaticCallout.astro';
+import StaticContrast from '../components/RelativeColors/StaticContrast.astro';
+import RelativeGradient from '../components/RelativeColors/Gradient.astro';
+import StaticCurrentColor from '../components/RelativeColors/StaticCurrentColor.astro';
+import RelativeColorsFallback from '../components/RelativeColors/RelativeColorsFallback.astro';
+import BuyBook from '../../components/BuyBook.astro';
+
+<RelativeColorsFallback />
+
+## Why relative colors feel like cheating
+
+If you ever built a tiny design system, you already know the loop: pick a brand color, then hand craft a hover state, a border, a shadow, a muted background, and a highlight. Five minutes later you have a handful of unrelated hex values that look correct but do not scale.
+
+The problem gets worse as soon as you add more contexts. Dark mode, marketing pages, seasonal themes, or a new product line all require a new set of tweaks. Manual palettes start to drift, and every refactor becomes a color audit.
+
+Relative colors break that loop. They let you reference a source color and adjust its channels directly in CSS. One base becomes a small palette, and that palette stays consistent as you change the base later.
+
+I like to think of relative colors as relationships, not values. The system says, "hover is 12% darker than the base" instead of "hover is #3d56d6." That mental shift removes a lot of tiny decisions from day to day UI work.
+
+## The old workflow: manual palette drift
+
+Here is the classic setup. You define a base color, then you create a new value for every variation you need:
+
+```css
+:root {
+	--brand: #4b6bff;
+	--brand-hover: #3d56d6;
+	--brand-active: #2f45b2;
+	--brand-border: rgba(75, 107, 255, 0.2);
+	--brand-soft: #e9edff;
+}
+
+.button {
+	background: var(--brand);
+	border-color: var(--brand-border);
+}
+
+.button:hover {
+	background: var(--brand-hover);
+}
+
+.button:active {
+	background: var(--brand-active);
+}
+```
+
+This works, but each value is hand picked. If you ever change `--brand`, you also have to re-pick the hover, active, border, and soft background. That is why palettes drift over time.
+
+## Meet relative colors
+
+Relative colors let you extract channels from an existing color and modify them in place. You can do that in `hsl()`, `rgb()`, `lch()`, or `oklch()`.
+
+Here is the core idea:
+
+```css
+.button {
+	--brand: #4b6bff;
+	--shift: -12%;
+	--hover: hsl(from var(--brand) h s calc(l + var(--shift)));
+	--border: rgb(from var(--brand) r g b / 0.2);
+
+	background: var(--brand);
+	border-color: var(--border);
+}
+
+.button:hover {
+	background: var(--hover);
+}
+```
+
+The hover and border are now derived from the same base value. Update `--brand` and the rest updates automatically.
+
+The syntax looks strange at first, but it follows a simple pattern:
+
+```css
+hsl(from <color> h s l / <alpha>)
+```
+
+- `from <color>` is the source. It can be a hex value, a CSS variable, `currentColor`, or another color function.
+- `h`, `s`, and `l` are placeholders for the original channels.
+- You can replace any channel with a number or a `calc()` expression.
+
+<Wrapper title="Hover or focus a piece to see how it maps">
+	<SyntaxMap />
+</Wrapper>
+
+Examples:
+
+```css
+/* Shift hue by 30deg */
+--accent: hsl(from var(--brand) calc(h + 30deg) s l);
+
+/* Desaturate and brighten */
+--soft: hsl(from var(--brand) h calc(s - 20%) calc(l + 20%));
+
+/* Keep RGB but lower alpha */
+--shadow: rgb(from var(--brand) r g b / 0.25);
+```
+
+The mental model is simple: pick a source, then nudge the channel you care about.
+
+## Choose the right color space
+
+Relative colors work in the space you choose. That choice affects how the results look:
+
+- **RGB** is great for alpha tweaks and direct channel edits. It is not perceptual, so changing channels can feel uneven.
+- **HSL** is quick for hue and saturation shifts. It is intuitive, but the lightness channel does not match human perception.
+- **OKLCH** is the most consistent for lightness changes. It is a better default when you want palettes that feel balanced across hues.
+
+A good rule of thumb is to use `rgb()` for transparency and `oklch()` for lightness. Reach for `hsl()` when you want fast adjustments or you need wide support.
+
+## Keep saturation under control
+
+Lightness is not the only channel worth adjusting. Saturation is the other half of a good palette. A base color that is vibrant at full saturation can be too intense for backgrounds and subtle UI pieces.
+
+Relative colors let you lower saturation without losing the hue. That makes soft backgrounds and muted text that still belong to the same family.
+
+```css
+:root {
+	--brand: #4b6bff;
+	--brand-muted: hsl(from var(--brand) h calc(s - 35%) calc(l + 12%));
+	--brand-ink: hsl(from var(--brand) h calc(s - 40%) calc(l - 20%));
+}
+```
+
+The muted token is great for surfaces, and the ink token works for strong text or icons. This avoids the common trap of mixing a colorful palette with neutral grays that feel disconnected.
+
+<Wrapper title="Saturation shifts">
+	<StaticSaturation />
+</Wrapper>
+
+## Build a mini palette from one variable
+
+A practical way to start is to define a handful of tokens. You can keep the palette small and still cover most UI needs.
+
+This recipe builds seven tokens from one base color and keeps everything in sync.
+
+Here is the token recipe that powers the palette:
+
+```css
+:root {
+	--brand: #4b6bff;
+	--strong-color: oklch(from var(--brand) calc(l - var(--strength)) c h);
+	--soft-color: oklch(from var(--brand) calc(l + var(--strength) + 10%) calc(c - 18%) h);
+	--accent-color: oklch(from var(--brand) l c calc(h + 20deg));
+	--brand-border: rgb(from var(--brand) r g b / 0.18);
+	--brand-shadow: rgb(from var(--brand) r g b / 0.3);
+}
+```
+
+This small set is usually enough for a button, a badge, a soft background, and a border. If you need more depth, add one extra step for a darker and lighter variation.
+
+<Wrapper title="Relative palette builder">
+	<Palette />
+</Wrapper>
+
+## A component recipe you can copy
+
+Relative colors shine when a component needs multiple accents. Here is a compact pattern for a callout card:
+
+```css
+.callout {
+	--tone: #4b6bff;
+	--tone-strong: hsl(from var(--tone) h s calc(l - 12%));
+	--tone-soft: hsl(from var(--tone) h calc(s - 20%) calc(l + 28%));
+	--tone-border: rgb(from var(--tone) r g b / 0.2);
+	--tone-shadow: rgb(from var(--tone) r g b / 0.25);
+
+	border: 1px solid var(--tone-border);
+	background: var(--tone-soft);
+	box-shadow: 0 12px 24px var(--tone-shadow);
+}
+
+.callout strong {
+	color: var(--tone-strong);
+}
+```
+
+The component only needs one input (`--tone`). Everything else follows.
+
+<Wrapper title="Callout card">
+	<StaticCallout />
+</Wrapper>
+
+<BuyBook />
+
+## Altering the lightness channel
+
+If you want a quick set of tints and shades, you can keep the hue and saturation and only shift the lightness. The slider below changes a single `--step` value, and every swatch is derived from the same formula:
+
+```css
+.swatch {
+	--offset: calc(var(--step) * var(--i) * 1%);
+	background: hsl(from var(--brand) h s calc(l + var(--offset)));
+}
+```
+
+<Wrapper title="HSL lightness threshold">
+	<HslThreshold />
+</Wrapper>
+
+## HSL vs OKLCH (why the difference matters)
+
+HSL is fast and familiar, but its lightness channel is not perceptual. The same +10% shift can feel dramatic on one hue and barely visible on another.
+
+OKLCH is much more consistent. It keeps lightness changes feeling even across different hues, which is why it is great for UI palettes.
+
+Here is a side by side comparison using the same lightness shift in HSL and OKLCH.
+
+<Wrapper title="HSL vs OKLCH comparison">
+	<OklchCompare />
+</Wrapper>
+
+If you want predictable results across colors, OKLCH is usually the better space for lightness adjustments.
+
+## Use relative colors with currentColor
+
+A neat trick is using `currentColor` as the source. That lets icons, borders, and highlights follow the text color automatically.
+
+```css
+.badge {
+	color: #1d4ed8;
+	border: 1px solid rgb(from currentColor r g b / 0.2);
+	background: hsl(from currentColor h s calc(l + 40%));
+}
+```
+
+<Wrapper title="CurrentColor badge">
+	<StaticCurrentColor />
+</Wrapper>
+
+One change to `color` updates the border and background without touching any other variables.
+
+## The computed color gotcha
+
+Relative colors use the computed value of the source. That can surprise you in a few cases:
+
+- If the source is `currentColor`, it uses the computed text color, not the variable you set elsewhere.
+- If the source is another function like `color-mix()`, the relative color uses the mixed result.
+- Channel values clamp, so `calc(l + 40%)` will stop at 100% even if you keep adding.
+- Hue math needs units, so use `30deg` instead of `30`.
+
+Once you know these rules, the behavior is consistent and predictable.
+
+## The payoff
+
+Once you start using relative colors, you stop thinking in isolated hex values. You think in relationships: hover is a darker brand, borders are the same brand with lower alpha, and your palette stays coherent by default.
+
+If you are building a design system or cleaning up a few components, this is one of the CSS features that makes everything feel simpler.

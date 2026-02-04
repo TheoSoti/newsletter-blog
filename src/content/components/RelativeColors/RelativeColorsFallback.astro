@@ -1,0 +1,291 @@
+<script is:inline>
+	(() => {
+		if (window.RelativeColorUtils) return;
+
+		let supportsRelative = false;
+
+		const parseRgb = (value) => {
+			const match = String(value).match(/rgba?\(([^)]+)\)/i);
+			if (!match) return null;
+			const parts = match[1].split(',').map((part) => parseFloat(part.trim()));
+			if (parts.length < 3) return null;
+			return { r: parts[0], g: parts[1], b: parts[2] };
+		};
+
+		const detectSupport = () => {
+			try {
+				const test = document.createElement('span');
+				test.style.color = 'hsl(from rgb(255, 0, 0) h s l)';
+				const mount = document.body || document.documentElement;
+				mount.appendChild(test);
+				const computed = getComputedStyle(test).color;
+				mount.removeChild(test);
+				const rgb = parseRgb(computed);
+				if (!rgb) return false;
+				return rgb.r >= 250 && rgb.g <= 5 && rgb.b <= 5;
+			} catch (error) {
+				return false;
+			}
+		};
+
+		const resolveSupport = () => {
+			supportsRelative = detectSupport();
+			if (!supportsRelative && window.CSS && CSS.supports) {
+				supportsRelative = CSS.supports('color', 'hsl(from rgb(255, 0, 0) h s l)');
+			}
+		};
+
+		const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+		const normalizeHex = (hex) => {
+			if (!hex) return '#000000';
+			let cleaned = hex.trim().replace('#', '');
+			if (cleaned.length === 3) {
+				cleaned = cleaned
+					.split('')
+					.map((char) => char + char)
+					.join('');
+			}
+			if (cleaned.length !== 6) return '#000000';
+			return `#${cleaned.toUpperCase()}`;
+		};
+
+		const hexToRgb = (hex) => {
+			const normalized = normalizeHex(hex).slice(1);
+			const intVal = parseInt(normalized, 16);
+			return {
+				r: (intVal >> 16) & 255,
+				g: (intVal >> 8) & 255,
+				b: intVal & 255,
+			};
+		};
+
+		const rgbToHex = ({ r, g, b }) => {
+			const toHex = (val) => clamp(Math.round(val), 0, 255).toString(16).padStart(2, '0');
+			return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+		};
+
+		const rgbToHsl = (hex) => {
+			const { r, g, b } = hexToRgb(hex);
+			const rn = r / 255;
+			const gn = g / 255;
+			const bn = b / 255;
+			const max = Math.max(rn, gn, bn);
+			const min = Math.min(rn, gn, bn);
+			const delta = max - min;
+			let h = 0;
+			let s = 0;
+			const l = (max + min) / 2;
+
+			if (delta !== 0) {
+				s = l > 0.5 ? delta / (2 - max - min) : delta / (max + min);
+				switch (max) {
+					case rn:
+						h = (gn - bn) / delta + (gn < bn ? 6 : 0);
+						break;
+					case gn:
+						h = (bn - rn) / delta + 2;
+						break;
+					default:
+						h = (rn - gn) / delta + 4;
+						break;
+				}
+				h *= 60;
+			}
+
+			return {
+				h,
+				s: s * 100,
+				l: l * 100,
+			};
+		};
+
+		const hslToRgb = ({ h, s, l }) => {
+			const sn = clamp(s, 0, 100) / 100;
+			const ln = clamp(l, 0, 100) / 100;
+			const c = (1 - Math.abs(2 * ln - 1)) * sn;
+			const hPrime = ((h % 360) + 360) % 360 / 60;
+			const x = c * (1 - Math.abs((hPrime % 2) - 1));
+			let r1 = 0;
+			let g1 = 0;
+			let b1 = 0;
+
+			if (hPrime >= 0 && hPrime < 1) {
+				r1 = c;
+				g1 = x;
+			} else if (hPrime >= 1 && hPrime < 2) {
+				r1 = x;
+				g1 = c;
+			} else if (hPrime >= 2 && hPrime < 3) {
+				g1 = c;
+				b1 = x;
+			} else if (hPrime >= 3 && hPrime < 4) {
+				g1 = x;
+				b1 = c;
+			} else if (hPrime >= 4 && hPrime < 5) {
+				r1 = x;
+				b1 = c;
+			} else if (hPrime >= 5 && hPrime < 6) {
+				r1 = c;
+				b1 = x;
+			}
+
+			const m = ln - c / 2;
+			return {
+				r: (r1 + m) * 255,
+				g: (g1 + m) * 255,
+				b: (b1 + m) * 255,
+			};
+		};
+
+		const setHsl = (hex, overrides = {}) => {
+			const base = rgbToHsl(hex);
+			const next = {
+				h: overrides.h ?? base.h,
+				s: overrides.s ?? base.s,
+				l: overrides.l ?? base.l,
+			};
+			return rgbToHex(hslToRgb(next));
+		};
+
+		const shiftHsl = (hex, delta = {}) => {
+			const base = rgbToHsl(hex);
+			return setHsl(hex, {
+				h: base.h + (delta.h ?? 0),
+				s: base.s + (delta.s ?? 0),
+				l: base.l + (delta.l ?? 0),
+			});
+		};
+
+		const contrastFromHex = (hex) => {
+			const base = rgbToHsl(hex);
+			return setHsl(hex, {
+				s: 20,
+				l: 100 - base.l,
+			});
+		};
+
+		const rgbaFromHex = (hex, alpha) => {
+			const { r, g, b } = hexToRgb(hex);
+			const safeAlpha = clamp(alpha, 0, 1);
+			return `rgba(${r}, ${g}, ${b}, ${safeAlpha})`;
+		};
+
+		const srgbToLinear = (c) => {
+			const normalized = c / 255;
+			return normalized <= 0.04045
+				? normalized / 12.92
+				: Math.pow((normalized + 0.055) / 1.055, 2.4);
+		};
+
+		const linearToSrgb = (c) =>
+			c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
+
+		const rgbToOklch = (hex) => {
+			const { r, g, b } = hexToRgb(hex);
+			const lr = srgbToLinear(r);
+			const lg = srgbToLinear(g);
+			const lb = srgbToLinear(b);
+
+			const x = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
+			const y = 0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb;
+			const z = 0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb;
+
+			const l = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z);
+			const m = Math.cbrt(0.0329845436 * x + 0.9293118715 * y + 0.0361456387 * z);
+			const s = Math.cbrt(0.0482003018 * x + 0.2643662691 * y + 0.633851707 * z);
+
+			const L = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s;
+			const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s;
+			const b2 = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s;
+
+			const c = Math.sqrt(a * a + b2 * b2);
+			let h = (Math.atan2(b2, a) * 180) / Math.PI;
+			if (h < 0) h += 360;
+
+			return { l: L, c, h };
+		};
+
+		const oklchToHex = (l, c, h) => {
+			const hRad = ((h % 360) + 360) * (Math.PI / 180);
+			const a = c * Math.cos(hRad);
+			const b = c * Math.sin(hRad);
+
+			const l_ = l + 0.3963377774 * a + 0.2158037573 * b;
+			const m_ = l - 0.1055613458 * a - 0.0638541728 * b;
+			const s_ = l - 0.0894841775 * a - 1.291485548 * b;
+
+			const l3 = l_ * l_ * l_;
+			const m3 = m_ * m_ * m_;
+			const s3 = s_ * s_ * s_;
+
+			const x = 1.2270138511 * l3 - 0.5577999807 * m3 + 0.281256149 * s3;
+			const y = -0.0405801784 * l3 + 1.1122568696 * m3 - 0.0716766787 * s3;
+			const z = -0.0763812845 * l3 - 0.4214819784 * m3 + 1.5861632204 * s3;
+
+			const r = linearToSrgb(3.2409699419 * x - 1.5373831776 * y - 0.4986107603 * z);
+			const g = linearToSrgb(-0.9692436363 * x + 1.8759675015 * y + 0.0415550574 * z);
+			const b2 = linearToSrgb(0.0556300797 * x - 0.2039769589 * y + 1.0569715142 * z);
+
+			return rgbToHex({
+				r: clamp(r, 0, 1) * 255,
+				g: clamp(g, 0, 1) * 255,
+				b: clamp(b2, 0, 1) * 255,
+			});
+		};
+
+		const shiftOklch = (hex, delta = {}) => {
+			const base = rgbToOklch(hex);
+			const l = clamp((base.l * 100 + (delta.l ?? 0)) / 100, 0, 1);
+			const c = Math.max(0, base.c * (1 + (delta.c ?? 0) / 100));
+			const h = base.h + (delta.h ?? 0);
+			return oklchToHex(l, c, h);
+		};
+
+		const shiftOklchHue = (hex, delta) => {
+			const base = rgbToOklch(hex);
+			return oklchToHex(base.l, base.c, base.h + delta);
+		};
+
+		window.RelativeColorUtils = {
+			get supportsRelative() {
+				return supportsRelative;
+			},
+			set supportsRelative(value) {
+				supportsRelative = Boolean(value);
+			},
+			normalizeHex,
+			hexToRgb,
+			rgbToHex,
+			rgbToHsl,
+			hslToRgb,
+			setHsl,
+			shiftHsl,
+			contrastFromHex,
+			rgbaFromHex,
+			rgbToOklch,
+			oklchToHex,
+			shiftOklch,
+			shiftOklchHue,
+		};
+
+		const finalize = () => {
+			window.RelativeColorUtilsReady = true;
+			window.dispatchEvent(new Event('relativecolors:ready'));
+		};
+
+		if (document.readyState === 'loading') {
+			window.addEventListener(
+				'DOMContentLoaded',
+				() => {
+					resolveSupport();
+					finalize();
+				},
+				{ once: true }
+			);
+		} else {
+			resolveSupport();
+			finalize();
+		}
+	})();
+</script>

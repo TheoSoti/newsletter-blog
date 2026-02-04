@@ -1,0 +1,122 @@
+<div class="static-states">
+	<div class="static-states__item">
+		<span class="static-states__label">Base</span>
+		<button class="static-states__button static-states__button--base" type="button">Pay now</button>
+	</div>
+	<div class="static-states__item">
+		<span class="static-states__label">Hover</span>
+		<button class="static-states__button static-states__button--hover" type="button">Pay now</button>
+	</div>
+	<div class="static-states__item">
+		<span class="static-states__label">Active</span>
+		<button class="static-states__button static-states__button--active" type="button">Pay now</button>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.static-states').forEach((root) => {
+				const utils = window.RelativeColorUtils;
+				if (!utils || utils.supportsRelative) return;
+
+				const base = '#4B6BFF';
+				const surface = utils.shiftHsl(base, { s: -20, l: 30 });
+				const label = utils.shiftHsl(base, { s: -30, l: -5 });
+				const hover = utils.shiftHsl(base, { l: -10 });
+				const active = utils.shiftHsl(base, { l: -18 });
+
+				root.querySelectorAll('.static-states__item').forEach((item) => {
+					item.style.backgroundColor = surface;
+				});
+
+				root.querySelectorAll('.static-states__label').forEach((el) => {
+					el.style.color = label;
+				});
+
+				const baseButton = root.querySelector('.static-states__button--base');
+				const hoverButton = root.querySelector('.static-states__button--hover');
+				const activeButton = root.querySelector('.static-states__button--active');
+
+				if (baseButton) {
+					baseButton.style.backgroundColor = base;
+					baseButton.style.color = utils.contrastFromHex(base);
+				}
+				if (hoverButton) {
+					hoverButton.style.backgroundColor = hover;
+					hoverButton.style.color = utils.contrastFromHex(hover);
+				}
+				if (activeButton) {
+					activeButton.style.backgroundColor = active;
+					activeButton.style.color = utils.contrastFromHex(active);
+				}
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script>
+
+<style>
+	.static-states {
+		--base: #4b6bff;
+		--surface: hsl(from var(--base) h calc(s - 20%) calc(l + 30%));
+		--label: hsl(from var(--base) h calc(s - 30%) calc(l - 5%));
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+	}
+
+	.static-states__item {
+		display: grid;
+		gap: 0.5rem;
+		justify-items: start;
+		padding: 0.5rem;
+		border-radius: 12px;
+		background: var(--surface);
+	}
+
+	.static-states__label {
+		font-weight: 600;
+		font-size: 0.95rem;
+		color: var(--label);
+	}
+
+	.static-states__button {
+		--button-bg: var(--base);
+		border: 0;
+		border-radius: 999px;
+		padding: 0.6rem 1.2rem;
+		min-height: 44px;
+		font-size: 1rem;
+		font-weight: 600;
+		background: var(--button-bg);
+		color: hsl(from var(--button-bg) h 20% calc(100% - l));
+		touch-action: manipulation;
+	}
+
+	.static-states__button--base {
+		--button-bg: var(--base);
+	}
+
+	.static-states__button--hover {
+		--button-bg: hsl(from var(--base) h s calc(l - 10%));
+	}
+
+	.static-states__button--active {
+		--button-bg: hsl(from var(--base) h s calc(l - 18%));
+	}
+
+	.static-states__button:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+</style>

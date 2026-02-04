@@ -1,0 +1,264 @@
+<div class="relative-alpha">
+	<div class="relative-alpha__controls">
+		<label class="relative-alpha__field">
+			<span class="relative-alpha__label">Base color</span>
+			<span class="relative-alpha__control">
+				<input class="relative-alpha__color" type="color" value="#ff7a59" data-base-input />
+				<span class="relative-alpha__value" data-base-value>#FF7A59</span>
+			</span>
+		</label>
+
+		<label class="relative-alpha__field">
+			<span class="relative-alpha__label">Detail alpha</span>
+			<span class="relative-alpha__control relative-alpha__control--range">
+				<input
+					class="relative-alpha__range"
+					type="range"
+					min="0"
+					max="0.6"
+					step="0.05"
+					value="0.2"
+					data-alpha-input
+				/>
+				<span class="relative-alpha__value" aria-live="polite" data-alpha-value>0.20</span>
+			</span>
+		</label>
+	</div>
+
+	<div class="relative-alpha__preview" role="group" aria-label="Alpha comparison">
+		<article class="relative-alpha__card relative-alpha__card--relative">
+			<p class="relative-alpha__card-title">Relative details</p>
+			<p class="relative-alpha__card-text">
+				Borders, shadows, and the badge are derived from the base color.
+			</p>
+			<div class="relative-alpha__badge">Status</div>
+			<button class="relative-alpha__button" type="button">Review</button>
+		</article>
+
+		<article class="relative-alpha__card relative-alpha__card--static">
+			<p class="relative-alpha__card-title">Static gray details</p>
+			<p class="relative-alpha__card-text">
+				Same layout, but the accents stay gray as the base color changes.
+			</p>
+			<div class="relative-alpha__badge">Status</div>
+			<button class="relative-alpha__button" type="button">Review</button>
+		</article>
+	</div>
+
+	<p class="relative-alpha__fallback" role="status">
+		Relative colors are not supported in this browser yet.
+	</p>
+</div>
+
+<script is:inline>
+	document.querySelectorAll('.relative-alpha').forEach((root) => {
+		const baseInput = root.querySelector('[data-base-input]');
+		const alphaInput = root.querySelector('[data-alpha-input]');
+		const baseValue = root.querySelector('[data-base-value]');
+		const alphaValue = root.querySelector('[data-alpha-value]');
+
+		const update = () => {
+			const base = baseInput.value.toUpperCase();
+			const alpha = Number(alphaInput.value);
+
+			root.style.setProperty('--brand', base);
+			root.style.setProperty('--alpha', alpha.toString());
+
+			baseValue.textContent = base;
+			alphaValue.textContent = alpha.toFixed(2);
+		};
+
+		baseInput.addEventListener('input', update);
+		alphaInput.addEventListener('input', update);
+
+		update();
+	});
+</script>
+
+<style>
+	.relative-alpha {
+		--brand: #ff7a59;
+		--alpha: 0.2;
+		--detail-border: rgb(from var(--brand) r g b / var(--alpha));
+		--detail-shadow: rgb(from var(--brand) r g b / calc(var(--alpha) * 0.7));
+		--detail-fill: rgb(from var(--brand) r g b / 0.15);
+		--badge-bg: rgb(from var(--brand) r g b / 0.2);
+		--badge-text: hsl(from var(--brand) h 20% calc(100% - l));
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		-webkit-tap-highlight-color: rgba(23, 23, 23, 0.2);
+	}
+
+	.relative-alpha input {
+		font-size: 16px;
+	}
+
+	.relative-alpha__controls {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.relative-alpha__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.95rem;
+	}
+
+	.relative-alpha__label {
+		font-weight: 600;
+	}
+
+	.relative-alpha__control {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.relative-alpha__control--range {
+		gap: 1rem;
+	}
+
+	.relative-alpha__color {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		border: 2px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.relative-alpha__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		font-size: 1rem;
+		touch-action: manipulation;
+	}
+
+	.relative-alpha__value {
+		font-variant-numeric: tabular-nums;
+		font-size: 0.95rem;
+		color: #353535;
+	}
+
+	.relative-alpha__preview {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+
+	.relative-alpha__card {
+		display: grid;
+		gap: 0.6rem;
+		padding: 1.1rem;
+		border-radius: 16px;
+		background: #fffdfb;
+		min-height: 200px;
+	}
+
+	.relative-alpha__card-title {
+		margin: 0;
+		font-weight: 600;
+	}
+
+	.relative-alpha__card-text {
+		margin: 0;
+		font-size: 0.95rem;
+		color: #3e3e3e;
+	}
+
+	.relative-alpha__card--relative {
+		border: 2px solid var(--detail-border);
+		box-shadow: 0 12px 30px var(--detail-shadow);
+		background: linear-gradient(
+			135deg,
+			var(--detail-fill),
+			hsl(from var(--brand) h calc(s - 30%) calc(l + 40%)) 65%
+		);
+	}
+
+	.relative-alpha__card--static {
+		border: 2px solid rgba(23, 23, 23, 0.12);
+		box-shadow: 0 12px 30px rgba(23, 23, 23, 0.12);
+		background: linear-gradient(135deg, rgba(23, 23, 23, 0.06), #fffdfb 65%);
+	}
+
+	.relative-alpha__badge {
+		justify-self: start;
+		padding: 0.35rem 0.6rem;
+		border-radius: 999px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.relative-alpha__card--relative .relative-alpha__badge {
+		background: var(--badge-bg);
+		color: var(--badge-text);
+	}
+
+	.relative-alpha__card--static .relative-alpha__badge {
+		background: rgba(23, 23, 23, 0.1);
+		color: #1f1f1f;
+	}
+
+	.relative-alpha__button {
+		justify-self: start;
+		border-radius: 999px;
+		border: 1px solid rgba(23, 23, 23, 0.2);
+		background: white;
+		padding: 0.6rem 1.2rem;
+		min-height: 44px;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		touch-action: manipulation;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.relative-alpha__button:focus-visible,
+	.relative-alpha__color:focus-visible,
+	.relative-alpha__range:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+
+	.relative-alpha__button:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 6px 14px rgba(23, 23, 23, 0.2);
+	}
+
+	.relative-alpha__fallback {
+		display: none;
+		margin: 0;
+		padding: 0.75rem 1rem;
+		border-radius: 10px;
+		background: #fff3f3;
+		border: 1px solid #f2b3b3;
+		color: #8a1f1f;
+		font-size: 0.95rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.relative-alpha__button {
+			transition: none;
+		}
+	}
+
+	@supports not (color: hsl(from white h s l)) {
+		.relative-alpha__preview,
+		.relative-alpha__controls {
+			display: none;
+		}
+
+		.relative-alpha__fallback {
+			display: block;
+		}
+	}
+</style>

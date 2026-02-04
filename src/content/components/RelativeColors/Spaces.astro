@@ -1,0 +1,208 @@
+<div class="relative-space">
+	<div class="relative-space__controls">
+		<label class="relative-space__field">
+			<span class="relative-space__label">Base color</span>
+			<span class="relative-space__control">
+				<input class="relative-space__color" type="color" value="#8a5cff" data-base-input />
+				<span class="relative-space__value" data-base-value>#8A5CFF</span>
+			</span>
+		</label>
+
+		<label class="relative-space__field">
+			<span class="relative-space__label">Lightness shift</span>
+			<span class="relative-space__control relative-space__control--range">
+				<input
+					class="relative-space__range"
+					type="range"
+					min="0"
+					max="30"
+					step="1"
+					value="12"
+					data-shift-input
+				/>
+				<span class="relative-space__value" aria-live="polite" data-shift-value>12%</span>
+			</span>
+		</label>
+	</div>
+
+	<div class="relative-space__preview" role="group" aria-label="Color space comparison">
+		<div class="relative-space__chip relative-space__chip--base">
+			<span>Base</span>
+		</div>
+		<div class="relative-space__chip relative-space__chip--hsl">
+			<span>HSL + shift</span>
+		</div>
+		<div class="relative-space__chip relative-space__chip--oklch">
+			<span>OKLCH + shift</span>
+		</div>
+	</div>
+
+	<p class="relative-space__note">
+		Same shift, different perception. OKLCH keeps the lightness changes more even.
+	</p>
+
+	<p class="relative-space__fallback" role="status">
+		Relative colors are not supported in this browser yet.
+	</p>
+</div>
+
+<script is:inline>
+	document.querySelectorAll('.relative-space').forEach((root) => {
+		const baseInput = root.querySelector('[data-base-input]');
+		const shiftInput = root.querySelector('[data-shift-input]');
+		const baseValue = root.querySelector('[data-base-value]');
+		const shiftValue = root.querySelector('[data-shift-value]');
+
+		const update = () => {
+			const base = baseInput.value.toUpperCase();
+			const shift = Number(shiftInput.value);
+			const shiftLabel = `${shift}%`;
+
+			root.style.setProperty('--brand', base);
+			root.style.setProperty('--shift', `${shift}%`);
+
+			baseValue.textContent = base;
+			shiftValue.textContent = shiftLabel;
+		};
+
+		baseInput.addEventListener('input', update);
+		shiftInput.addEventListener('input', update);
+
+		update();
+	});
+</script>
+
+<style>
+	.relative-space {
+		--brand: #8a5cff;
+		--shift: 12%;
+		--hsl-shift: hsl(from var(--brand) h s calc(l + var(--shift)));
+		--oklch-shift: oklch(from var(--brand) calc(l + var(--shift)) c h);
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		-webkit-tap-highlight-color: rgba(23, 23, 23, 0.2);
+	}
+
+	.relative-space input {
+		font-size: 16px;
+	}
+
+	.relative-space__controls {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.relative-space__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.95rem;
+	}
+
+	.relative-space__label {
+		font-weight: 600;
+	}
+
+	.relative-space__control {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.relative-space__control--range {
+		gap: 1rem;
+	}
+
+	.relative-space__color {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		border: 2px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.relative-space__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		font-size: 1rem;
+		touch-action: manipulation;
+	}
+
+	.relative-space__color:focus-visible,
+	.relative-space__range:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+
+	.relative-space__value {
+		font-variant-numeric: tabular-nums;
+		font-size: 0.95rem;
+		color: #353535;
+	}
+
+	.relative-space__preview {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.relative-space__chip {
+		--chip-color: var(--brand);
+		display: grid;
+		place-items: center;
+		min-height: 96px;
+		border-radius: 14px;
+		font-weight: 600;
+		background: var(--chip-color);
+		color: hsl(from var(--chip-color) h 20% calc(100% - l));
+		border: 1px solid rgba(23, 23, 23, 0.15);
+	}
+
+	.relative-space__chip--base {
+		--chip-color: var(--brand);
+	}
+
+	.relative-space__chip--hsl {
+		--chip-color: var(--hsl-shift);
+	}
+
+	.relative-space__chip--oklch {
+		--chip-color: var(--oklch-shift);
+	}
+
+	.relative-space__note {
+		margin: 0;
+		font-size: 0.95rem;
+		color: #4b4b4b;
+	}
+
+	.relative-space__fallback {
+		display: none;
+		margin: 0;
+		padding: 0.75rem 1rem;
+		border-radius: 10px;
+		background: #fff3f3;
+		border: 1px solid #f2b3b3;
+		color: #8a1f1f;
+		font-size: 0.95rem;
+	}
+
+	@supports not (color: hsl(from white h s l)) {
+		.relative-space__preview,
+		.relative-space__controls,
+		.relative-space__note {
+			display: none;
+		}
+
+		.relative-space__fallback {
+			display: block;
+		}
+	}
+</style>

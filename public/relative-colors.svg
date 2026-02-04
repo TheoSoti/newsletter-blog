@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Relative colors hero illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f5f1ff" />
+      <stop offset="50%" stop-color="#e6f2ff" />
+      <stop offset="100%" stop-color="#fff1f5" />
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4b6bff" />
+      <stop offset="100%" stop-color="#ff7a59" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="280" cy="180" r="120" fill="#8a5cff" fill-opacity="0.9" />
+  <circle cx="420" cy="340" r="140" fill="#4b6bff" fill-opacity="0.85" />
+  <circle cx="740" cy="260" r="170" fill="#ff7a59" fill-opacity="0.8" />
+  <circle cx="920" cy="420" r="150" fill="#ffd66e" fill-opacity="0.75" />
+  <circle cx="600" cy="320" r="220" fill="none" stroke="url(#ring)" stroke-width="18" />
+  <circle cx="600" cy="320" r="110" fill="#ffffff" fill-opacity="0.85" />
+</svg>

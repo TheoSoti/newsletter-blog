@@ -1,0 +1,59 @@
+<div class="static-contrast">
+	<span class="static-contrast__label">On-brand text</span>
+	<p class="static-contrast__text">Contrast-aware copy that stays in the same hue.</p>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.static-contrast').forEach((root) => {
+				const utils = window.RelativeColorUtils;
+				if (!utils || utils.supportsRelative) return;
+
+				const brand = '#4B6BFF';
+				const surface = utils.shiftHsl(brand, { s: -40, l: -35 });
+				const text = utils.shiftHsl(brand, { s: -40, l: 45 });
+				const eyebrow = utils.shiftHsl(brand, { s: -30, l: 25 });
+
+				root.style.backgroundColor = surface;
+				root.style.color = text;
+				const label = root.querySelector('.static-contrast__label');
+				if (label) label.style.color = eyebrow;
+			});
+		};
+
+		if (window.RelativeColorUtils) {
+			run();
+		} else {
+			window.addEventListener('relativecolors:ready', run, { once: true });
+		}
+	})();
+</script>
+
+<style>
+	.static-contrast {
+		--brand: #4b6bff;
+		--surface: hsl(from var(--brand) h calc(s - 40%) calc(l - 35%));
+		--on-brand: hsl(from var(--brand) h calc(s - 40%) calc(l + 45%));
+		--eyebrow: hsl(from var(--brand) h calc(s - 30%) calc(l + 25%));
+		display: grid;
+		gap: 0.4rem;
+		padding: 1rem;
+		border-radius: 14px;
+		border: 2px solid var(--border);
+		background: var(--surface);
+		color: var(--on-brand);
+	}
+
+	.static-contrast__label {
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--eyebrow);
+	}
+
+	.static-contrast__text {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+</style>

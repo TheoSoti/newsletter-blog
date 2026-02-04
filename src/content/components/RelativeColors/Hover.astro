@@ -1,0 +1,276 @@
+<div class="relative-hover">
+	<div class="relative-hover__controls">
+		<label class="relative-hover__field">
+			<span class="relative-hover__label">Base color</span>
+			<span class="relative-hover__control">
+				<input class="relative-hover__color" type="color" value="#4b6bff" data-base-input />
+				<span class="relative-hover__value" data-base-value>#4B6BFF</span>
+			</span>
+		</label>
+
+		<label class="relative-hover__field">
+			<span class="relative-hover__label">Manual hover</span>
+			<span class="relative-hover__control">
+				<input class="relative-hover__color" type="color" value="#3d56d6" data-manual-input />
+				<span class="relative-hover__value" data-manual-value>#3D56D6</span>
+			</span>
+		</label>
+
+		<label class="relative-hover__field">
+			<span class="relative-hover__label">Lightness shift</span>
+			<span class="relative-hover__control relative-hover__control--range">
+				<input
+					class="relative-hover__range"
+					type="range"
+					min="-25"
+					max="25"
+					step="1"
+					value="-12"
+					data-shift-input
+				/>
+				<span class="relative-hover__value" aria-live="polite" data-shift-value>-12%</span>
+			</span>
+		</label>
+
+		<label class="relative-hover__toggle">
+			<input type="checkbox" data-preview-input />
+			<span>Preview hover</span>
+		</label>
+	</div>
+
+	<div class="relative-hover__preview" role="group" aria-label="Hover comparison">
+		<div class="relative-hover__card">
+			<p class="relative-hover__card-title">Manual hover</p>
+			<button type="button" class="relative-hover__button relative-hover__button--manual">Add to cart</button>
+			<p class="relative-hover__card-note">Pick a second color for the hover state.</p>
+		</div>
+
+		<div class="relative-hover__card">
+			<p class="relative-hover__card-title">Relative hover</p>
+			<button type="button" class="relative-hover__button relative-hover__button--relative">Add to cart</button>
+			<p class="relative-hover__card-note">
+				Derived with <code>calc(l + shift)</code> from the same base color.
+			</p>
+		</div>
+	</div>
+
+	<p class="relative-hover__fallback" role="status">
+		Relative colors are not supported in this browser yet.
+	</p>
+</div>
+
+<script is:inline>
+	document.querySelectorAll('.relative-hover').forEach((root) => {
+		const baseInput = root.querySelector('[data-base-input]');
+		const manualInput = root.querySelector('[data-manual-input]');
+		const shiftInput = root.querySelector('[data-shift-input]');
+		const previewInput = root.querySelector('[data-preview-input]');
+		const baseValue = root.querySelector('[data-base-value]');
+		const manualValue = root.querySelector('[data-manual-value]');
+		const shiftValue = root.querySelector('[data-shift-value]');
+
+		const update = () => {
+			const base = baseInput.value.toUpperCase();
+			const manual = manualInput.value.toUpperCase();
+			const shift = Number(shiftInput.value);
+			const shiftLabel = shift > 0 ? `+${shift}%` : `${shift}%`;
+
+			root.style.setProperty('--brand', base);
+			root.style.setProperty('--manual-hover', manual);
+			root.style.setProperty('--shift', `${shift}%`);
+
+			baseValue.textContent = base;
+			manualValue.textContent = manual;
+			shiftValue.textContent = shiftLabel;
+		};
+
+		previewInput.addEventListener('change', () => {
+			root.classList.toggle('is-preview', previewInput.checked);
+		});
+
+		baseInput.addEventListener('input', update);
+		manualInput.addEventListener('input', update);
+		shiftInput.addEventListener('input', update);
+
+		update();
+	});
+</script>
+
+<style>
+	.relative-hover {
+		--brand: #4b6bff;
+		--manual-hover: #3d56d6;
+		--shift: -12%;
+		--relative-hover: hsl(from var(--brand) h s calc(l + var(--shift)));
+		--btn-text: hsl(from var(--brand) h 20% calc(100% - l));
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		-webkit-tap-highlight-color: rgba(23, 23, 23, 0.2);
+	}
+
+	.relative-hover input {
+		font-size: 16px;
+	}
+
+	.relative-hover__controls {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.relative-hover__field {
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.95rem;
+	}
+
+	.relative-hover__label {
+		font-weight: 600;
+	}
+
+	.relative-hover__control {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.relative-hover__control--range {
+		gap: 1rem;
+	}
+
+	.relative-hover__color {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		border: 2px solid var(--border);
+		padding: 0;
+		background: transparent;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.relative-hover__range {
+		width: 100%;
+		height: 44px;
+		cursor: pointer;
+		font-size: 1rem;
+		touch-action: manipulation;
+	}
+
+	.relative-hover__value {
+		font-variant-numeric: tabular-nums;
+		font-size: 0.95rem;
+		color: #353535;
+	}
+
+	.relative-hover__toggle {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		min-height: 44px;
+		font-size: 0.95rem;
+		font-weight: 600;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.relative-hover__toggle input {
+		width: 1.5rem;
+		height: 1.5rem;
+		touch-action: manipulation;
+	}
+
+	.relative-hover__preview {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	.relative-hover__card {
+		display: grid;
+		gap: 0.7rem;
+		padding: 1rem;
+		border-radius: 14px;
+		background: linear-gradient(180deg, #f8f8ff 0%, #f1f3ff 100%);
+		border: 1px solid var(--border);
+	}
+
+	.relative-hover__card-title {
+		margin: 0;
+		font-weight: 600;
+	}
+
+	.relative-hover__button {
+		--btn-color: var(--brand);
+		--btn-text: hsl(from var(--btn-color) h 20% calc(100% - l));
+		border: 0;
+		border-radius: 999px;
+		padding: 0.7rem 1.2rem;
+		min-height: 44px;
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		background: var(--btn-color);
+		color: var(--btn-text);
+		cursor: pointer;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+		touch-action: manipulation;
+	}
+
+	.relative-hover__button:focus-visible,
+	.relative-hover__color:focus-visible,
+	.relative-hover__range:focus-visible,
+	.relative-hover__toggle input:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+
+	.relative-hover__button--manual:is(:hover, :focus-visible),
+	.relative-hover.is-preview .relative-hover__button--manual {
+		--btn-color: var(--manual-hover);
+		transform: translateY(-1px);
+	}
+
+	.relative-hover__button--relative:is(:hover, :focus-visible),
+	.relative-hover.is-preview .relative-hover__button--relative {
+		--btn-color: var(--relative-hover);
+		transform: translateY(-1px);
+	}
+
+	.relative-hover__card-note {
+		margin: 0;
+		font-size: 0.9rem;
+		color: #4b4b4b;
+	}
+
+	.relative-hover__fallback {
+		display: none;
+		margin: 0;
+		padding: 0.75rem 1rem;
+		border-radius: 10px;
+		background: #fff3f3;
+		border: 1px solid #f2b3b3;
+		color: #8a1f1f;
+		font-size: 0.95rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.relative-hover__button {
+			transition: none;
+		}
+	}
+
+	@supports not (color: hsl(from white h s l)) {
+		.relative-hover__preview,
+		.relative-hover__controls {
+			display: none;
+		}
+
+		.relative-hover__fallback {
+			display: block;
+		}
+	}
+</style>

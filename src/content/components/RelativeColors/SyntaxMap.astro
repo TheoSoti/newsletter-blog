@@ -1,0 +1,109 @@
+<div class="syntax-map" data-active="">
+	<div class="syntax-map__line" aria-label="Relative color syntax">
+		<button class="syntax-map__token" type="button" data-key="func">color-function</button>
+		<span>(</span>
+		<button class="syntax-map__token" type="button" data-key="from">from</button>
+		<button class="syntax-map__token" type="button" data-key="origin">origin</button>
+		<button class="syntax-map__token" type="button" data-key="c1">channel1</button>
+		<button class="syntax-map__token" type="button" data-key="c2">channel2</button>
+		<button class="syntax-map__token" type="button" data-key="c3">channel3</button>
+		<span>/</span>
+		<button class="syntax-map__token" type="button" data-key="alpha">alpha</button>
+		<span>)</span>
+	</div>
+
+	<div class="syntax-map__line syntax-map__line--example" aria-label="Relative color example">
+		<button class="syntax-map__token" type="button" data-key="func">rgb</button>
+		<span>(</span>
+		<button class="syntax-map__token" type="button" data-key="from">from</button>
+		<button class="syntax-map__token" type="button" data-key="origin">#000</button>
+		<button class="syntax-map__token" type="button" data-key="c1">r</button>
+		<button class="syntax-map__token" type="button" data-key="c2">g</button>
+		<button class="syntax-map__token" type="button" data-key="c3">b</button>
+		<span>/</span>
+		<button class="syntax-map__token" type="button" data-key="alpha">0.1</button>
+		<span>)</span>
+	</div>
+</div>
+
+<script is:inline>
+	document.querySelectorAll('.syntax-map').forEach((root) => {
+		const setActive = (value) => {
+			root.dataset.active = value || '';
+		};
+
+		root.addEventListener('pointerover', (event) => {
+			const token = event.target.closest('[data-key]');
+			if (token) setActive(token.dataset.key);
+		});
+
+		root.addEventListener('pointerleave', () => setActive(''));
+
+		root.addEventListener('focusin', (event) => {
+			const token = event.target.closest('[data-key]');
+			if (token) setActive(token.dataset.key);
+		});
+
+		root.addEventListener('focusout', () => {
+			if (!root.contains(document.activeElement)) setActive('');
+		});
+	});
+</script>
+
+<style>
+	.syntax-map {
+		display: grid;
+		gap: 0.8rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #1b1b1b;
+		font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			'Courier New', monospace;
+	}
+
+	.syntax-map__hint {
+		margin: 0;
+		font-family: inherit;
+		font-size: 0.9rem;
+		color: #4b4b4b;
+	}
+
+	.syntax-map__line {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.3rem;
+		align-items: center;
+		font-size: 1rem;
+	}
+
+	.syntax-map__token {
+		border: 1px solid transparent;
+		background: transparent;
+		font: inherit;
+		padding: 0.1rem 0.35rem;
+		border-radius: 6px;
+		cursor: pointer;
+		color: inherit;
+	}
+
+	.syntax-map__token:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+
+	.syntax-map[data-active='func'] [data-key='func'],
+	.syntax-map[data-active='from'] [data-key='from'],
+	.syntax-map[data-active='origin'] [data-key='origin'],
+	.syntax-map[data-active='c1'] [data-key='c1'],
+	.syntax-map[data-active='c2'] [data-key='c2'],
+	.syntax-map[data-active='c3'] [data-key='c3'],
+	.syntax-map[data-active='alpha'] [data-key='alpha'] {
+		background: #e9edff;
+		border-color: #c7d2ff;
+	}
+
+	.syntax-map__line--example {
+		color: #222;
+	}
+</style>

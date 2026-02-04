@@ -1,0 +1,163 @@
+<div class="hsl-threshold">
+	<div class="hsl-threshold__controls">
+		<span class="hsl-threshold__label">Threshold</span>
+		<input
+			class="hsl-threshold__range"
+			type="range"
+			min="2"
+			max="16"
+			step="1"
+			value="5"
+			data-step-input
+		/>
+		<span class="hsl-threshold__value" data-step-value>5</span>
+	</div>
+
+	<div class="hsl-threshold__swatches" role="list">
+		<div class="hsl-threshold__swatch" style="--i: -2" data-i="-2" role="listitem">l - 10</div>
+		<div class="hsl-threshold__swatch" style="--i: -1" data-i="-1" role="listitem">l - 5</div>
+		<div class="hsl-threshold__swatch" style="--i: 0" data-i="0" role="listitem">l</div>
+		<div class="hsl-threshold__swatch" style="--i: 1" data-i="1" role="listitem">l + 5</div>
+		<div class="hsl-threshold__swatch" style="--i: 2" data-i="2" role="listitem">l + 10</div>
+	</div>
+</div>
+
+<script is:inline>
+	(() => {
+		const run = () => {
+			document.querySelectorAll('.hsl-threshold').forEach((root) => {
+				const stepInput = root.querySelector('[data-step-input]');
+				const stepValue = root.querySelector('[data-step-value]');
+				const swatches = root.querySelectorAll('[data-i]');
+				if (!stepInput || !stepValue) return;
+				let utils = window.RelativeColorUtils;
+				let checkedSupport = false;
+				let forceFallback = false;
+
+				const update = () => {
+					const step = Number(stepInput.value);
+					root.style.setProperty('--step', step.toString());
+					stepValue.textContent = step.toString();
+
+					swatches.forEach((swatch) => {
+						const i = Number(swatch.dataset.i);
+						const offset = step * i;
+						const label =
+							offset === 0 ? 'l' : `l ${offset > 0 ? '+' : '-'} ${Math.abs(offset)}`;
+						swatch.textContent = label;
+					});
+
+					if (utils && utils.supportsRelative && !checkedSupport) {
+						checkedSupport = true;
+						const sample = swatches[0];
+						if (sample) {
+							const bg = getComputedStyle(sample).backgroundColor;
+							const transparent =
+								!bg ||
+								bg === 'transparent' ||
+								/rgba\([^,]+,[^,]+,[^,]+,\s*0\)/i.test(bg);
+							if (transparent) {
+								forceFallback = true;
+							}
+						}
+					}
+
+					if (utils && (!utils.supportsRelative || forceFallback)) {
+						const brand =
+							getComputedStyle(root).getPropertyValue('--brand').trim() || '#9333EA';
+						swatches.forEach((swatch) => {
+							const i = Number(swatch.dataset.i);
+							const offset = step * i;
+							const color = utils.shiftHsl(brand, { l: offset });
+							swatch.style.backgroundColor = color;
+							swatch.style.color = utils.contrastFromHex(color);
+						});
+					}
+				};
+
+				stepInput.addEventListener('input', update);
+				if (!utils) {
+					window.addEventListener(
+						'relativecolors:ready',
+						() => {
+							utils = window.RelativeColorUtils;
+							update();
+						},
+						{ once: true }
+					);
+				}
+				update();
+			});
+		};
+
+		if (document.readyState === 'loading') {
+			window.addEventListener('DOMContentLoaded', run, { once: true });
+		} else {
+			run();
+		}
+	})();
+</script>
+
+<style>
+	.hsl-threshold {
+		--brand: #9333ea;
+		--step: 5;
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: white;
+		color: #171717;
+		font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+			"Liberation Mono", "Courier New", monospace;
+	}
+
+	.hsl-threshold__controls {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: 0.95rem;
+		font-family: inherit;
+	}
+
+	.hsl-threshold__label {
+		font-weight: 600;
+	}
+
+	.hsl-threshold__range {
+		flex: 1;
+		height: 44px;
+		cursor: pointer;
+		touch-action: manipulation;
+		font-size: 16px;
+	}
+
+	.hsl-threshold__value {
+		min-width: 2.5rem;
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.hsl-threshold__swatches {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: 0.8rem;
+	}
+
+	.hsl-threshold__swatch {
+		--offset: calc(var(--step) * var(--i) * 1%);
+		min-height: 80px;
+		display: grid;
+		place-items: center;
+		border-radius: 12px;
+		background: hsl(from var(--brand) h s calc(l + var(--offset)));
+		color: hsl(from var(--brand) h 20% calc(100% - l));
+		font-weight: 600;
+		border: 1px solid rgba(23, 23, 23, 0.12);
+	}
+
+	.hsl-threshold__range:focus-visible {
+		outline: 2px solid #1b1b1b;
+		outline-offset: 2px;
+	}
+</style>
