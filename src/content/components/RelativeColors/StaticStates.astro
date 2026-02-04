@@ -64,8 +64,8 @@
 <style>
 	.static-states {
 		--base: #4b6bff;
-		--surface: hsl(from var(--base) h calc(s - 20%) calc(l + 30%));
-		--label: hsl(from var(--base) h calc(s - 30%) calc(l - 5%));
+		--surface: hsl(from var(--base) h calc(s - 20) calc(l + 30));
+		--label: hsl(from var(--base) h calc(s - 30) calc(l - 5));
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 		gap: 1rem;
@@ -99,7 +99,7 @@
 		font-size: 1rem;
 		font-weight: 600;
 		background: var(--button-bg);
-		color: hsl(from var(--button-bg) h 20% calc(100% - l));
+		color: hsl(from var(--button-bg) h 20% calc(100 - l));
 		touch-action: manipulation;
 	}
 
@@ -108,11 +108,11 @@
 	}
 
 	.static-states__button--hover {
-		--button-bg: hsl(from var(--base) h s calc(l - 10%));
+		--button-bg: hsl(from var(--base) h s calc(l - 10));
 	}
 
 	.static-states__button--active {
-		--button-bg: hsl(from var(--base) h s calc(l - 18%));
+		--button-bg: hsl(from var(--base) h s calc(l - 18));
 	}
 
 	.static-states__button:focus-visible {

@@ -8,15 +8,10 @@ readingTime: '14 min read'
 
 import Wrapper from '../components/Wrapper.astro';
 import SyntaxMap from '../components/RelativeColors/SyntaxMap.astro';
-import AlphaSlider from '../components/RelativeColors/AlphaSlider.astro';
 import HslThreshold from '../components/RelativeColors/HslThreshold.astro';
 import OklchCompare from '../components/RelativeColors/OklchCompare.astro';
-import StaticSaturation from '../components/RelativeColors/StaticSaturation.astro';
 import Palette from '../components/RelativeColors/Palette.astro';
-import StaticStates from '../components/RelativeColors/StaticStates.astro';
 import StaticCallout from '../components/RelativeColors/StaticCallout.astro';
-import StaticContrast from '../components/RelativeColors/StaticContrast.astro';
-import RelativeGradient from '../components/RelativeColors/Gradient.astro';
 import StaticCurrentColor from '../components/RelativeColors/StaticCurrentColor.astro';
 import RelativeColorsFallback from '../components/RelativeColors/RelativeColorsFallback.astro';
 import BuyBook from '../../components/BuyBook.astro';
@@ -71,7 +66,7 @@ Here is the core idea:
 ```css
 .button {
 	--brand: #4b6bff;
-	--shift: -12%;
+	--shift: -12;
 	--hover: hsl(from var(--brand) h s calc(l + var(--shift)));
 	--border: rgb(from var(--brand) r g b / 0.2);
 
@@ -104,10 +99,10 @@ Examples:
 
 ```css
 /* Shift hue by 30deg */
---accent: hsl(from var(--brand) calc(h + 30deg) s l);
+--accent: hsl(from var(--brand) calc(h + 30) s l);
 
 /* Desaturate and brighten */
---soft: hsl(from var(--brand) h calc(s - 20%) calc(l + 20%));
+--soft: hsl(from var(--brand) h calc(s - 20) calc(l + 20));
 
 /* Keep RGB but lower alpha */
 --shadow: rgb(from var(--brand) r g b / 0.25);
@@ -125,26 +120,6 @@ Relative colors work in the space you choose. That choice affects how the result
 
 A good rule of thumb is to use `rgb()` for transparency and `oklch()` for lightness. Reach for `hsl()` when you want fast adjustments or you need wide support.
 
-## Keep saturation under control
-
-Lightness is not the only channel worth adjusting. Saturation is the other half of a good palette. A base color that is vibrant at full saturation can be too intense for backgrounds and subtle UI pieces.
-
-Relative colors let you lower saturation without losing the hue. That makes soft backgrounds and muted text that still belong to the same family.
-
-```css
-:root {
-	--brand: #4b6bff;
-	--brand-muted: hsl(from var(--brand) h calc(s - 35%) calc(l + 12%));
-	--brand-ink: hsl(from var(--brand) h calc(s - 40%) calc(l - 20%));
-}
-```
-
-The muted token is great for surfaces, and the ink token works for strong text or icons. This avoids the common trap of mixing a colorful palette with neutral grays that feel disconnected.
-
-<Wrapper title="Saturation shifts">
-	<StaticSaturation />
-</Wrapper>
-
 ## Build a mini palette from one variable
 
 A practical way to start is to define a handful of tokens. You can keep the palette small and still cover most UI needs.
@@ -156,9 +131,9 @@ Here is the token recipe that powers the palette:
 ```css
 :root {
 	--brand: #4b6bff;
-	--strong-color: oklch(from var(--brand) calc(l - var(--strength)) c h);
-	--soft-color: oklch(from var(--brand) calc(l + var(--strength) + 10%) calc(c - 18%) h);
-	--accent-color: oklch(from var(--brand) l c calc(h + 20deg));
+	--strong-color: oklch(from var(--brand) calc(l - 0.12) c h);
+	--soft-color: oklch(from var(--brand) calc(l + 0.4) calc(c - 0.18) h);
+	--accent-color: oklch(from var(--brand) l c calc(h + 20));
 	--brand-border: rgb(from var(--brand) r g b / 0.18);
 	--brand-shadow: rgb(from var(--brand) r g b / 0.3);
 }
@@ -177,8 +152,8 @@ Relative colors shine when a component needs multiple accents. Here is a compact
 ```css
 .callout {
 	--tone: #4b6bff;
-	--tone-strong: hsl(from var(--tone) h s calc(l - 12%));
-	--tone-soft: hsl(from var(--tone) h calc(s - 20%) calc(l + 28%));
+	--tone-strong: hsl(from var(--tone) h s calc(l - 12));
+	--tone-soft: hsl(from var(--tone) h calc(s - 20) calc(l + 28));
 	--tone-border: rgb(from var(--tone) r g b / 0.2);
 	--tone-shadow: rgb(from var(--tone) r g b / 0.25);
 
@@ -206,7 +181,7 @@ If you want a quick set of tints and shades, you can keep the hue and saturation
 
 ```css
 .swatch {
-	--offset: calc(var(--step) * var(--i) * 1%);
+	--offset: calc(var(--step) * var(--i));
 	background: hsl(from var(--brand) h s calc(l + var(--offset)));
 }
 ```
@@ -237,7 +212,7 @@ A neat trick is using `currentColor` as the source. That lets icons, borders, an
 .badge {
 	color: #1d4ed8;
 	border: 1px solid rgb(from currentColor r g b / 0.2);
-	background: hsl(from currentColor h s calc(l + 40%));
+	background: hsl(from currentColor h s calc(l + 40));
 }
 ```
 
@@ -253,7 +228,7 @@ Relative colors use the computed value of the source. That can surprise you in a
 
 - If the source is `currentColor`, it uses the computed text color, not the variable you set elsewhere.
 - If the source is another function like `color-mix()`, the relative color uses the mixed result.
-- Channel values clamp, so `calc(l + 40%)` will stop at 100% even if you keep adding.
+- Channel values clamp, so `calc(l + 40)` will stop at 100% even if you keep adding.
 - Hue math needs units, so use `30deg` instead of `30`.
 
 Once you know these rules, the behavior is consistent and predictable.

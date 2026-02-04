@@ -6,15 +6,7 @@
 		</label>
 		<label class="oklch-compare__field">
 			<span>Hue shift</span>
-			<input
-				class="oklch-compare__range"
-				type="range"
-				min="30"
-				max="150"
-				step="1"
-				value="90"
-				data-shift-input
-			/>
+			<input class="oklch-compare__range" type="range" min="30" max="150" step="1" value="90" data-shift-input />
 		</label>
 		<span class="oklch-compare__value" data-shift-value>90deg</span>
 	</div>
@@ -23,8 +15,8 @@
 		<div class="oklch-compare__column">
 			<p class="oklch-compare__title">HSL</p>
 			<div class="oklch-compare__pair">
-				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-base">Base</div>
-				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-shift">Shift</div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-base"><span>Base</span></div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--hsl-shift"><span>Shift</span></div>
 			</div>
 			<code class="oklch-compare__code">hsl(from var(--brand) h s l)</code>
 			<code class="oklch-compare__code">hsl(from var(--brand) calc(h + var(--shift)) s l)</code>
@@ -33,8 +25,8 @@
 		<div class="oklch-compare__column">
 			<p class="oklch-compare__title">OKLCH</p>
 			<div class="oklch-compare__pair">
-				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-base">Base</div>
-				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-shift">Shift</div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-base"><span>Base</span></div>
+				<div class="oklch-compare__swatch oklch-compare__swatch--oklch-shift"><span>Shift</span></div>
 			</div>
 			<code class="oklch-compare__code">oklch(from var(--brand) l c h)</code>
 			<code class="oklch-compare__code">oklch(from var(--brand) l c calc(h + var(--shift)))</code>
@@ -61,30 +53,10 @@
 					const shift = Number(shiftInput.value);
 
 					root.style.setProperty('--brand', base);
-					root.style.setProperty('--shift', `${shift}deg`);
+					root.style.setProperty('--shift', shift.toString());
 					shiftValue.textContent = `${shift}deg`;
 
-					if (utils && !utils.supportsRelative) {
-						const hslShift = utils.shiftHsl(base, { h: shift });
-						const oklchShift = utils.shiftOklchHue(base, shift);
-
-						if (hslBaseSwatch) {
-							hslBaseSwatch.style.backgroundColor = base;
-							hslBaseSwatch.style.color = utils.contrastFromHex(base);
-						}
-						if (hslShiftSwatch) {
-							hslShiftSwatch.style.backgroundColor = hslShift;
-							hslShiftSwatch.style.color = utils.contrastFromHex(hslShift);
-						}
-						if (oklchBaseSwatch) {
-							oklchBaseSwatch.style.backgroundColor = base;
-							oklchBaseSwatch.style.color = utils.contrastFromHex(base);
-						}
-						if (oklchShiftSwatch) {
-							oklchShiftSwatch.style.backgroundColor = oklchShift;
-							oklchShiftSwatch.style.color = utils.contrastFromHex(oklchShift);
-						}
-					}
+					// No inline style overrides; rely on CSS variables + @supports fallback.
 				};
 
 				baseInput.addEventListener('input', update);
@@ -104,15 +76,15 @@
 <style>
 	.oklch-compare {
 		--brand: #ff4f4f;
-		--shift: 90deg;
+		--shift: 90;
 		display: grid;
 		gap: 1rem;
 		padding: 1rem;
 		border: 2px solid var(--border);
 		background: white;
 		color: #171717;
-		font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-			"Liberation Mono", "Courier New", monospace;
+		font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			'Courier New', monospace;
 	}
 
 	.oklch-compare__controls {
@@ -129,9 +101,6 @@
 	}
 
 	.oklch-compare__color {
-		width: 44px;
-		height: 44px;
-		border-radius: 10px;
 		border: 2px solid var(--border);
 		padding: 0;
 		background: transparent;
@@ -187,8 +156,12 @@
 		border-radius: 12px;
 		font-weight: 600;
 		border: 1px solid rgba(23, 23, 23, 0.12);
-		color: hsl(from var(--swatch-color) h 20% calc(100% - l));
+		color: hsl(from var(--swatch-color) h 20% calc(100 - l));
 		background: var(--swatch-color);
+
+		span {
+			color: white;
+		}
 	}
 
 	.oklch-compare__swatch--hsl-base {

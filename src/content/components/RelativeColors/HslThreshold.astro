@@ -1,25 +1,17 @@
 <div class="hsl-threshold">
 	<div class="hsl-threshold__controls">
 		<span class="hsl-threshold__label">Threshold</span>
-		<input
-			class="hsl-threshold__range"
-			type="range"
-			min="2"
-			max="16"
-			step="1"
-			value="5"
-			data-step-input
-		/>
+		<input class="hsl-threshold__range" type="range" min="2" max="16" step="1" value="5" data-step-input />
 		<span class="hsl-threshold__value" data-step-value>5</span>
 	</div>
 
-	<div class="hsl-threshold__swatches" role="list">
-		<div class="hsl-threshold__swatch" style="--i: -2" data-i="-2" role="listitem">l - 10</div>
-		<div class="hsl-threshold__swatch" style="--i: -1" data-i="-1" role="listitem">l - 5</div>
-		<div class="hsl-threshold__swatch" style="--i: 0" data-i="0" role="listitem">l</div>
-		<div class="hsl-threshold__swatch" style="--i: 1" data-i="1" role="listitem">l + 5</div>
-		<div class="hsl-threshold__swatch" style="--i: 2" data-i="2" role="listitem">l + 10</div>
-	</div>
+	<ul class="hsl-threshold__swatches">
+		<li class="hsl-threshold__swatch" style="--i: -2" data-i="-2"><span>l - 10</span></li>
+		<li class="hsl-threshold__swatch" style="--i: -1" data-i="-1"><span>l - 5</span></li>
+		<li class="hsl-threshold__swatch" style="--i: 0" data-i="0"><span>l</span></li>
+		<li class="hsl-threshold__swatch" style="--i: 1" data-i="1"><span>l + 5</span></li>
+		<li class="hsl-threshold__swatch" style="--i: 2" data-i="2"><span>l + 10</span></li>
+	</ul>
 </div>
 
 <script is:inline>
@@ -42,9 +34,8 @@
 					swatches.forEach((swatch) => {
 						const i = Number(swatch.dataset.i);
 						const offset = step * i;
-						const label =
-							offset === 0 ? 'l' : `l ${offset > 0 ? '+' : '-'} ${Math.abs(offset)}`;
-						swatch.textContent = label;
+						const label = offset === 0 ? 'l' : `l ${offset > 0 ? '+' : '-'} ${Math.abs(offset)}`;
+						swatch.querySelector('span').textContent = label;
 					});
 
 					if (utils && utils.supportsRelative && !checkedSupport) {
@@ -52,10 +43,7 @@
 						const sample = swatches[0];
 						if (sample) {
 							const bg = getComputedStyle(sample).backgroundColor;
-							const transparent =
-								!bg ||
-								bg === 'transparent' ||
-								/rgba\([^,]+,[^,]+,[^,]+,\s*0\)/i.test(bg);
+							const transparent = !bg || bg === 'transparent' || /rgba\([^,]+,[^,]+,[^,]+,\s*0\)/i.test(bg);
 							if (transparent) {
 								forceFallback = true;
 							}
@@ -63,14 +51,12 @@
 					}
 
 					if (utils && (!utils.supportsRelative || forceFallback)) {
-						const brand =
-							getComputedStyle(root).getPropertyValue('--brand').trim() || '#9333EA';
+						const brand = getComputedStyle(root).getPropertyValue('--brand').trim() || '#9333EA';
 						swatches.forEach((swatch) => {
 							const i = Number(swatch.dataset.i);
 							const offset = step * i;
 							const color = utils.shiftHsl(brand, { l: offset });
 							swatch.style.backgroundColor = color;
-							swatch.style.color = utils.contrastFromHex(color);
 						});
 					}
 				};
@@ -83,7 +69,7 @@
 							utils = window.RelativeColorUtils;
 							update();
 						},
-						{ once: true }
+						{ once: true },
 					);
 				}
 				update();
@@ -107,9 +93,8 @@
 		padding: 1rem;
 		border: 2px solid var(--border);
 		background: white;
-		color: #171717;
-		font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-			"Liberation Mono", "Courier New", monospace;
+		font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			'Courier New', monospace;
 	}
 
 	.hsl-threshold__controls {
@@ -140,18 +125,22 @@
 
 	.hsl-threshold__swatches {
 		display: grid;
+		padding: 0;
 		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 		gap: 0.8rem;
+
+		span {
+			color: white;
+		}
 	}
 
 	.hsl-threshold__swatch {
-		--offset: calc(var(--step) * var(--i) * 1%);
+		--offset: calc(var(--step) * var(--i));
 		min-height: 80px;
 		display: grid;
 		place-items: center;
 		border-radius: 12px;
 		background: hsl(from var(--brand) h s calc(l + var(--offset)));
-		color: hsl(from var(--brand) h 20% calc(100% - l));
 		font-weight: 600;
 		border: 1px solid rgba(23, 23, 23, 0.12);
 	}

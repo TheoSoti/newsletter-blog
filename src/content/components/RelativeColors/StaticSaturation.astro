@@ -45,8 +45,8 @@
 <style>
 	.static-saturation {
 		--brand: #4b6bff;
-		--muted: hsl(from var(--brand) h calc(s - 35%) calc(l + 12%));
-		--ink: hsl(from var(--brand) h calc(s - 40%) calc(l - 20%));
+		--muted: hsl(from var(--brand) h calc(s - 35) calc(l + 12));
+		--ink: hsl(from var(--brand) h calc(s - 40) calc(l - 20));
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 		gap: 0.8rem;
@@ -70,16 +70,16 @@
 
 	.static-saturation__swatch--base {
 		background: var(--brand);
-		color: hsl(from var(--brand) h 20% calc(100% - l));
+		color: hsl(from var(--brand) h 20% calc(100 - l));
 	}
 
 	.static-saturation__swatch--muted {
 		background: var(--muted);
-		color: hsl(from var(--muted) h 20% calc(100% - l));
+		color: hsl(from var(--muted) h 20% calc(100 - l));
 	}
 
 	.static-saturation__swatch--ink {
 		background: var(--ink);
-		color: hsl(from var(--ink) h 20% calc(100% - l));
+		color: hsl(from var(--ink) h 20% calc(100 - l));
 	}
 </style>

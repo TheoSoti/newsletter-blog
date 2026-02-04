@@ -89,7 +89,7 @@
 					console.log(strength);
 
 					root.style.setProperty('--brand', base);
-					root.style.setProperty('--strength', `${strength}%`);
+					root.style.setProperty('--strength', (strength / 100).toString());
 
 					baseValue.textContent = base;
 					strengthValue.textContent = `${strength}%`;
@@ -158,10 +158,9 @@
 <style>
 	.relative-palette {
 		--brand: #4b6bff;
-		--strength: 12%;
-		--strong-color: oklch(from var(--brand) calc(l - var(--strength)) c h);
-		--soft-color: oklch(from var(--brand) calc(l + var(--strength) + 10%) calc(c - 18%) h);
-		--accent-color: oklch(from var(--brand) l c calc(h + 20deg));
+		--strong-color: oklch(from var(--brand) calc(l - 0.12) c h);
+		--soft-color: oklch(from var(--brand) calc(l + 0.4) calc(c - 0.18) h);
+		--accent-color: oklch(from var(--brand) l c calc(h + 20));
 		--border-color: rgb(from var(--brand) r g b / 0.18);
 		--shadow-color: rgb(from var(--brand) r g b / 0.3);
 		display: grid;
@@ -246,7 +245,7 @@
 		padding: 0.8rem;
 		border-radius: 14px;
 		background: var(--swatch-bg);
-		color: lch(from var(--swatch-bg) calc(100% - l) 20% h);
+		color: lch(from var(--swatch-bg) calc(100 - l) 20% h);
 		border: 1px solid rgba(23, 23, 23, 0.12);
 		box-shadow: 0 12px 18px rgba(17, 17, 17, 0.1);
 	}
@@ -283,7 +282,7 @@
 	.relative-palette__swatch--border,
 	.relative-palette__swatch--shadow {
 		--swatch-bg: #fff;
-		color: lch(from var(--brand) calc(100% - l) 20% h);
+		color: lch(from var(--brand) calc(100 - l) 20% h);
 	}
 
 	.relative-palette__swatch--border {
