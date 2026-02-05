@@ -27,7 +27,7 @@ Here is an example of a component working with the scroll-driven animation:
 import Animation5 from '../components/ScrollAnimation/5.astro';
 
 <Wrapper title="Scroll horizontally to see the images animating">
-  <Animation5 />
+	<Animation5 />
 </Wrapper>
 
 ## Scroll Timeline
@@ -45,47 +45,47 @@ To illustrate, here’s a simple animation that runs as soon as the page loads. 
 
 ```css
 @keyframes progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
 }
 
 #progress {
-  animation: progress 2s linear infinite running;
+	animation: progress 2s linear infinite running;
 }
 ```
 
 import Animation1 from '../components/ScrollAnimation/1.astro';
 
 <Wrapper>
-  <Animation1 />
+	<Animation1 />
 </Wrapper>
 
 Now, let’s make this animation scroll-driven. With the `animation-timeline` property and `scroll()` function, the animation’s progress is tied to the scroll position. We no longer need to define a fixed duration neither an iteration count, as the scroll position determines the timing:
 
 ```css
 @keyframes progress {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
 }
 
 #progress {
-  animation: progress linear forwards;
-  animation-timeline: scroll();
+	animation: progress linear forwards;
+	animation-timeline: scroll();
 }
 ```
 
 import Animation2 from '../components/ScrollAnimation/2.astro';
 
 <Wrapper title="Scroll inside this container to see what it looks like">
-  <Animation2 />
+	<Animation2 />
 </Wrapper>
 
 By default, the `scroll()` function uses the nearest scrollable ancestor as the scroller. But it can also take two optional parameters to customize its behavior:
@@ -96,6 +96,17 @@ By default, the `scroll()` function uses the nearest scrollable ancestor as the 
   - Possible values: **nearest** (default), **root**, or **self**.
 
 With these options, you can fine-tune the behavior of scroll-driven animations to match your design needs.
+
+<iframe
+	width="800"
+	src="https://www.youtube.com/embed/4t_m5CD5O2I?si=NwtL-4rEaQrXhd-S"
+	title="How to implement a scrolling progress bar"
+	frameborder="0"
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+	referrerpolicy="strict-origin-when-cross-origin"
+	allowfullscreen
+	style="width: 100%; aspect-ratio: 16 / 9;"
+></iframe>
 
 ## View Timeline
 
@@ -116,25 +127,25 @@ Here’s an example where images fade & slide in as they become visible in the v
 
 ```css
 @keyframes fade-in {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 .image {
-  opacity: 0.2;
-  transform: translateX(-100px);
+	opacity: 0.2;
+	transform: translateX(-100px);
 
-  animation: fade-in linear forwards;
-  animation-timeline: view();
+	animation: fade-in linear forwards;
+	animation-timeline: view();
 }
 ```
 
 import Animation3 from '../components/ScrollAnimation/3.astro';
 
 <Wrapper title="Scroll inside this container to see what it looks like">
-  <Animation3 />
+	<Animation3 />
 </Wrapper>
 
 It’s nice but not perfect. We never see the full image at 100% opacity. The image should have full opacity at around 50% of the viewport.
@@ -143,14 +154,14 @@ The initial idea might be to adjust the keyframes to end at 50%. <br/> While thi
 
 ```css
 @keyframes fade-in {
-  0% {
-    opacity: 0.2;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(1);
-  }
+	0% {
+		opacity: 0.2;
+		transform: translateX(0);
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(1);
+	}
 }
 ```
 
@@ -170,25 +181,25 @@ For instance, if we get back to our previous example, you can define an animatio
 
 ```css
 @keyframes fade-in {
-  to {
-    opacity: 1;
-  }
+	to {
+		opacity: 1;
+	}
 }
 
 .image {
-  opacity: 0.2;
-  transform: translateX(-100px);
+	opacity: 0.2;
+	transform: translateX(-100px);
 
-  animation: fade-in linear forwards;
-  animation-timeline: view();
-  animation-range: 100px 50%;
+	animation: fade-in linear forwards;
+	animation-timeline: view();
+	animation-range: 100px 50%;
 }
 ```
 
 import Animation4 from '../components/ScrollAnimation/4.astro';
 
 <Wrapper title="Scroll inside this container to see what it looks like">
-  <Animation4 />
+	<Animation4 />
 </Wrapper>
 
 In this example:
