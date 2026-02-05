@@ -3,13 +3,14 @@ title: 'CSS Relative Colors: Build UI Palettes Without a Color Picker'
 description: 'Generate hover states, borders, shadows, and accents from a single base color using CSS relative colors.'
 pubDate: 'Jan 26 2026'
 heroImage: '/relative-colors.svg'
-readingTime: '14 min read'
+readingTime: '9 min read'
 ---
 
 import Wrapper from '../components/Wrapper.astro';
 import SyntaxMap from '../components/RelativeColors/SyntaxMap.astro';
 import HslThreshold from '../components/RelativeColors/HslThreshold.astro';
 import OklchCompare from '../components/RelativeColors/OklchCompare.astro';
+import StaticSaturation from '../components/RelativeColors/StaticSaturation.astro';
 import Palette from '../components/RelativeColors/Palette.astro';
 import StaticCallout from '../components/RelativeColors/StaticCallout.astro';
 import StaticCurrentColor from '../components/RelativeColors/StaticCurrentColor.astro';
@@ -28,6 +29,8 @@ Relative colors break that loop. They let you reference a source color and adjus
 
 I like to think of relative colors as relationships, not values. The system says, "hover is 12% darker than the base" instead of "hover is #3d56d6." That mental shift removes a lot of tiny decisions from day to day UI work.
 
+**Quick support note:** global support for relative color syntax is (about 89.64%)[https://caniuse.com/css-relative-colors] as of February 2026, so check your audience if you need broader coverage. citeturn0search0
+
 ## The old workflow: manual palette drift
 
 Here is the classic setup. You define a base color, then you create a new value for every variation you need:
@@ -42,20 +45,22 @@ Here is the classic setup. You define a base color, then you create a new value 
 }
 
 .button {
-	background: var(--brand);
+	background-color: var(--brand);
 	border-color: var(--brand-border);
 }
 
 .button:hover {
-	background: var(--brand-hover);
+	background-color: var(--brand-hover);
 }
 
 .button:active {
-	background: var(--brand-active);
+	background-color: var(--brand-active);
 }
 ```
 
 This works, but each value is hand picked. If you ever change `--brand`, you also have to re-pick the hover, active, border, and soft background. That is why palettes drift over time.
+
+The subtle issue is that every token becomes a frozen decision, not a relationship. Once you lose the relationship, you lose the system: changing the base color means re‑discovering the entire palette from scratch, and a new page or theme multiplies that work.
 
 ## Meet relative colors
 
@@ -70,12 +75,12 @@ Here is the core idea:
 	--hover: hsl(from var(--brand) h s calc(l + var(--shift)));
 	--border: rgb(from var(--brand) r g b / 0.2);
 
-	background: var(--brand);
+	background-color: var(--brand);
 	border-color: var(--border);
 }
 
 .button:hover {
-	background: var(--hover);
+	background-color: var(--hover);
 }
 ```
 
@@ -118,6 +123,8 @@ Relative colors work in the space you choose. That choice affects how the result
 - **HSL** is quick for hue and saturation shifts. It is intuitive, but the lightness channel does not match human perception.
 - **OKLCH** is the most consistent for lightness changes. It is a better default when you want palettes that feel balanced across hues.
 
+Relative colors always convert the source into the output color space before doing any math. The result is expressed in that output space, which is why `hsl()` and `oklch()` can yield different shifts even with the same numeric offsets.
+
 A good rule of thumb is to use `rgb()` for transparency and `oklch()` for lightness. Reach for `hsl()` when you want fast adjustments or you need wide support.
 
 ## Build a mini palette from one variable
@@ -126,13 +133,16 @@ A practical way to start is to define a handful of tokens. You can keep the pale
 
 This recipe builds seven tokens from one base color and keeps everything in sync.
 
+OKLCH uses different numeric ranges than HSL. Lightness resolves to 0–1, chroma resolves to 0–0.4 in relative syntax, and hue resolves to 0–360. That is why these offsets are written as small decimals instead of percentages.
+
 Here is the token recipe that powers the palette:
 
 ```css
 :root {
 	--brand: #4b6bff;
+	--strength: 0.12;
 	--strong-color: oklch(from var(--brand) calc(l - 0.12) c h);
-	--soft-color: oklch(from var(--brand) calc(l + 0.4) calc(c - 0.18) h);
+	--soft-color: oklch(from var(--brand) calc(l + 0.4) c h);
 	--accent-color: oklch(from var(--brand) l c calc(h + 20));
 	--brand-border: rgb(from var(--brand) r g b / 0.18);
 	--brand-shadow: rgb(from var(--brand) r g b / 0.3);
@@ -149,6 +159,8 @@ This small set is usually enough for a button, a badge, a soft background, and a
 
 Relative colors shine when a component needs multiple accents. Here is a compact pattern for a callout card:
 
+Keep derived tokens in one space so the relationships stay coherent. Mixing spaces is valid, but remember the source is converted to the output space for every calculation, which can subtly change the result.
+
 ```css
 .callout {
 	--tone: #4b6bff;
@@ -158,7 +170,7 @@ Relative colors shine when a component needs multiple accents. Here is a compact
 	--tone-shadow: rgb(from var(--tone) r g b / 0.25);
 
 	border: 1px solid var(--tone-border);
-	background: var(--tone-soft);
+	background-color: var(--tone-soft);
 	box-shadow: 0 12px 24px var(--tone-shadow);
 }
 
@@ -181,10 +193,12 @@ If you want a quick set of tints and shades, you can keep the hue and saturation
 
 ```css
 .swatch {
-	--offset: calc(var(--step) * var(--i));
-	background: hsl(from var(--brand) h s calc(l + var(--offset)));
+	--offset: calc(var(--step) * var(--i) / 100); // i is the swatch index
+	oklch(from var(--brand) calc(l + var(--offset)) c h);
 }
 ```
+
+Here `--step` is a plain number. Because HSL lightness runs from 0 to 100, a step of 5 means “five lightness points.” Values are clamped to the channel range, so going past the ends just pins at 0 or 100.
 
 <Wrapper title="HSL lightness threshold">
 	<HslThreshold />
@@ -195,6 +209,8 @@ If you want a quick set of tints and shades, you can keep the hue and saturation
 HSL is fast and familiar, but its lightness channel is not perceptual. The same +10% shift can feel dramatic on one hue and barely visible on another.
 
 OKLCH is much more consistent. It keeps lightness changes feeling even across different hues, which is why it is great for UI palettes.
+
+Also note the unit differences: HSL uses a 0–100 scale for lightness and saturation, while OKLCH lightness is 0–1 and chroma values are much smaller. That means a `+0.1` OKLCH lightness shift is already significant.
 
 Here is a side by side comparison using the same lightness shift in HSL and OKLCH.
 
@@ -212,9 +228,11 @@ A neat trick is using `currentColor` as the source. That lets icons, borders, an
 .badge {
 	color: #1d4ed8;
 	border: 1px solid rgb(from currentColor r g b / 0.2);
-	background: hsl(from currentColor h s calc(l + 40));
+	background-color: oklch(from currentColor clamp(0%, calc(l + 40%), 100%) c h);
 }
 ```
+
+`currentColor` resolves to the computed text color of the element. That means any change that affects the actual computed color (inheritance, state styles, media queries) will flow through the derived colors automatically.
 
 <Wrapper title="CurrentColor badge">
 	<StaticCurrentColor />
@@ -222,19 +240,17 @@ A neat trick is using `currentColor` as the source. That lets icons, borders, an
 
 One change to `color` updates the border and background without touching any other variables.
 
-## The computed color gotcha
-
-Relative colors use the computed value of the source. That can surprise you in a few cases:
-
-- If the source is `currentColor`, it uses the computed text color, not the variable you set elsewhere.
-- If the source is another function like `color-mix()`, the relative color uses the mixed result.
-- Channel values clamp, so `calc(l + 40)` will stop at 100% even if you keep adding.
-- Hue math needs units, so use `30deg` instead of `30`.
-
-Once you know these rules, the behavior is consistent and predictable.
-
 ## The payoff
 
-Once you start using relative colors, you stop thinking in isolated hex values. You think in relationships: hover is a darker brand, borders are the same brand with lower alpha, and your palette stays coherent by default.
+Once you start using relative colors, you stop thinking in isolated hex values. You think in relationships: hover is a darker brand, borders are the same brand with lower alpha... and your palette stays coherent by default.
+
+If you need older browser support, consider a fallback palette.
 
 If you are building a design system or cleaning up a few components, this is one of the CSS features that makes everything feel simpler.
+
+## Support My Work
+
+Feel free to leave your comments or questions via email at hey@theosoti.com. <br />
+If you found this article helpful, please share it with your peers and join my newsletter below to not miss anything on CSS.
+
+Happy coding!

@@ -89,7 +89,6 @@
 					console.log(strength);
 
 					root.style.setProperty('--brand', base);
-					root.style.setProperty('--strength', (strength / 100).toString());
 
 					baseValue.textContent = base;
 					strengthValue.textContent = `${strength}%`;
@@ -101,7 +100,7 @@
 					if (shouldFallback) {
 						forceFallback = true;
 						const strong = utils.shiftHsl(base, { l: -strength });
-						const soft = utils.shiftHsl(base, { s: -18, l: strength + 10 });
+						const soft = utils.shiftHsl(base, { l: 20 });
 						const accent = utils.shiftHsl(base, { h: 20 });
 						const border = utils.rgbaFromHex(base, 0.18);
 						const shadow = utils.rgbaFromHex(base, 0.3);
@@ -157,9 +156,9 @@
 
 <style>
 	.relative-palette {
-		--brand: #4b6bff;
+		--brand: #3734d5;
 		--strong-color: oklch(from var(--brand) calc(l - 0.12) c h);
-		--soft-color: oklch(from var(--brand) calc(l + 0.4) calc(c - 0.18) h);
+		--soft-color: oklch(from var(--brand) calc(l + 0.4) c h);
 		--accent-color: oklch(from var(--brand) l c calc(h + 20));
 		--border-color: rgb(from var(--brand) r g b / 0.18);
 		--shadow-color: rgb(from var(--brand) r g b / 0.3);

@@ -33,8 +33,9 @@
 
 					swatches.forEach((swatch) => {
 						const i = Number(swatch.dataset.i);
-						const offset = step * i;
-						const label = offset === 0 ? 'l' : `l ${offset > 0 ? '+' : '-'} ${Math.abs(offset)}`;
+						const offset = (step * i) / 100;
+						const formatted = Math.round(Math.abs(offset) * 100) / 100;
+						const label = offset === 0 ? 'l' : `l ${offset > 0 ? '+' : '-'} ${formatted}`;
 						swatch.querySelector('span').textContent = label;
 					});
 
@@ -55,7 +56,7 @@
 						swatches.forEach((swatch) => {
 							const i = Number(swatch.dataset.i);
 							const offset = step * i;
-							const color = utils.shiftHsl(brand, { l: offset });
+							const color = utils.shiftOklch(brand, { l: offset });
 							swatch.style.backgroundColor = color;
 						});
 					}
@@ -135,12 +136,12 @@
 	}
 
 	.hsl-threshold__swatch {
-		--offset: calc(var(--step) * var(--i));
+		--offset: calc(var(--step) * var(--i) / 100);
 		min-height: 80px;
 		display: grid;
 		place-items: center;
 		border-radius: 12px;
-		background: hsl(from var(--brand) h s calc(l + var(--offset)));
+		background: oklch(from var(--brand) calc(l + var(--offset)) c h);
 		font-weight: 600;
 		border: 1px solid rgba(23, 23, 23, 0.12);
 	}
