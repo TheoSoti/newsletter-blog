@@ -27,7 +27,7 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-Node.js version: `>=18.17.1`
+Node.js version: `>=18.20.8`
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
