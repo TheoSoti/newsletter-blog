@@ -1,0 +1,25 @@
+---
+interface Props {
+	width: string;
+	height?: string;
+	quantity?: number;
+	icon: 'sparkle' | 'starburst';
+}
+
+const { width, height = '68px', quantity = 7, icon } = Astro.props;
+const items = Array.from({ length: quantity }, (_, index) => index + 1);
+---
+
+<div class="slider" style={`--width: ${width}; --height: ${height}; --quantity: ${quantity};`}>
+	<div class="slider__container">
+		<div class="list">
+			{
+				items.map((position) => (
+					<div class="item" style={`--position: ${position};`} aria-hidden="true">
+						<span class={icon}></span>You don't need JS!
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>

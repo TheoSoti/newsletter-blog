@@ -1,0 +1,27 @@
+@layer cta {
+	.cta {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 2px solid var(--border);
+		background-color: var(--background);
+	}
+
+	.cta__button {
+		text-align: center;
+	}
+
+	.cta__button .button {
+		background-color: var(--secondary);
+	}
+
+	.cta__title {
+		text-align: center;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.cta__description {
+		max-width: var(--container-width);
+		margin-inline: auto;
+		text-align: center;
+		font-size: var(--fs-2);
+	}
+}

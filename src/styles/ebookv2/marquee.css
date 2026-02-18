@@ -1,0 +1,91 @@
+@layer marquee {
+	.slider {
+		width: 100%;
+		height: var(--height);
+		background-color: var(--white);
+		border-bottom: 4px solid var(--black);
+		border-top: 4px solid var(--black);
+	}
+
+	.slider__container {
+		max-width: var(--container-width);
+		height: var(--height);
+		mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+		margin-inline: auto;
+		overflow: hidden;
+	}
+
+	.slider .list {
+		display: flex;
+		width: 100%;
+		min-width: calc(var(--width) * var(--quantity));
+		position: relative;
+	}
+
+	.slider .list .item {
+		--time: 60s;
+
+		display: flex;
+		align-items: baseline;
+		gap: 0.3em;
+		font-size: 2.3em;
+		font-family: 'BebasNeue', sans-serif;
+		width: var(--width);
+		height: calc(var(--height) - 8px);
+		position: absolute;
+		left: 100%;
+		animation: autoRun var(--time) linear infinite;
+		transition: filter 0.5s;
+		animation-delay: calc((var(--time) / var(--quantity)) * (var(--position) - 1) - var(--time)) !important;
+	}
+
+	.slider .sparkle {
+		display: block;
+		width: 30px;
+		height: 30px;
+		background-color: var(--main);
+		mask: radial-gradient(#0000 71%, #000 72%) 10000% 10000%/99.5% 99.5%;
+	}
+
+	.slider .starburst {
+		display: block;
+		background-color: var(--yellow);
+		width: 30px;
+		height: 30px;
+		aspect-ratio: 1;
+		--g: /20.56% 20.56% radial-gradient(#000 calc(71% - 1px), #0000 71%) no-repeat;
+		mask:
+			100% 50% var(--g),
+			93.301% 75% var(--g),
+			75% 93.301% var(--g),
+			50% 100% var(--g),
+			25% 93.301% var(--g),
+			6.699% 75% var(--g),
+			0% 50% var(--g),
+			6.699% 25% var(--g),
+			25% 6.699% var(--g),
+			50% 0% var(--g),
+			75% 6.699% var(--g),
+			93.301% 25% var(--g),
+			radial-gradient(100% 100%, #000 38.366%, #0000 calc(38.366% + 1px));
+	}
+
+	.slider:hover .item {
+		animation-play-state: paused;
+	}
+
+	@media (prefers-reduced-motion) {
+		.slider .list .item {
+			animation-play-state: paused;
+		}
+	}
+
+	@keyframes autoRun {
+		from {
+			left: 100%;
+		}
+		to {
+			left: calc(var(--width) * -1);
+		}
+	}
+}

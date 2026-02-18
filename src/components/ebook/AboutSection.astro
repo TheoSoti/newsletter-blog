@@ -1,0 +1,43 @@
+---
+import { Picture } from 'astro:assets';
+import profile from '../../assets/profile.png';
+---
+
+<section class="about">
+	<div class="about__container">
+		<h2 class="about__title">About the author</h2>
+		<div class="about__content">
+			<div class="about__author">
+				<Picture
+					src={profile}
+					formats={['avif', 'webp', 'jpg']}
+					width="160"
+					height="160"
+					alt="Theo Soti profile"
+					class="coming-soon"
+				/>
+				<div class="author__info">
+					<p class="author__name">Theo Soti</p>
+					<p class="author__title">Webdesigner & Front-end Developer</p>
+				</div>
+			</div>
+
+			<p class="about__description">
+				For the last eight years, I’ve worked with teams to design and build fast, responsive interfaces using
+				modern CSS.
+				<br />
+				Along the way, I started sharing what I learned online. That small habit grew into a community of:
+			</p>
+			<ul class="about__description">
+				<li>16,000+ developers on LinkedIn</li>
+				<li>9 million impressions in a year</li>
+				<li>1,500 newsletter subscribers</li>
+			</ul>
+			<p class="about__description">
+				<i>You Don’t Need JavaScript</i> collects my best CSS techniques and patterns for building fast, modern interfaces
+				with less code and more joy.
+			</p>
+		</div>
+	</div>
+	<div class="about__background"></div>
+</section>

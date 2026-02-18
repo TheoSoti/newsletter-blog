@@ -1,0 +1,35 @@
+---
+import { Picture } from 'astro:assets';
+import ebook from '../../assets/ebook/ebook.png';
+---
+
+<section class="hero">
+	<div class="hero__container">
+		<div class="hero__content">
+			<i class="hero__title"> You Don't Need JavaScript</i>
+			<h1 class="hero__subtitle">A practical guide for building modern components with CSS</h1>
+			<p class="hero__description">
+				<i>You Don’t Need JavaScript</i> is a complete, 125-page book packed with modern CSS techniques, real-world examples,
+				and step-by-step tutorials. Learn how to replace unnecessary JavaScript with lightweight CSS components that
+				are faster, easier to maintain, and future-proof.
+			</p>
+
+			<a href="#pricing" class="button">Buy now</a>
+			<p>
+				Do you want to see a preview first? <a href="/YDNJS-preview.pdf" target="_blank">Download a preview.</a>
+			</p>
+		</div>
+		<div class="hero__image">
+			<div class="background"></div>
+			<Picture
+				src={ebook}
+				formats={['avif', 'webp', 'png']}
+				width="500"
+				class="book"
+				height="800"
+				alt="You don't need JavaScript ebook cover"
+				fetchpriority="high"
+			/>
+		</div>
+	</div>
+</section>

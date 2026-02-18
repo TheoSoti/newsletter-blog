@@ -1,0 +1,217 @@
+---
+import { Picture } from 'astro:assets';
+import testimonial_fun_1 from '../../assets/ebook/melon-tusk.png';
+import testimonial_fun_2 from '../../assets/ebook/parry-lage.png';
+import testimonial_fun_3 from '../../assets/ebook/beff-jezos.png';
+import testimonial_lionel from '../../assets/ebook/lionel.png';
+import testimonial_utsav from '../../assets/ebook/utsav.png';
+import testimonial_pierre from '../../assets/ebook/pierre.png';
+import testimonial_virgile from '../../assets/ebook/virgile.png';
+import testimonial_paul from '../../assets/ebook/paul.png';
+import testimonial_thomas from '../../assets/ebook/thomas.png';
+import testimonial_cedric from '../../assets/ebook/cedric.png';
+---
+
+<section class="testimonials">
+	<h2 class="testimonials__title">Loved by the community</h2>
+	<div class="switcher">
+		<input type="radio" name="switcher" value="regular" id="regular" checked />
+		<label for="regular">Regular</label>
+
+		<input type="radio" name="switcher" value="fun" id="fun" />
+		<label for="fun">Fun Mode</label>
+	</div>
+
+	<div class="testimonials__container testimonials__regular">
+		<div class="heart heart-1"></div>
+		<ul class="testimonial__list">
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_utsav}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Utsav Meena <br /> <span>CSS Content Creator</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on
+					accessibility, troubleshooting, and browser compatibility. <br />Hopefully, this will help people
+					appreciate CSS a bit more.
+				</blockquote>
+			</li>
+
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_lionel}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Lionel Péramo <br /> <span>Fullstack Developer & Content Creator</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					Theo brilliantly shows how modern CSS can replace complex JavaScript without losing creativity or
+					functionality. The examples are clear, practical, and inspiring. A refreshing reminder that the simplest
+					tools often create the best results. A must-read for any developer.
+				</blockquote>
+			</li>
+
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_pierre}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Pierre Liegard<br /> <span>Front-end Developer</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					This book offers a welcome reminder of the latest CSS developments at a time when performance matters more
+					than ever.
+				</blockquote>
+			</li>
+
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_cedric}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Cedric Molla<br /> <span>Web Developer</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made
+					me want to revisit old projects and try a lighter, CSS-first approach.
+				</blockquote>
+			</li>
+
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_virgile}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Virgile Gouala<br /> <span>Engineering Manager</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					<i>You Don’t Need JavaScript</i> introduced me to the “Rule of Least Power”, a principle that is both simple
+					and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological,
+					thoughtful, and handcrafted approach to development, reminding us that elegance and impact often arise from
+					simplicity.
+				</blockquote>
+			</li>
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_paul}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Paul Wright <br /> <span>Full Stack Web Developer</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
+					chapter. <i>You Don’t Need JavaScript</i> is a breath of fresh air packed with “wait… CSS can do that?!” moments.
+					Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t
+					always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity often live right
+					there in your stylesheet.
+				</blockquote>
+			</li>
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_thomas}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Thomas Palef <br /> <span>Author of Make 2D Games</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					I thought I knew CSS, but I was wrong... this book taught me new CSS properties at almost every page!
+				</blockquote>
+			</li>
+		</ul>
+		<div class="heart heart-2"></div>
+	</div>
+
+	<div class="testimonials__container testimonials__fun">
+		<div class="heart heart-1"></div>
+		<ul class="testimonial__list">
+			<li class="testimonial rotate-right">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_fun_1}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Melon Tusk <br /> <span>Former Framework Addict</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
+				</blockquote>
+			</li>
+
+			<li class="testimonial">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_fun_2}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Parry Lage <br /> <span>Proud jQuery Defender</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					Tried the CSS-only dropdown technique. It worked instantly. Honestly, it felt wrong.
+				</blockquote>
+			</li>
+
+			<li class="testimonial rotate-left">
+				<div class="testimonial__content">
+					<Picture
+						src={testimonial_fun_3}
+						formats={['avif', 'webp', 'jpg']}
+						width="168"
+						height="168"
+						alt="Second testimonial"
+						class="testimonial__image"
+					/>
+					<p class="testimonial__author">Beff Jezos <br /> <span>JavaScript Maximalist</span></p>
+				</div>
+				<blockquote class="testimonial__text">
+					Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
+				</blockquote>
+			</li>
+		</ul>
+		<div class="heart heart-2"></div>
+	</div>
+</section>

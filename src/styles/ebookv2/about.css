@@ -1,0 +1,100 @@
+@layer about {
+	.about {
+		padding: var(--pad-xl) var(--pad-16-32);
+		background-color: var(--main);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.about picture {
+		flex-shrink: 0;
+		width: 80px;
+		aspect-ratio: 1/1;
+	}
+
+	.about img {
+		display: block;
+		border: 2px solid var(--border);
+	}
+
+	.about__container {
+		max-width: var(--container-width);
+		margin-inline: auto;
+		position: relative;
+	}
+
+	.about__content {
+		background-color: var(--white);
+		box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+		padding: var(--pad-16-32) var(--pad-16-32);
+		border-radius: 0.5em;
+		border: 2px solid var(--border);
+		z-index: 1;
+		position: relative;
+	}
+
+	.about__background {
+		width: 500px; /* adjust to control the size */
+		aspect-ratio: 1;
+		clip-path: polygon(
+			100% 50%,
+			78.78% 58.45%,
+			92.06% 77.03%,
+			69.65% 72.67%,
+			70.77% 95.48%,
+			54.27% 79.69%,
+			42.88% 99.49%,
+			37.54% 77.29%,
+			17.26% 87.79%,
+			24.76% 66.22%,
+			2.03% 64.09%,
+			20% 50%,
+			2.03% 35.91%,
+			24.76% 33.78%,
+			17.26% 12.21%,
+			37.54% 22.71%,
+			42.88% 0.51%,
+			54.27% 20.31%,
+			70.77% 4.52%,
+			69.65% 27.33%,
+			92.06% 22.97%,
+			78.78% 41.55%
+		);
+
+		background: var(--yellow);
+		position: absolute;
+		right: -200px;
+		z-index: 0;
+		top: 0%;
+	}
+
+	.about__author {
+		display: flex;
+		align-items: center;
+		gap: var(--pad-12-16);
+	}
+
+	.author__title {
+		margin: 0;
+	}
+
+	.author__name {
+		font-size: var(--fs-2);
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.about__title {
+		color: var(--white);
+		text-align: center;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.about__description {
+		font-size: var(--fs-1);
+	}
+
+	.about__description:last-child {
+		margin-bottom: 0;
+	}
+}

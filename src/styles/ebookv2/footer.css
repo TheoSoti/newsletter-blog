@@ -1,0 +1,16 @@
+@layer footer {
+	footer {
+		padding: var(--pad-xl) var(--pad-16-32);
+		background-color: var(--yellow);
+		text-align: center;
+	}
+
+	.footer__title {
+		text-align: center;
+	}
+
+	.footer__description {
+		text-align: center;
+		margin-bottom: 0;
+	}
+}

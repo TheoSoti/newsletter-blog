@@ -1,0 +1,54 @@
+@layer features {
+	.features {
+		padding: var(--pad-xl) var(--pad-16-32);
+		background-color: var(--main);
+		color: var(--white);
+	}
+
+	.features__container {
+		max-width: var(--container-width);
+		margin-inline: auto;
+	}
+
+	.features__title {
+		text-align: center;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.features__list {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 2em;
+		grid-template-columns: repeat(auto-fit, minmax(clamp(16rem, 50%, 25rem), 1fr));
+	}
+
+	.features form {
+		margin-top: var(--pad-xl);
+	}
+
+	.features form p {
+		text-align: center;
+	}
+
+	.feature {
+		display: flex;
+		gap: var(--pad-12-16);
+
+		svg {
+			flex-shrink: 0;
+			width: var(--fs-3);
+			height: var(--fs-3);
+		}
+	}
+
+	.feature__title {
+		font-size: var(--fs-2);
+	}
+
+	.feature__description {
+		font-size: var(--fs-1);
+		margin-bottom: 0;
+	}
+}
+

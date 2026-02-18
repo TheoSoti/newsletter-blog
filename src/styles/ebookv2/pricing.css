@@ -1,0 +1,211 @@
+@layer pricing {
+	.pricing {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 2px solid var(--border);
+	}
+
+	.pricing__container {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 2rem;
+		max-width: var(--container-width);
+		margin-inline: auto;
+		padding: 0;
+	}
+
+	.pricing__description {
+		text-align: center;
+		background-color: var(--yellow);
+		color: var(--black);
+		font-weight: bold;
+		padding: var(--pad-4-8) var(--pad-12-16);
+		border-radius: 0.5rem;
+		font-size: var(--fs-1);
+		margin-bottom: var(--pad-xl);
+		border: 2px solid var(--border);
+		max-width: var(--container-width);
+		width: fit-content;
+		margin-inline: auto;
+	}
+
+	.pricing__title {
+		text-align: center;
+		font-family: 'BebasNeue', sans-serif;
+		margin-bottom: var(--pad-xl);
+	}
+
+	.pricing__item {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--white);
+		padding: var(--pad-16-32);
+		border-radius: 0.5rem;
+		border: 2px solid var(--border);
+		flex: 1;
+		position: relative;
+		top: 0;
+		transition: top 0.3s ease;
+	}
+
+	.pricing__item:hover {
+		top: -5px;
+	}
+
+	.pricing__item .button:before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		cursor: pointer;
+	}
+
+	.pricing__item-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		position: relative;
+	}
+
+	.pricing__item-title {
+		font-family: 'BebasNeue', sans-serif;
+		text-align: center;
+		font-size: var(--fs-2);
+		margin: 0;
+	}
+
+	.pricing__item-tag {
+		position: absolute;
+		top: -20px;
+		right: 1em;
+		background-color: var(--yellow);
+		font-weight: bold;
+		color: var(--black);
+		border: 2px solid var(--border);
+		font-size: var(--fs-1);
+		padding: 0 0.5rem;
+		border-radius: 0.5rem;
+	}
+
+	.pricing__item-old-price {
+		color: var(--small-text);
+		font-size: var(--fs-1);
+		text-align: center;
+		margin: 0;
+		line-height: 1;
+		margin-top: 1rem;
+		text-decoration: line-through;
+	}
+
+	.pricing__item-price {
+		font-family: 'BebasNeue', sans-serif;
+		font-weight: bold;
+		text-align: center;
+		font-size: var(--fs-5);
+		margin: 0;
+		line-height: 1;
+		margin-top: 1rem;
+
+		sup {
+			font-size: var(--fs-2-5);
+		}
+	}
+
+	.pricing__item-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		list-style: none;
+		padding: 0;
+		margin-bottom: 2rem;
+	}
+
+	.pricing__item-list li:before {
+		content: '✓';
+		margin-right: 0.5rem;
+		color: var(--secondary);
+	}
+
+	.pricing__item-list .princing__item-cross span {
+		text-decoration: line-through;
+		margin-left: 0.5rem;
+		color: var(--black);
+	}
+
+	.pricing__item-list .princing__item-cross:before {
+		content: none;
+	}
+
+	.pricing__item-list .princing__item-cross {
+		color: brown;
+	}
+
+	.pricing hr {
+		height: 2px;
+		background-color: var(--small-text);
+		border: none;
+		margin: var(--pad-12-16) 0;
+	}
+
+	.pricing .button {
+		width: 100%;
+		margin-top: auto;
+	}
+
+	.pricing__money-back {
+		text-align: center;
+		font-size: var(--fs-1);
+		font-weight: bold;
+	}
+
+	@property --angle {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: false;
+	}
+
+	.pricing__item.pricing__item-popular {
+		border: none;
+		position: relative;
+		background-color: var(--white) !important;
+		border-radius: 0.5rem;
+	}
+
+	.pricing__item.pricing__item-popular::after,
+	.pricing__item.pricing__item-popular::before {
+		content: '';
+		position: absolute;
+		inset: -2px;
+		z-index: -1;
+		border-radius: inherit;
+		border-radius: 0.7rem;
+
+		background: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+
+		animation: spin 3s linear infinite;
+	}
+
+	.pricing__item.pricing__item-popular::before {
+		filter: blur(1.5rem);
+		opacity: 0.8;
+	}
+
+	@media (prefers-reduced-motion) {
+		.pricing__item.pricing__item-popular::after,
+		.pricing__item.pricing__item-popular::before {
+			animation: none;
+		}
+	}
+
+	@keyframes spin {
+		to {
+			--angle: 360deg;
+		}
+	}
+
+	@media screen and (min-width: 43.75em) {
+		.pricing__container {
+			flex-direction: row;
+		}
+	}
+}
