@@ -1,0 +1,88 @@
+---
+const stats = [
+	{ value: '20k+', label: 'Followers across social media' },
+	{ value: '11M+', label: 'Views across all platforms' },
+	{ value: '2000+', label: 'Subscribers to my newsletter' },
+];
+---
+
+<section class="social-proof" aria-labelledby="social-proof-title">
+	<h2 id="social-proof-title" class="sr-only">Audience stats</h2>
+	<div class="social-proof__container">
+		<ul class="social-proof__list" role="list" aria-label="Audience social proof">
+			{
+				stats.map((stat) => (
+					<li class="social-proof__item">
+						<p class="social-proof__value">{stat.value}</p>
+						<p class="social-proof__label">{stat.label}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.social-proof {
+		padding: 0;
+		background-color: var(--bg-light);
+		border-bottom: 4px solid var(--border);
+	}
+
+	.social-proof__container {
+		width: 1100px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+	}
+
+	.social-proof__list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		background: var(--bg-light);
+	}
+
+	.social-proof__item {
+		padding: 2rem 1rem;
+		text-align: center;
+	}
+
+	.social-proof__item + .social-proof__item {
+		border-top: 4px solid var(--border);
+	}
+
+	.social-proof__value {
+		margin: 0;
+		font-size: var(--fs-social-proof-number);
+		font-weight: 700;
+		line-height: 1;
+		color: var(--text);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.social-proof__label {
+		margin: 0.35rem 0 0;
+		font-size: clamp(0.95rem, 0.92rem + 0.2vw, 1.15rem);
+		line-height: 1.35;
+		text-wrap: balance;
+		color: var(--text);
+	}
+
+	@media (min-width: 830px) {
+		.social-proof__list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.social-proof__item {
+			padding: 2.75rem 2.5rem;
+			text-align: left;
+		}
+
+		.social-proof__item + .social-proof__item {
+			border-top: none;
+			border-left: 4px solid var(--border);
+		}
+	}
+</style>

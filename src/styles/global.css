@@ -11,6 +11,7 @@
 	--border: hsl(0, 0%, 9%);
 	--example: hsl(230, 70%, 80%);
 	--code: #ebeceb;
+	--fs-social-proof-number: clamp(2.8rem, 2.1rem + 2.4vw, 4.3rem);
 }
 :root:has(.check-darkmode:checked) {
 	--main: hsl(150 59.02% 68.79%);
@@ -23,6 +24,7 @@
 	--border: hsl(0, 0%, 0%);
 	--example: hsl(230, 70%, 60%);
 	--code: #ffffff26;
+	--fs-social-proof-number: clamp(2.8rem, 2.1rem + 2.4vw, 4.3rem);
 }
 *:focus-visible {
 	outline-offset: 2px;

@@ -67,7 +67,7 @@ import { SITE_NAME } from '../consts';
 		left: 0;
 		right: 0;
 		margin: 0;
-		background-color: var(--background);
+		background-color: var(--bg-light);
 		border-bottom: 4px solid var(--border);
 		z-index: 99;
 	}
@@ -149,7 +149,7 @@ import { SITE_NAME } from '../consts';
 		margin: auto;
 	}
 	nav a {
-		padding: 0.2em 0.5em;
+		padding: 1em 0.5em;
 		color: var(--text);
 		text-decoration: none;
 	}
@@ -181,7 +181,7 @@ import { SITE_NAME } from '../consts';
 	nav a.hireme {
 		margin-top: -3px;
 		margin-left: 2em;
-		padding: 0.1em 0.5em;
+		padding: 0.5em 1em;
 		margin: auto;
 		color: var(--white);
 	}
@@ -249,8 +249,8 @@ import { SITE_NAME } from '../consts';
 	.mobile-close {
 		cursor: pointer;
 		width: fit-content;
-		padding: 0.8em 1em;
-		margin: 0.5em 0.5em 1em auto;
+		padding: 1.2em 1.5em;
+		margin: 1.5em 0.5em 1.5em auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -280,6 +280,9 @@ import { SITE_NAME } from '../consts';
 		.global-links {
 			display: flex;
 			gap: 40px;
+		}
+		nav a.hireme {
+			padding: 0.1em 0.5em;
 		}
 		nav button.mobile-menu {
 			display: none;
