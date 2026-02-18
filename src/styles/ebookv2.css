@@ -1173,9 +1173,6 @@
 		.pricing__container {
 			flex-direction: row;
 		}
-		.pricing__item-popular {
-			order: 2;
-		}
 	}
 }
 
