@@ -1,0 +1,198 @@
+---
+import { Picture } from 'astro:assets';
+import ebookCover from '../assets/ebook/ebook.png';
+
+const highlights = ['125 pages', '27 practical examples', 'Pure CSS focus'];
+---
+
+<section class="book-showcase" aria-labelledby="book-showcase-title">
+	<div class="book-showcase__container">
+		<div class="book-showcase__content">
+			<p class="book-showcase__eyebrow">The New Guide</p>
+			<h2 id="book-showcase-title">You Don’t Need JavaScript</h2>
+			<p class="book-showcase__description">
+				A practical, visual guide to build modern interactive components with less JavaScript and more native CSS. Learn
+				patterns you can apply directly to production projects.
+			</p>
+			<a class="button book-showcase__button" href="/you-dont-need-js/">Discover the book</a>
+		</div>
+
+		<ul class="book-showcase__highlights" aria-label="Book highlights">
+			{highlights.map((highlight) => <li class="book-showcase__highlight">{highlight}</li>)}
+		</ul>
+
+		<a
+			class="book-showcase__cover-link"
+			href="/you-dont-need-js/"
+			aria-label="Open the You Don’t Need JavaScript landing page"
+		>
+			<Picture
+				src={ebookCover}
+				formats={['avif', 'webp', 'png']}
+				width="500"
+				height="800"
+				alt="You Don’t Need JavaScript book cover"
+				class="book-showcase__cover"
+				loading="lazy"
+			/>
+		</a>
+	</div>
+</section>
+
+<style>
+	.book-showcase {
+		--showcase-accent: hsl(38 92% 50%);
+
+		padding: 2em 1em;
+		border-bottom: 4px solid var(--border);
+		background: hsl(145, 40%, 18%);
+		text-align: center;
+	}
+
+	.book-showcase__container {
+		width: 1100px;
+		max-width: 100%;
+		margin: auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+		align-items: center;
+	}
+
+	.book-showcase__content {
+		color: var(--white);
+	}
+
+	.book-showcase__eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		font-size: 0.82em;
+		font-weight: 700;
+		margin-bottom: 0.35em;
+	}
+
+	.book-showcase h2 {
+		margin-top: 0;
+		margin-bottom: 0.4em;
+		font-size: clamp(1.8rem, 1.15rem + 3vw, 3.3rem);
+		font-weight: 700;
+		line-height: 1.1;
+		color: var(--showcase-accent);
+	}
+
+	.book-showcase__description {
+		margin-bottom: 1.1em;
+		font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+	}
+
+	.book-showcase__button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.45em 0.9em;
+		background: var(--showcase-accent);
+		color: var(--black);
+		text-decoration: none;
+		min-height: 44px;
+	}
+
+	.book-showcase__button:hover,
+	.book-showcase__button:focus {
+		color: var(--black);
+	}
+
+	.book-showcase__highlights {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: none;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	.book-showcase__highlight {
+		display: grid;
+		place-content: center;
+		text-align: center;
+		border-radius: 999px;
+		background: var(--bg-light);
+		color: var(--text);
+		border: 2px solid var(--border);
+		font-weight: 600;
+		padding: 0.7rem;
+		width: clamp(6rem, 28vw, 8rem);
+		line-height: 1.2;
+		aspect-ratio: 1 / 1;
+	}
+
+	.book-showcase__cover-link {
+		display: block;
+		width: fit-content;
+		margin-inline: auto;
+		text-decoration: none;
+		border-radius: 10px;
+	}
+
+	.book-showcase__cover {
+		display: block;
+		width: clamp(210px, 40vw, 320px);
+		height: auto;
+		border-radius: 0;
+		filter: drop-shadow(0 14px 24px #0000004d);
+	}
+
+	@media (min-width: 700px) {
+		.book-showcase {
+			padding: 2.5em 1em;
+			text-align: left;
+
+			h2 {
+				max-width: 16ch;
+			}
+		}
+
+		.book-showcase__description {
+			max-width: 45ch;
+		}
+
+		.book-showcase__container {
+			grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+			gap: 1.6rem;
+		}
+
+		.book-showcase__highlights {
+			display: flex;
+			justify-content: flex-start;
+			align-content: center;
+		}
+
+		.book-showcase__cover-link {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			justify-self: center;
+			margin-inline: 0;
+		}
+	}
+
+	@media (min-width: 980px) {
+		.book-showcase__container {
+			grid-template-columns: minmax(0, 1.35fr) minmax(170px, 0.65fr) minmax(230px, 0.9fr);
+			gap: 2rem;
+		}
+
+		.book-showcase__highlights {
+			display: grid;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		.book-showcase__cover-link {
+			grid-column: 3;
+			grid-row: 1;
+		}
+
+		.book-showcase__cover {
+			width: min(100%, 360px);
+		}
+	}
+</style>
