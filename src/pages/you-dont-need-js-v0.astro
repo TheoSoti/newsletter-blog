@@ -13,6 +13,7 @@ import comingSoon from '../assets/ebook/coming-soon.png';
 import testimonial2 from '../assets/ebook/melon-tusk.png';
 import testimonial4 from '../assets/ebook/parry-lage.png';
 import testimonial5 from '../assets/ebook/beff-jezos.png';
+import CookieConsentBanner from '../components/CookieConsentBanner.astro';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -56,6 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		/>
 		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
 		<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
+		<script is:inline src="/scripts/cookie-consent.js" defer></script>
 	</head>
 
 	<body>
@@ -639,11 +641,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<p class="footer__description">Please get in touch at hey@theosoti.com</p>
 		</footer>
 
-		<script
-			is:inline
-			id="fairlytics-id-ajcu6jd9k7ysd6"
-			data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
-			src="https://app.fairlytics.tech/tag/tag.js"
-			async></script>
+		<CookieConsentBanner />
 	</body>
 </html>

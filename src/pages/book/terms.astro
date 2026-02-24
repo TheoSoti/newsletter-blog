@@ -1,5 +1,6 @@
 ---
 import '../../styles/ebookv2.css';
+import CookieConsentBanner from '../../components/CookieConsentBanner.astro';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -36,6 +37,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:title" content="You Don’t Need JavaScript | Terms & Conditions" />
     <meta property="twitter:description" content="A practical ebook for front-end devs - Terms & Conditions" />
     <meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
+    <script is:inline src="/scripts/cookie-consent.js" defer></script>
   </head>
 
   <body>
@@ -74,5 +76,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <h2>5. Contact</h2>
       <p>For any question, please reach out at: <a href="mailto:hey@theosoti.com">hey@theosoti.com</a></p>
     </main>
+    <CookieConsentBanner />
   </body>
 </html>

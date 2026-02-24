@@ -16,6 +16,7 @@ import { SITE_NAME } from '../consts';
 				<li><a href="/you-dont-need-js/">Book</a></li>
 				<li><a href="/games/nth-cat/">Game nth-cat</a></li>
 				<li><a href="/email-course/">Email Course</a></li>
+				<li><a href="/cookie-policy/">Cookie Policy</a></li>
 			</ul>
 		</div>
 		<div class="social">
@@ -83,12 +84,19 @@ import { SITE_NAME } from '../consts';
 	</div>
 </footer>
 
-<script
-	is:inline
-	id="fairlytics-id-ajcu6jd9k7ysd6"
-	data-fairlyticskey="dd1ef671b215395a2912c7a591fda831"
-	src="https://app.fairlytics.tech/tag/tag.js"
-	async></script>
+<script is:inline>
+	document.addEventListener('click', (event) => {
+		const trigger = event.target instanceof Element ? event.target.closest('[data-open-cookie-preferences]') : null;
+		if (!trigger) {
+			return;
+		}
+
+		event.preventDefault();
+		if (typeof window.openCookiePreferences === 'function') {
+			window.openCookiePreferences();
+		}
+	});
+</script>
 
 <style>
 	footer {

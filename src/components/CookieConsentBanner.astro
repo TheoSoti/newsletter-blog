@@ -1,0 +1,112 @@
+<section id="cookie-consent-banner" role="region" aria-label="Cookie preferences" hidden>
+	<h2>Cookies on this site</h2>
+	<p>
+		We use optional analytics cookies (Google Analytics) to understand site usage. You can accept or reject them now,
+		and change your choice anytime.
+	</p>
+	<div class="cookie-consent__actions">
+		<a class="cookie-consent__link" href="/cookie-policy/">Read cookie policy</a>
+		<button type="button" class="cookie-consent__reject" data-cookie-consent-action="reject">
+			Reject optional cookies
+		</button>
+		<button type="button" class="cookie-consent__accept" data-cookie-consent-action="accept">
+			Accept analytics cookies
+		</button>
+	</div>
+</section>
+
+<style>
+	#cookie-consent-banner {
+		position: fixed;
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+		z-index: 120;
+		padding: 1rem;
+		border: 2px solid #101010;
+		border-radius: 12px;
+		background: #fffdfa;
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+		max-width: 760px;
+		margin-inline: auto;
+	}
+
+	#cookie-consent-banner[hidden] {
+		display: none;
+	}
+
+	#cookie-consent-banner h2 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1rem;
+		line-height: 1.3;
+	}
+
+	#cookie-consent-banner p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+
+	#cookie-consent-banner .cookie-consent__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 0.9rem;
+	}
+
+	#cookie-consent-banner .cookie-consent__link,
+	#cookie-consent-banner button {
+		min-height: 44px;
+		padding: 0.55rem 0.85rem;
+		border-radius: 8px;
+		border: 2px solid #101010;
+		font: inherit;
+		line-height: 1.2;
+		touch-action: manipulation;
+	}
+
+	#cookie-consent-banner .cookie-consent__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		background: transparent;
+		color: #101010;
+	}
+
+	#cookie-consent-banner .cookie-consent__reject {
+		background: transparent;
+		color: #101010;
+		cursor: pointer;
+	}
+
+	#cookie-consent-banner .cookie-consent__accept {
+		background: #14532d;
+		color: #ffffff;
+		cursor: pointer;
+	}
+
+	#cookie-consent-banner .cookie-consent__link:hover,
+	#cookie-consent-banner .cookie-consent__reject:hover,
+	#cookie-consent-banner .cookie-consent__link:focus-visible,
+	#cookie-consent-banner .cookie-consent__reject:focus-visible {
+		background: #ece9e2;
+	}
+
+	#cookie-consent-banner .cookie-consent__accept:hover,
+	#cookie-consent-banner .cookie-consent__accept:focus-visible {
+		background: #0f4525;
+	}
+
+	#cookie-consent-banner .cookie-consent__link:focus-visible,
+	#cookie-consent-banner button:focus-visible {
+		outline: 2px solid #0f4525;
+		outline-offset: 2px;
+	}
+
+	@media (min-width: 720px) {
+		#cookie-consent-banner {
+			padding: 1.1rem 1.25rem;
+		}
+	}
+</style>

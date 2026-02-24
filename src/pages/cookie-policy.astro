@@ -1,0 +1,184 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Cookie Policy"
+			description="Learn which cookies are used on this website, why they are used, and how to manage your analytics consent."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Cookie Policy</h1>
+			<p>Last updated: February 24, 2026</p>
+
+			<p>This page explains how cookies are used on this website and how you can control optional analytics cookies.</p>
+
+			<section aria-labelledby="cookies-types-title">
+				<h2 id="cookies-types-title">Cookies we use</h2>
+				<ul>
+					<li>
+						<strong>Required preference cookie:</strong>
+						<code>cookie_consent_choice_v1</code> stores your cookie choice so we can remember it.
+					</li>
+					<li>
+						<strong>Optional analytics cookies (Google Analytics 4):</strong> for example <code>_ga</code> and
+						<code>_ga_*</code>.
+					</li>
+				</ul>
+			</section>
+
+			<section aria-labelledby="cookies-purpose-title">
+				<h2 id="cookies-purpose-title">Why analytics cookies are used</h2>
+				<p>
+					If you accept analytics cookies, we use Google Analytics to understand aggregate traffic patterns, such as
+					most visited pages and general device types. This helps improve site content and performance.
+				</p>
+				<p>Analytics is optional and disabled by default until you give consent.</p>
+			</section>
+
+			<section aria-labelledby="cookies-retention-title">
+				<h2 id="cookies-retention-title">Cookie duration</h2>
+				<ul>
+					<li><code>cookie_consent_choice_v1</code>: kept for 180 days.</li>
+					<li>Google Analytics cookies: durations are controlled by Google Analytics settings and browser policy.</li>
+				</ul>
+			</section>
+
+			<section aria-labelledby="manage-cookies-title" class="manage-cookies">
+				<h2 id="manage-cookies-title">Manage your choice</h2>
+				<p id="cookie-status" aria-live="polite"></p>
+				<div class="actions">
+					<button type="button" class="button reject" id="reject-cookies">Reject optional cookies</button>
+					<button type="button" class="button" id="accept-cookies">Accept analytics cookies</button>
+					<button type="button" class="button secondary" id="open-cookie-banner">Open cookie banner</button>
+				</div>
+			</section>
+
+			<section aria-labelledby="contact-title">
+				<h2 id="contact-title">Contact</h2>
+				<p>
+					For any questions about this policy, contact
+					<a href="mailto:hey@theosoti.com">hey@theosoti.com</a>.
+				</p>
+			</section>
+		</main>
+		<Footer />
+
+		<script is:inline>
+			window.addEventListener('load', () => {
+				const statusEl = document.getElementById('cookie-status');
+				const acceptBtn = document.getElementById('accept-cookies');
+				const rejectBtn = document.getElementById('reject-cookies');
+				const openBannerBtn = document.getElementById('open-cookie-banner');
+
+				const statusLabels = {
+					accepted: 'Current preference: analytics cookies are accepted.',
+					rejected: 'Current preference: optional cookies are rejected.',
+					null: 'Current preference: not set yet.',
+				};
+
+				const readStatus = () => {
+					if (!window.cookieConsent || typeof window.cookieConsent.getStatus !== 'function') {
+						return null;
+					}
+					return window.cookieConsent.getStatus();
+				};
+
+				const renderStatus = () => {
+					const status = readStatus();
+					if (!statusEl) {
+						return;
+					}
+
+					if (status === 'accepted') {
+						statusEl.textContent = statusLabels.accepted;
+						return;
+					}
+
+					if (status === 'rejected') {
+						statusEl.textContent = statusLabels.rejected;
+						return;
+					}
+
+					statusEl.textContent = statusLabels.null;
+				};
+
+				acceptBtn?.addEventListener('click', () => {
+					window.cookieConsent?.accept?.();
+					renderStatus();
+				});
+
+				rejectBtn?.addEventListener('click', () => {
+					window.cookieConsent?.reject?.();
+					renderStatus();
+				});
+
+				openBannerBtn?.addEventListener('click', () => {
+					window.openCookiePreferences?.();
+				});
+
+				window.addEventListener('cookie-consent:updated', renderStatus);
+				renderStatus();
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	main {
+		width: 900px;
+		max-width: calc(100% - 2em);
+		padding-top: 1em;
+	}
+	p,
+	li {
+		max-width: 72ch;
+	}
+	code {
+		font-size: 0.95em;
+	}
+
+	.manage-cookies h2 {
+		margin-top: 0;
+	}
+	.manage-cookies {
+		padding: 1.2em;
+		border: 2px solid var(--border);
+		border-radius: 12px;
+		background-color: var(--bg-light);
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6em;
+	}
+	.actions .button {
+		min-height: 44px;
+		padding: 0.5em 0.85em;
+		touch-action: manipulation;
+	}
+	.actions .button.reject {
+		background: transparent;
+		color: var(--text);
+	}
+	.actions .button.secondary {
+		background: transparent;
+		color: var(--text);
+	}
+	.actions .button.reject:hover,
+	.actions .button.reject:focus-visible,
+	.actions .button.secondary:hover,
+	.actions .button.secondary:focus-visible {
+		background-color: var(--main);
+		color: var(--black);
+	}
+	#cookie-status {
+		font-weight: 600;
+	}
+</style>
