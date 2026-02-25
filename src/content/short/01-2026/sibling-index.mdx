@@ -74,6 +74,14 @@ CSS is getting real logic now.
 
 What would you build with sibling-index()?
 
+`sibling-index()` is excellent for staggered offsets and sequence-based styling without extra classes. Combined with `calc()`, it keeps patterns adaptive when list order changes or items are inserted dynamically.
+
+`sibling-index()` is great for sequence-aware styling without adding helper classes. It becomes especially useful for staggered layouts where item order can change and manual nth rules become fragile.
+
+A quick edge-case audit with inserted elements helps confirm that selector logic stays predictable over time.
+
+To roll this out safely, start by applying `sibling-index()` in a single UI surface where the benefit is obvious. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

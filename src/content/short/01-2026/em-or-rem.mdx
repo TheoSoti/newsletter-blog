@@ -53,6 +53,12 @@ it was probably em compounding.
 
 Do you default to rem everywhere?
 
+A reliable rule is simple: use `rem` when values should follow the root font size, and use `em` when values should scale with the component itself. That split keeps accessibility strong while nested components preserve their own rhythm.
+
+A practical rule is simple: use `rem` for global rhythm and accessibility scaling, and use `em` when sizing should follow the local component context. This prevents nesting surprises in reusable UI blocks.
+
+Keep fallback behavior explicit and straightforward. Stable defaults make advanced enhancements much safer to maintain.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

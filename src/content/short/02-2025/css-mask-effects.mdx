@@ -60,6 +60,16 @@ And It already has more than 96% browser support.
 
 Codepen link: https://codepen.io/theosoti/pen/GgRgMMj
 
+Mask effects are strongest when they guide attention, not when they hide too much content. Start with simple gradient masks, then increase complexity only if shape readability stays clear in both light and dark contexts.
+
+Mask effects should guide attention, not hide content. Start with simple gradients and test on different backgrounds to make sure the visual style remains readable and doesn’t reduce perceived contrast.
+
+Media-related CSS needs testing across different asset ratios and resolutions. Real image variance is where composition rules are truly validated.
+
+A practical way to adopt `mask-image` is to scope it to one high-impact component first. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+Also test masked elements against both solid and textured backgrounds to confirm the focal area stays obvious in every theme.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

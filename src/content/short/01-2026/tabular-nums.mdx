@@ -39,6 +39,18 @@ But most system fonts and many web fonts do.
 
 Clearer layouts, cleaner data tables, and a subtle polish your UI users will feel.
 
+Use tabular figures only where alignment matters: prices, analytics, timers, and table columns. For body copy, proportional digits usually look better. A small utility class like `.tnum { font-variant-numeric: tabular-nums; }` keeps the pattern reusable.
+
+Also check decimal alignment and negative values like `-12.40`, so spacing remains stable when data updates in real time.
+
+Enable `tabular-nums` where alignment matters most, like prices, stats, and timers. Keep proportional figures in body text, and reserve fixed-width digits for data views where quick comparison is important.
+
+Enable `tabular-nums` where numeric comparison matters, like prices, stats, and timers. Keep proportional figures in body copy, then switch to fixed-width digits in data views for faster visual scanning.
+
+Test with multilingual strings and varied word lengths. Typographic CSS should remain graceful when content is unpredictable.
+
+For teams, `-12.40` is easiest to maintain when it starts in one documented example before broader reuse. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

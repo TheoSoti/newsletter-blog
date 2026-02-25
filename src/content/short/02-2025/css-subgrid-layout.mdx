@@ -77,6 +77,12 @@ Here is the code:
 }
 ```
 
+`subgrid` is most useful when child elements must align with a parent track system. It removes repeated grid definitions and keeps vertical rhythm stable across cards and editorial layouts.
+
+Layout features like this provide real value when components move between narrow and wide containers. Testing nested contexts early prevents brittle breakpoint rules.
+
+For teams, `display: grid` is easiest to maintain when it starts in one documented example before broader reuse. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

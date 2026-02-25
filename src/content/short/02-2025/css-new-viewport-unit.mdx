@@ -35,6 +35,16 @@ Want a consistent design even when toolbars disappear?
 
 The browser support is already solid at ~95%, so it’s pretty safe to use.
 
+The new viewport units are most useful on mobile screens with dynamic browser bars. Use `dvh` for live viewport behavior, and keep `svh` for stable areas like heroes where jumpy resizing would feel distracting.
+
+The new viewport units solve real mobile issues caused by browser UI bars. Use `dvh` when you want live viewport behavior and prefer `svh` when you want a stable, non-jumpy section height.
+
+Layout features like this provide real value when components move between narrow and wide containers. Testing nested contexts early prevents brittle breakpoint rules.
+
+A practical way to adopt `svh` is to scope it to one high-impact component first. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+For fullscreen sections on mobile, compare `svh`, `lvh`, and `dvh` side by side so you can choose the unit that matches the interaction you want.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

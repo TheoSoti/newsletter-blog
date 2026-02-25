@@ -51,6 +51,16 @@ Less SVG.
 Fewer pseudo-elements.
 More design system power.
 
+If you want predictable results, pair `corner-shape` with a regular `border-radius` fallback and gate advanced shapes with `@supports (corner-shape: bevel)`. That way, older browsers keep the rounded version while capable browsers get the sculpted corners.
+
+Try it on small components first: buttons, tags, and cards. Big radii with aggressive shapes can reduce readable surface area, so test with long labels and tighter mobile widths.
+
+Use `corner-shape` as a brand accent, not as a global default. Keep `border-radius` as your base token, then apply custom corner geometry to decorative surfaces like cards and badges where browser fallback remains graceful.
+
+Use `corner-shape` as a brand accent rather than a default everywhere. Keep `border-radius` as baseline, then apply custom geometry on selected components where fallback to rounded corners still looks intentional.
+
+Media-related CSS needs testing across different asset ratios and resolutions. Real image variance is where composition rules are truly validated.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
