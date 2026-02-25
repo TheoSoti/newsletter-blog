@@ -6,76 +6,82 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
-  <head>
-    <!-- Global Metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
+	<head>
+		<!-- Global Metadata -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
 
-    <!-- Primary Meta Tags -->
-    <title>You Don’t Need JavaScript | Terms & Conditions</title>
-    <meta name="title" content="You Don’t Need JavaScript | Terms & Conditions" />
-    <meta
-      name="description"
-      content="Discover tips, tricks and modern HTML & CSS features to create interactive components without JavaScript in this practical ebook."
-    />
+		<!-- Primary Meta Tags -->
+		<title>You Don’t Need JavaScript | Terms & Conditions</title>
+		<meta name="title" content="You Don’t Need JavaScript | Terms & Conditions" />
+		<meta
+			name="description"
+			content="This is the terms and conditions page for You Don’t Need JavaScript, a practical ebook for front-end developers. It outlines the license, usage, refund policy, and contact information related to the ebook."
+		/>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content="You Don’t Need JavaScript | Terms & Conditions" />
-    <meta property="og:description" content="A practical ebook for front-end devs - Terms & Conditions" />
-    <meta property="og:image" content={new URL('ebook.png', Astro.site)} />
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content="You Don’t Need JavaScript | Terms & Conditions" />
+		<meta
+			property="og:description"
+			content="This is the terms and conditions page for You Don’t Need JavaScript, a practical ebook for front-end developers. It outlines the license, usage, refund policy, and contact information related to the ebook."
+		/>
+		<meta property="og:image" content={new URL('ebook.png', Astro.site)} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content="You Don’t Need JavaScript | Terms & Conditions" />
-    <meta property="twitter:description" content="A practical ebook for front-end devs - Terms & Conditions" />
-    <meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
-    <script is:inline src="/scripts/cookie-consent.js" defer></script>
-  </head>
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content="You Don’t Need JavaScript | Terms & Conditions" />
+		<meta
+			property="twitter:description"
+			content="This is the terms and conditions page for You Don’t Need JavaScript, a practical ebook for front-end developers. It outlines the license, usage, refund policy, and contact information related to the ebook."
+		/>
+		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
+		<script is:inline src="/scripts/cookie-consent.js" defer></script>
+	</head>
 
-  <body>
-    <main>
-      <a href="/you-dont-need-js/">← Back to the ebook</a>
-      <h1>Terms & Conditions</h1>
+	<body>
+		<main>
+			<a href="/you-dont-need-js/">← Back to the ebook</a>
+			<h1>Terms & Conditions</h1>
 
-      <p>Last updated: October 2025</p>
+			<p>Last updated: October 2025</p>
 
-      <h2>1. General</h2>
-      <p>
-        This ebook, You Don’t Need JavaScript, is sold by Theo Soti (the “Author”). By purchasing or downloading this
-        product, you agree to the following terms.
-      </p>
+			<h2>1. General</h2>
+			<p>
+				This ebook, You Don’t Need JavaScript, is sold by Theo Soti (the “Author”). By purchasing or downloading this
+				product, you agree to the following terms.
+			</p>
 
-      <h2>2. License & Usage</h2>
-      <p>
-        Your purchase grants you a personal, non-transferable license to access and read the ebook and any included
-        materials. You may not redistribute, resell, or share the files publicly, whether in part or in full, without
-        written permission from the author.
-      </p>
+			<h2>2. License & Usage</h2>
+			<p>
+				Your purchase grants you a personal, non-transferable license to access and read the ebook and any included
+				materials. You may not redistribute, resell, or share the files publicly, whether in part or in full, without
+				written permission from the author.
+			</p>
 
-      <h2>3. Delivery</h2>
-      <p>
-        After payment, you will receive immediate access to download the ebook and any associated files via the link
-        provided at checkout or by email.
-      </p>
+			<h2>3. Delivery</h2>
+			<p>
+				After payment, you will receive immediate access to download the ebook and any associated files via the link
+				provided at checkout or by email.
+			</p>
 
-      <h2>4. Refund Policy</h2>
-      <p>
-        We offer a 30-day money-back guarantee. If you’re not satisfied with your purchase for any reason, you can
-        request a full refund within 30 days of your purchase date. If you experience any issue accessing the files,
-        please contact us and we’ll make sure to help right away.
-      </p>
+			<h2>4. Refund Policy</h2>
+			<p>
+				We offer a 30-day money-back guarantee. If you’re not satisfied with your purchase for any reason, you can
+				request a full refund within 30 days of your purchase date. If you experience any issue accessing the files,
+				please contact us and we’ll make sure to help right away.
+			</p>
 
-      <h2>5. Contact</h2>
-      <p>For any question, please reach out at: <a href="mailto:hey@theosoti.com">hey@theosoti.com</a></p>
-    </main>
-    <CookieConsentBanner />
-  </body>
+			<h2>5. Contact</h2>
+			<p>For any question, please reach out at: <a href="mailto:hey@theosoti.com">hey@theosoti.com</a></p>
+		</main>
+		<CookieConsentBanner />
+	</body>
 </html>
