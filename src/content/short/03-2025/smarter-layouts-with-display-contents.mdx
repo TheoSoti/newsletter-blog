@@ -67,6 +67,14 @@ section {
 
 Full code available here: https://codepen.io/theosoti/pen/KwPZGQQ
 
+`display: contents` can simplify wrapper-heavy markup in layout contexts, but semantics still matter. Verify accessibility tree behavior for interactive and labeled content before broad adoption.
+
+Selector-driven improvements scale best when specificity remains controlled. Keep targeting rules readable so future edits do not become cascade puzzles.
+
+To roll this out safely, start by applying `display: contents` in a single UI surface where the benefit is obvious. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
+Use `display: contents` selectively on structural wrappers, and keep semantic elements intact when labels or landmarks are required.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

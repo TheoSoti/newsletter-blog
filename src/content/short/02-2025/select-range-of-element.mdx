@@ -26,6 +26,16 @@ This trick is perfect for highlighting content or dynamically styling sections o
 
 Next time you need to style a group of elements, without adding extra classes, think about `:nth-child()`.
 
+Range targeting is especially useful for featured windows in lists, like highlighting items 4 to 7 in a feed. The pattern is easy to adjust: change the first selector start index and the second selector end index.
+
+If your list mixes different element types, prefer `:nth-of-type()` to avoid surprises when non-matching nodes are inserted. It keeps the range predictable as content evolves.
+
+This range pattern is great for featured windows in lists, timelines, or product grids. You can move the highlighted segment by changing only two numbers, which keeps HTML clean and avoids class-heavy markup.
+
+Range targeting with `:nth-child()` helps highlight windows of items without adding classes. It is useful in timelines, ranked lists, and featured groups where boundaries change over time.
+
+On form-heavy pages, this is most effective when you keep semantics native and style enhancements lightweight. That balance preserves accessibility and reduces maintenance cost.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

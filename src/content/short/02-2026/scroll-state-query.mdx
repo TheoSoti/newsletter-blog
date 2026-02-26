@@ -58,6 +58,14 @@ Browser support is about 68.5%, so it’s still experimental, use with caution (
 This is a glimpse of a more reactive CSS.
 Less scripting, more design freedom.
 
+Scroll state queries are practical for sticky headers, section indicators, and context-aware controls. Because the state is declarative in CSS, you can remove a lot of JS scroll bookkeeping and keep behavior easier to maintain.
+
+Scroll state queries are practical for sticky headers and section-aware controls. Since state logic stays in CSS, you can reduce JS scroll bookkeeping and keep behavior easier to audit.
+
+Always include reduced-motion behavior. A strong animation pattern is one that degrades cleanly while preserving meaning.
+
+For teams, `container-type: scroll-state` is easiest to maintain when it starts in one documented example before broader reuse. This keeps implementation predictable and prevents style drift as the codebase grows.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

@@ -78,6 +78,16 @@ range.oninput = () => document.body.style.setProperty('--pos', range.value + '%'
 
 Full code available here: https://codepen.io/theosoti/pen/JojrrgB
 
+For before/after sliders, clarity matters more than novelty. Keep handles discoverable, maintain enough contrast between states, and ensure users can understand the comparison without precise drag control.
+
+A quick edge-case audit with inserted elements helps confirm that selector logic stays predictable over time.
+
+For teams, `comparison slider` is easiest to maintain when it starts in one documented example before broader reuse. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
+Before final rollout, validate `comparison slider` against real content and real interaction states, not only demo text.
+
+If you keep a visible divider and clear labels for both states, users understand the comparison instantly without trial-and-error dragging.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

@@ -44,6 +44,16 @@ section {
 }
 ```
 
+Smooth anchor navigation feels best when paired with `scroll-margin-top` on headings, especially under sticky headers. Also account for reduced-motion preferences so users who disable motion still get direct navigation.
+
+Smooth anchor navigation is strongest when paired with heading offsets. Combine `scroll-behavior` with `scroll-margin-top` so anchors land cleanly under sticky headers.
+
+Run interaction tests with rapid clicks and navigation changes. Input should stay responsive even while transitions are active.
+
+To roll this out safely, start by applying `scroll-padding` in a single UI surface where the benefit is obvious. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
+Before shipping, test `scroll-padding` with both short and long content, then verify behavior in narrow and wide containers.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

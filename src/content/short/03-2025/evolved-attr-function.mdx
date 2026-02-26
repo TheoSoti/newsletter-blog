@@ -80,6 +80,16 @@ div {
 }
 ```
 
+The newer `attr()` usage is useful when values can come from semantic attributes, reducing duplicated constants in CSS. It is most effective when attribute data is stable and validated.
+
+This pattern has the best payoff when documented with one clear usage rule. Consistent adoption turns small CSS features into reliable system behavior.
+
+A practical way to adopt `attr()` is to scope it to one high-impact component first. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+Before final rollout, validate `attr()` against real content and real interaction states, not only demo text.
+
+Keep fallback values explicit when reading attributes in CSS so missing data never produces unreadable or broken UI output.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
