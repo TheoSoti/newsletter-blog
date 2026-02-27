@@ -39,6 +39,16 @@ It’s supported in ~88% of browsers, so not production-ready yet.
 Already tried it?
 I’d love to hear how you’d use it.
 
+A practical pattern is to combine it with transitions on `opacity` and `transform`, then define the entry state inside `@starting-style`. That gives you smooth mount animations without JS choreography.
+
+Remember motion preferences too: wrap non-essential transitions in `@media (prefers-reduced-motion: no-preference)` so users who prefer reduced motion get a calmer experience.
+
+`@starting-style` is especially helpful for entry transitions where elements mount dynamically. It keeps animation logic in CSS and removes common JS setup code for modals, popovers, and drawers.
+
+`@starting-style` is especially useful for entry transitions on mounted elements like dialogs and popovers. It keeps animation behavior in CSS and reduces setup logic in JavaScript.
+
+Motion should clarify state change, not distract from content. Keep timings short and ensure users can still complete actions quickly.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

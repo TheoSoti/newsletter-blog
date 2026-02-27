@@ -35,6 +35,14 @@ Have you used `<dialog>` in production?
 
 Here's the codepen: https://codepen.io/theosoti/pen/WbvJXvZ
 
+The native `<dialog>` element simplifies focus management and modality with far less custom code. Keep close actions explicit and labels clear, then style `::backdrop` to reinforce context without reducing contrast.
+
+The native `<dialog>` element reduces custom modal plumbing while preserving expected keyboard behavior. Clear close actions and accessible labels remain essential for usability.
+
+Check autofill, mobile keyboards, and error feedback before shipping. These practical states reveal more than static demos and keep the form experience trustworthy.
+
+To roll this out safely, start by applying `::backdrop` in a single UI surface where the benefit is obvious. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

@@ -42,6 +42,14 @@ Curious how often you reach for it!
 
 Here's the codepen: https://codepen.io/theosoti/pen/azOKxoo
 
+`datalist` is ideal for lightweight suggestions when users still need free text input. Treat suggestions as guidance, then validate submitted values normally because users can always type custom content.
+
+`datalist` is best for lightweight suggestions where free typing remains important. Keep server-side validation in place, because users can always submit values outside suggestions.
+
+For production forms, test keyboard order, disabled states, and validation messages with realistic labels. Native behavior should remain intact while visual polish improves.
+
+For teams, `list` is easiest to maintain when it starts in one documented example before broader reuse. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

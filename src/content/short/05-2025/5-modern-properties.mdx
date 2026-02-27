@@ -65,6 +65,18 @@ And there's more:
 
 All of these tweaks add up to cleaner CSS.
 
+These modern properties shine with progressive enhancement. You can keep existing `transform` and positional fallbacks, then layer `scale`, `inset`, and logical properties on top for cleaner code.
+
+Also prefer logical properties like `margin-inline` and `padding-block` early in a project. They make layouts friendlier to RTL languages and reduce refactoring when internationalizing later.
+
+Modern properties like `inset`, `scale`, and logical spacing can clean up large codebases quickly. The gain is bigger when teams adopt them consistently, instead of mixing legacy and modern syntax at random.
+
+Modern properties pay off when applied consistently across a codebase, not only in isolated examples. Establish clear usage conventions so teams avoid mixing old and new syntax unpredictably.
+
+This pattern has the best payoff when documented with one clear usage rule. Consistent adoption turns small CSS features into reliable system behavior.
+
+To roll this out safely, start by applying `:is()` in a single UI surface where the benefit is obvious. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

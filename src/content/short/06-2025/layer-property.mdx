@@ -59,6 +59,14 @@ Check out the visual:
 
 95%+ browser support makes this a no-brainer to start using now.
 
+`@layer` works best when you define a clear cascade order up front, such as reset, base, components, and utilities. That structure prevents specificity battles and makes style overrides predictable.
+
+`@layer` works best with a documented cascade order like reset, base, components, and utilities. This prevents priority battles and makes overrides predictable.
+
+Color and effect features are strongest when contrast remains the first priority. Check hover, focus, and disabled states before finalizing.
+
+A practical way to adopt `@layer` is to scope it to one high-impact component first. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

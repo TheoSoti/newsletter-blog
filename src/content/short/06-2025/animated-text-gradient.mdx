@@ -36,6 +36,14 @@ Support is solid across Chromium and WebKit browsers, with Firefox catching up.
 
 Here's the codepen: https://codepen.io/theosoti/pen/ogNoRPp
 
+Animated text gradients are most effective when motion stays restrained and contrast remains high. The static state should still read clearly, so users with reduced motion preferences keep full readability.
+
+Animated text gradients should be treated as accent motion, not core content delivery. Keep fallback readability strong so users still understand the message without animation.
+
+Use this as a readability tool, not only a visual effect. The best result is when style improves scanning speed without adding cognitive load.
+
+A practical way to adopt `background-clip: text` is to scope it to one high-impact component first. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
