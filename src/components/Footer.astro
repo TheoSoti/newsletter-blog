@@ -84,20 +84,6 @@ import { SITE_NAME } from '../consts';
 	</div>
 </footer>
 
-<script is:inline>
-	document.addEventListener('click', (event) => {
-		const trigger = event.target instanceof Element ? event.target.closest('[data-open-cookie-preferences]') : null;
-		if (!trigger) {
-			return;
-		}
-
-		event.preventDefault();
-		if (typeof window.openCookiePreferences === 'function') {
-			window.openCookiePreferences();
-		}
-	});
-</script>
-
 <style>
 	footer {
 		width: 100%;
