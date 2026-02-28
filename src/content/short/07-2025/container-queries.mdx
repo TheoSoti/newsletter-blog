@@ -41,6 +41,12 @@ So be sure your base styles hold up without them.
 
 Don't hesitate to read the full article on my blog: https://theosoti.com/blog/container-queries/
 
+Container queries shine when the same component appears in narrow and wide contexts. Defining behavior from container size, not viewport size, keeps modules reusable without layout-specific overrides.
+
+Container-driven rules make components genuinely reusable across unknown parent layouts. This reduces breakpoint duplication and keeps local behavior tied to actual available space.
+
+Use this pattern to keep responsive behavior local to the component instead of scattering viewport overrides. That makes scaling and refactoring much safer.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

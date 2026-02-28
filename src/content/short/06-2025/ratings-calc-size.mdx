@@ -39,6 +39,14 @@ It’s powerful, it’s expressive, and it unlocks a new level of flexibility fo
 
 Here's the codepen link: https://codepen.io/theosoti/pen/gbOVBVp
 
+`calc-size()` is useful when component dimensions should adapt without JS measurement loops. It works well for controls and rating UIs where content-driven sizing still needs predictable limits.
+
+`calc-size()` helps combine content-driven sizing with fixed constraints. It is useful when UI parts should flex naturally but still remain within intentional layout bounds.
+
+This pattern has the best payoff when documented with one clear usage rule. Consistent adoption turns small CSS features into reliable system behavior.
+
+When introducing `calc-size()`, begin with one reference component and treat it as the canonical pattern. This keeps implementation predictable and prevents style drift as the codebase grows.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

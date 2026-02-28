@@ -45,6 +45,14 @@ This property is the kind of thing you’ll soon wonder how you ever built layou
 
 Checkout the codepen: https://codepen.io/theosoti/pen/yyYeENV
 
+Using `object-view-box` for focal cropping is useful when assets need consistent framing across different cards. Define focal rules early so important subject areas stay visible at every breakpoint.
+
+Focal cropping with `object-view-box` helps keep important image regions visible across reusable card formats. Set focal rules once, then verify results at multiple aspect ratios.
+
+Prefer subtle enhancement over heavy treatment. The visual should support hierarchy, not compete with content.
+
+To roll this out safely, start by applying `clip-path` in a single UI surface where the benefit is obvious. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

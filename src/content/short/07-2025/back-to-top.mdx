@@ -38,6 +38,18 @@ Sometimes, native HTML and CSS are all you need.
 
 Checkout the codepen: https://codepen.io/theosoti/pen/KwdzKGx
 
+For accessibility, give the link a clear label (for example `aria-label="Back to top"`) and ensure the focus ring is visible when navigating by keyboard. Native anchors already preserve expected browser behavior, including opening in new tabs.
+
+If you use smooth scrolling, consider respecting `prefers-reduced-motion` by disabling animated scroll for users who opt out of motion.
+
+A native anchor-based back-to-top control stays lightweight and predictable across browsers. Place it where it is easy to reach, keep a clear label, and ensure anchor targets remain visible under sticky headers.
+
+Anchor-based back-to-top patterns stay lightweight and robust. Pair them with clear placement and heading offsets so users return to context without layout jumps.
+
+Validate it with real content and realistic viewport ranges so implementation details hold up outside demos.
+
+A practical way to adopt `position: fixed` is to scope it to one high-impact component first. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

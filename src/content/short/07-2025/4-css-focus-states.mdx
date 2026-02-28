@@ -33,6 +33,16 @@ For the fourth one, you can go check my blog article here: https://theosoti.com/
 
 Understanding how to use these focus states correctly can elevate accessibility, create smoother interfaces, and improve user navigation.
 
+Separating focus states by intent improves both accessibility and visual clarity. Using `:focus`, `:focus-visible`, and container states deliberately prevents noisy outlines while preserving strong keyboard feedback.
+
+Using focus states deliberately (`:focus`, `:focus-visible`, and container variants) improves keyboard UX and avoids noisy outlines for mouse users.
+
+Validate it with real content and realistic viewport ranges so implementation details hold up outside demos.
+
+A practical way to adopt `:focus` is to scope it to one high-impact component first. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
+Before final rollout, validate `:focus` against real content and real interaction states, not only demo text.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

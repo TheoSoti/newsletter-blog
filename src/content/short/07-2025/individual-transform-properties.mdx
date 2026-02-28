@@ -40,6 +40,16 @@ Why it's better:
 Browser support is solid across all modern browsers.
 This is one of those tiny syntax upgrades that makes a big difference.
 
+Individual transform properties make motion easier to tune because each axis can be adjusted independently. This keeps animation edits cleaner than repeatedly rewriting long `transform` value chains.
+
+Individual transform properties make motion tuning cleaner because each axis can be adjusted independently. This avoids repeatedly rewriting long combined transform values.
+
+For production forms, test keyboard order, disabled states, and validation messages with realistic labels. Native behavior should remain intact while visual polish improves.
+
+A practical way to adopt `transform` is to scope it to one high-impact component first. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+This is especially helpful during iterative motion tuning because each property can be adjusted without rewriting the whole transform chain.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
