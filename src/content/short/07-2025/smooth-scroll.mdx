@@ -35,6 +35,16 @@ It’s lightweight, easy to implement, and widely supported (more than 95,5%).
 
 Here's the codepen: https://codepen.io/theosoti/pen/KKOGJjZ
 
+Native smooth scrolling works well for in-page links and table-of-contents navigation. Pair it with heading `scroll-margin` so anchors land with comfortable spacing below fixed interface chrome.
+
+Native smooth scrolling is great for in-page navigation when motion remains subtle. Add heading offsets so anchor jumps feel intentional, not cramped under fixed UI chrome.
+
+Run interaction tests with rapid clicks and navigation changes. Input should stay responsive even while transitions are active.
+
+A practical way to adopt `scroll-padding` is to scope it to one high-impact component first. This keeps implementation predictable and prevents style drift as the codebase grows.
+
+When using sticky headers, set heading-specific `scroll-margin-top` values so each section lands with consistent breathing room.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

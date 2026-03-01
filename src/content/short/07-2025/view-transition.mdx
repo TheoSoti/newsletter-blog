@@ -46,6 +46,14 @@ New ones reward you with smooth UX.
 And that’s just the default behaviour.
 You can customise it to animate specific elements, trigger transitions manually, and more.
 
+`@view-transition` can make page changes feel continuous instead of abrupt. Keep transitions short and meaningful, and ensure unsupported browsers still get stable navigation without visual glitches.
+
+View transitions are best when they explain navigation changes, not when they add spectacle. Keep timings short and fallbacks clean for unsupported browsers.
+
+Run interaction tests with rapid clicks and navigation changes. Input should stay responsive even while transitions are active.
+
+For teams, `@view-transition` is easiest to maintain when it starts in one documented example before broader reuse. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

@@ -43,6 +43,16 @@ If you need full compatibility, consider using a build step until support is uni
 
 If nesting was the only thing keeping you tied to a preprocessor… maybe it’s time to go vanilla.
 
+Native nesting improves readability when selector depth remains shallow. Keep nesting focused on component structure, so maintainability stays high and specificity does not creep upward.
+
+Native nesting improves readability when kept shallow and component-scoped. Avoid deep chains, so specificity and maintainability stay under control.
+
+Validate it with real content and realistic viewport ranges so implementation details hold up outside demos.
+
+When introducing `CSS nesting`, begin with one reference component and treat it as the canonical pattern. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
+As a final check, run `CSS nesting` through edge cases like dense layouts, long labels, and constrained mobile widths.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
