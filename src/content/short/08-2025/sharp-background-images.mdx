@@ -41,6 +41,16 @@ Practical tips:
 - Pair with background-size: cover/contain as needed.
 - Test AVIF/WEBP plus JPEG/PNG as a safe fallback.
 
+`image-set()` helps serve crisp backgrounds on high-density screens without always downloading the heaviest asset. Add sensible fallbacks so lower-density devices still render quickly and clearly.
+
+`image-set()` helps deliver sharper backgrounds on high-density displays without always forcing large assets. Keep sensible fallbacks to protect load performance.
+
+Keep fallback rendering in mind so unsupported effects still produce clear, readable visuals.
+
+A practical way to adopt `image-set()` is to scope it to one high-impact component first. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
+Pair `image-set()` with explicit `background-size` rules so high-density assets remain sharp without unexpected cropping.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

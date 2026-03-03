@@ -38,6 +38,16 @@ But you can go further by:
 
 Don’t hesitate to use it in your next project!
 
+CSS columns are effective for flowing long-form text with minimal setup. Tune column width and gaps carefully, because readability depends on line length as much as layout density.
+
+CSS columns are quick for flowing long-form text and lightweight galleries. Tune width and gaps carefully, because readability depends strongly on line length.
+
+Use this pattern to keep responsive behavior local to the component instead of scattering viewport overrides. That makes scaling and refactoring much safer.
+
+To roll this out safely, start by applying `column-span` in a single UI surface where the benefit is obvious. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+Before shipping, test `column-span` with both short and long content, then verify behavior in narrow and wide containers.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

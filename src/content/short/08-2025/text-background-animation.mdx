@@ -44,6 +44,18 @@ Use less JS. Push CSS further.
 
 There’s a lot you can build without JavaScript, and it’s more fun than you think.
 
+Moving background text effects should prioritize readability over spectacle. Keep motion slow enough to avoid visual fatigue, and ensure the non-animated state still communicates the message clearly.
+
+Moving text backgrounds should never compromise legibility. Keep motion slow and contrast strong, and ensure a clear static state when animation is reduced.
+
+Use this as a readability tool, not only a visual effect. The best result is when style improves scanning speed without adding cognitive load.
+
+A practical way to adopt `@keyframes` is to scope it to one high-impact component first. After validation, expand gradually to matching components and avoid ad-hoc one-off overrides.
+
+Before final rollout, validate `@keyframes` against real content and real interaction states, not only demo text.
+
+Always verify readability when animation is paused, because the static state is what many users will spend most time seeing.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

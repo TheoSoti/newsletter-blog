@@ -47,6 +47,16 @@ And it adapts instantly when you resize the container.
 
 Link to the codepen: https://codepen.io/theosoti/pen/ogXedrz
 
+Column-based masonry layouts are fast to implement for feeds and galleries. Always test reading flow and item ordering, because visual columns can differ from the underlying DOM sequence users navigate.
+
+Column-based masonry is quick for feeds, but always verify reading order and keyboard navigation. Visual placement should not conflict with logical DOM sequence.
+
+Before rollout, verify long content, dense cards, and extreme widths. Stable behavior under stress is what turns a neat trick into production CSS.
+
+When introducing `column-width`, begin with one reference component and treat it as the canonical pattern. Then reuse that same pattern in similar contexts so behavior stays consistent and review time stays low.
+
+If reading order matters, double-check keyboard and screen-reader flow so visual columns do not confuse content sequence.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

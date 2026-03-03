@@ -40,6 +40,14 @@ You can use this for multiple things like e-commerce product, portfolio gallerie
 
 Modern CSS makes it easier than ever to create interactive layouts.
 
+Using `:has()` to switch layouts can remove a lot of small JS toggles. Keep the condition explicit and local, so layout changes happen only where users expect them.
+
+Using `:has()` for layout switching can remove small JS toggles while keeping logic declarative. Keep conditions explicit so layout changes remain predictable.
+
+This pattern has the best payoff when documented with one clear usage rule. Consistent adoption turns small CSS features into reliable system behavior.
+
+When introducing `.container:has(input) .child {}`, begin with one reference component and treat it as the canonical pattern. This keeps implementation predictable and prevents style drift as the codebase grows.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

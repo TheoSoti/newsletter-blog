@@ -39,6 +39,16 @@ padding-bottom: env(safe-area-inset-bottom);
 
 The best part? This has a browser support of 96.78%!
 
+In production, apply safe-area values only where needed, usually fixed headers, sticky footers, and full-screen overlays. Avoid adding every inset everywhere, or spacing can feel oversized.
+
+A common pattern is combining a base padding with the environment value, for example `padding-bottom: max(16px, env(safe-area-inset-bottom));`. This preserves comfortable spacing on all devices.
+
+Safe area insets are most important for fixed UI near device edges. Combine baseline spacing with `env(safe-area-inset-*)` so controls stay comfortable on both notched and non-notched screens.
+
+Safe-area values matter most for fixed bars and edge-attached controls. Combine baseline spacing with `env()` insets to support both notched and non-notched devices.
+
+Before rollout, verify long content, dense cards, and extreme widths. Stable behavior under stress is what turns a neat trick into production CSS.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

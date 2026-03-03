@@ -37,6 +37,14 @@ Works inside grids, flex layouts, and nested components.
 Support is solid in modern browsers with almost 93%.
 Ship a sensible default so it still looks fine where `@container` isn’t supported.
 
+Container-query-driven components are ideal for small interactive widgets that appear in many parent layouts. Defining behavior from local width keeps them responsive without page-level media-query coupling.
+
+Container-query-driven widgets stay reusable because they respond to local width, not page assumptions. This is ideal for components embedded in many parent contexts.
+
+Before rollout, verify long content, dense cards, and extreme widths. Stable behavior under stress is what turns a neat trick into production CSS.
+
+For teams, `container-type: size;` is easiest to maintain when it starts in one documented example before broader reuse. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

@@ -39,6 +39,16 @@ For the browser support, it's not great for now.
 ~83% for the `scrollbar-width` property.
 But they graciously fallback to default style if not supported.
 
+Custom scrollbars can improve visual consistency, but usability must stay first. Keep enough contrast and width for discoverability, and avoid styling choices that hide scroll affordance.
+
+Custom scrollbars can support visual consistency, but discoverability and contrast come first. Keep width and color choices readable across themes.
+
+Run interaction tests with rapid clicks and navigation changes. Input should stay responsive even while transitions are active.
+
+For teams, `scrollbar-color` is easiest to maintain when it starts in one documented example before broader reuse. That rollout sequence preserves clarity and reduces regressions during future refactors.
+
+Aim for subtle customization that keeps scrollbar track and thumb clearly distinguishable at a glance.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.

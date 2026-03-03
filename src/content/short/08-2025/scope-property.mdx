@@ -49,6 +49,16 @@ If you’ve ever wished CSS had better boundaries, this is it.
 
 The only downside is its browser support with only 86.56%.
 
+`@scope` helps contain styles close to their component boundary without extra wrapper classes. It is especially useful in content-rich pages where broad selectors might leak into unrelated sections.
+
+`@scope` helps isolate styles without additional wrappers. It is useful in content-heavy pages where broad selectors can accidentally leak into unrelated sections.
+
+Layout features like this provide real value when components move between narrow and wide containers. Testing nested contexts early prevents brittle breakpoint rules.
+
+When introducing `@scope`, begin with one reference component and treat it as the canonical pattern. This keeps implementation predictable and prevents style drift as the codebase grows.
+
+Document each scoped root clearly so future contributors can trace where styles start and where they are intentionally blocked.
+
 ---
 
 If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
