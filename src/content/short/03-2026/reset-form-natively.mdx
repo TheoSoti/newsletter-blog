@@ -1,0 +1,89 @@
+---
+title: 'Reset Form Inputs Natively with button type="reset"'
+description: 'Use the native reset button to restore inputs, selects, checkboxes, and validation state without JavaScript. A simple HTML feature that is still easy to forget.'
+pubDate: 'Mar 07 2026'
+heroImage: '/short/03-2026/Reset-forms-input-natively.gif'
+---
+
+<img
+	src="/short/03-2026/Reset-forms-input-natively.gif"
+	alt="Illustration of a form with submit and reset buttons, showing native valid and invalid form states."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## You can reset a form natively.
+
+No helper function.
+No state reset logic.
+No JavaScript at all.
+
+HTML already gives you a reset button.
+
+```html
+<form>
+	<input type="text" />
+	<input type="email" />
+
+	<button type="submit">Submit</button>
+	<button type="reset">Reset</button>
+</form>
+```
+
+When the reset button is clicked, the browser restores every field to its initial value.
+
+That includes:
+
+- text inputs
+- textareas
+- selects
+- checkboxes
+- radios
+
+It also resets states tied to the original values.
+That is why it is useful in demos, filter panels, and small utility forms.
+
+If your inputs start empty, reset brings them back to empty.
+If a checkbox starts checked in the HTML, reset restores that checked state.
+The browser simply goes back to the form's original snapshot.
+
+Another nice detail:
+validation states follow that reset too.
+If a field became invalid after typing, resetting the form brings the field back to its starting value and clears that temporary state.
+
+This is where the feature becomes practical.
+You do not need custom code to clear multiple fields one by one.
+The browser already knows what the initial state was.
+
+There is also a small mental shift here.
+Reset does not mean "empty everything".
+It means "go back to the original HTML values".
+That distinction matters when a form starts with defaults, preselected options, or checked filters.
+
+That said, use it with intent.
+A reset button can be frustrating in long forms if users click it by mistake.
+It works best when clearing the form is a real, expected action.
+
+Good examples:
+
+- search forms
+- filter sidebars
+- playground demos
+- short admin tools
+
+Less good examples:
+
+- long checkout flows
+- multi-step forms
+- anything where accidental clearing would be costly
+
+So the feature is not new.
+But it is still underrated.
+Sometimes the fastest solution is already built into HTML.
+
+---
+
+If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
+
+Go check it out https://theosoti.com/you-dont-need-js/ and enjoy 20% OFF for a limited time!
