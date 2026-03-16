@@ -1,0 +1,94 @@
+---
+title: 'Shrink a sticky header only when it sticks. In CSS.'
+description: 'Use CSS scroll-state queries to shrink a sticky header only after it becomes stuck. A cleaner way to build adaptive headers without scroll listeners.'
+pubDate: 'Mar 16 2026'
+heroImage: '/short/03-2026/scroll-state-sticky.avif'
+---
+
+<img
+	src="/short/03-2026/scroll-state-sticky.avif"
+	alt="Illustration of a sticky header shrinking once it reaches the top, using CSS scroll-state stuck queries."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## Sticky headers can now shrink at the right moment.
+
+Only when they are actually stuck.
+
+And CSS can handle it on its own.
+
+The setup starts the same way:
+the sticky wrapper becomes a scroll-state container.
+
+```css
+.header-container {
+	position: sticky;
+	top: 0;
+	container-type: scroll-state;
+}
+```
+
+Once that is in place, you can style the \"stuck\" state directly.
+
+```css
+@container scroll-state(stuck: top) {
+	.header {
+		padding-block: 0.75rem;
+		box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+	}
+
+	.header-title {
+		font-size: 1.5rem;
+	}
+}
+```
+
+This is a small detail, but it changes the feel of the interface.
+
+At first, the header can be roomy and expressive.
+Once it sticks, it can become tighter and more compact.
+That gives more space back to the content while keeping navigation visible.
+
+This pattern is useful on:
+
+- article pages
+- docs layouts
+- long landing pages
+- dashboards with persistent controls
+
+Before, this usually meant listening to scroll,
+calculating thresholds,
+and toggling classes at the right time.
+
+Now the browser exposes the exact state you actually care about:
+is the sticky element stuck or not?
+
+That makes the rule easier to explain too.
+The header stays large in its normal flow state,
+then becomes compact only after the sticky state is real.
+
+That makes the intent much clearer.
+You are not styling \"some scroll position\".
+You are styling a real layout state.
+
+It also means transitions become easier to reason about.
+The header can animate its padding, font size, shadow, or background as soon as the sticky state changes.
+
+This is also better for maintenance.
+The sticky logic stays in CSS next to the visual change,
+instead of being split between layout styles and a scroll script.
+
+That is the kind of improvement modern CSS is getting really good at.
+Not flashy.
+Just useful.
+
+More behavior in the platform.
+Less custom scroll glue.
+
+---
+
+If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
+
+Go check it out https://theosoti.com/you-dont-need-js/ and enjoy 20% OFF for a limited time!
