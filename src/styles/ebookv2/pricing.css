@@ -17,7 +17,7 @@
 	.pricing__description {
 		text-align: center;
 		background-color: var(--yellow);
-		color: var(--black);
+		color: var(--text);
 		font-weight: bold;
 		padding: var(--pad-4-8) var(--pad-12-16);
 		border-radius: 0.5rem;
@@ -27,6 +27,17 @@
 		max-width: var(--container-width);
 		width: fit-content;
 		margin-inline: auto;
+	}
+
+	.text-rainbow {
+		display: inline-block;
+		background-image: linear-gradient(90deg, #d84b5f 0%, #e29020 22%, #2ea85b 48%, #2870df 74%, #9c4ad6 100%);
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		-webkit-text-fill-color: transparent;
 	}
 
 	.pricing__title {
