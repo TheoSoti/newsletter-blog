@@ -30,14 +30,15 @@
 	}
 
 	.text-rainbow {
-		display: inline-block;
-		background-image: linear-gradient(90deg, #d84b5f 0%, #e29020 22%, #2ea85b 48%, #2870df 74%, #9c4ad6 100%);
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		-webkit-background-clip: text;
+		background: linear-gradient(to right, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+		background-position: 0% 50%;
 		background-clip: text;
-		color: transparent;
+		-webkit-background-clip: text;
+		text-fill-color: transparent;
 		-webkit-text-fill-color: transparent;
+		color: transparent;
+		background-size: 200% auto;
+		animation: textShine 4s linear infinite;
 	}
 
 	.pricing__title {
@@ -211,6 +212,23 @@
 	@keyframes spin {
 		to {
 			--angle: 360deg;
+		}
+	}
+
+	@keyframes textShine {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		to {
+			background-position: 200% 50%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.text-rainbow {
+			animation: none;
+			background-position: 0% 50%;
 		}
 	}
 
