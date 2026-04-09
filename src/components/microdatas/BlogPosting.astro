@@ -1,11 +1,28 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import logo from '../../assets/logo.png';
+import profile from '../../assets/profile.png';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props as Props;
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = heroImage ? import.meta.env.SITE + heroImage : undefined;
+const author = {
+	'@type': 'Person',
+	name: 'Theo Soti',
+	description: 'Frontend Developer & Content Creator',
+	image: `${import.meta.env.SITE}${profile.src}`,
+	sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://x.com/theoleff', 'https://codepen.io/theosoti'],
+};
+const publisher = {
+	'@type': 'Organization',
+	name: 'Theo Soti',
+	logo: {
+		'@type': 'ImageObject',
+		url: `${import.meta.env.SITE}${logo.src}`,
+	},
+};
 
 const structuredData = {
 	'@context': 'https://schema.org',
@@ -15,13 +32,19 @@ const structuredData = {
 	datePublished: pubDate,
 	dateModified: updatedDate ?? undefined,
 	url: pageUrl,
-	image: {
-		'@type': 'ImageObject',
-		width: 720,
-		height: 360,
-		caption: title,
-		url: imageUrl,
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': pageUrl,
 	},
+	author,
+	publisher,
+	image: imageUrl
+		? {
+				'@type': 'ImageObject',
+				caption: title,
+				url: imageUrl,
+			}
+		: undefined,
 };
 ---
 

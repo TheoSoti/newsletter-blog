@@ -19,16 +19,23 @@ type Props = {
 const { posts, type } = Astro.props as Props;
 
 const getPostSlug = (post: Post) => (type === 'short' ? getShortSlug(post.slug) : post.slug);
+const listName = type === 'blog' ? 'Blog Articles' : 'Short Articles';
+const itemListOrder = 'https://schema.org/ItemListOrderDescending';
 
-const structuredData = (posts || []).map((post) => {
-	return {
-		'@type': 'ItemList',
-		headline: post.data.title,
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: listName,
+	url: new URL(Astro.url.pathname, Astro.site),
+	numberOfItems: posts.length,
+	itemListOrder,
+	itemListElement: (posts || []).map((post, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: post.data.title,
 		url: `https://theosoti.com/${type}/${getPostSlug(post)}`,
-		datePublished: post.data.pubDate,
-		description: post.data.description,
-	};
-});
+	})),
+};
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import Organization from './microdatas/Organization.astro';
+import WebSite from './microdatas/WebSite.astro';
 
 interface Props {
 	title: string;
@@ -46,8 +46,8 @@ const { title, description, image = '/sharing.png' } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- Common Microdata -->
-<Organization />
+<!-- Common Schema -->
+<WebSite />
 
 <!-- Consent-gated analytics -->
 <script is:inline src="/scripts/cookie-consent.js" defer></script>
