@@ -148,9 +148,12 @@ import { SITE_NAME } from '../consts';
 		margin: auto;
 	}
 	nav a {
-		padding: 1em 0.5em;
+		padding: 1em;
 		color: var(--text);
 		text-decoration: none;
+	}
+	nav a:hover {
+		color: var(--secondary);
 	}
 	nav a.active {
 		text-decoration: none;
@@ -158,6 +161,9 @@ import { SITE_NAME } from '../consts';
 	}
 	nav .internal-links a:hover {
 		color: var(--secondary);
+	}
+	nav .internal-links {
+		display: flex;
 	}
 	nav a.course {
 		margin-top: -3px;
@@ -208,8 +214,8 @@ import { SITE_NAME } from '../consts';
 		align-items: center;
 	}
 	.drawer-top span {
-		padding-left: 0.5em;
-		font-weight: 600;
+		padding-left: 1em;
+		font-weight: 900;
 	}
 	nav button.mobile-menu {
 		cursor: pointer;
@@ -231,7 +237,7 @@ import { SITE_NAME } from '../consts';
 		cursor: pointer;
 		width: fit-content;
 		padding: 1.2em 1.5em;
-		margin: 1.5em 0.5em 1.5em auto;
+		margin: 1.5em 1em 1.5em auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -260,7 +266,7 @@ import { SITE_NAME } from '../consts';
 		}
 		.global-links {
 			display: flex;
-			gap: 40px;
+			gap: 30px;
 		}
 		nav a.course {
 			padding: 0.1em 0.5em;
