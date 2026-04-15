@@ -5,9 +5,6 @@ import { SITE_NAME } from '../consts';
 ---
 
 <header>
-	<!-- <div class="banner">
-    🔥 My ebook “You Don’t Need JavaScript” is live! <a href="/you-dont-need-js/">Find out more.</a>
-  </div> -->
 	<nav>
 		<div class="logo">
 			<a href="/">{SITE_NAME}</a>
@@ -45,8 +42,9 @@ import { SITE_NAME } from '../consts';
 					<HeaderLink href="/blog/">Blog</HeaderLink>
 					<HeaderLink href="/short/">Short</HeaderLink>
 					<HeaderLink href="/you-dont-need-js/">Book</HeaderLink>
+					<HeaderLink href="https://www.youtube.com/@TheoSoti">Youtube</HeaderLink>
 				</div>
-				<HeaderLink href="/email-course/" class="hireme button" aria-label="free email course">Free Course</HeaderLink>
+				<HeaderLink href="/email-course/" class="course button" aria-label="free email course">Free Course</HeaderLink>
 			</div>
 			<div class="global-links">
 				<div class="internal-links">
@@ -54,8 +52,9 @@ import { SITE_NAME } from '../consts';
 					<HeaderLink href="/blog/">Blog</HeaderLink>
 					<HeaderLink href="/short/">Short</HeaderLink>
 					<HeaderLink href="/you-dont-need-js/">Book</HeaderLink>
+					<HeaderLink href="https://www.youtube.com/@TheoSoti">Youtube</HeaderLink>
 				</div>
-				<HeaderLink href="/email-course/" class="hireme button" aria-label="free email course">Free Course</HeaderLink>
+				<HeaderLink href="/email-course/" class="course button" aria-label="free email course">Free Course</HeaderLink>
 			</div>
 		</div>
 	</nav>
@@ -153,24 +152,6 @@ import { SITE_NAME } from '../consts';
 		color: var(--text);
 		text-decoration: none;
 	}
-
-	header .banner {
-		background-color: var(--secondary);
-		color: var(--white);
-		text-align: center;
-		padding: 0.3em 1em;
-		display: block;
-		line-height: 1.2;
-	}
-
-	header .banner a {
-		color: #f7c86d;
-		text-decoration: underline;
-	}
-	header .banner a:hover {
-		color: #ffe8ba;
-		text-decoration: underline;
-	}
 	nav a.active {
 		text-decoration: none;
 		color: var(--secondary);
@@ -178,7 +159,7 @@ import { SITE_NAME } from '../consts';
 	nav .internal-links a:hover {
 		color: var(--secondary);
 	}
-	nav a.hireme {
+	nav a.course {
 		margin-top: -3px;
 		margin-left: 2em;
 		padding: 0.5em 1em;
@@ -217,7 +198,7 @@ import { SITE_NAME } from '../consts';
 	#mobile-navigation .drawer-links a {
 		border-bottom: 2px solid var(--border);
 	}
-	#mobile-navigation .hireme {
+	#mobile-navigation .course {
 		margin: 20px auto 0 auto;
 	}
 	.drawer-top {
@@ -281,7 +262,7 @@ import { SITE_NAME } from '../consts';
 			display: flex;
 			gap: 40px;
 		}
-		nav a.hireme {
+		nav a.course {
 			padding: 0.1em 0.5em;
 		}
 		nav button.mobile-menu {
