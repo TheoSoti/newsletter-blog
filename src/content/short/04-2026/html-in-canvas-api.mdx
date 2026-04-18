@@ -1,0 +1,53 @@
+---
+title: 'HTML in Canvas API Explained: Render HTML Inside Canvas'
+description: 'Discover the HTML in Canvas API, an experimental feature that renders real HTML inside canvas while keeping DOM interaction and accessibility. A new step toward creative web interfaces.'
+pubDate: 'Apr 18 2026'
+heroImage: '/short/04-2026/HTMLinCanvasAPI.avif'
+---
+
+<img
+	src="/short/04-2026/HTMLinCanvasAPI.avif"
+	alt="Demo of HTML rendered inside a canvas element showing interactive UI within a graphics context."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## The web is getting a bit weird again. And I mean that in a good way.
+
+There’s a new experimental API called HTML in Canvas.
+
+The idea is wild:
+You can render real HTML inside a `<canvas>` surface, while keeping the DOM in sync for things like interaction and accessibility.
+It is currently a proposal, and Chromium has an implementation behind a flag.
+
+So instead of canvas being just pixels, it can start behaving more like a place where actual web content lives.
+
+The proposal describes three main pieces:
+
+- an opt-in attribute for `<canvas>`
+- a 2D API to draw DOM content
+- a WebGL path to use that HTML as a texture.
+
+It could open the door to things like:
+HTML-mapped 3D screens,
+interactive UI inside graphics-heavy scenes,
+and more experimental interfaces without rebuilding everything manually in canvas.
+
+That is exactly the kind of direction shown in the current demos and explainer.
+
+It’s still very early. But definitely something worth watching.
+It kind of feels like the web is becoming playful again.
+
+Here's a few examples of what can be possible with this HTML in Canvas API:
+
+- https://x.com/jaffathecake/status/2039632975831191858
+- https://x.com/mattrothenberg/status/2040416074710102300
+- https://www.linkedin.com/posts/vittorio-retrivi_hear-me-out-wicg-is-experimenting-ugcPost-7447070535492071424-vygx
+- https://www.youtube.com/shorts/7LiJIpf8jD0
+
+---
+
+If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
+
+Go check it out https://theosoti.com/you-dont-need-js/ and enjoy 20% OFF for a limited time!
