@@ -49,6 +49,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		/>
 		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
 		<script is:inline src="/scripts/cookie-consent.js" defer></script>
+		<script is:inline>
+			if (new URLSearchParams(window.location.search).get('utm_source') === 'csswind') {
+				document.documentElement.dataset.utmSource = 'csswind';
+			}
+		</script>
 	</head>
 
 	<body>

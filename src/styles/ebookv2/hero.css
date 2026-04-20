@@ -27,6 +27,18 @@
 		font-weight: bold;
 	}
 
+	.hero__source-note {
+		display: none;
+		margin: -35px 0 -10px;
+		color: var(--small-text);
+		font-size: var(--fs-1);
+		font-style: italic;
+	}
+
+	html[data-utm-source='csswind'] .hero__source-note {
+		display: block;
+	}
+
 	.hero__subtitle {
 		font-size: var(--fs-4);
 	}
