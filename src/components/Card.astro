@@ -6,7 +6,7 @@ import { Picture } from 'astro:assets';
 
 <li class="card">
 	<a href={`/blog/${post.slug}/`}>
-		{post.data.heroImage && <Picture width={width} height={height} src={post.data.heroImage} alt={post.data.title} />}
+		{post.data.heroImage && <Picture width={width} height={height} src={post.data.heroImage} alt="" />}
 		<h3 class="title">{post.data.title}</h3>
 
 		<span>

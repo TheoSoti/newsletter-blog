@@ -5,6 +5,15 @@
 		text-align: center;
 	}
 
+	footer a {
+		color: var(--text);
+		font-weight: 500;
+	}
+
+	footer a:hover {
+		color: var(--main);
+	}
+
 	.footer__title {
 		text-align: center;
 	}
