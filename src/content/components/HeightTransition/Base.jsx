@@ -30,7 +30,7 @@ export function Base({ children, buttonText, ddStyle, exampleNumber }) {
 
 		return (
 			<div className="heightInputs">
-				Change value of the <code>max-height</code> property: <br>
+				Change value of the <code>max-height</code> property: <br />
 				<label>
 					<input type="radio" name="maxHeight" value="100" checked={height === 100} onChange={onOptionChange} />
 					100px

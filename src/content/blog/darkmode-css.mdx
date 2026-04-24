@@ -22,7 +22,7 @@ This is the same approach I've used on this site, so feel free to check it out!
 
 ## Setting up the HTML
 
-First things first, let's create a basic html template.<br>
+First things first, let's create a basic html template.<br/>
 We'll need a **checkbox** and **some content**.
 
 ```html
@@ -50,7 +50,7 @@ We have our HTML structure, now let's set the colors.
 ## Add some CSS variables
 
 Let's declare **3 CSS variable** for now.<br >
-Put them in the **:root selector** so you are sure they are accessible everywhere.<br>
+Put them in the **:root selector** so you are sure they are accessible everywhere.<br/>
 We declare 1 for the text, 1 for the background and one for the links.
 
 ```css
@@ -88,11 +88,11 @@ import DarkMode2 from '../components/DarkMode/DarkMode2.astro';
 	<DarkMode2 />
 </Wrapper>
 
-Now we have our HTML and CSS variables set up, but we still miss the main part: the darkmode.<br>
+Now we have our HTML and CSS variables set up, but we still miss the main part: the darkmode.<br/>
 It's pretty simple from here. We have to define the colors we want when we enter the darkmode. We also have to define when we are in a darkmode.
 
-To know when we are in darkmode, we just have to see if the input is checked.<br>
-We can do that easily in CSS using the relatively new selector **:has()**.<br>
+To know when we are in darkmode, we just have to see if the input is checked.<br/>
+We can do that easily in CSS using the relatively new selector **:has()**.<br/>
 Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in a **checked** state. If it's the case, we reassign the CSS variable with new values.
 
 ```css
@@ -111,7 +111,7 @@ Here we watch if the **:root** element **has** the **input** (#demo-darkmode) in
 }
 ```
 
-With just that addition, clicking the darkmode checkbox will switch the declared colors.<br>
+With just that addition, clicking the darkmode checkbox will switch the declared colors.<br/>
 You can try it out in the interactive demo below.
 
 import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
@@ -120,7 +120,7 @@ import DarkMode3 from '../components/DarkMode/DarkMode3.astro';
 	<DarkMode3 />
 </Wrapper>
 
-Our darkmode is working 🎉<br>
+Our darkmode is working 🎉<br/>
 Currently, if we check the darkmode checkbox and reload the page, it will reset to its original state.
 To fix this, we can make the darkmode persistant
 
@@ -130,7 +130,7 @@ To fix this, we can make the darkmode persistant
 
 Adding localStorage to maintain darkmode is pretty straightforward.
 
-We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it’s checked or not).<br>
+We watch the checkbox, and when it changes state, we save it in a localStorage item. We give this item a name (here "demo-darkmode"), and the state of the checkbox (if it’s checked or not).<br/>
 
 On the page load, we also modify the checkbox state by applying the localStorage item value.
 
@@ -154,7 +154,7 @@ import DarkMode4 from '../components/DarkMode/DarkMode4.astro';
 	<DarkMode4 />
 </Wrapper>
 
-In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br>
+In less than 5 lines of JavaScript and 20 lines of CSS, we managed to create a darkmode. <br/>
 It's functional, easy to implement, easy to maintain, and supported by over 88% of browsers.
 
 Want to see all the code in one place ? Check out [the CodePen](https://codepen.io/theosoti/pen/bGPpvZg) I created.
@@ -183,7 +183,7 @@ It's up to you to explore and decide how you want to enhance your dark mode!
 
 ## Support My Work
 
-Feel free to leave your comments or questions by email at hey@theosoti.com. <br>
+Feel free to leave your comments or questions by email at hey@theosoti.com. <br/>
 If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
 
 Happy coding!
