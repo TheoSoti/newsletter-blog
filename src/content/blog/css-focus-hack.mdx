@@ -21,7 +21,7 @@ import Wrapper from '../components/Wrapper.astro';
 import Focus1 from '../components/FocusHacks/1.astro';
 
 <Wrapper title="4 types of CSS focus">
-  <Focus1 />
+	<Focus1 />
 </Wrapper>
 
 Now that you have a basic understanding, let's deep dive into this `:focus` universe to see when and where to implement them.
@@ -32,7 +32,7 @@ The simplest of all focus states is `:focus`.
 
 ```css
 a:focus {
-  outline: 2px solid deeppink;
+	outline: 2px solid deeppink;
 }
 ```
 
@@ -54,7 +54,7 @@ Unlike `:focus`, which shows styles regardless of how the user interacts with th
 
 ```css
 a:focus-visible {
-  outline: 2px solid deeppink;
+	outline: 2px solid deeppink;
 }
 ```
 
@@ -81,7 +81,7 @@ Another useful focus state is :focus-within, which allows you to style a parent 
 
 ```css
 .container:focus-within {
-  outline: 2px solid deeppink;
+	outline: 2px solid deeppink;
 }
 ```
 
@@ -92,7 +92,7 @@ This will trigger for each user interaction on the selected area (click, tab, or
 import Focus2 from '../components/FocusHacks/2.astro';
 
 <Wrapper title="Example">
-  <Focus2 />
+	<Focus2 />
 </Wrapper>
 
 For now we reviewed `:focus`, `:focus-visible` and `:focus-within`.
@@ -107,7 +107,7 @@ While CSS doesn’t directly support a `focus-visible-within` selector, you can 
 
 ```css
 .container:has(a:focus-visible, button:focus-visible) {
-  outline: 2px solid deeppink;
+	outline: 2px solid deeppink;
 }
 ```
 
@@ -120,12 +120,12 @@ This is particularly useful for custom interface elements, where a parent contai
 import Focus3 from '../components/FocusHacks/3.astro';
 
 <Wrapper title="Example">
-  <Focus3 />
+	<Focus3 />
 </Wrapper>
 
 ## Support My Work
 
-Feel free to leave your comments or questions via email at hey@theosoti.com. <br />
+Feel free to leave your comments or questions via email at hey@theosoti.com. <br>
 If you found this article helpful, please share it with your peers and join my newsletter below for more web development tutorials.
 
 Happy coding!

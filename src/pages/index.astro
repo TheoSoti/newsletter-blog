@@ -24,19 +24,19 @@ const shorts = (await getCollection('short'))
 	.reverse();
 ---
 
-	<html lang="en">
-		<head>
-			<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		</head>
-		<body>
-			<Header />
-			<Hero />
-			<SocialProofStats />
-			<BookShowcase />
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<Hero />
+		<SocialProofStats />
+		<BookShowcase />
 
-			<main>
-				<section>
-					<h2>Latest Blog Articles</h2>
+		<main>
+			<section>
+				<h2>Latest Blog Articles</h2>
 				<p>
 					Discover in-depth articles covering a variety of topics. <br />
 					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
@@ -47,7 +47,7 @@ const shorts = (await getCollection('short'))
 				<a href="/blog/" class="button"> View more articles </a>
 			</section>
 
-				<section>
+			<section>
 				<h2>Latest Short Articles</h2>
 				<p>
 					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
@@ -57,14 +57,14 @@ const shorts = (await getCollection('short'))
 					{shorts.map((short) => <ShortList post={short} />)}
 				</ul>
 				<a href="/short/" class="button"> View more articles </a>
-				</section>
-			</main>
-			<Newsletter />
-			<Footer />
-			<ItemList posts={posts} type="blog" />
-			<ItemList posts={shorts} type="short" />
-		</body>
-	</html>
+			</section>
+		</main>
+		<Newsletter />
+		<Footer />
+		<ItemList posts={posts} type="blog" />
+		<ItemList posts={shorts} type="short" />
+	</body>
+</html>
 
 <style>
 	main {
