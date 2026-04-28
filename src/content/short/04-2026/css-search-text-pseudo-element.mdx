@@ -1,0 +1,63 @@
+---
+title: 'You can now style browser find-in-page matches in CSS.'
+description: 'The ::search-text pseudo-element lets CSS style text matched by the browser find-in-page search, with :current to single out the focused match. Chrome/Edge/Opera 144+ for now.'
+pubDate: 'Apr 28 2026'
+heroImage: '/short/04-2026/style-search-results.avif'
+---
+
+<img
+	src="/short/04-2026/style-search-results.avif"
+	alt="Illustration of customised search matches on a webpage, styled with the CSS ::search-text."
+	width="400"
+	height="600"
+	style="margin: 2em auto 1em auto; display: block; border: 4px solid var(--border)"
+/>
+
+## You can now style text that matches a browser find-in-page search.
+
+In CSS.
+
+With `::search-text`.
+
+That means when someone uses the browser search bar and looks for a word on your page, you can control how those matches appear.
+
+And it gets even better.
+
+You can use `::search-text` on its own to style all search matches on the page, or scope it to a specific area like a `section`.
+
+You can also combine it with `:current` to style the currently focused match differently from the others.
+
+```css
+/* Style every match on the page */
+::search-text {
+	background: oklch(0.9 0.15 90);
+	color: black;
+}
+
+/* Style only the currently focused match */
+::search-text:current {
+	background: oklch(0.7 0.2 30);
+	color: white;
+}
+```
+
+This is one of those small features that feels very "platform-first".
+
+The browser already knows what text is being searched.  
+Now CSS can react to it too.
+
+It opens the door to nicer reading experiences, better documentation pages, and more polished long-form content without building a custom search UI. That part is more of a design implication, but it is exactly the kind of use case this selector points to.
+
+Browser support is still limited though.
+
+[Can I Use](https://caniuse.com/) shows support in Chrome 144+, Edge 144+, and Opera 122+, while Firefox and Safari do not support it for now.
+
+So this is clearly progressive enhancement for now.
+
+But it is another nice example of CSS getting access to more real browser states.
+
+---
+
+If you liked this tip, you might enjoy the book, which is packed with similar insights to help you build better websites without relying on JavaScript.
+
+Go check it out https://theosoti.com/you-dont-need-js/ and enjoy 20% OFF for a limited time!
