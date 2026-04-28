@@ -4,13 +4,20 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
+import BreadcrumbList from '../components/microdatas/BreadcrumbList.astro';
 import { getCollection } from 'astro:content';
 import ShortList from '../components/ShortList.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getShortSlug } from '../utils/shortSlug';
 
-const { title, description, pubDate, updatedDate, slug, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, slug, heroImage, body } = Astro.props;
 const shortSlug = getShortSlug(slug);
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const breadcrumbs = [
+  { name: 'Home', url: `${siteUrl}/` },
+  { name: 'Short', url: `${siteUrl}/short/` },
+  { name: title, url: `${siteUrl}/short/${shortSlug}/` },
+];
 const posts = (await getCollection('short'))
   .filter((post) => getShortSlug(post.slug) !== shortSlug)
   .sort((a, b) => {
@@ -25,7 +32,16 @@ const posts = (await getCollection('short'))
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={heroImage} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={heroImage}
+      type="article"
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      articleSection="CSS"
+      mdAlternate={`/short/${shortSlug}.md`}
+    />
     <style>
       @media (prefers-reduced-motion: no-preference) {
         html {
@@ -172,6 +188,7 @@ const posts = (await getCollection('short'))
       </section>
     </main>
     <Footer />
-    <BlogPosting slot="structured-data" {...{ title, description, pubDate, updatedDate, heroImage }} />
+    <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage, body }} />
+    <BreadcrumbList items={breadcrumbs} />
   </body>
 </html>

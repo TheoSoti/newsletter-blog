@@ -1,51 +1,112 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import logo from '../../assets/logo.png';
 import profile from '../../assets/profile.png';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface Props {
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	heroImage?: string;
+	readingTime?: string;
+	body?: string;
+	url?: URL;
+	type?: 'BlogPosting' | 'TechArticle' | 'Article';
+	articleSection?: string;
+	keywords?: string[];
+}
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props as Props;
-const pageUrl = new URL(Astro.url.pathname, Astro.site);
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	readingTime,
+	body,
+	url,
+	type = 'BlogPosting',
+	articleSection = 'CSS',
+	keywords = ['CSS', 'frontend development', 'web development', 'HTML', 'JavaScript', 'UI design'],
+} = Astro.props as Props;
+
+const pageUrl = url ?? new URL(Astro.url.pathname, Astro.site);
 const imageUrl = heroImage ? import.meta.env.SITE + heroImage : undefined;
+
 const author = {
 	'@type': 'Person',
 	name: 'Theo Soti',
+	url: import.meta.env.SITE,
 	description: 'Frontend Developer & Content Creator',
 	image: `${import.meta.env.SITE}${profile.src}`,
 	sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://x.com/theoleff', 'https://codepen.io/theosoti'],
 };
+
 const publisher = {
 	'@type': 'Organization',
 	name: 'Theo Soti',
+	url: import.meta.env.SITE,
 	logo: {
 		'@type': 'ImageObject',
 		url: `${import.meta.env.SITE}${logo.src}`,
 	},
 };
 
-const structuredData = {
+// Convert "9 min read" → ISO 8601 duration "PT9M"
+const parseTimeRequired = (rt?: string): string | undefined => {
+	if (!rt) return undefined;
+	const match = rt.match(/(\d+)\s*min/i);
+	return match ? `PT${match[1]}M` : undefined;
+};
+const timeRequired = parseTimeRequired(readingTime);
+
+// Approx word count from raw body, when available.
+const wordCount = body
+	? body
+			.replace(/```[\s\S]*?```/g, '') // strip fenced code
+			.replace(/<[^>]+>/g, ' ') // strip JSX/html tags
+			.replace(/[#>*_`~\-]/g, ' ')
+			.split(/\s+/)
+			.filter(Boolean).length
+	: undefined;
+
+const structuredData: Record<string, unknown> = {
 	'@context': 'https://schema.org',
-	'@type': 'BlogPosting',
+	'@type': type,
 	headline: title,
 	description,
 	datePublished: pubDate,
-	dateModified: updatedDate ?? undefined,
+	dateModified: updatedDate ?? pubDate,
 	url: pageUrl,
 	mainEntityOfPage: {
 		'@type': 'WebPage',
 		'@id': pageUrl,
 	},
+	isPartOf: {
+		'@type': 'Blog',
+		name: 'Theo Soti',
+		url: import.meta.env.SITE,
+	},
+	inLanguage: 'en',
+	articleSection,
+	keywords,
 	author,
 	publisher,
-	image: imageUrl
-		? {
-				'@type': 'ImageObject',
-				caption: title,
-				url: imageUrl,
-			}
-		: undefined,
+	speakable: {
+		'@type': 'SpeakableSpecification',
+		cssSelector: ['h1', 'article p:first-of-type', '.prose h2'],
+	},
 };
+
+if (timeRequired) structuredData.timeRequired = timeRequired;
+if (wordCount) structuredData.wordCount = wordCount;
+if (imageUrl) {
+	structuredData.image = {
+		'@type': 'ImageObject',
+		caption: title,
+		url: imageUrl,
+	};
+}
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />

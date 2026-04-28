@@ -5,11 +5,18 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import TableOfContent from '../components/TableOfContent.astro';
 import BlogPosting from '../components/microdatas/BlogPosting.astro';
+import BreadcrumbList from '../components/microdatas/BreadcrumbList.astro';
 import { getCollection } from 'astro:content';
 import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug, body } = Astro.props;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const breadcrumbs = [
+  { name: 'Home', url: `${siteUrl}/` },
+  { name: 'Blog', url: `${siteUrl}/blog/` },
+  { name: title, url: `${siteUrl}/blog/${slug}/` },
+];
 const posts = (await getCollection('blog'))
   .filter((post) => post.slug !== slug)
   .sort((a, b) => {
@@ -24,7 +31,16 @@ const posts = (await getCollection('blog'))
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={heroImage} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={heroImage}
+      type="article"
+      pubDate={pubDate}
+      updatedDate={updatedDate}
+      articleSection="CSS"
+      mdAlternate={`/blog/${slug}.md`}
+    />
 
     <style>
       @media (prefers-reduced-motion: no-preference) {
@@ -196,7 +212,8 @@ const posts = (await getCollection('blog'))
         </ul>
       </section>
       <Footer />
-      <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage }} />
+      <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage, readingTime, body }} type="TechArticle" />
+      <BreadcrumbList items={breadcrumbs} />
     </main>
   </body>
 </html>
