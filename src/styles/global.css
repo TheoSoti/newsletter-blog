@@ -137,6 +137,9 @@ code {
 	border-radius: 5px;
 	color: var(--text);
 }
+figure {
+	margin: 0;
+}
 figcaption {
 	text-align: center;
 	color: var(--small-text);
