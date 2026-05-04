@@ -27,7 +27,7 @@ const {
 	url,
 	type = 'BlogPosting',
 	articleSection = 'CSS',
-	keywords = ['CSS', 'frontend development', 'web development', 'HTML', 'JavaScript', 'UI design'],
+	keywords,
 } = Astro.props as Props;
 
 const pageUrl = url ?? new URL(Astro.url.pathname, Astro.site);
@@ -89,7 +89,6 @@ const structuredData: Record<string, unknown> = {
 	},
 	inLanguage: 'en',
 	articleSection,
-	keywords,
 	author,
 	publisher,
 	speakable: {
@@ -100,6 +99,7 @@ const structuredData: Record<string, unknown> = {
 
 if (timeRequired) structuredData.timeRequired = timeRequired;
 if (wordCount) structuredData.wordCount = wordCount;
+if (keywords && keywords.length > 0) structuredData.keywords = keywords;
 if (imageUrl) {
 	structuredData.image = {
 		'@type': 'ImageObject',

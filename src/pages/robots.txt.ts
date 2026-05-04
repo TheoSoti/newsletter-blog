@@ -3,7 +3,37 @@ import type { APIRoute } from 'astro';
 const getRobotsTxt = (sitemapURL: URL) => `User-agent: *
 Allow: /
 
-# AI / LLM crawlers — explicit allow
+# Search-engine bots: prevent indexing of LLM-only artefacts
+# (raw markdown duplicates of HTML posts + llms.txt corpus files).
+User-agent: Googlebot
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: Googlebot-Image
+Disallow: /*.md$
+
+User-agent: Bingbot
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: DuckDuckBot
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: Slurp
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+User-agent: YandexBot
+Disallow: /*.md$
+Disallow: /llms.txt
+Disallow: /llms-full.txt
+
+# AI / LLM crawlers — explicit allow (everything, including .md + llms.* files)
 User-agent: GPTBot
 Allow: /
 

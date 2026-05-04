@@ -17,7 +17,6 @@ export default defineConfig({
       },
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
       serialize(item) {
         // Hide raw markdown alternates and llms.txt indexes from the sitemap.
         if (
