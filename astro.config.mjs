@@ -29,6 +29,9 @@ export default defineConfig({
         if (item.url === 'https://theosoti.com/') {
           return { ...item, priority: 1.0 };
         }
+        if (item.url === 'https://theosoti.com/you-dont-need-js/') {
+          return { ...item, priority: 1.0 };
+        }
         if (item.url.includes('/blog/') && item.url !== 'https://theosoti.com/blog/') {
           return { ...item, priority: 0.9 };
         }
