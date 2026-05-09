@@ -12,6 +12,7 @@ interface Props {
 	articleSection?: string;
 	tags?: string[];
 	mdAlternate?: string; // path to a raw .md alternate
+	noindex?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -26,6 +27,7 @@ const {
 	articleSection,
 	tags,
 	mdAlternate,
+	noindex = false,
 } = Astro.props;
 ---
 
@@ -43,6 +45,11 @@ const {
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Feed discovery -->
+<link rel="alternate" type="application/rss+xml" title="Theo Soti RSS Feed" href={new URL('/rss.xml', Astro.site)} />
+<link rel="alternate" type="application/rss+xml" title="Theo Soti Blog RSS Feed" href={new URL('/blog/rss.xml', Astro.site)} />
+<link rel="alternate" type="application/rss+xml" title="Theo Soti Short Articles RSS Feed" href={new URL('/short/rss.xml', Astro.site)} />
+
 <!-- Raw markdown alternate (LLM-friendly) -->
 {mdAlternate && <link rel="alternate" type="text/markdown" href={new URL(mdAlternate, Astro.site)} />}
 
@@ -51,6 +58,7 @@ const {
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Theo Soti" />
+{noindex && <meta name="robots" content="noindex,follow" />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
