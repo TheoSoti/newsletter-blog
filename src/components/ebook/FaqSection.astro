@@ -1,44 +1,5 @@
 ---
-const faqs = [
-	{
-		question: 'Who is this book for?',
-		answer:
-			"If you're a web developer who wants to build interactive components without relying on JavaScript. If you care about performance, clean code, and saving time. Then this book is for you.",
-	},
-	{
-		question: 'Do I need to be a CSS expert to follow along?',
-		answer:
-			"You don't need to be an expert, but a basic understanding of CSS is necessary. The ebook is packed with tips and techniques that even seasoned developers will find valuable. You'll learn step-by-step through clear, practical examples.",
-	},
-	{
-		question: 'What exactly will I learn?',
-		answer:
-			"You'll learn how to create real-world UI components like tabs, modals, dropdowns, and more using only CSS. You'll also discover methods to speed up your pages, write maintainable code, and reduce bugs.",
-	},
-	{
-		question: 'What format is the book available in?',
-		answer:
-			'The book comes as a PDF, so you can read it anywhere. It is lightweight, easy to navigate, and formatted to stay comfortable on any screen size.',
-	},
-	{
-		question: 'Will the book be updated in the future?',
-		answer:
-			'Whenever You Don’t Need JavaScript gets new examples or newer CSS techniques, you will get those future updates for free.',
-	},
-	{
-		question: 'Do you offer a team license?',
-		answer: 'Yes. Reach out if you want a team license at hey@theosoti.com.',
-	},
-	{
-		question: 'What if I don’t like the book?',
-		answer:
-			"If you buy the book and feel it's not for you, you can ask for a full refund within 30 days. No hard feelings, no questions asked. Send me an email at hey@theosoti.com and I'll refund you right away.",
-	},
-	{
-		question: 'Did you use JavaScript for creating this page?',
-		answer: 'No. This page uses only HTML and CSS. The only JavaScript here is the small tracking script.',
-	},
-];
+import { ebookFaqs } from '../../data/ebook';
 ---
 
 <section class="faq" aria-labelledby="faq-title">
@@ -46,7 +7,7 @@ const faqs = [
 
 	<ul class="faq__container">
 		{
-			faqs.map(({ question, answer }, index) => (
+			ebookFaqs.map(({ question, answer }, index) => (
 				<li class="accordion">
 					<details name="book-faq" open={index === 0}>
 						<summary>

@@ -23,9 +23,10 @@ type Props = { post: CollectionEntry<'short'> };
 
 export const GET: APIRoute = ({ props, site }) => {
 	const { post } = props as Props;
-	const { title, description, pubDate, updatedDate } = post.data;
+	const { title, description, pubDate, updatedDate, tags } = post.data;
 	const baseUrl = site ? site.toString().replace(/\/$/, '') : '';
 	const canonical = `${baseUrl}/short/${getShortSlug(post.slug)}/`;
+	const tagsLine = tags.length > 0 ? `Tags: ${tags.join(', ')}\n` : '';
 
 	const dateLine = updatedDate
 		? `Published: ${pubDate.toISOString().slice(0, 10)} | Updated: ${updatedDate.toISOString().slice(0, 10)}`
@@ -36,6 +37,7 @@ export const GET: APIRoute = ({ props, site }) => {
 URL: ${canonical}
 ${dateLine}
 Author: Theo Soti
+${tagsLine}
 
 > ${description}
 

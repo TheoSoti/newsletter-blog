@@ -1,0 +1,92 @@
+---
+import { ebookFaqs } from '../../data/ebook';
+
+const pageUrl = new URL('/you-dont-need-js/', Astro.site).href;
+const imageUrl = new URL('/ebook.png', Astro.site).href;
+const authorUrl = new URL('/', Astro.site).href;
+
+const offers = [
+	{
+		'@type': 'Offer',
+		name: 'You Don’t Need JavaScript - Basic',
+		description: '125-page PDF ebook with 27 practical CSS examples, lifetime access, and free updates.',
+		url: 'https://buy.stripe.com/3cIdRb0kB3ICafF5Fo1Fe02',
+		price: '39.00',
+		priceCurrency: 'USD',
+		availability: 'https://schema.org/InStock',
+		itemCondition: 'https://schema.org/NewCondition',
+		seller: {
+			'@type': 'Person',
+			name: 'Theo Soti',
+			url: authorUrl,
+		},
+	},
+	{
+		'@type': 'Offer',
+		name: 'You Don’t Need JavaScript - Complete bundle',
+		description:
+			'125-page PDF ebook, 27 ready-to-use components, a CSS property cheat sheet, workflow tools, lifetime access, and free updates.',
+		url: 'https://buy.stripe.com/cNibJ31oFeng4Vl7Nw1Fe01',
+		price: '69.00',
+		priceCurrency: 'USD',
+		availability: 'https://schema.org/InStock',
+		itemCondition: 'https://schema.org/NewCondition',
+		seller: {
+			'@type': 'Person',
+			name: 'Theo Soti',
+			url: authorUrl,
+		},
+	},
+];
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': ['Product', 'Book'],
+			'@id': `${pageUrl}#product`,
+			name: 'You Don’t Need JavaScript',
+			alternateName: 'You Don’t Need JavaScript ebook',
+			description:
+				'A practical ebook for front-end developers who want to build accessible, interactive components with modern HTML and CSS.',
+			url: pageUrl,
+			image: imageUrl,
+			brand: {
+				'@type': 'Brand',
+				name: 'Theo Soti',
+			},
+			author: {
+				'@type': 'Person',
+				name: 'Theo Soti',
+				url: authorUrl,
+				sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://x.com/theoleff'],
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'Theo Soti',
+				url: authorUrl,
+			},
+			inLanguage: 'en',
+			bookFormat: 'https://schema.org/EBook',
+			numberOfPages: 125,
+			category: 'Frontend development ebook',
+			keywords: ['CSS', 'HTML', 'frontend development', 'web development', 'JavaScript alternatives'],
+			offers,
+		},
+		{
+			'@type': 'FAQPage',
+			'@id': `${pageUrl}#faq`,
+			mainEntity: ebookFaqs.map(({ question, answer }) => ({
+				'@type': 'Question',
+				name: question,
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: answer,
+				},
+			})),
+		},
+	],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />

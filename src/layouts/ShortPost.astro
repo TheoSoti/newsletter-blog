@@ -10,7 +10,7 @@ import ShortList from '../components/ShortList.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getShortSlug } from '../utils/shortSlug';
 
-const { title, description, pubDate, updatedDate, slug, heroImage, body } = Astro.props;
+const { title, description, pubDate, updatedDate, slug, heroImage, body, tags = [] } = Astro.props;
 const shortSlug = getShortSlug(slug);
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const breadcrumbs = [
@@ -40,6 +40,7 @@ const posts = (await getCollection('short'))
       pubDate={pubDate}
       updatedDate={updatedDate}
       articleSection="CSS"
+      tags={tags}
       mdAlternate={`/short/${shortSlug}.md`}
     />
     <style>
@@ -188,7 +189,7 @@ const posts = (await getCollection('short'))
       </section>
     </main>
     <Footer />
-    <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage, body }} />
+    <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage, body }} keywords={tags} />
     <BreadcrumbList items={breadcrumbs} />
   </body>
 </html>

@@ -4,6 +4,7 @@ import '../styles/ebookv2.css';
 import AboutSection from '../components/ebook/AboutSection.astro';
 import EbookFooter from '../components/ebook/EbookFooter.astro';
 import FaqSection from '../components/ebook/FaqSection.astro';
+import EbookStructuredData from '../components/ebook/EbookStructuredData.astro';
 import FeaturesSection from '../components/ebook/FeaturesSection.astro';
 import GuaranteeSection from '../components/ebook/GuaranteeSection.astro';
 import HeroSection from '../components/ebook/HeroSection.astro';
@@ -48,6 +49,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			content="A practical ebook for front-end devs: Learn to create interactive, modern UI with CSS. No JavaScript required."
 		/>
 		<meta property="twitter:image" content={new URL('ebook.png', Astro.site)} />
+		<EbookStructuredData />
 		<script is:inline src="/scripts/cookie-consent.js" defer></script>
 		<script is:inline>
 			if (new URLSearchParams(window.location.search).get('utm_source') === 'csswind') {

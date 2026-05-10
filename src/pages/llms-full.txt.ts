@@ -40,15 +40,18 @@ export const GET: APIRoute = async ({ site }) => {
 		url: string,
 		pubDate: Date,
 		updatedDate: Date | undefined,
+		tags: string[],
 		body: string
 	) => {
 		const dateLine = updatedDate
 			? `Published: ${pubDate.toISOString().slice(0, 10)} | Updated: ${updatedDate.toISOString().slice(0, 10)}`
 			: `Published: ${pubDate.toISOString().slice(0, 10)}`;
+		const tagsLine = tags.length > 0 ? `Tags: ${tags.join(', ')}\n` : '';
 		return `# ${title}
 
 URL: ${url}
 ${dateLine}
+${tagsLine}
 
 > ${description}
 
@@ -64,6 +67,7 @@ ${stripMdx(body)}
 				`${baseUrl}/blog/${post.slug}/`,
 				post.data.pubDate,
 				post.data.updatedDate,
+				post.data.tags,
 				post.body
 			)
 		)
@@ -77,6 +81,7 @@ ${stripMdx(body)}
 				`${baseUrl}/short/${getShortSlug(post.slug)}/`,
 				post.data.pubDate,
 				post.data.updatedDate,
+				post.data.tags,
 				post.body
 			)
 		)

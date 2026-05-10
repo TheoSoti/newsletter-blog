@@ -10,7 +10,7 @@ import { getCollection } from 'astro:content';
 import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug, body } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug, body, tags = [] } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const breadcrumbs = [
   { name: 'Home', url: `${siteUrl}/` },
@@ -39,6 +39,7 @@ const posts = (await getCollection('blog'))
       pubDate={pubDate}
       updatedDate={updatedDate}
       articleSection="CSS"
+      tags={tags}
       mdAlternate={`/blog/${slug}.md`}
     />
 
@@ -212,7 +213,11 @@ const posts = (await getCollection('blog'))
         </ul>
       </section>
       <Footer />
-      <BlogPosting {...{ title, description, pubDate, updatedDate, heroImage, readingTime, body }} type="TechArticle" />
+      <BlogPosting
+        {...{ title, description, pubDate, updatedDate, heroImage, readingTime, body }}
+        type="TechArticle"
+        keywords={tags}
+      />
       <BreadcrumbList items={breadcrumbs} />
     </main>
   </body>
