@@ -1,0 +1,117 @@
+<main class="ss-directions" aria-label="Demo showing different entry and exit directions">
+	<div class="ss-directions__toolbar">
+		<button type="button" class="button ss-directions__button" aria-expanded="false">Open panel</button>
+		<p class="ss-directions__hint">Enters from the left, exits to the right.</p>
+	</div>
+
+	<div class="ss-directions__stage">
+		<div class="ss-directions__panel" aria-hidden="true">
+			<strong>Filters</strong>
+			<span>New transitions can have different entry and exit directions.</span>
+		</div>
+	</div>
+</main>
+
+<script is:inline>
+	document.querySelectorAll('.ss-directions').forEach((demo) => {
+		const button = demo.querySelector('.ss-directions__button');
+		const panel = demo.querySelector('.ss-directions__panel');
+
+		const sync = () => {
+			const isOpen = panel.classList.contains('is-open');
+			button.textContent = isOpen ? 'Close panel' : 'Open panel';
+			button.setAttribute('aria-expanded', String(isOpen));
+			panel.setAttribute('aria-hidden', String(!isOpen));
+		};
+
+		button.addEventListener('click', () => {
+			panel.classList.toggle('is-open');
+			sync();
+		});
+
+		sync();
+	});
+</script>
+
+<style>
+	.ss-directions {
+		display: grid;
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-light);
+	}
+
+	.ss-directions__toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.8rem 1rem;
+	}
+
+	.ss-directions__button {
+		padding: 0.55rem 0.9rem;
+		font: inherit;
+		touch-action: manipulation;
+	}
+
+	.ss-directions__hint {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.ss-directions__stage {
+		border: 2px solid var(--border);
+		background: var(--example);
+		min-height: 170px;
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+	}
+
+	.ss-directions__panel {
+		display: none;
+		max-width: 320px;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: var(--bg-light);
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.08),
+			0 10px 30px hsl(0deg 0% 0% / 0.12);
+		opacity: 0;
+		transform: translateX(56px);
+		transition:
+			opacity 0.32s ease,
+			transform 0.32s ease,
+			display 0.32s allow-discrete;
+	}
+
+	.ss-directions__panel strong,
+	.ss-directions__panel span {
+		display: block;
+	}
+
+	.ss-directions__panel span {
+		margin-top: 0.25rem;
+		font-size: 0.94rem;
+	}
+
+	.ss-directions__panel.is-open {
+		display: block;
+		opacity: 1;
+		transform: translateX(0);
+
+		@starting-style {
+			display: block;
+			opacity: 0;
+			transform: translateX(-56px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ss-directions__panel {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

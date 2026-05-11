@@ -1,0 +1,126 @@
+<main class="ss-dialog-demo" aria-label="Dialog demo using starting-style and a backdrop">
+	<button type="button" class="button ss-dialog-demo__trigger">Open dialog</button>
+
+	<dialog class="ss-dialog-demo__dialog" aria-labelledby="ss-dialog-title">
+		<h3 id="ss-dialog-title">Invite collaborator</h3>
+		<p>Dialogs are one of the clearest real-world cases for @starting-style.</p>
+		<div class="ss-dialog-demo__actions">
+			<button type="button" class="button ss-dialog-demo__primary">Close</button>
+		</div>
+	</dialog>
+</main>
+
+<script is:inline>
+	document.querySelectorAll('.ss-dialog-demo').forEach((demo) => {
+		const trigger = demo.querySelector('.ss-dialog-demo__trigger');
+		const dialog = demo.querySelector('.ss-dialog-demo__dialog');
+		const primaryButton = demo.querySelector('.ss-dialog-demo__primary');
+
+		trigger.addEventListener('click', () => {
+			dialog.showModal();
+		});
+
+		primaryButton.addEventListener('click', () => {
+			dialog.close();
+		});
+
+		dialog.addEventListener('click', (event) => {
+			const rect = dialog.getBoundingClientRect();
+			const inside =
+				event.clientX >= rect.left &&
+				event.clientX <= rect.right &&
+				event.clientY >= rect.top &&
+				event.clientY <= rect.bottom;
+
+			if (!inside) {
+				dialog.close();
+			}
+		});
+
+		dialog.addEventListener('close', () => {
+			trigger.focus();
+		});
+	});
+</script>
+
+<style>
+	.ss-dialog-demo {
+		background: var(--bg-light);
+	}
+
+	.ss-dialog-demo__trigger,
+	.ss-dialog-demo__primary {
+		border: 2px solid var(--border);
+		font: inherit;
+		padding: 0.6rem 0.95rem;
+		touch-action: manipulation;
+	}
+
+	.ss-dialog-demo__dialog {
+		max-width: min(420px, calc(100% - 2rem));
+		border: 2px solid var(--border);
+		padding: 1.2rem;
+		background: var(--bg-light);
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.08),
+			0 16px 40px hsl(0deg 0% 0% / 0.18);
+		opacity: 0;
+		transform: translateY(18px) scale(0.98);
+		transition:
+			opacity 0.26s ease,
+			transform 0.26s ease,
+			overlay 0.26s allow-discrete,
+			display 0.26s allow-discrete;
+	}
+
+	.ss-dialog-demo__dialog[open] {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+
+		@starting-style {
+			opacity: 0;
+			transform: translateY(18px) scale(0.98);
+		}
+	}
+
+	.ss-dialog-demo__dialog::backdrop {
+		background: rgb(0 0 0 / 0);
+		transition:
+			background-color 0.26s ease,
+			overlay 0.26s allow-discrete,
+			display 0.26s allow-discrete;
+	}
+
+	.ss-dialog-demo__dialog[open]::backdrop {
+		background: rgb(0 0 0 / 0.35);
+	}
+
+	@starting-style {
+		.ss-dialog-demo__dialog[open]::backdrop {
+			background: rgb(0 0 0 / 0);
+		}
+	}
+
+	.ss-dialog-demo__dialog h3 {
+		margin: 0 0 0.6rem;
+	}
+
+	.ss-dialog-demo__dialog p {
+		margin: 0 0 1rem;
+	}
+
+	.ss-dialog-demo__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.7rem;
+		flex-wrap: wrap;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ss-dialog-demo__dialog,
+		.ss-dialog-demo__dialog::backdrop {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

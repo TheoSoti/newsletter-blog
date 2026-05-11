@@ -1,0 +1,149 @@
+<main class="ss-compare" aria-label="Comparison of entry transitions with and without starting-style">
+	<section class="ss-card ss-card--without">
+		<div class="ss-card__header">
+			<p class="ss-card__eyebrow">Without @starting-style</p>
+			<button type="button" class="button ss-card__button">Show notification</button>
+		</div>
+
+		<div class="ss-card__viewport">
+			<div class="ss-card__toast" role="status" aria-live="polite">
+				<strong>Notification sent</strong>
+				<span>Your preferences were saved.</span>
+			</div>
+		</div>
+	</section>
+
+	<section class="ss-card ss-card--with">
+		<div class="ss-card__header">
+			<p class="ss-card__eyebrow">With @starting-style</p>
+			<button type="button" class="button ss-card__button">Show notification</button>
+		</div>
+
+		<div class="ss-card__viewport">
+			<div class="ss-card__toast" role="status" aria-live="polite">
+				<strong>Notification sent</strong>
+				<span>Your preferences were saved.</span>
+			</div>
+		</div>
+	</section>
+</main>
+
+<script is:inline>
+	document.querySelectorAll('.ss-card').forEach((card) => {
+		const button = card.querySelector('.ss-card__button');
+		const toast = card.querySelector('.ss-card__toast');
+
+		const syncLabel = () => {
+			const isOpen = toast.classList.contains('is-open');
+			button.textContent = isOpen ? 'Hide notification' : 'Show notification';
+			button.setAttribute('aria-expanded', String(isOpen));
+		};
+
+		button.addEventListener('click', () => {
+			toast.classList.toggle('is-open');
+			syncLabel();
+		});
+
+		syncLabel();
+	});
+</script>
+
+<style>
+	.ss-compare {
+		display: grid;
+		gap: 1rem;
+		background: var(--bg-light);
+	}
+
+	.ss-card {
+		display: grid;
+		gap: 0.9rem;
+		background: var(--bg-light);
+	}
+
+	.ss-card__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.ss-card__eyebrow {
+		margin: 0;
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
+
+	.ss-card__button {
+		padding: 0.55rem 0.9rem;
+		font: inherit;
+		touch-action: manipulation;
+	}
+
+	.ss-card__viewport {
+		position: relative;
+		min-height: 170px;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background: var(--example);
+		overflow: hidden;
+	}
+
+	.ss-card__toast {
+		display: none;
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+		padding: 0.9rem 1rem;
+		border: 2px solid var(--border);
+		background: var(--bg-light);
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.08),
+			0 8px 24px hsl(0deg 0% 0% / 0.12);
+		opacity: 0;
+		transform: translateY(14px);
+		transition:
+			opacity 0.28s ease,
+			transform 0.28s ease,
+			display 0.28s allow-discrete;
+	}
+
+	.ss-card__toast strong,
+	.ss-card__toast span {
+		display: block;
+	}
+
+	.ss-card__toast span {
+		font-size: 0.92rem;
+		margin-top: 0.15rem;
+	}
+
+	.ss-card__toast.is-open {
+		display: block;
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.ss-card--with .ss-card__toast.is-open {
+		@starting-style {
+			display: block;
+			opacity: 0;
+			transform: translateY(14px);
+		}
+	}
+
+	@media (min-width: 760px) {
+		.ss-compare {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ss-card__toast {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>
