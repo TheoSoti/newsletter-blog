@@ -16,7 +16,6 @@
 
 	.pricing__description {
 		text-align: center;
-		background-color: var(--yellow);
 		color: var(--text);
 		font-weight: bold;
 		padding: var(--pad-4-8) var(--pad-12-16);
