@@ -1,0 +1,83 @@
+---
+title: 'Build an animated perspective grid in pure CSS.'
+description: 'Layer two linear gradients, tilt with a 3D perspective transform, fade with a mask, and animate the background position. No JS, no images, just CSS.'
+tags:
+  - CSS
+  - modern CSS
+  - experimental CSS
+  - CSS tip
+pubDate: 'May 26 2026'
+heroImage: '/short/05-2026/moving-grid.mp4'
+---
+
+<video controls class="video">
+	<source src="/short/05-2026/moving-grid.mp4" type="video/mp4" />
+</video>
+
+## You can create an animated perspective grid in CSS.
+
+Here’s the idea:
+
+First, draw the grid with 2 linear gradients.
+
+One for the horizontal lines.
+One for the vertical ones.
+
+```css
+.el {
+	background-image: linear-gradient(white 2px, transparent 2px), linear-gradient(90deg, white 2px, transparent 2px);
+	background-size: 50px 50px;
+}
+```
+
+That gives you a simple square grid.
+
+Then tilt it in 3D:
+
+transform: perspective(900px) rotateX(50deg);
+transform-origin: center;
+
+Now it starts to look like a floor.
+
+To make it fade naturally into the distance,
+add a mask:
+
+```css
+.el {
+	mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0), rgb(0 0 0 / 0.3));
+	-webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0), rgb(0 0 0 / 0.3));
+}
+```
+
+And finally, animate the background position:
+
+```css
+@keyframes moveGrid {
+	from {
+		background-position: center 0;
+	}
+	to {
+		background-position: center 100px;
+	}
+}
+```
+
+That’s what creates the movement.
+
+The lines themselves do not move as elements.
+You just shift the background pattern.
+
+So the full effect is:
+
+- 2 gradients for the grid
+- a perspective transform for depth
+- a mask for atmosphere
+- and a background animation for motion
+
+A nice example of how far simple layers can go.
+
+---
+
+If you liked this tip, you might enjoy my guide "You don't need JavaScript", which is packed with similar insights to help you build better websites without relying on JavaScript.
+
+Go check it out https://theosoti.com/you-dont-need-js/ and enjoy 20% OFF for a limited time!
