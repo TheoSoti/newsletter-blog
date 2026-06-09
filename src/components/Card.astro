@@ -1,11 +1,12 @@
 ---
-const { post, width, height, type } = Astro.props;
+const { post, width, height } = Astro.props;
 import FormattedDate from './FormattedDate.astro';
 import { Picture } from 'astro:assets';
+import { getContentSlug } from '../utils/contentSlug';
 ---
 
 <li class="card">
-	<a href={`/blog/${post.slug}/`}>
+	<a href={`/blog/${getContentSlug(post.id)}/`}>
 		{post.data.heroImage && <Picture width={width} height={height} src={post.data.heroImage} alt="" />}
 		<h3 class="title">{post.data.title}</h3>
 

@@ -19,12 +19,12 @@ const breadcrumbs = [
   { name: title, url: `${siteUrl}/short/${shortSlug}/` },
 ];
 const posts = (await getCollection('short'))
-  .filter((post) => getShortSlug(post.slug) !== shortSlug)
+  .filter((post) => getShortSlug(post.id) !== shortSlug)
   .sort((a, b) => {
     // Randomize the order of related posts based on the first character of the slug
     const seed = shortSlug.charCodeAt(0);
-    const aScore = getShortSlug(a.slug).charCodeAt(0) ^ seed;
-    const bScore = getShortSlug(b.slug).charCodeAt(0) ^ seed;
+    const aScore = getShortSlug(a.id).charCodeAt(0) ^ seed;
+    const bScore = getShortSlug(b.id).charCodeAt(0) ^ seed;
     return aScore - bScore;
   })
   .slice(0, 6);

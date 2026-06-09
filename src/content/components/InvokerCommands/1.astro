@@ -1,0 +1,159 @@
+<section class="invoker-demo" aria-label="Invoker commands demo">
+	<div class="invoker-demo__panel">
+		<p class="invoker-demo__title">Dialog</p>
+		<button type="button" class="button invoker-demo__button" command="show-modal" commandfor="confirm-delete">
+			Open dialog
+		</button>
+
+		<dialog id="confirm-delete" class="invoker-demo__dialog" aria-labelledby="confirm-delete-title">
+			<p id="confirm-delete-title" class="invoker-demo__dialog-title">Dialog</p>
+			<p>Opened with HTML.</p>
+			<div class="invoker-demo__actions">
+				<button type="button" class="button" command="close" commandfor="confirm-delete">Close</button>
+			</div>
+		</dialog>
+	</div>
+
+	<div class="invoker-demo__panel">
+		<p class="invoker-demo__title">Popover</p>
+		<button
+			type="button"
+			class="button invoker-demo__button invoker-demo__button--popover"
+			command="toggle-popover"
+			commandfor="profile-menu"
+		>
+			Open popover
+		</button>
+
+		<div id="profile-menu" class="invoker-demo__popover" popover>
+			<p>Opened with HTML.</p>
+			<button type="button" class="button" command="hide-popover" commandfor="profile-menu">Close</button>
+		</div>
+	</div>
+</section>
+
+<style>
+	.invoker-demo {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+		padding: 1rem;
+		background: var(--bg-light);
+	}
+
+	.invoker-demo__panel {
+		min-height: 190px;
+		border: 2px solid var(--border);
+		padding: 1rem;
+		background: var(--bg);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.7rem;
+	}
+
+	.invoker-demo p {
+		margin: 0;
+	}
+
+	.invoker-demo__title,
+	.invoker-demo__dialog-title {
+		font-size: 1.2rem;
+		font-weight: 700;
+		letter-spacing: 0;
+	}
+
+	.invoker-demo .button {
+		font: inherit;
+		padding: 0.58rem 0.85rem;
+		touch-action: manipulation;
+	}
+
+	.invoker-demo__button {
+		margin-top: auto;
+	}
+
+	.invoker-demo__button--popover {
+		anchor-name: --profile-menu-button;
+	}
+
+	.invoker-demo__dialog {
+		max-width: min(420px, calc(100% - 2rem));
+		border: 2px solid var(--border);
+		padding: 1.2rem;
+		background: var(--bg-light);
+		color: inherit;
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.08),
+			0 14px 40px hsl(0deg 0% 0% / 0.2);
+		opacity: 0;
+		transform: translateY(14px) scale(0.98);
+		transition:
+			opacity 0.22s ease,
+			transform 0.22s ease,
+			display 0.22s allow-discrete,
+			overlay 0.22s allow-discrete;
+	}
+
+	.invoker-demo__dialog[open] {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+
+		@starting-style {
+			opacity: 0;
+			transform: translateY(14px) scale(0.98);
+		}
+	}
+
+	.invoker-demo__dialog::backdrop {
+		background: rgb(0 0 0 / 0.38);
+	}
+
+	.invoker-demo__dialog p {
+		margin: 0 0 0.8rem;
+	}
+
+	.invoker-demo__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		justify-content: flex-end;
+	}
+
+	.invoker-demo__popover {
+		position: fixed;
+		inset: auto;
+		top: anchor(bottom);
+		left: anchor(left);
+		position-anchor: --profile-menu-button;
+		margin-top: 0.7rem;
+		border: 2px solid var(--border);
+		padding: 0.8rem;
+		background: var(--bg-light);
+		box-shadow:
+			0 1px 1px hsl(0deg 0% 0% / 0.08),
+			0 12px 30px hsl(0deg 0% 0% / 0.18);
+	}
+
+	.invoker-demo__popover:popover-open {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.invoker-demo__popover p {
+		margin: 0;
+	}
+
+	@media (max-width: 720px) {
+		.invoker-demo {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.invoker-demo__dialog {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

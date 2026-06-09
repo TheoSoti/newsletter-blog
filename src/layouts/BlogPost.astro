@@ -9,6 +9,7 @@ import BreadcrumbList from '../components/microdatas/BreadcrumbList.astro';
 import { getCollection } from 'astro:content';
 import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
+import { getContentSlug } from '../utils/contentSlug';
 
 const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug, body, tags = [] } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
@@ -18,12 +19,12 @@ const breadcrumbs = [
   { name: title, url: `${siteUrl}/blog/${slug}/` },
 ];
 const posts = (await getCollection('blog'))
-  .filter((post) => post.slug !== slug)
+  .filter((post) => getContentSlug(post.id) !== slug)
   .sort((a, b) => {
     // Randomize the order of related posts based on the first character of the slug
     const seed = slug.charCodeAt(0);
-    const aScore = a.slug.charCodeAt(0) ^ seed;
-    const bScore = b.slug.charCodeAt(0) ^ seed;
+    const aScore = getContentSlug(a.id).charCodeAt(0) ^ seed;
+    const bScore = getContentSlug(b.id).charCodeAt(0) ^ seed;
     return aScore - bScore;
   })
   .slice(0, 3);

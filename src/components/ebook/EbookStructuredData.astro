@@ -5,6 +5,47 @@ const pageUrl = new URL('/you-dont-need-js/', Astro.site).href;
 const imageUrl = new URL('/ebook.png', Astro.site).href;
 const authorUrl = new URL('/', Astro.site).href;
 
+const shippingDetails = {
+	'@type': 'OfferShippingDetails',
+	shippingRate: {
+		'@type': 'MonetaryAmount',
+		value: '0',
+		currency: 'USD',
+	},
+	shippingDestination: {
+		'@type': 'DefinedRegion',
+		geoMidpoint: {
+			'@type': 'GeoCoordinates',
+			latitude: 0,
+			longitude: 0,
+		},
+	},
+	deliveryTime: {
+		'@type': 'ShippingDeliveryTime',
+		handlingTime: {
+			'@type': 'QuantitativeValue',
+			minValue: 0,
+			maxValue: 0,
+			unitCode: 'DAY',
+		},
+		transitTime: {
+			'@type': 'QuantitativeValue',
+			minValue: 0,
+			maxValue: 0,
+			unitCode: 'DAY',
+		},
+	},
+};
+
+const merchantReturnPolicy = {
+	'@type': 'MerchantReturnPolicy',
+	applicableCountry: ['US', 'GB', 'FR', 'DE', 'CA', 'AU'],
+	returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+	merchantReturnDays: 30,
+	returnMethod: 'https://schema.org/ReturnByMail',
+	returnFees: 'https://schema.org/FreeReturn',
+};
+
 const offers = [
 	{
 		'@type': 'Offer',
@@ -20,6 +61,8 @@ const offers = [
 			name: 'Theo Soti',
 			url: authorUrl,
 		},
+		shippingDetails,
+		hasMerchantReturnPolicy: merchantReturnPolicy,
 	},
 	{
 		'@type': 'Offer',
@@ -36,8 +79,71 @@ const offers = [
 			name: 'Theo Soti',
 			url: authorUrl,
 		},
+		shippingDetails,
+		hasMerchantReturnPolicy: merchantReturnPolicy,
 	},
 ];
+
+const reviews = [
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Utsav Meena' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on accessibility, troubleshooting, and browser compatibility. Hopefully, this will help people appreciate CSS a bit more.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Lionel Péramo' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'Theo brilliantly shows how modern CSS can replace complex JavaScript without losing creativity or functionality. The examples are clear, practical, and inspiring. A refreshing reminder that the simplest tools often create the best results. A must-read for any developer.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Pierre Liegard' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'This book offers a welcome reminder of the latest CSS developments at a time when performance matters more than ever.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Cedric Molla' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made me want to revisit old projects and try a lighter, CSS-first approach.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Virgile Gouala' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'You Don’t Need JavaScript introduced me to the “Rule of Least Power”, a principle that is both simple and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological, thoughtful, and handcrafted approach to development, reminding us that elegance and impact often arise from simplicity.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Paul Wright' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second chapter. You Don’t Need JavaScript is a breath of fresh air packed with “wait… CSS can do that?!” moments. Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t always need a mountain of JS.',
+	},
+	{
+		'@type': 'Review',
+		author: { '@type': 'Person', name: 'Thomas Palef' },
+		reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+		reviewBody:
+			'I thought I knew CSS, but I was wrong... this book taught me new CSS properties at almost every page!',
+	},
+];
+
+const aggregateRating = {
+	'@type': 'AggregateRating',
+	ratingValue: '5',
+	bestRating: '5',
+	worstRating: '1',
+	reviewCount: reviews.length,
+	ratingCount: reviews.length,
+};
 
 const structuredData = {
 	'@context': 'https://schema.org',
@@ -72,6 +178,8 @@ const structuredData = {
 			category: 'Frontend development ebook',
 			keywords: ['CSS', 'HTML', 'frontend development', 'web development', 'JavaScript alternatives'],
 			offers,
+			review: reviews,
+			aggregateRating,
 		},
 		{
 			'@type': 'FAQPage',

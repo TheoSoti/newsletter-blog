@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { SITE_NAME, SITE_DESCRIPTION } from '../consts';
+import { getContentSlug } from '../utils/contentSlug';
 import { getShortSlug } from '../utils/shortSlug';
 
 // Strip MDX-specific syntax that won't make sense as plain markdown:
@@ -64,11 +65,11 @@ ${stripMdx(body)}
 			renderPost(
 				post.data.title,
 				post.data.description,
-				`${baseUrl}/blog/${post.slug}/`,
+				`${baseUrl}/blog/${getContentSlug(post.id)}/`,
 				post.data.pubDate,
 				post.data.updatedDate,
 				post.data.tags,
-				post.body
+				post.body ?? ''
 			)
 		)
 		.join('\n---\n\n');
@@ -78,11 +79,11 @@ ${stripMdx(body)}
 			renderPost(
 				post.data.title,
 				post.data.description,
-				`${baseUrl}/short/${getShortSlug(post.slug)}/`,
+				`${baseUrl}/short/${getShortSlug(post.id)}/`,
 				post.data.pubDate,
 				post.data.updatedDate,
 				post.data.tags,
-				post.body
+				post.body ?? ''
 			)
 		)
 		.join('\n---\n\n');

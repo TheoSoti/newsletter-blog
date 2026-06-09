@@ -14,7 +14,7 @@ const stripMdx = (body: string): string => {
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getCollection('short');
 	return posts.map((post) => ({
-		params: { slug: getShortSlug(post.slug) },
+		params: { slug: getShortSlug(post.id) },
 		props: { post },
 	}));
 };
@@ -25,7 +25,7 @@ export const GET: APIRoute = ({ props, site }) => {
 	const { post } = props as Props;
 	const { title, description, pubDate, updatedDate, tags } = post.data;
 	const baseUrl = site ? site.toString().replace(/\/$/, '') : '';
-	const canonical = `${baseUrl}/short/${getShortSlug(post.slug)}/`;
+	const canonical = `${baseUrl}/short/${getShortSlug(post.id)}/`;
 	const tagsLine = tags.length > 0 ? `Tags: ${tags.join(', ')}\n` : '';
 
 	const dateLine = updatedDate
@@ -41,7 +41,7 @@ ${tagsLine}
 
 > ${description}
 
-${stripMdx(post.body)}
+${stripMdx(post.body ?? '')}
 `;
 
 	return new Response(md, {

@@ -1,15 +1,9 @@
 ---
-import type { InferEntrySchema, Render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getContentSlug } from '../../utils/contentSlug';
 import { getShortSlug } from '../../utils/shortSlug';
 
-type Post = {
-	id: string;
-	slug: string;
-	body: string;
-	collection: 'blog' | 'short';
-	data: InferEntrySchema<'blog'> | InferEntrySchema<'short'>;
-	render(): Render['.md'];
-};
+type Post = CollectionEntry<'blog'> | CollectionEntry<'short'>;
 
 type Props = {
 	posts: Post[];
@@ -18,7 +12,7 @@ type Props = {
 
 const { posts, type } = Astro.props as Props;
 
-const getPostSlug = (post: Post) => (type === 'short' ? getShortSlug(post.slug) : post.slug);
+const getPostSlug = (post: Post) => (type === 'short' ? getShortSlug(post.id) : getContentSlug(post.id));
 const listName = type === 'blog' ? 'Blog Articles' : 'Short Articles';
 const itemListOrder = 'https://schema.org/ItemListOrderDescending';
 

@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { SITE_NAME, SITE_DESCRIPTION } from '../consts';
+import { getContentSlug } from '../utils/contentSlug';
 import { getShortSlug } from '../utils/shortSlug';
 
 export const GET: APIRoute = async ({ site }) => {
@@ -20,14 +21,14 @@ export const GET: APIRoute = async ({ site }) => {
 	const blogList = blogPosts
 		.map(
 			(post) =>
-				`- [${post.data.title}](${baseUrl}/blog/${post.slug}/): ${post.data.description}`
+				`- [${post.data.title}](${baseUrl}/blog/${getContentSlug(post.id)}/): ${post.data.description}`
 		)
 		.join('\n');
 
 	const shortList = shortPosts
 		.map(
 			(post) =>
-				`- [${post.data.title}](${baseUrl}/short/${getShortSlug(post.slug)}/): ${post.data.description}`
+				`- [${post.data.title}](${baseUrl}/short/${getShortSlug(post.id)}/): ${post.data.description}`
 		)
 		.join('\n');
 

@@ -3,7 +3,7 @@ import FormattedDate from './FormattedDate.astro';
 import { getShortSlug } from '../utils/shortSlug';
 
 const { post } = Astro.props;
-const shortSlug = getShortSlug(post.slug);
+const shortSlug = getShortSlug(post.id);
 ---
 
 <li class="card">

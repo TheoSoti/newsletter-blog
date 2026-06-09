@@ -7,6 +7,9 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://theosoti.com',
+  legacy: {
+    collectionsBackwardsCompat: true,
+  },
   integrations: [
     mdx(),
     sitemap({
@@ -41,8 +44,6 @@ export default defineConfig({
         return item;
       },
     }),
-    react({
-      include: ['**/react/*'],
-    }),
+    react(),
   ],
 });

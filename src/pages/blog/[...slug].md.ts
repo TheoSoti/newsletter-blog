@@ -1,5 +1,6 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getContentSlug } from '../../utils/contentSlug';
 
 // Strip MDX-only syntax (imports + JSX tags) so output is portable markdown.
 const stripMdx = (body: string): string => {
@@ -14,7 +15,7 @@ const stripMdx = (body: string): string => {
 export const getStaticPaths: GetStaticPaths = async () => {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.slug },
+		params: { slug: getContentSlug(post.id) },
 		props: { post },
 	}));
 };
@@ -25,7 +26,7 @@ export const GET: APIRoute = ({ props, site }) => {
 	const { post } = props as Props;
 	const { title, description, pubDate, updatedDate, tags } = post.data;
 	const baseUrl = site ? site.toString().replace(/\/$/, '') : '';
-	const canonical = `${baseUrl}/blog/${post.slug}/`;
+	const canonical = `${baseUrl}/blog/${getContentSlug(post.id)}/`;
 	const tagsLine = tags.length > 0 ? `Tags: ${tags.join(', ')}\n` : '';
 
 	const dateLine = updatedDate
@@ -41,7 +42,7 @@ ${tagsLine}
 
 > ${description}
 
-${stripMdx(post.body)}
+${stripMdx(post.body ?? '')}
 `;
 
 	return new Response(md, {
