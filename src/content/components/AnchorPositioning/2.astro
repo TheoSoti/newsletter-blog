@@ -1,0 +1,205 @@
+<section class="anchor-area-lab" data-anchor-area-lab aria-label="Interactive position-area demo">
+	<div class="anchor-area-lab__stage">
+		<div class="anchor-area-lab__grid">
+			<span>top left</span>
+			<span>top</span>
+			<span>top right</span>
+			<span>left</span>
+			<div class="anchor-area-lab__anchor">anchor</div>
+			<span>right</span>
+			<span>bottom left</span>
+			<span>bottom</span>
+			<span>bottom right</span>
+		</div>
+		<div class="anchor-area-lab__target">popover</div>
+
+		<div class="anchor-area-lab__controls" aria-label="Choose position-area value">
+			<button type="button" data-area="top left">top left</button>
+			<button type="button" data-area="top" class="is-active">top</button>
+			<button type="button" data-area="top right">top right</button>
+			<button type="button" data-area="left">left</button>
+			<button type="button" data-area="right">right</button>
+			<button type="button" data-area="bottom left">bottom left</button>
+			<button type="button" data-area="bottom">bottom</button>
+			<button type="button" data-area="bottom right">bottom right</button>
+		</div>
+	</div>
+
+	<pre class="anchor-area-lab__code" aria-live="polite"><code>.popover &#123;
+  position-area: top;
+&#125;</code></pre>
+</section>
+
+<script is:inline>
+	document.querySelectorAll('[data-anchor-area-lab]').forEach((demo) => {
+		const target = demo.querySelector('.anchor-area-lab__target');
+		const code = demo.querySelector('.anchor-area-lab__code code');
+		const controls = demo.querySelectorAll('.anchor-area-lab__controls button');
+		const highlightCss = (value) => {
+			const escapeHtml = (text) =>
+				text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+			const highlightValue = (text) =>
+				escapeHtml(text)
+					.replace(/\b(top|right|bottom|left|center)\b/g, '<span class="token-keyword">$1</span>');
+
+			return value
+				.split('\n')
+				.map((line) => {
+					const selector = line.match(/^(\s*)([.#][\w-]+)(\s*\{)$/);
+					if (selector) {
+						return `${selector[1]}<span class="token-selector">${selector[2]}</span>${selector[3]}`;
+					}
+
+					const declaration = line.match(/^(\s*)([\w-]+):\s*(.*);$/);
+					if (declaration) {
+						return `${declaration[1]}<span class="token-property">${declaration[2]}</span>: ${highlightValue(
+							declaration[3],
+						)};`;
+					}
+
+					return escapeHtml(line);
+				})
+				.join('\n');
+		};
+
+		const applyArea = (control) => {
+			const area = control.dataset.area;
+			target.style.setProperty('--area-value', area);
+			code.innerHTML = highlightCss(`.popover {
+  position-area: ${area};
+}`);
+
+			controls.forEach((item) => item.classList.toggle('is-active', item === control));
+		};
+
+		controls.forEach((control) => {
+			control.addEventListener('click', () => applyArea(control));
+		});
+
+		applyArea(demo.querySelector('.anchor-area-lab__controls button.is-active'));
+	});
+</script>
+
+<style>
+	.anchor-area-lab {
+		display: grid;
+		gap: 0.75rem;
+		padding: 0.75rem;
+		background: var(--bg-light);
+	}
+
+	.anchor-area-lab__stage {
+		min-height: 350px;
+		border: 2px solid color-mix(in srgb, deeppink 70%, transparent);
+		background: var(--bg);
+		position: relative;
+		display: grid;
+		place-items: center;
+		padding: 1rem 1rem 3.4rem;
+		overflow: clip;
+	}
+
+	.anchor-area-lab__grid {
+		width: min(250px, 100%);
+		aspect-ratio: 1;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+		border: 2px solid color-mix(in srgb, deeppink 72%, var(--border));
+		background: var(--bg-light);
+		transform: translateY(-1rem);
+	}
+
+	.anchor-area-lab__grid > * {
+		border: 1px solid rgb(0 0 0 / 0.24);
+		display: grid;
+		place-items: center;
+		text-align: center;
+		font-size: 0.68rem;
+		padding: 0.25rem;
+	}
+
+	.anchor-area-lab__anchor {
+		anchor-name: --area-anchor;
+		background: hsl(150, 40%, 35%);
+		color: white;
+		font-weight: 700;
+	}
+
+	.anchor-area-lab__target {
+		position: absolute;
+		position-anchor: --area-anchor;
+		position-area: var(--area-value, top);
+		margin: 0.45rem;
+		border: 2px solid color-mix(in srgb, deeppink 78%, var(--border));
+		background: color-mix(in srgb, deeppink 12%, white);
+		padding: 0.48rem 0.65rem;
+		font-weight: 700;
+		box-shadow: 0 8px 22px rgb(255 20 147 / 0.18);
+	}
+
+	.anchor-area-lab__controls {
+		position: absolute;
+		left: 50%;
+		bottom: 0.75rem;
+		translate: -50% 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.35rem;
+		width: min(92%, 560px);
+	}
+
+	.anchor-area-lab__controls button {
+		border: 1px solid rgb(23 23 23 / 0.28);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.72);
+		color: inherit;
+		font: inherit;
+		font-size: 0.68rem;
+		line-height: 1;
+		padding: 0.32rem 0.52rem;
+		cursor: pointer;
+	}
+
+	.anchor-area-lab__controls button.is-active {
+		border-color: transparent;
+		background: color-mix(in srgb, deeppink 72%, var(--text));
+		color: white;
+	}
+
+	.anchor-area-lab__code {
+		margin: 0;
+		border: 1px solid rgb(240 246 252 / 0.16);
+		background: #0d1117;
+		color: #c9d1d9;
+		border-radius: 8px;
+		padding: 0.75rem;
+		overflow: auto;
+		font-size: 0.78rem;
+		white-space: pre;
+	}
+
+	.anchor-area-lab__code code {
+		color: inherit;
+	}
+
+	.anchor-area-lab__code :global(.token-selector) {
+		color: #7ee787;
+	}
+
+	.anchor-area-lab__code :global(.token-property) {
+		color: #79c0ff;
+	}
+
+	.anchor-area-lab__code :global(.token-keyword) {
+		color: #ff7b72;
+	}
+
+	@supports not (anchor-name: --area-anchor) {
+		.anchor-area-lab__target {
+			position: static;
+			margin-top: 1rem;
+		}
+	}
+</style>

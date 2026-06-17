@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" aria-hidden="true">
+	<rect width="1200" height="630" fill="hsl(32, 100%, 97%)" />
+
+	<rect x="265" y="390" width="310" height="150" fill="hsl(0, 0%, 100%)" stroke="hsl(0, 0%, 9%)" stroke-width="10" />
+
+	<rect x="590" y="110" width="450" height="235" fill="hsl(0, 0%, 100%)" stroke="hsl(150, 40%, 35%)" stroke-width="10" />
+	<path d="M650 345L725 345L575 390Z" fill="hsl(0, 0%, 100%)" stroke="hsl(150, 40%, 35%)" stroke-width="10" stroke-linejoin="miter" />
+	<rect x="620" y="145" width="220" height="30" fill="hsl(150, 40%, 35%)" opacity="0.22" />
+	<rect x="620" y="200" width="335" height="26" fill="hsl(150, 40%, 35%)" opacity="0.14" />
+	<rect x="620" y="250" width="280" height="26" fill="hsl(150, 40%, 35%)" opacity="0.14" />
+
+	<circle cx="575" cy="390" r="18" fill="hsl(50, 100%, 64%)" stroke="hsl(0, 0%, 9%)" stroke-width="7" />
+</svg>

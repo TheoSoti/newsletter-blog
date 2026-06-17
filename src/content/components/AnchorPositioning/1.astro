@@ -1,0 +1,291 @@
+<section class="anchor-edge-lab" data-anchor-edge-lab aria-label="Interactive anchor function demo">
+	<div class="anchor-edge-lab__scene">
+		<span class="anchor-edge-lab__anchor">Anchor</span>
+		<div class="anchor-edge-lab__target">
+			<span class="anchor-edge-lab__target-label">Tooltip</span>
+			<span class="anchor-edge-lab__target-note">Positioned from anchor edges</span>
+		</div>
+
+		<div class="anchor-edge-lab__controls" aria-label="Choose how the tooltip is positioned">
+			<button type="button" class="anchor-edge-lab__control is-active" data-preset="bottom-left">
+				Below left
+			</button>
+			<button type="button" class="anchor-edge-lab__control" data-preset="bottom-center">
+				Below center
+			</button>
+			<button type="button" class="anchor-edge-lab__control" data-preset="top-center">
+				Above
+			</button>
+			<button type="button" class="anchor-edge-lab__control" data-preset="right-top">
+				Right
+			</button>
+		</div>
+	</div>
+
+	<pre class="anchor-edge-lab__code" aria-live="polite"><code>.tooltip &#123;
+  top: calc(anchor(bottom) + 12px);
+  left: anchor(left);
+&#125;</code></pre>
+</section>
+
+<script is:inline>
+	document.querySelectorAll('[data-anchor-edge-lab]').forEach((demo) => {
+		const target = demo.querySelector('.anchor-edge-lab__target');
+		const code = demo.querySelector('.anchor-edge-lab__code code');
+		const controls = demo.querySelectorAll('.anchor-edge-lab__control');
+		const highlightCss = (value) => {
+			const escapeHtml = (text) =>
+				text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+			const highlightValue = (text) =>
+				escapeHtml(text)
+					.replace(/\b(calc|anchor|var)\b/g, '<span class="token-function">$1</span>')
+					.replace(/\b(auto|top|right|bottom|left|center)\b/g, '<span class="token-keyword">$1</span>')
+					.replace(/(-?\d+(?:\.\d+)?(?:px|rem|%)?)/g, '<span class="token-number">$1</span>');
+
+			return value
+				.split('\n')
+				.map((line) => {
+					const selector = line.match(/^(\s*)([.#][\w-]+)(\s*\{)$/);
+					if (selector) {
+						return `${selector[1]}<span class="token-selector">${selector[2]}</span>${selector[3]}`;
+					}
+
+					const declaration = line.match(/^(\s*)([\w-]+):\s*(.*);$/);
+					if (declaration) {
+						return `${declaration[1]}<span class="token-property">${declaration[2]}</span>: ${highlightValue(
+							declaration[3],
+						)};`;
+					}
+
+					return escapeHtml(line);
+				})
+				.join('\n');
+		};
+
+		const presets = {
+			'bottom-left': {
+				top: 'calc(anchor(bottom) + 12px)',
+				right: 'auto',
+				bottom: 'auto',
+				left: 'anchor(left)',
+				translate: '0 0',
+				code: `.tooltip {
+  top: calc(anchor(bottom) + 12px);
+  left: anchor(left);
+}`,
+			},
+			'bottom-center': {
+				top: 'calc(anchor(bottom) + 12px)',
+				right: 'auto',
+				bottom: 'auto',
+				left: 'anchor(center)',
+				translate: '-50% 0',
+				code: `.tooltip {
+  top: calc(anchor(bottom) + 12px);
+  left: anchor(center);
+  translate: -50% 0;
+}`,
+			},
+			'top-center': {
+				top: 'auto',
+				right: 'auto',
+				bottom: 'calc(anchor(top) + 20px)',
+				left: 'anchor(center)',
+				translate: '-50% 0',
+				code: `.tooltip {
+  bottom: calc(anchor(top) + 20px);
+  left: anchor(center);
+  translate: -50% 0;
+}`,
+			},
+			'right-top': {
+				top: 'anchor(top)',
+				right: 'auto',
+				bottom: 'auto',
+				left: 'calc(anchor(right) + 14px)',
+				translate: '0 0',
+				code: `.tooltip {
+  top: anchor(top);
+  left: calc(anchor(right) + 14px);
+}`,
+			},
+		};
+
+		const applyPreset = (name) => {
+			const preset = presets[name];
+			target.style.setProperty('--edge-top', preset.top);
+			target.style.setProperty('--edge-right', preset.right);
+			target.style.setProperty('--edge-bottom', preset.bottom);
+			target.style.setProperty('--edge-left', preset.left);
+			target.style.setProperty('--edge-translate', preset.translate);
+			code.innerHTML = highlightCss(preset.code);
+
+			controls.forEach((control) => {
+				control.classList.toggle('is-active', control.dataset.preset === name);
+			});
+		};
+
+		controls.forEach((control) => {
+			control.addEventListener('click', () => applyPreset(control.dataset.preset));
+		});
+
+		applyPreset('bottom-left');
+	});
+</script>
+
+<style>
+	.anchor-edge-lab {
+		display: grid;
+		gap: 0.75rem;
+		padding: 0.75rem;
+		background: var(--bg-light);
+	}
+
+	.anchor-edge-lab__scene {
+		min-height: 330px;
+		border: 2px solid color-mix(in srgb, deeppink 70%, transparent);
+		background:
+			linear-gradient(90deg, rgb(255 20 147 / 0.08) 1px, transparent 1px),
+			linear-gradient(rgb(255 20 147 / 0.08) 1px, transparent 1px),
+			var(--bg);
+		background-size: 28px 28px;
+		position: relative;
+		display: grid;
+		place-items: center;
+		padding: 0.75rem 0.75rem 3.4rem;
+		overflow: clip;
+	}
+
+	.anchor-edge-lab__target span {
+		margin: 0;
+	}
+
+	.anchor-edge-lab__anchor {
+		border: 2px solid var(--border);
+		background: var(--bg);
+		color: var(--text);
+		font: inherit;
+		font-weight: 700;
+		padding: 0.42rem 0.78rem;
+		anchor-name: --edge-anchor;
+		display: inline-block;
+		position: absolute;
+		left: clamp(8rem, 34%, 14rem);
+		top: 38%;
+	}
+
+	.anchor-edge-lab__target {
+		position: absolute;
+		position-anchor: --edge-anchor;
+		inset: auto;
+		top: var(--edge-top, calc(anchor(bottom) + 12px));
+		right: var(--edge-right, auto);
+		bottom: var(--edge-bottom, auto);
+		left: var(--edge-left, anchor(left));
+		translate: var(--edge-translate, 0 0);
+		width: 185px;
+		border: 2px solid color-mix(in srgb, deeppink 78%, var(--border));
+		background: color-mix(in srgb, deeppink 12%, white);
+		box-shadow: 0 8px 22px rgb(255 20 147 / 0.18);
+		padding: 0.6rem;
+		display: grid;
+		gap: 0.25rem;
+	}
+
+	.anchor-edge-lab__target-label {
+		font-weight: 700;
+	}
+
+	.anchor-edge-lab__target-note {
+		font-size: 0.78rem;
+	}
+
+	.anchor-edge-lab__controls {
+		position: absolute;
+		left: 50%;
+		bottom: 0.75rem;
+		translate: -50% 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.35rem;
+		width: min(92%, 430px);
+	}
+
+	.anchor-edge-lab__control {
+		border: 1px solid rgb(23 23 23 / 0.28);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.72);
+		color: inherit;
+		font: inherit;
+		font-size: 0.72rem;
+		line-height: 1;
+		padding: 0.34rem 0.56rem;
+		cursor: pointer;
+	}
+
+	.anchor-edge-lab__control.is-active {
+		border-color: transparent;
+		background: color-mix(in srgb, deeppink 72%, var(--text));
+		color: white;
+	}
+
+	.anchor-edge-lab__code {
+		margin: 0;
+		border: 1px solid rgb(240 246 252 / 0.16);
+		background: #0d1117;
+		color: #c9d1d9;
+		border-radius: 8px;
+		padding: 0.75rem;
+		overflow: auto;
+		font-size: 0.78rem;
+		white-space: pre;
+	}
+
+	.anchor-edge-lab__code code {
+		color: inherit;
+	}
+
+	.anchor-edge-lab__code :global(.token-selector) {
+		color: #7ee787;
+	}
+
+	.anchor-edge-lab__code :global(.token-property) {
+		color: #79c0ff;
+	}
+
+	.anchor-edge-lab__code :global(.token-function) {
+		color: #d2a8ff;
+	}
+
+	.anchor-edge-lab__code :global(.token-keyword) {
+		color: #ff7b72;
+	}
+
+	.anchor-edge-lab__code :global(.token-number) {
+		color: #a5d6ff;
+	}
+
+	@media (max-width: 760px) {
+		.anchor-edge-lab__scene {
+			min-height: 390px;
+		}
+
+		.anchor-edge-lab__anchor {
+			left: 4.25rem;
+			top: 35%;
+		}
+
+		.anchor-edge-lab__target {
+			width: min(170px, 58vw);
+		}
+	}
+
+	@supports not (anchor-name: --edge-anchor) {
+		.anchor-edge-lab__target {
+			position: static;
+			translate: none;
+			margin-top: 1rem;
+		}
+	}
+</style>

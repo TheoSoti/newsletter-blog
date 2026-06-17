@@ -14,32 +14,6 @@
 		padding: 0;
 	}
 
-	.pricing__description {
-		text-align: center;
-		color: var(--text);
-		font-weight: bold;
-		padding: var(--pad-4-8) var(--pad-12-16);
-		border-radius: 0.5rem;
-		font-size: var(--fs-1);
-		margin-bottom: var(--pad-xl);
-		border: 2px solid var(--border);
-		max-width: var(--container-width);
-		width: fit-content;
-		margin-inline: auto;
-	}
-
-	.text-rainbow {
-		background: linear-gradient(to right, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-		background-position: 0% 50%;
-		background-clip: text;
-		-webkit-background-clip: text;
-		text-fill-color: transparent;
-		-webkit-text-fill-color: transparent;
-		color: transparent;
-		background-size: 200% auto;
-		animation: textShine 4s linear infinite;
-	}
-
 	.pricing__title {
 		text-align: center;
 		font-family: 'BebasNeue', sans-serif;
@@ -83,29 +57,6 @@
 		text-align: center;
 		font-size: var(--fs-2);
 		margin: 0;
-	}
-
-	.pricing__item-tag {
-		position: absolute;
-		top: -20px;
-		right: 1em;
-		background-color: var(--yellow);
-		font-weight: bold;
-		color: var(--black);
-		border: 2px solid var(--border);
-		font-size: var(--fs-1);
-		padding: 0 0.5rem;
-		border-radius: 0.5rem;
-	}
-
-	.pricing__item-old-price {
-		color: var(--small-text);
-		font-size: var(--fs-1);
-		text-align: center;
-		margin: 0;
-		line-height: 1;
-		margin-top: 1rem;
-		text-decoration: line-through;
 	}
 
 	.pricing__item-price {
@@ -211,23 +162,6 @@
 	@keyframes spin {
 		to {
 			--angle: 360deg;
-		}
-	}
-
-	@keyframes textShine {
-		0% {
-			background-position: 0% 50%;
-		}
-
-		to {
-			background-position: 200% 50%;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.text-rainbow {
-			animation: none;
-			background-position: 0% 50%;
 		}
 	}
 

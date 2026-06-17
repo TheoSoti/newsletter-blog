@@ -1,0 +1,358 @@
+---
+title: 'CSS Anchor Positioning: Tooltips and Dropdowns Without JavaScript Math'
+description: 'Use CSS Anchor Positioning to attach popovers, tooltips, and dropdowns to a trigger without getBoundingClientRect, scroll listeners, or layout JavaScript.'
+tags:
+  - CSS
+  - modern CSS
+  - JavaScript alternatives
+  - frontend development
+  - CSS layout
+  - accessibility
+pubDate: 'Jun 16 2026'
+heroImage: '/css-anchor-positioning.svg'
+readingTime: '8 min read'
+---
+
+import BuyBook from '../../components/BuyBook.astro';
+import Wrapper from '../components/Wrapper.astro';
+import AnchorEdgeDemo from '../components/AnchorPositioning/1.astro';
+import AnchorAreaDemo from '../components/AnchorPositioning/2.astro';
+import AnchorFallbackDemo from '../components/AnchorPositioning/3.astro';
+
+## Why this matters
+
+Positioning a dropdown should not require a small geometry engine.
+
+You have a button. You have a menu. The menu should open next to the button, keep that relationship when the page scrolls, and avoid falling outside the viewport when there is not enough space. For years, that usually meant JavaScript:
+
+```js
+const button = document.querySelector('.menu-button');
+const menu = document.querySelector('.menu');
+
+const rect = button.getBoundingClientRect();
+
+menu.style.top = `${rect.bottom + 8}px`;
+menu.style.left = `${rect.left}px`;
+```
+
+That first version is simple, then real UI gets involved. The page scrolls. The viewport resizes. The button moves because a parent layout changed. The menu needs to flip above the button near the bottom of the screen. None of that is hard in isolation, but it is a lot of boring code for "put this thing next to that thing".
+
+CSS Anchor Positioning gives CSS the relationship it was missing. One element can become an anchor, and another element can position itself from that anchor. The browser already knows both boxes, so it can do the geometry without a `getBoundingClientRect()` loop.
+
+## The mental model
+
+Anchor positioning has two parts: you name the anchor, then you position another element from it.
+
+```css
+.menu-button {
+	anchor-name: --menu-button;
+}
+
+.menu {
+	position: absolute;
+	position-anchor: --menu-button;
+	position-area: bottom;
+}
+```
+
+The button still lives in the normal layout. The menu is positioned, but it now has a reference point that is not just the viewport or its containing block. It can say "place me around that button".
+
+`position-area` is the friendliest syntax when you want a common placement like `top`, `bottom`, `left`, `right`, or `center`. It reads close to the design decision you would make in a component spec:
+
+```css
+.menu {
+	position-area: bottom;
+}
+```
+
+That is useful, but it is not the whole feature. Anchor positioning is not only `position-area`.
+
+## You can position with anchor()
+
+The `anchor()` function lets you use the edges of the anchor inside inset properties like `top`, `right`, `bottom`, `left`, and their logical equivalents. This gives you more control than `position-area`.
+
+For example, this places the top edge of the menu 12px below the bottom edge of the button:
+
+```css
+.menu-button {
+	anchor-name: --menu-button;
+}
+
+.menu {
+	position: absolute;
+	position-anchor: --menu-button;
+	inset: auto;
+	top: calc(anchor(bottom) + 12px);
+	left: anchor(left);
+}
+```
+
+You can also align the right edge of a dropdown with the right edge of the button:
+
+```css
+.menu {
+	position: absolute;
+	position-anchor: --menu-button;
+	inset: auto;
+	top: calc(anchor(bottom) + 12px);
+	right: anchor(right);
+}
+```
+
+Or you can place something above the trigger:
+
+```css
+.tooltip {
+	position: absolute;
+	position-anchor: --help-button;
+	inset: auto;
+	bottom: calc(anchor(top) + 20px);
+	left: anchor(center);
+	translate: -50% 0;
+}
+```
+
+That last example is the point worth remembering. You are not locked into predefined areas. `anchor()` returns a length, so you can put it inside `calc()` and add spacing, offsets, or alignment tweaks.
+
+MDN's `anchor()` reference shows the same idea with examples like `top: calc(anchor(bottom) + 10px)` and `left: calc(anchor(right) + 10px)`. The important caveat is that `anchor()` works inside inset properties. You use it for positioning edges, not as a general value you can drop anywhere in CSS.
+
+<Wrapper title="Change the anchor edges used by the tooltip">
+	<AnchorEdgeDemo />
+</Wrapper>
+
+## `position-area` vs `anchor()`
+
+I would start with `position-area` when the design is simple. A popover under a button, a callout above an icon, or a small note to the side does not need custom math.
+
+```css
+.popover {
+	position: fixed;
+	position-anchor: --trigger;
+	position-area: bottom;
+	margin: 0.5rem;
+}
+```
+
+Reach for `anchor()` when you need a specific edge relationship:
+
+```css
+.popover {
+	position: fixed;
+	position-anchor: --trigger;
+	inset: auto;
+	top: calc(anchor(bottom) + 8px);
+	right: anchor(right);
+}
+```
+
+Those two approaches can live in the same mental model:
+
+- `position-area` chooses a general zone around the anchor.
+- `anchor()` lets you wire individual inset properties to anchor edges.
+
+That distinction makes the feature much easier to use. You do not have to force everything through one syntax.
+
+<Wrapper title="Click a position-area value and watch the target move">
+	<AnchorAreaDemo />
+</Wrapper>
+
+## Use it with popovers
+
+Anchor positioning is especially nice with the Popover API. Popover handles the opening behavior and the top layer. Anchor positioning handles placement.
+
+```html
+<button type="button" command="toggle-popover" commandfor="profile-menu" class="profile-button">
+	Account
+</button>
+
+<nav id="profile-menu" popover class="profile-menu">
+	<a href="/profile">Profile</a>
+	<a href="/settings">Settings</a>
+	<button type="button" command="hide-popover" commandfor="profile-menu">Close</button>
+</nav>
+```
+
+```css
+.profile-button {
+	anchor-name: --profile-button;
+}
+
+.profile-menu {
+	position: fixed;
+	position-anchor: --profile-button;
+	inset: auto;
+	top: calc(anchor(bottom) + 8px);
+	left: anchor(left);
+}
+```
+
+The HTML opens the popover. The CSS places it. That is a clean split.
+
+When you position popovers this way, reset the browser's default popover positioning first. Popovers come with default `inset` and margin styles, and those can fight your anchor rules.
+
+```css
+.profile-menu {
+	margin: 0;
+	inset: auto;
+}
+```
+
+If you want more detail on the opening part, I wrote about [opening dialogs and popovers with `commandfor`](/blog/html-command-commandfor-without-javascript/). This article is about the placement part.
+
+## Let the browser try another side
+
+The hard part of dropdown positioning is not the happy path. It is what happens near the edge of the viewport.
+
+This is where `position-try-fallbacks` helps. You can tell the browser to try a preferred placement first, then flip if that placement does not fit.
+
+```css
+.profile-menu {
+	position: fixed;
+	position-anchor: --profile-button;
+	position-area: bottom;
+	position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+}
+```
+
+That version says: place the menu below the button, but try another side if there is not enough room. This is not as powerful as a full tooltip library with custom collision rules, but it covers a lot of common UI.
+
+You can also use fallbacks with a more manual `anchor()` setup. Start with a usable default, then enhance where anchor positioning is supported:
+
+```css
+.actions-menu {
+	inset: 50% auto auto 50%;
+	transform: translate(-50%, -50%);
+}
+
+@supports (anchor-name: --actions-menu-trigger) {
+	.actions-menu {
+		position: fixed;
+		position-anchor: --actions-menu-trigger;
+		inset: auto;
+		transform: none;
+		top: calc(anchor(bottom) + 8px);
+		left: anchor(left);
+		position-try-fallbacks: flip-block;
+	}
+}
+```
+
+The fallback is not beautiful, but it is usable. In older browsers, the popover appears in the middle of the viewport. In browsers with anchor positioning, it attaches to the trigger.
+
+<Wrapper title="Move the trigger near an edge and watch the fallback">
+	<AnchorFallbackDemo />
+</Wrapper>
+
+<BuyBook />
+
+## A copyable dropdown pattern
+
+For a small dropdown, I would start from this:
+
+```html
+<button type="button" class="menu-trigger" command="toggle-popover" commandfor="actions-menu">
+	Actions
+</button>
+
+<div id="actions-menu" class="actions-menu" popover>
+	<a href="/edit">Edit</a>
+	<a href="/duplicate">Duplicate</a>
+	<button type="button" command="hide-popover" commandfor="actions-menu">Close</button>
+</div>
+```
+
+```css
+.menu-trigger {
+	anchor-name: --actions-menu-trigger;
+}
+
+.actions-menu {
+	margin: 0;
+	inset: 50% auto auto 50%;
+	transform: translate(-50%, -50%);
+}
+
+@supports (anchor-name: --actions-menu-trigger) {
+	.actions-menu {
+		position: fixed;
+		position-anchor: --actions-menu-trigger;
+		inset: auto;
+		transform: none;
+		top: calc(anchor(bottom) + 0.5rem);
+		right: anchor(right);
+		position-try-fallbacks: flip-block, flip-inline;
+	}
+}
+```
+
+This keeps the fallback simple and makes the enhanced version precise. The menu opens below the button, lines up with the button's right edge, and can flip when space gets tight.
+
+The simpler `position-area` version is still fine when exact edge alignment does not matter:
+
+```css
+@supports (anchor-name: --actions-menu-trigger) {
+	.actions-menu {
+		position: fixed;
+		position-anchor: --actions-menu-trigger;
+		position-area: bottom;
+		margin: 0.5rem;
+		position-try-fallbacks: flip-block, flip-inline;
+	}
+}
+```
+
+I like showing both versions because they solve slightly different problems. `position-area` is quick. `anchor()` is exact.
+
+## Browser support and caveats
+
+Support is much better than it was in early anchor positioning demos. MDN now marks `anchor()` as Baseline 2026, and current support is broad enough to consider it for progressive enhancement. You should still use `@supports`, because not every user is on the latest browser and not every part of the spec lands at the same time.
+
+There are a few details worth testing before shipping:
+
+- `anchor()` is only valid in inset properties like `top`, `left`, `inset-block-start`, and `inset-inline-end`.
+- The anchor side has to match the axis. For example, `top: anchor(bottom)` makes sense, but `top: anchor(left)` does not.
+- Popovers need their default `inset` and margin reset if you want your anchor placement to win.
+- `position-try-fallbacks` handles common flipping, but it is not a complete replacement for every custom collision system.
+
+For current syntax and compatibility, use [MDN's anchor positioning guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning), the [`anchor()` reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/anchor), [Can I Use](https://caniuse.com/css-anchor-positioning), and the [CSS Anchor Positioning specification](https://drafts.csswg.org/css-anchor-position-1/).
+
+## When not to use it
+
+Anchor positioning places things. It does not design the whole interaction.
+
+You still need JavaScript if the menu content depends on app state, if opening the menu fetches data, if you are building a complex keyboard model, or if you need custom collision rules that the browser cannot express yet. You also still need to think about accessibility. A tooltip that only appears on hover is still a weak way to expose important content, even if the placement is now pure CSS.
+
+Use anchor positioning for the layout work. Use HTML for the native behavior where it fits. Keep JavaScript for the parts that are actually application logic.
+
+## The short version
+
+CSS Anchor Positioning gives CSS a real relationship between a trigger and a floating element.
+
+Use `position-area` when you want a quick placement around the anchor:
+
+```css
+.popover {
+	position-anchor: --button;
+	position-area: bottom;
+}
+```
+
+Use `anchor()` when you need exact edges:
+
+```css
+.popover {
+	position-anchor: --button;
+	top: calc(anchor(bottom) + 8px);
+	right: anchor(right);
+}
+```
+
+Add `position-try-fallbacks` when the element might run out of space:
+
+```css
+.popover {
+	position-try-fallbacks: flip-block, flip-inline;
+}
+```
+
+That combination replaces a surprising amount of small layout JavaScript. Not all of it, and not every tooltip library, but definitely the boring part where you measure a button just to put a menu next to it.
