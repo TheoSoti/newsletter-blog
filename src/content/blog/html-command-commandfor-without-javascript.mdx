@@ -197,6 +197,8 @@ The nice part is that the browser still handles the native popover behavior. Aut
 
 If you want a deeper intro to the Popover API, I already wrote about [native HTML popovers](/short/html-popover-api/). This article is about the newer control layer on top.
 
+`commandfor` only handles the action. If the popover also needs to stay attached to its trigger, [CSS Anchor Positioning handles the placement](/blog/css-anchor-positioning-without-javascript/). To animate a dialog or popover as it enters the top layer, you can add an [`@starting-style` entry transition](/blog/starting-style-css/) without changing the HTML that opens it.
+
 <BuyBook />
 
 You do not need to rewrite every popover just because `commandfor` exists.
