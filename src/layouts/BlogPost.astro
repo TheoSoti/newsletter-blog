@@ -11,7 +11,7 @@ import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getContentSlug } from '../utils/contentSlug';
 
-const { title, description, pubDate, updatedDate, heroImage, readingTime, headings, slug, body, tags = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, socialImage, readingTime, headings, slug, body, tags = [] } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const breadcrumbs = [
   { name: 'Home', url: `${siteUrl}/` },
@@ -35,7 +35,11 @@ const posts = (await getCollection('blog'))
     <BaseHead
       title={title}
       description={description}
-      image={heroImage}
+      image={socialImage}
+      imageAlt={title}
+      imageWidth={1200}
+      imageHeight={630}
+      imageType="image/png"
       type="article"
       pubDate={pubDate}
       updatedDate={updatedDate}
@@ -215,7 +219,8 @@ const posts = (await getCollection('blog'))
       </section>
       <Footer />
       <BlogPosting
-        {...{ title, description, pubDate, updatedDate, heroImage, readingTime, body }}
+        {...{ title, description, pubDate, updatedDate, readingTime, body }}
+        heroImage={socialImage}
         type="TechArticle"
         keywords={tags}
       />

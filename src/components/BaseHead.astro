@@ -6,6 +6,10 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	imageAlt?: string;
+	imageWidth?: number;
+	imageHeight?: number;
+	imageType?: string;
 	type?: 'website' | 'article';
 	pubDate?: Date;
 	updatedDate?: Date;
@@ -21,6 +25,10 @@ const {
 	title,
 	description,
 	image = '/sharing.png',
+	imageAlt = title,
+	imageWidth,
+	imageHeight,
+	imageType,
 	type = 'website',
 	pubDate,
 	updatedDate,
@@ -29,6 +37,8 @@ const {
 	mdAlternate,
 	noindex = false,
 } = Astro.props;
+
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!-- Verifications -->
@@ -67,7 +77,12 @@ const {
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:secure_url" content={imageURL} />
+{imageType && <meta property="og:image:type" content={imageType} />}
+{imageWidth && <meta property="og:image:width" content={imageWidth.toString()} />}
+{imageHeight && <meta property="og:image:height" content={imageHeight.toString()} />}
+<meta property="og:image:alt" content={imageAlt} />
 
 {type === 'article' && pubDate && (
 	<meta property="article:published_time" content={pubDate.toISOString()} />
@@ -88,7 +103,8 @@ const {
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={imageURL} />
+<meta property="twitter:image:alt" content={imageAlt} />
 <meta name="twitter:site" content="@theoleff" />
 <meta name="twitter:creator" content="@theoleff" />
 
