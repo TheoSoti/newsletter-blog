@@ -1,0 +1,288 @@
+---
+title: 'CSS if(): Conditional Styling Without JavaScript'
+description: 'Use the CSS if() function to choose property values from style, media, and support queries without writing JavaScript state glue.'
+tags:
+  - CSS
+  - modern CSS
+  - JavaScript alternatives
+  - frontend development
+  - frontend tutorial
+pubDate: 'Jun 23 2026'
+heroImage: '/css-if-function.svg'
+socialImage: '/social/blog/css-if-function-conditional-styling-without-javascript.png'
+readingTime: '7 min read'
+---
+
+import BuyBook from '../../components/BuyBook.astro';
+import Wrapper from '../components/Wrapper.astro';
+import CssIfDemo from '../components/CssIf/1.astro';
+
+## CSS can now choose a value
+
+Most CSS conditions work at the rule level.
+
+If the viewport is narrow, run this block:
+
+```css
+@media (width < 700px) {
+	.card {
+		padding: 1rem;
+	}
+}
+```
+
+If the browser supports a feature, run this block:
+
+```css
+@supports (color: oklch(60% 0.2 30)) {
+	.card {
+		color: oklch(60% 0.2 30);
+	}
+}
+```
+
+That model works well when a whole set of declarations needs to change. It feels heavier when only one value is conditional.
+
+The new CSS `if()` function works inside a property value:
+
+```css
+.card {
+	padding: if(
+		media(width < 700px): 1rem;
+		else: 1.5rem;
+	);
+}
+```
+
+That is the mental model. `if()` does not choose a selector. It does not create a new block in the cascade. It chooses a value for the property you are already writing.
+
+That makes it useful for small branches: one color, one padding value, one part of a border shorthand, one token inside a component.
+
+It is also early. MDN marks `if()` as experimental and not Baseline. Can I Use shows support in Chrome and Edge from version 137, but not Safari or Firefox on June 23, 2026. Treat it as progressive enhancement unless your browser target is Chromium-only.
+
+## The mental model
+
+An `if()` value is a list of branches.
+
+Each branch has a condition, a colon, and the value to use when that condition is true:
+
+```css
+.alert {
+	background: if(
+		style(--tone: danger): oklch(96% 0.04 28);
+		else: white;
+	);
+}
+```
+
+The browser reads the branches from top to bottom. The first true condition wins. If nothing matches, the `else` branch gives you a default.
+
+Write the `else` branch. Without it, a supported browser can end up with an invalid or initial value when no condition matches. That is rarely what you meant.
+
+There is also a tiny syntax detail that matters: there must be no space between `if` and `(`.
+
+```css
+/* valid */
+color: if(media(print): black; else: white);
+
+/* invalid */
+color: if (media(print): black; else: white);
+```
+
+That is annoying, but easy to catch once you know it.
+
+## Start with style queries
+
+The most useful form for components is probably `style()`.
+
+It lets one declaration read a custom property on the same element and choose a value from it.
+
+```css
+.button {
+	--tone: neutral;
+
+	background: if(
+		style(--tone: danger): oklch(60% 0.22 28);
+		style(--tone: success): oklch(62% 0.18 150);
+		else: oklch(92% 0 0);
+	);
+
+	color: if(
+		style(--tone: neutral): black;
+		else: white;
+	);
+}
+```
+
+Then your component can set one custom property:
+
+```css
+.button[data-tone='danger'] {
+	--tone: danger;
+}
+```
+
+The interesting part is that you do not need to repeat the full button rule for every tone. You can keep the decision next to the value that changes.
+
+That is where `if()` feels different from a class-based pattern. Classes still decide what state the component is in. `if()` decides what each value should become for that state.
+
+<Wrapper title="Change the custom properties and let CSS if() choose the values">
+	<CssIfDemo />
+</Wrapper>
+
+The demo uses native radio inputs, `:has()`, custom properties, and `if()`. There is no JavaScript fallback.
+
+<BuyBook />
+
+## Use media queries when one value changes
+
+`if()` can also run a media query inside a value.
+
+```css
+.layout {
+	gap: if(
+		media(width < 700px): 0.75rem;
+		else: 1.5rem;
+	);
+}
+```
+
+This is useful when a single value changes and the rule would otherwise exist only for that one line.
+
+I would not replace every `@media` block with this. If the layout changes several declarations, a normal media query is clearer:
+
+```css
+@media (width < 700px) {
+	.layout {
+		grid-template-columns: 1fr;
+		gap: 0.75rem;
+		padding: 1rem;
+	}
+}
+```
+
+That code is easier to scan because the whole layout mode is in one place.
+
+Use `if(media(...))` when the branch is small. Use `@media` when the branch is the layout.
+
+## Use supports queries for value fallbacks
+
+Feature queries work too.
+
+```css
+.badge {
+	color: if(
+		supports(color: oklch(70% 0.2 30)): oklch(70% 0.2 30);
+		else: hotpink;
+	);
+}
+```
+
+That can be handy when a modern value has a fallback and you want to keep the fallback inside the same declaration.
+
+For unsupported browsers, you still need the normal cascade fallback because old browsers do not understand `if()` at all:
+
+```css
+.badge {
+	color: hotpink;
+	color: if(
+		supports(color: oklch(70% 0.2 30)): oklch(70% 0.2 30);
+		else: hotpink;
+	);
+}
+```
+
+The first declaration is for browsers without `if()`. The second declaration is for browsers with `if()`.
+
+That pattern is boring, but it is the right kind of boring.
+
+## You can use it inside shorthands
+
+`if()` can return a whole property value:
+
+```css
+.callout {
+	border: if(
+		style(--tone: danger): 2px solid oklch(60% 0.22 28);
+		else: 2px solid var(--border);
+	);
+}
+```
+
+It can also return only part of a value:
+
+```css
+.callout {
+	border: 2px solid
+		if(
+			style(--tone: danger): oklch(60% 0.22 28);
+			else: var(--border);
+		);
+}
+```
+
+That second version is often nicer. The border width and style stay fixed. Only the color branches.
+
+The same idea works inside other values:
+
+```css
+.panel {
+	width: calc(
+		if(style(--wide: true): 70%; else: 50%) - 2rem
+	);
+}
+```
+
+Do not get carried away. Nested conditional values can become harder to read than repeated CSS. If you need to stop and mentally parse three branches inside a `calc()`, a separate rule might be better.
+
+## Browser support
+
+This is the part that should stop you from using `if()` casually.
+
+On June 23, 2026, [Can I Use reports 65.31% global support for CSS `if()`](https://caniuse.com/css-if), using May 2026 StatCounter data. Support starts in Chrome and Edge 137. Safari and Firefox do not support it yet.
+
+MDN also marks `if()` as limited availability and experimental. That does not make it useless, but it does mean you should treat it as progressive enhancement.
+
+So the safe pattern is:
+
+```css
+.card {
+	padding: 1rem;
+}
+
+@supports (padding: if(media(width > 0px): 1rem; else: 2rem)) {
+	.card {
+		padding: if(
+			style(--density: compact): 0.75rem;
+			else: 1.25rem;
+		);
+	}
+}
+```
+
+The fallback comes first. The `if()` version lives inside `@supports`.
+
+For a tutorial, that is also a good teaching pattern. The browser either shows the live version or it shows a plain message explaining why the demo is unavailable. No fake polyfill. No JavaScript fallback hiding the real support story.
+
+## Final thoughts
+
+CSS `if()` is not ready to be a default tool for every production site. Safari and Firefox support are still missing, and the syntax is new enough that a lot of developers will need to look twice.
+
+But the feature itself is useful.
+
+It fills a small gap in CSS: sometimes you do not want a conditional block. You want one conditional value.
+
+That is what `if()` gives you. Use it behind `@supports`, keep the fallback boring, and reserve it for the places where it makes the CSS easier to read.
+
+## Enjoyed this article?
+
+I write about modern CSS, HTML, and simpler ways to build for the web.
+
+Join my newsletter below if you want more tutorials like this.
+
+## References
+
+- [MDN: `if()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if)
+- [CSS Values and Units Module Level 5: `if()` notation](https://drafts.csswg.org/css-values-5/#if-notation)
+- [Chrome 137 release notes](https://developer.chrome.com/blog/new-in-chrome-137/)
+- [Can I Use: CSS `if()` function](https://caniuse.com/css-if)

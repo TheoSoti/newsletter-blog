@@ -1,0 +1,342 @@
+---
+const highlightedCode = [
+	`<span class="code-line"><span class="tok-selector">.card</span> <span class="tok-punctuation">{</span></span>`,
+	`<span class="code-line">	<span class="tok-property">--tone</span><span class="tok-punctuation">:</span> <span class="tok-value">neutral</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line">	<span class="tok-property">--density</span><span class="tok-punctuation">:</span> <span class="tok-value">comfortable</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line"></span>`,
+	`<span class="code-line">	<span class="tok-property">background</span><span class="tok-punctuation">:</span> <span class="tok-function">if</span><span class="tok-punctuation">(</span></span>`,
+	`<span class="code-line code-line--tone-danger">		<span class="tok-function">style</span><span class="tok-punctuation">(</span><span class="tok-property">--tone</span><span class="tok-punctuation">:</span> <span class="tok-value">danger</span><span class="tok-punctuation">):</span> <span class="tok-color">oklch(96% 0.04 28)</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line code-line--tone-success">		<span class="tok-function">style</span><span class="tok-punctuation">(</span><span class="tok-property">--tone</span><span class="tok-punctuation">:</span> <span class="tok-value">success</span><span class="tok-punctuation">):</span> <span class="tok-color">oklch(96% 0.05 150)</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line code-line--tone-neutral">		<span class="tok-keyword">else</span><span class="tok-punctuation">:</span> <span class="tok-color">white</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line">	<span class="tok-punctuation">);</span></span>`,
+	`<span class="code-line"></span>`,
+	`<span class="code-line">	<span class="tok-property">padding</span><span class="tok-punctuation">:</span> <span class="tok-function">if</span><span class="tok-punctuation">(</span></span>`,
+	`<span class="code-line code-line--density-compact">		<span class="tok-function">style</span><span class="tok-punctuation">(</span><span class="tok-property">--density</span><span class="tok-punctuation">:</span> <span class="tok-value">compact</span><span class="tok-punctuation">):</span> <span class="tok-number">0.85rem</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line code-line--density-comfortable">		<span class="tok-keyword">else</span><span class="tok-punctuation">:</span> <span class="tok-number">1.35rem</span><span class="tok-punctuation">;</span></span>`,
+	`<span class="code-line">	<span class="tok-punctuation">);</span></span>`,
+	`<span class="code-line"><span class="tok-punctuation">}</span></span>`,
+].join('');
+---
+
+<section class="css-if" aria-label="CSS if function demo">
+	<p class="css-if__support">
+		This browser does not support CSS <code>if()</code> yet. The demo is hidden because there is no
+		JavaScript fallback here.
+	</p>
+
+	<div class="css-if__stage">
+		<div class="css-if__middle">
+			<div class="css-if__preview">
+				<article class="css-if__card">
+					<p class="css-if__eyebrow">CSS-only state</p>
+					<h3>Project access</h3>
+					<p>
+						The card reads <code>--tone</code> and <code>--density</code>. The matching
+						<code>if()</code> branch changes the card values.
+					</p>
+				</article>
+			</div>
+		</div>
+
+		<form class="css-if__controls" aria-label="Demo controls">
+			<fieldset>
+				<legend>Tone</legend>
+
+				<label>
+					<input type="radio" name="tone" value="neutral" checked />
+					Neutral
+				</label>
+
+				<label>
+					<input type="radio" name="tone" value="danger" />
+					Danger
+				</label>
+
+				<label>
+					<input type="radio" name="tone" value="success" />
+					Success
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>Density</legend>
+
+				<label>
+					<input type="radio" name="density" value="comfortable" checked />
+					Comfortable
+				</label>
+
+				<label>
+					<input type="radio" name="density" value="compact" />
+					Compact
+				</label>
+			</fieldset>
+		</form>
+
+		<pre id="css-if-code" class="css-if__code" aria-label="CSS used by the demo"><code set:html={highlightedCode} /></pre>
+	</div>
+</section>
+
+<style>
+	.css-if {
+		padding: 1rem;
+		background: var(--bg-light);
+	}
+
+	.css-if__support {
+		display: block;
+		margin: 0;
+		padding: 1rem;
+		border: 2px solid hsl(335deg 90% 55% / 0.45);
+		background: hsl(335deg 90% 55% / 0.08);
+		color: inherit;
+	}
+
+	.css-if__stage {
+		display: none;
+		gap: 1rem;
+	}
+
+	@supports (color: if(media(width > 0px): red; else: blue)) {
+		.css-if__support {
+			display: none;
+		}
+
+		.css-if__stage {
+			display: grid;
+		}
+	}
+
+	.css-if__controls {
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.css-if__controls fieldset {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.css-if__controls legend {
+		width: 100%;
+		margin-bottom: 0.15rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+	}
+
+	.css-if__controls label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.42rem 0.7rem;
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		background: var(--bg);
+		font-size: 0.88rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+
+	.css-if__controls label:has(input:checked) {
+		border-color: deeppink;
+		background: hsl(335deg 90% 55% / 0.1);
+	}
+
+	.css-if__controls input {
+		accent-color: deeppink;
+	}
+
+	.css-if__middle {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.css-if__preview {
+		display: grid;
+		min-height: 260px;
+		place-items: center;
+		padding: 1rem;
+		border: 2px solid var(--border);
+		background:
+			linear-gradient(90deg, hsl(0deg 0% 0% / 0.04) 1px, transparent 1px),
+			linear-gradient(hsl(0deg 0% 0% / 0.04) 1px, transparent 1px),
+			var(--example);
+		background-size: 24px 24px;
+	}
+
+	.css-if__card {
+		--tone: neutral;
+		--density: comfortable;
+
+		width: min(100%, 390px);
+		margin: 0;
+		padding: 1.35rem;
+		border: 2px solid var(--border);
+		border-radius: 1rem;
+		background: var(--bg-light);
+		color: inherit;
+		box-shadow: 0 12px 32px hsl(0deg 0% 0% / 0.12);
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease,
+			color 0.2s ease,
+			box-shadow 0.2s ease,
+			padding 0.2s ease;
+	}
+
+	.css-if:has(input[value='danger']:checked) .css-if__card {
+		--tone: danger;
+	}
+
+	.css-if:has(input[value='success']:checked) .css-if__card {
+		--tone: success;
+	}
+
+	.css-if:has(input[value='compact']:checked) .css-if__card {
+		--density: compact;
+	}
+
+	@supports (color: if(media(width > 0px): red; else: blue)) {
+		.css-if__card {
+			padding: if(style(--density: compact): 0.85rem; else: 1.35rem);
+			border-color: if(
+				style(--tone: danger): oklch(62% 0.22 28);
+				style(--tone: success): oklch(58% 0.18 150);
+				else: var(--border);
+			);
+			background: if(
+				style(--tone: danger): oklch(96% 0.04 28);
+				style(--tone: success): oklch(96% 0.05 150);
+				else: var(--bg-light);
+			);
+			color: if(style(--tone: danger): oklch(32% 0.13 28); else: inherit);
+			box-shadow: if(
+				style(--tone: danger): 0 14px 32px oklch(62% 0.22 28 / 0.22);
+				style(--tone: success): 0 14px 32px oklch(58% 0.18 150 / 0.2);
+				else: 0 12px 32px hsl(0deg 0% 0% / 0.12);
+			);
+		}
+	}
+
+	.css-if__eyebrow {
+		margin: 0 0 0.35rem;
+		color: deeppink;
+		font-size: 0.82rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.css-if__card h3 {
+		margin: 0 0 0.45rem;
+		font-size: 1.25rem;
+	}
+
+	.css-if__card p {
+		margin: 0;
+	}
+
+	.css-if__code {
+		margin: 0;
+		max-width: 100%;
+		overflow: auto;
+		padding: 1rem;
+		border-radius: 0.75rem;
+		background: #111;
+		color: #f8f8f2;
+		font-size: 0.85rem;
+		line-height: 1.55;
+	}
+
+	.css-if__code code {
+		font: inherit;
+		white-space: pre;
+	}
+
+	.css-if__code :global(.code-line) {
+		display: block;
+		min-width: max-content;
+		margin-inline: -0.55rem;
+		padding-inline: 0.55rem;
+		border-left: 5px solid transparent;
+		border-radius: 0.45rem;
+	}
+
+	.css-if__code :global(.code-line:empty::before) {
+		content: ' ';
+	}
+
+	.css-if__code :global(.code-line--tone-neutral),
+	.css-if__code :global(.code-line--density-comfortable) {
+		border-left-color: deeppink;
+		background: linear-gradient(
+			90deg,
+			hsl(335deg 100% 55% / 0.4),
+			hsl(335deg 100% 55% / 0.24)
+		);
+		box-shadow:
+			inset 0 0 0 1px hsl(335deg 100% 70% / 0.5),
+			inset 0 0 24px hsl(335deg 100% 55% / 0.16);
+	}
+
+	.css-if:has(input[value='danger']:checked) .css-if__code :global(.code-line--tone-neutral),
+	.css-if:has(input[value='success']:checked) .css-if__code :global(.code-line--tone-neutral),
+	.css-if:has(input[value='compact']:checked) .css-if__code :global(.code-line--density-comfortable) {
+		border-left-color: transparent;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.css-if:has(input[value='danger']:checked) .css-if__code :global(.code-line--tone-danger),
+	.css-if:has(input[value='success']:checked) .css-if__code :global(.code-line--tone-success),
+	.css-if:has(input[value='compact']:checked) .css-if__code :global(.code-line--density-compact) {
+		border-left-color: deeppink;
+		background: linear-gradient(
+			90deg,
+			hsl(335deg 100% 55% / 0.4),
+			hsl(335deg 100% 55% / 0.24)
+		);
+		box-shadow:
+			inset 0 0 0 1px hsl(335deg 100% 70% / 0.5),
+			inset 0 0 24px hsl(335deg 100% 55% / 0.16);
+	}
+
+	.css-if__code :global(.tok-selector) {
+		color: #a6e22e;
+	}
+
+	.css-if__code :global(.tok-property) {
+		color: #66d9ef;
+	}
+
+	.css-if__code :global(.tok-function) {
+		color: #fd971f;
+	}
+
+	.css-if__code :global(.tok-value),
+	.css-if__code :global(.tok-number) {
+		color: #ae81ff;
+	}
+
+	.css-if__code :global(.tok-color) {
+		color: #e6db74;
+	}
+
+	.css-if__code :global(.tok-keyword) {
+		color: #f92672;
+	}
+
+	.css-if__code :global(.tok-punctuation) {
+		color: #f8f8f2;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.css-if__card {
+			transition: none;
+		}
+	}
+</style>
