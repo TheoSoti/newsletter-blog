@@ -1,6 +1,6 @@
 ---
 title: 'CSS Anchor Positioning: Tooltips and Dropdowns Without JavaScript Math'
-description: 'Use CSS Anchor Positioning to attach popovers, tooltips, and dropdowns to a trigger without getBoundingClientRect, scroll listeners, or layout JavaScript.'
+description: 'A modern CSS guide to Anchor Positioning for popovers, tooltips, and dropdowns without getBoundingClientRect, scroll listeners, or layout JavaScript.'
 tags:
   - CSS
   - modern CSS
@@ -39,6 +39,8 @@ menu.style.left = `${rect.left}px`;
 That first version is simple, then real UI gets involved. The page scrolls. The viewport resizes. The button moves because a parent layout changed. The menu needs to flip above the button near the bottom of the screen. None of that is hard in isolation, but it is a lot of boring code for "put this thing next to that thing".
 
 CSS Anchor Positioning gives CSS the relationship it was missing. One element can become an anchor, and another element can position itself from that anchor. The browser already knows both boxes, so it can do the geometry without a `getBoundingClientRect()` loop.
+
+If you want to learn modern CSS through actual UI problems, this is a good feature to study. It moves a common floating UI pattern back into CSS, where the browser already understands layout, scrolling, and edges.
 
 ## The mental model
 

@@ -9,9 +9,12 @@ import Card from '../components/Card.astro';
 import ShortList from '../components/ShortList.astro';
 import Newsletter from '../components/Newsletter.astro';
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import ItemList from '../components/microdatas/ItemList.astro';
+
+const HOME_TITLE = 'Learn Modern CSS with Theo Soti';
+const HOME_DESCRIPTION =
+	'Learn modern CSS with practical tutorials, real UI examples, and short guides about modern CSS, HTML, and front-end development.';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
@@ -26,7 +29,7 @@ const shorts = (await getCollection('short'))
 
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={HOME_TITLE} description={HOME_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
@@ -38,8 +41,8 @@ const shorts = (await getCollection('short'))
 			<section>
 				<h2>Latest Blog Articles</h2>
 				<p>
-					Discover in-depth articles covering a variety of topics. <br />
-					These longer reads (5+ minutes) provide valuable insights, analysis, and expert perspectives.
+					Read practical modern CSS articles built around real interface problems. <br />
+					These longer reads show how CSS and HTML features can simplify layouts, interactions, and UI details.
 				</p>
 				<ul>
 					{posts.map((post) => <Card post={post} width="720" height="360" />)}
@@ -50,8 +53,8 @@ const shorts = (await getCollection('short'))
 			<section>
 				<h2>Latest Short Articles</h2>
 				<p>
-					Looking for quick insights? <br />These bite-sized articles take less than a minute to read, perfect for when
-					you're short on time but still want valuable content.
+					Looking for quick modern CSS tips? <br />These short articles take less than a minute to read when you
+					want one focused idea without opening a full tutorial.
 				</p>
 				<ul>
 					{shorts.map((short) => <ShortList post={short} />)}
