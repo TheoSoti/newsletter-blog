@@ -9,10 +9,12 @@ import BreadcrumbList from '../components/microdatas/BreadcrumbList.astro';
 import { getCollection } from 'astro:content';
 import Card from '../components/Card.astro';
 import Newsletter from '../components/Newsletter.astro';
+import ShareMenu from '../components/ShareMenu.astro';
 import { getContentSlug } from '../utils/contentSlug';
 
 const { title, description, pubDate, updatedDate, heroImage, socialImage, readingTime, headings, slug, body, tags = [] } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const shareUrl = `${siteUrl}/blog/${slug}/`;
 const breadcrumbs = [
   { name: 'Home', url: `${siteUrl}/` },
   { name: 'Blog', url: `${siteUrl}/blog/` },
@@ -195,6 +197,7 @@ const posts = (await getCollection('blog'))
             )
           }
         </div>
+        <ShareMenu title={title} url={shareUrl} />
       </div>
     </div>
     <main>

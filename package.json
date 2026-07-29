@@ -27,5 +27,8 @@
 	},
 	"overrides": {
 		"volar-service-yaml": "0.0.71"
+	},
+	"dependencies": {
+		"@phosphor-icons/react": "^2.1.10"
 	}
 }
