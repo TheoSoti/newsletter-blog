@@ -20,6 +20,23 @@ export const ebookFaqs = [
 			'The book comes as a PDF, so you can read it anywhere. It is lightweight, easy to navigate, and formatted to stay comfortable on any screen size.',
 	},
 	{
+		question: 'Can I get a physical copy?',
+		answer: 'Yes. You can order the paperback edition from Amazon or directly from Packt.',
+		answerParts: [
+			{ text: 'Yes. You can order the paperback edition from ' },
+			{
+				text: 'Amazon',
+				href: 'https://www.amazon.com/You-Dont-Need-JavaScript-interfaces/dp/1807783413/',
+			},
+			{ text: ' or directly from ' },
+			{
+				text: 'Packt',
+				href: 'https://www.packtpub.com/en-us/product/you-dont-need-javascript-9781807783402',
+			},
+			{ text: '.' },
+		],
+	},
+	{
 		question: 'Will the book be updated in the future?',
 		answer:
 			'Whenever You Don’t Need JavaScript gets new examples or newer CSS techniques, you will get those future updates for free.',

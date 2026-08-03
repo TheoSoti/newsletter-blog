@@ -114,6 +114,11 @@
 		margin-top: auto;
 	}
 
+	.pricing .button:hover,
+	.pricing .button:focus-visible {
+		transform: none;
+	}
+
 	.pricing__money-back {
 		text-align: center;
 		font-size: var(--fs-1);

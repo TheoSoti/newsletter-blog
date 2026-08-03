@@ -7,15 +7,27 @@ import { ebookFaqs } from '../../data/ebook';
 
 	<ul class="faq__container">
 		{
-			ebookFaqs.map(({ question, answer }, index) => (
+				ebookFaqs.map((faq, index) => (
 				<li class="accordion">
 					<details name="book-faq" open={index === 0}>
 						<summary>
-							<span class="accordion__title">{question}</span>
+							<span class="accordion__title">{faq.question}</span>
 						</summary>
 
 						<div class="content">
-							<p>{answer}</p>
+							<p>
+								{'answerParts' in faq ? (
+									faq.answerParts.map((part) =>
+										'href' in part ? (
+											<a href={part.href} target="_blank" rel="nofollow noopener">{part.text}</a>
+										) : (
+											part.text
+										)
+									)
+								) : (
+									faq.answer
+								)}
+							</p>
 						</div>
 					</details>
 				</li>
