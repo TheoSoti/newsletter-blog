@@ -16,14 +16,22 @@
 			data-version="5"
 		>
 			<div data-style="clean">
-				<ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+				<ul
+					class="formkit-alert formkit-alert-error"
+					data-element="errors"
+					data-group="alert"
+					aria-live="polite"
+					aria-atomic="true"
+				></ul>
 				<div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
-					<div class="formkit-field">
+					<div class="formkit-field floating-label-field">
+						<label class="floating-label" for="footer-newsletter-email">Email address</label>
 						<input
 							class="formkit-input"
+							id="footer-newsletter-email"
 							name="email_address"
-							aria-label="Email Address"
-							placeholder="Email Address"
+							autocomplete="email"
+							placeholder=" "
 							required=""
 							type="email"
 						/>
@@ -57,7 +65,7 @@
 	.formkit-alert-error {
 		padding: 0;
 		list-style-type: none;
-		color: #b82f2f;
+		color: var(--error-text);
 	}
 	.nospam {
 		margin: 5px 0 0;
@@ -93,6 +101,7 @@
 	.formkit-fields {
 		display: flex;
 		flex-wrap: wrap;
+		align-items: flex-end;
 		gap: 10px;
 		justify-content: center;
 	}
@@ -107,7 +116,7 @@
 	}
 	.formkit-input {
 		width: 100%;
-		padding: 0 1em;
+		padding: 0.75em 1em 0;
 		background-color: var(--bg-light);
 		color: var(--text);
 		transition: outline 0.2s ease;
