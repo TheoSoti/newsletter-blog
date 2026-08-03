@@ -1,8 +1,5 @@
 ---
 import { Picture } from 'astro:assets';
-import testimonial_fun_1 from '../../assets/ebook/melon-tusk.png';
-import testimonial_fun_2 from '../../assets/ebook/parry-lage.png';
-import testimonial_fun_3 from '../../assets/ebook/beff-jezos.png';
 import testimonial_lionel from '../../assets/ebook/lionel.png';
 import testimonial_utsav from '../../assets/ebook/utsav.png';
 import testimonial_pierre from '../../assets/ebook/pierre.png';
@@ -17,14 +14,14 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 <section class="testimonials">
 	<h2 class="testimonials__title">Loved by the community</h2>
 	<div class="switcher">
-		<input type="radio" name="switcher" value="regular" id="regular" checked />
-		<label for="regular">Regular</label>
+		<input type="radio" name="testimonial-columns" value="2" id="two-columns" checked />
+		<label for="two-columns">2 columns</label>
 
-		<input type="radio" name="switcher" value="fun" id="fun" />
-		<label for="fun">Fun Mode</label>
+		<input type="radio" name="testimonial-columns" value="3" id="three-columns" />
+		<label for="three-columns">3 columns</label>
 	</div>
 
-	<div class="testimonials__container testimonials__regular">
+	<div class="testimonials__container testimonials__reviews">
 		<div class="heart heart-1"></div>
 		<ul class="testimonial__list">
 			<li class="testimonial">
@@ -144,7 +141,12 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						alt="Paul Wright testimonial"
 						class="testimonial__image"
 					/>
-					<p class="testimonial__author">Paul Wright <br /> <span>Full Stack Web Developer</span></p>
+					<p class="testimonial__author">
+						Paul Wright
+						<TestimonialWebsiteLink href="https://www.suedeapple.co.uk/" label="Visit Paul Wright’s website" />
+						<br />
+						<span>Full Stack Web Developer</span>
+					</p>
 				</div>
 				<blockquote class="testimonial__text">
 					Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
@@ -201,63 +203,6 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 					last few years &amp; distills them into simple, immediately-useful examples. If you're like me, you'll be able
 					to significantly reduce your JavaScript footprint overnight, while also improving the quality of your web
 					pages.
-				</blockquote>
-			</li>
-		</ul>
-		<div class="heart heart-2"></div>
-	</div>
-
-	<div class="testimonials__container testimonials__fun">
-		<div class="heart heart-1"></div>
-		<ul class="testimonial__list">
-			<li class="testimonial rotate-right">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_fun_1}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt="Melon Tusk testimonial"
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">Melon Tusk <br /> <span>Former Framework Addict</span></p>
-				</div>
-				<blockquote class="testimonial__text">
-					This book made me uninstall half my JavaScript libraries. My therapist will hear about this.
-				</blockquote>
-			</li>
-
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_fun_2}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt="Parry Lage testimonial"
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">Parry Lage <br /> <span>Proud jQuery Defender</span></p>
-				</div>
-				<blockquote class="testimonial__text">
-					Tried the CSS-only dropdown technique. It worked instantly. Honestly, it felt wrong.
-				</blockquote>
-			</li>
-
-			<li class="testimonial rotate-left">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_fun_3}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt="Beff Jezos testimonial"
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">Beff Jezos <br /> <span>JavaScript Maximalist</span></p>
-				</div>
-				<blockquote class="testimonial__text">
-					Was hoping for 300 pages of pure JS hacks. Got clean, maintainable CSS instead. 0/10.
 				</blockquote>
 			</li>
 		</ul>
