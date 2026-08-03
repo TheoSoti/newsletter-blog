@@ -155,4 +155,10 @@
 		line-height: 1.5;
 	}
 
+	@media (max-width: 47.99em) {
+		.switcher {
+			display: none;
+		}
+	}
+
 }
