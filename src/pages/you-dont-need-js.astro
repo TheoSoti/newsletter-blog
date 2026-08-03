@@ -7,6 +7,7 @@ import FaqSection from '../components/ebook/FaqSection.astro';
 import EbookStructuredData from '../components/ebook/EbookStructuredData.astro';
 import FeaturesSection from '../components/ebook/FeaturesSection.astro';
 import GuaranteeSection from '../components/ebook/GuaranteeSection.astro';
+import HeroProofSection from '../components/ebook/HeroProofSection.astro';
 import HeroSection from '../components/ebook/HeroSection.astro';
 import LearningSection from '../components/ebook/LearningSection.astro';
 import MarqueeStrip from '../components/ebook/MarqueeStrip.astro';
@@ -61,6 +62,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	<body>
 		<main class="ebook-main">
 			<HeroSection />
+			<HeroProofSection />
 			<LearningSection />
 			<FeaturesSection />
 			<MarqueeStrip width="270px" icon="starburst" />

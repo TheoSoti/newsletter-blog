@@ -1,0 +1,32 @@
+---
+import { Picture } from 'astro:assets';
+import testimonialThomas from '../../assets/ebook/thomas.png';
+---
+
+<section class="hero-proof" aria-labelledby="hero-proof-title">
+	<h2 class="visually-hidden" id="hero-proof-title">What developers say</h2>
+	<figure class="hero-proof__testimonial">
+		<blockquote class="hero-proof__quote">
+			<p>“I thought I knew CSS, but I was wrong… this book taught me new CSS properties at almost every page!”</p>
+		</blockquote>
+		<figcaption class="hero-proof__author">
+			<Picture
+				src={testimonialThomas}
+				formats={['avif', 'webp', 'jpg']}
+				width="144"
+				height="144"
+				alt=""
+				class="hero-proof__image"
+				loading="lazy"
+				decoding="async"
+			/>
+			<p>
+				<cite>Thomas Palef</cite>
+				<span>
+					Author of
+					<a href="https://www.lessmilk.com/" target="_blank" rel="noopener">Make 2D Games</a>
+				</span>
+			</p>
+		</figcaption>
+	</figure>
+</section>
