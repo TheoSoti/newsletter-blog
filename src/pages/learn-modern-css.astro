@@ -1,0 +1,342 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Card from '../components/Card.astro';
+import ShortList from '../components/ShortList.astro';
+import BreadcrumbList from '../components/microdatas/BreadcrumbList.astro';
+import { getCollection } from 'astro:content';
+import { getContentSlug } from '../utils/contentSlug';
+import { getShortSlug } from '../utils/shortSlug';
+
+const description =
+	'Learn modern CSS through practical guides on layouts, animations, native UI, colors, and effects, organized into a clear path from basics to new features.';
+
+const topicDefinitions = [
+	{
+		id: 'layout',
+		number: '01',
+		title: 'Layout and responsive design',
+		description:
+			'Build components that adapt to their container, align cleanly, and stay resilient across screen sizes.',
+		guideSlugs: ['container-queries', 'css-anchor-positioning-without-javascript'],
+		tipSlugs: ['css-subgrid-layout', 'one-liner-responsive-layout', 'fluid-css-clamp', 'masonry-layout'],
+	},
+	{
+		id: 'motion',
+		number: '02',
+		title: 'Animation and interaction',
+		description:
+			'Add motion that explains what changed, from entry transitions to scroll-driven effects and fluid height animations.',
+		guideSlugs: ['scroll-driven-animation', 'starting-style-css', 'height-transition'],
+		tipSlugs: ['view-transition', 'create-progress-bar-css-only', 'scroll-state-query', 'individual-transform-properties'],
+	},
+	{
+		id: 'native-ui',
+		number: '03',
+		title: 'Native UI without JavaScript',
+		description:
+			'Build dialogs, popovers, forms, and conditional interfaces by starting with the capabilities already built into HTML and CSS.',
+		guideSlugs: [
+			'html-command-commandfor-without-javascript',
+			'css-if-function-conditional-styling-without-javascript',
+			'darkmode-css',
+			'css-focus-hack',
+		],
+		tipSlugs: ['html-popover-api', 'native-dialog-element', 'form-validation-css-only', 'customize-selects-css'],
+	},
+	{
+		id: 'visuals',
+		number: '04',
+		title: 'Colors and visual effects',
+		description:
+			'Create richer interfaces with flexible color systems, convincing depth, gradients, masks, and modern image effects.',
+		guideSlugs: ['css-relative-colors', 'designing-shadows', 'animated-gradient-borders'],
+		tipSlugs: ['list-css-color-functions', 'css-mask-effects', 'glassomorphism-backdrop-filter', 'reflexion-effect'],
+	},
+];
+
+const guides = await getCollection('blog');
+const tips = await getCollection('short');
+const guideMap = new Map(guides.map((post) => [getContentSlug(post.id), post]));
+const tipMap = new Map(tips.map((post) => [getShortSlug(post.id), post]));
+
+const topics = topicDefinitions.map((topic) => ({
+	...topic,
+	guides: topic.guideSlugs.flatMap((slug) => {
+		const post = guideMap.get(slug);
+		return post ? [post] : [];
+	}),
+	tips: topic.tipSlugs.flatMap((slug) => {
+		const post = tipMap.get(slug);
+		return post ? [post] : [];
+	}),
+}));
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const breadcrumbs = [
+	{ name: 'Home', url: `${siteUrl}/` },
+	{ name: 'Learn Modern CSS', url: `${siteUrl}/learn-modern-css/` },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Learn Modern CSS: Practical Guides and Examples" description={description} />
+		<style>
+			main {
+				padding-block: clamp(2rem, 5vw, 4.5rem) 5rem;
+			}
+
+			.learning-hero {
+				display: grid;
+				gap: 2rem;
+				align-items: center;
+				padding-bottom: clamp(3rem, 7vw, 6rem);
+				border-bottom: 4px solid var(--border);
+			}
+
+			.hero-copy {
+				max-width: 720px;
+			}
+
+			.eyebrow {
+				width: fit-content;
+				margin: 0 0 1rem;
+				padding: 0.15rem 0.55rem;
+				border: 2px solid var(--border);
+				border-radius: 4px;
+				background: var(--main);
+				color: var(--black);
+				font-size: 0.8em;
+				font-weight: 600;
+			}
+
+			.hero-copy > p:last-child {
+				max-width: 58ch;
+				margin: 0;
+			}
+
+			.topic-nav {
+				padding: 1rem;
+				border: 2px solid var(--border);
+				border-radius: 6px;
+				background: var(--bg-light);
+				box-shadow: var(--box-shadow);
+			}
+
+			.topic-nav h2 {
+				margin: 0 0 0.6rem;
+			}
+
+			.topic-nav ol {
+				display: grid;
+				gap: 0;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.topic-nav a {
+				display: grid;
+				grid-template-columns: 2rem 1fr;
+				gap: 0.5rem;
+				align-items: baseline;
+				min-height: 44px;
+				padding-block: 0.55rem;
+				border-top: 1px solid var(--border);
+				color: var(--text);
+				font-weight: 400;
+				line-height: 1.25;
+				text-decoration: none;
+				touch-action: manipulation;
+			}
+
+			.topic-nav a:hover {
+				color: var(--secondary);
+			}
+
+			.topic-nav span {
+				color: var(--small-text);
+				font-variant-numeric: tabular-nums;
+			}
+
+			.learning-topics {
+				display: grid;
+				gap: clamp(4rem, 9vw, 8rem);
+				padding-block: clamp(4rem, 8vw, 7rem);
+			}
+
+			.topic {
+				display: grid;
+				gap: 1.75rem;
+				scroll-margin-top: 110px;
+			}
+
+			.topic-intro {
+				max-width: 620px;
+			}
+
+			.topic h2 {
+				margin: 0 0 0.5rem;
+			}
+
+			.topic-intro p {
+				margin: 0;
+				color: var(--small-text);
+			}
+
+			.content-group h3 {
+				margin: 0 0 1rem;
+			}
+
+			.guide-grid,
+			.tip-grid {
+				display: grid;
+				gap: 1.1rem;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.topic-content {
+				display: grid;
+				gap: 2rem;
+				min-width: 0;
+			}
+
+			.next-step {
+				padding-top: clamp(2rem, 5vw, 4rem);
+				border-top: 4px solid var(--border);
+				text-align: center;
+			}
+
+			.next-step h2 {
+				max-width: 18ch;
+				margin: 0 auto 0.5rem;
+			}
+
+			.next-step p {
+				max-width: 54ch;
+				margin: 0 auto 1.5rem;
+			}
+
+			.next-links {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1rem;
+			}
+
+			.next-links a {
+				min-height: 44px;
+				padding: 0.45rem 0.9rem;
+				color: var(--white);
+				line-height: 1.4;
+				text-decoration: none;
+				touch-action: manipulation;
+			}
+
+			@media (min-width: 42em) {
+				.learning-hero {
+					grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.7fr);
+				}
+
+				.guide-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+
+				.tip-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+
+			@media (min-width: 64em) {
+				.topic {
+					grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.6fr);
+					gap: clamp(2rem, 5vw, 5rem);
+				}
+
+				.topic-intro {
+					position: sticky;
+					top: 110px;
+					align-self: start;
+				}
+
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				html {
+					scroll-behavior: smooth;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="learning-hero">
+				<div class="hero-copy">
+					<p class="eyebrow">A practical learning path</p>
+					<h1>Learn modern CSS by doing</h1>
+					<p>Build real interfaces through a practical path covering layouts, motion, native UI, and visual effects.</p>
+				</div>
+
+				<nav class="topic-nav" aria-labelledby="topic-nav-title">
+					<h2 id="topic-nav-title">Choose a topic</h2>
+					<ol>
+						{topics.map((topic) => (
+							<li>
+								<a href={`#${topic.id}`}>
+									<span>{topic.number}</span>
+									{topic.title}
+								</a>
+							</li>
+						))}
+					</ol>
+				</nav>
+			</section>
+
+			<div class="learning-topics">
+				{topics.map((topic) => (
+					<section class="topic" id={topic.id}>
+						<div class="topic-intro">
+							<h2>{topic.title}</h2>
+							<p>{topic.description}</p>
+						</div>
+
+						<div class="topic-content">
+							<div class="content-group">
+								<h3>In-depth guides</h3>
+								<ul class="guide-grid">
+									{topic.guides.map((post) => <Card post={post} width="720" height="360" />)}
+								</ul>
+							</div>
+
+							<div class="content-group">
+								<h3>Quick tips</h3>
+								<ul class="tip-grid">
+									{topic.tips.map((post) => <ShortList post={post} />)}
+								</ul>
+							</div>
+						</div>
+					</section>
+				))}
+			</div>
+
+			<section class="next-step">
+				<h2>Keep exploring modern CSS</h2>
+				<p>This path is curated, not exhaustive. Browse the full archives whenever you want to go beyond these starting points.</p>
+				<div class="next-links">
+					<a class="button" href="/blog/">All in-depth guides</a>
+					<a class="button" href="/short/">All quick tips</a>
+				</div>
+			</section>
+		</main>
+		<Newsletter />
+		<Footer />
+		<BreadcrumbList items={breadcrumbs} />
+	</body>
+</html>
