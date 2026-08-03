@@ -118,6 +118,19 @@
 		transform: none;
 	}
 
+	.pricing .pricing__button--secondary {
+		border-color: var(--main);
+		background-color: transparent;
+		box-shadow: none;
+		color: var(--main);
+	}
+
+	.pricing .pricing__button--secondary:hover,
+	.pricing .pricing__button--secondary:focus-visible {
+		background-color: var(--main);
+		color: var(--white);
+	}
+
 	.pricing__money-back {
 		text-align: center;
 		font-size: var(--fs-1);
@@ -140,6 +153,25 @@
 
 	.pricing__item.pricing__item-popular > * {
 		z-index: 1;
+	}
+
+	.pricing__item-badge {
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 50%;
+		z-index: 2;
+		margin: 0;
+		padding: 0.25rem 0.75rem;
+		transform: translate(-50%, -50%);
+		border: 2px solid var(--border);
+		border-radius: 999px;
+		background-color: var(--yellow);
+		box-shadow: 2px 2px 0 var(--black);
+		color: var(--black);
+		font-size: 0.875rem;
+		font-weight: 800;
+		line-height: 1.2;
+		letter-spacing: 0.025em;
 	}
 
 	.pricing__item.pricing__item-popular::after,
