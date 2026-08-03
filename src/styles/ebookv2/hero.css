@@ -178,7 +178,7 @@
 		}
 	}
 
-	@media (prefers-reduced-motion) {
+	@media (prefers-reduced-motion: reduce) {
 		.hero__image .background {
 			animation: none;
 		}
@@ -220,6 +220,17 @@
 	.button:focus-visible {
 		box-shadow: 0 0 #0000;
 		transform: translate(2px, 2px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.button {
+			transition: none;
+		}
+
+		.button:hover,
+		.button:focus-visible {
+			transform: none;
+		}
 	}
 
 	@media screen and (min-width: 43.75em) {

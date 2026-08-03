@@ -29,12 +29,11 @@
 		border: 2px solid var(--border);
 		flex: 1;
 		position: relative;
-		top: 0;
-		transition: top 0.3s ease;
+		transition: transform 0.3s ease;
 	}
 
 	.pricing__item:hover {
-		top: -5px;
+		transform: translateY(-5px);
 	}
 
 	.pricing__item .button:before {
@@ -134,8 +133,13 @@
 	.pricing__item.pricing__item-popular {
 		border: none;
 		position: relative;
+		isolation: isolate;
 		background-color: var(--white) !important;
 		border-radius: 0.5rem;
+	}
+
+	.pricing__item.pricing__item-popular > * {
+		z-index: 1;
 	}
 
 	.pricing__item.pricing__item-popular::after,
@@ -144,6 +148,7 @@
 		position: absolute;
 		inset: -2px;
 		z-index: -1;
+		pointer-events: none;
 		border-radius: inherit;
 		border-radius: 0.7rem;
 
@@ -152,12 +157,28 @@
 		animation: spin 3s linear infinite;
 	}
 
+	.pricing__item.pricing__item-popular::after {
+		z-index: 0;
+		border: 2px solid transparent;
+		background:
+			linear-gradient(var(--white), var(--white)) padding-box,
+			conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545) border-box;
+	}
+
 	.pricing__item.pricing__item-popular::before {
 		filter: blur(1.5rem);
 		opacity: 0.8;
 	}
 
-	@media (prefers-reduced-motion) {
+	@media (prefers-reduced-motion: reduce) {
+		.pricing__item {
+			transition: none;
+		}
+
+		.pricing__item:hover {
+			transform: none;
+		}
+
 		.pricing__item.pricing__item-popular::after,
 		.pricing__item.pricing__item-popular::before {
 			animation: none;

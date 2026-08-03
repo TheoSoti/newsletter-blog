@@ -31,6 +31,8 @@ const { href, label } = Astro.props;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		min-inline-size: 44px;
+		min-block-size: 44px;
 		border: 2px solid var(--border);
 		border-radius: 6px;
 		box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
@@ -46,7 +48,7 @@ const { href, label } = Astro.props;
 	}
 
 	.testimonial__website:hover,
-	.testimonial__website:focus {
+	.testimonial__website:focus-visible {
 		box-shadow: 0 0 var(--black);
 		transform: translateY(6px);
 	}
@@ -59,6 +61,11 @@ const { href, label } = Astro.props;
 	@media (prefers-reduced-motion: reduce) {
 		.testimonial__website {
 			transition: none;
+		}
+
+		.testimonial__website:hover,
+		.testimonial__website:focus-visible {
+			transform: none;
 		}
 	}
 </style>

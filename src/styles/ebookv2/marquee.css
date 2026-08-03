@@ -74,9 +74,10 @@
 		animation-play-state: paused;
 	}
 
-	@media (prefers-reduced-motion) {
+	@media (prefers-reduced-motion: reduce) {
 		.slider .list .item {
 			animation-play-state: paused;
+			transition: none;
 		}
 	}
 

@@ -38,6 +38,7 @@
 			display: block;
 			list-style: none;
 			cursor: pointer;
+			touch-action: manipulation;
 		}
 
 		summary::-webkit-details-marker {
@@ -50,6 +51,7 @@
 			align-items: center;
 			gap: 1em;
 			margin: 0;
+			min-block-size: 44px;
 			padding: var(--pad-4-8) var(--pad-12-16);
 			background-color: var(--secondary);
 			color: var(--white);
@@ -119,6 +121,12 @@
 		.accordion__title::after,
 		details::details-content {
 			transition: none;
+		}
+
+		.accordion:has(details[open]),
+		.accordion:has(summary:hover),
+		.accordion:has(summary:focus-visible) {
+			transform: none;
 		}
 	}
 }

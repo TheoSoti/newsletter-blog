@@ -48,7 +48,7 @@
 
 	.switcher {
 		display: flex;
-		gap: 0.5rem;
+		gap: 1rem;
 		align-items: center;
 		justify-content: center;
 		text-align: center;
@@ -56,19 +56,22 @@
 		border-radius: 0.5rem;
 		padding: var(--pad-4-8) var(--pad-12-16);
 		margin-bottom: var(--pad-xl);
+		min-inline-size: 0;
 		width: fit-content;
 		margin-inline: auto;
 		background-color: var(--white);
 
+		.switcher__option {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.4rem;
+			min-block-size: 44px;
+			padding-inline: 0.25rem;
+			cursor: pointer;
+		}
+
 		input {
 			margin: 0;
-		}
-
-		#three-columns {
-			margin-left: 1em;
-		}
-
-		> * {
 			cursor: pointer;
 		}
 	}

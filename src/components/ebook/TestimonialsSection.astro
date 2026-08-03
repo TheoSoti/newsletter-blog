@@ -13,13 +13,18 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 
 <section class="testimonials">
 	<h2 class="testimonials__title">Loved by the community</h2>
-	<div class="switcher">
-		<input type="radio" name="testimonial-columns" value="2" id="two-columns" checked />
-		<label for="two-columns">2 columns</label>
+	<fieldset class="switcher">
+		<legend class="visually-hidden">Testimonial layout</legend>
+		<label class="switcher__option" for="two-columns">
+			<input type="radio" name="testimonial-columns" value="2" id="two-columns" checked />
+			<span>2 columns</span>
+		</label>
 
-		<input type="radio" name="testimonial-columns" value="3" id="three-columns" />
-		<label for="three-columns">3 columns</label>
-	</div>
+		<label class="switcher__option" for="three-columns">
+			<input type="radio" name="testimonial-columns" value="3" id="three-columns" />
+			<span>3 columns</span>
+		</label>
+	</fieldset>
 
 	<div class="testimonials__container testimonials__reviews">
 		<div class="heart heart-1"></div>
@@ -31,7 +36,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Utsav Meena testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
@@ -55,7 +60,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Lionel Péramo testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
@@ -79,7 +84,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Pierre Liegard testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">Pierre Liegard<br /> <span>Front-end Developer</span></p>
@@ -97,7 +102,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Cedric Molla testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">Cedric Molla<br /> <span>Web Developer</span></p>
@@ -115,7 +120,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Virgile Gouala testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
@@ -138,7 +143,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Paul Wright testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
@@ -163,7 +168,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Thomas Palef testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
@@ -185,7 +190,7 @@ import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
 						formats={['avif', 'webp', 'jpg']}
 						width="168"
 						height="168"
-						alt="Joseph from Acworth Web Designs testimonial"
+						alt=""
 						class="testimonial__image"
 					/>
 					<p class="testimonial__author">
