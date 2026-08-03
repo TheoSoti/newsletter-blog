@@ -142,6 +142,7 @@
 		display: flex;
 		align-items: center;
 		gap: var(--pad-12-16);
+		padding-inline-end: 3.75rem;
 		margin-bottom: var(--pad-12-16);
 	}
 
