@@ -12,7 +12,6 @@
 	.faq__container {
 		max-width: var(--container-width);
 		margin-inline: auto;
-		padding: 0;
 	}
 
 	.faq__title {

@@ -1,12 +1,13 @@
 @import './ebookv2/base.css';
 @import './ebookv2/hero.css';
 @import './ebookv2/hero-proof.css';
+@import './ebookv2/qualification.css';
 @import './ebookv2/learning.css';
-@import './ebookv2/features.css';
+@import './ebookv2/included.css';
 @import './ebookv2/about.css';
 @import './ebookv2/testimonials.css';
 @import './ebookv2/marquee.css';
+@import './ebookv2/toc.css';
 @import './ebookv2/faq.css';
 @import './ebookv2/pricing.css';
-@import './ebookv2/cta.css';
 @import './ebookv2/footer.css';

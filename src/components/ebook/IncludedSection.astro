@@ -1,0 +1,73 @@
+---
+const everyEdition = [
+	{
+		name: '125-page practical guide',
+		why: 'Learn 27 patterns through real components such as dialogs, accordions, drawers, and sliders.',
+	},
+	{
+		name: 'Lifetime access and free updates',
+		why: 'When a new CSS technique earns its place in the book, the updated edition is yours.',
+	},
+];
+
+const bundleExtras = [
+	{
+		name: '27 ready-to-use components',
+		why: 'Use the finished HTML and CSS instead of retyping every pattern from the page.',
+	},
+	{
+		name: 'Complete CSS property cheat sheet',
+		why: 'Keep the modern properties from the book within reach while you work.',
+	},
+	{
+		name: '100+ tools from my own workflow',
+		why: 'Get the generators, testers, and references I use to ship interfaces faster.',
+	},
+];
+---
+
+<section class="included" id="included" aria-labelledby="included-title">
+	<div class="included__container">
+		<header class="included__intro">
+			<h2 class="included__title" id="included-title">What you get, and why it matters</h2>
+			<p>
+				Practical, visual examples built around real components, with accessibility and browser support explained
+				in context.
+			</p>
+		</header>
+
+		<div class="included__editions">
+			<section class="included__edition included__edition--core" aria-labelledby="included-core-title">
+				<h3 id="included-core-title">Every edition includes</h3>
+				<ul class="included__list">
+					{
+						everyEdition.map((item) => (
+							<li>
+								<strong>{item.name}</strong>
+								<p>{item.why}</p>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="included__edition included__edition--bundle" aria-labelledby="included-bundle-title">
+				<h3 id="included-bundle-title">The complete bundle adds</h3>
+				<ul class="included__list">
+					{
+						bundleExtras.map((item) => (
+							<li>
+								<strong>{item.name}</strong>
+								<p>{item.why}</p>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</div>
+
+		<div class="included__action">
+			<a class="button" href="#pricing">Compare editions</a>
+		</div>
+	</div>
+</section>

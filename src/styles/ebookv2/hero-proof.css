@@ -33,9 +33,9 @@
 		grid-template-columns: auto minmax(0, 1fr);
 		align-items: center;
 		gap: 1rem;
-		min-inline-size: 0;
 		padding-block-start: 1.25rem;
 		border-block-start: 2px solid var(--border);
+		min-inline-size: 0;
 	}
 
 	.hero-proof__image {
@@ -68,7 +68,7 @@
 	}
 
 	.hero-proof__author span {
-		margin-top: 0.25rem;
+		margin-top: 0.1rem;
 		color: var(--small-text);
 		font-size: 0.875rem;
 	}
@@ -89,21 +89,21 @@
 	}
 
 	@media screen and (min-width: 43.75em) {
-		.hero-proof__quote p {
-			max-inline-size: 34ch;
-		}
-
 		.hero-proof__testimonial {
 			grid-template-columns: minmax(0, 1fr) minmax(14rem, 17rem);
 			align-items: center;
-			gap: clamp(2.5rem, 7vw, 6rem);
+			gap: clamp(2.5rem, 6vw, 6rem);
+		}
+
+		.hero-proof__quote p {
+			max-inline-size: 34ch;
 		}
 
 		.hero-proof__author {
 			align-self: stretch;
 			align-content: center;
+			padding-inline-start: clamp(1rem, 2vw, 1.75rem);
 			padding-block-start: 0;
-			padding-inline-start: clamp(1.5rem, 3vw, 2.5rem);
 			border-block-start: 0;
 			border-inline-start: 2px solid var(--border);
 		}

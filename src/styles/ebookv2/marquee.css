@@ -17,26 +17,24 @@
 
 	.slider .list {
 		display: flex;
-		width: 100%;
-		min-width: calc(var(--width) * var(--quantity));
-		position: relative;
+		width: max-content;
+		animation: autoRun 60s linear infinite;
 	}
 
-	.slider .list .item {
-		--time: 60s;
-
+	.slider__group {
 		display: flex;
+		flex: none;
+	}
+
+	.slider .item {
+		display: flex;
+		flex: none;
 		align-items: baseline;
 		gap: 0.3em;
 		font-size: 2.3em;
 		font-family: 'BebasNeue', sans-serif;
 		width: var(--width);
 		height: calc(var(--height) - 8px);
-		position: absolute;
-		left: 100%;
-		animation: autoRun var(--time) linear infinite;
-		transition: filter 0.5s;
-		animation-delay: calc((var(--time) / var(--quantity)) * (var(--position) - 1) - var(--time)) !important;
 	}
 
 	.slider .sparkle {
@@ -52,7 +50,6 @@
 		background-color: var(--yellow);
 		width: 30px;
 		height: 30px;
-		aspect-ratio: 1;
 		--g: /20.56% 20.56% radial-gradient(#000 calc(71% - 1px), #0000 71%) no-repeat;
 		mask:
 			100% 50% var(--g),
@@ -70,23 +67,22 @@
 			radial-gradient(100% 100%, #000 38.366%, #0000 calc(38.366% + 1px));
 	}
 
-	.slider:hover .item {
+	.slider:hover .list {
 		animation-play-state: paused;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.slider .list .item {
+		.slider .list {
 			animation-play-state: paused;
-			transition: none;
 		}
 	}
 
 	@keyframes autoRun {
 		from {
-			left: 100%;
+			transform: translateX(0);
 		}
 		to {
-			left: calc(var(--width) * -1);
+			transform: translateX(-50%);
 		}
 	}
 }

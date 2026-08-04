@@ -1,0 +1,105 @@
+@layer included {
+	.included {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 2px solid var(--border);
+		background-color: var(--background);
+	}
+
+	.included__container {
+		max-width: var(--container-width);
+		margin-inline: auto;
+	}
+
+	.included__intro {
+		display: grid;
+		justify-items: center;
+		gap: var(--pad-8-12);
+		max-inline-size: 46rem;
+		margin: 0 auto clamp(2rem, 5vw, 4rem);
+		text-align: center;
+	}
+
+	.included__title,
+	.included__intro p {
+		margin: 0;
+	}
+
+	.included__intro p {
+		max-inline-size: 58ch;
+		font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.2rem);
+		line-height: 1.55;
+	}
+
+	.included__editions {
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: start;
+	}
+
+	.included__edition {
+		min-inline-size: 0;
+	}
+
+	.included__edition h3 {
+		margin: 0 0 var(--pad-16-32);
+		font-family: 'BebasNeue', sans-serif;
+		font-size: var(--fs-2-5);
+		font-weight: bold;
+		line-height: 1;
+	}
+
+	.included__edition--core {
+		padding-block: var(--pad-16-32);
+		border-block: 2px solid var(--border);
+	}
+
+	.included__edition--bundle {
+		padding: clamp(1.25rem, 3vw, 2rem);
+		border: 2px solid var(--border);
+		border-radius: 0.5rem;
+		background-color: var(--white);
+		box-shadow: 4px 4px 0 var(--border);
+	}
+
+	.included__list {
+		display: grid;
+		gap: 0;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.included__list li {
+		padding-block: var(--pad-12-16);
+		border-block-start: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+	}
+
+	.included__list li:last-child {
+		padding-block-end: 0;
+	}
+
+	.included__list strong {
+		display: block;
+		font-size: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);
+		line-height: 1.35;
+	}
+
+	.included__list p {
+		max-inline-size: 48ch;
+		margin: 0.35rem 0 0;
+		color: var(--small-text);
+		line-height: 1.5;
+	}
+
+	.included__action {
+		display: flex;
+		justify-content: center;
+		margin-block-start: clamp(2rem, 5vw, 3.5rem);
+	}
+
+	@media screen and (min-width: 43.75em) {
+		.included__editions {
+			grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+		}
+	}
+}

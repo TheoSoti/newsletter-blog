@@ -8,186 +8,104 @@ import testimonial_lionel from '../../assets/ebook/lionel.png';
 import testimonial_cedric from '../../assets/ebook/cedric.png';
 import testimonial_joseph from '../../assets/ebook/joseph.png';
 import TestimonialWebsiteLink from './TestimonialWebsiteLink.astro';
+
+const testimonials = [
+	{
+		name: 'Utsav Meena',
+		role: 'CSS Content Creator',
+		image: testimonial_utsav,
+		website: 'https://flexicajourney.com/',
+		websiteLabel: 'Visit Utsav Meena’s website',
+		quote:
+			'It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on accessibility, troubleshooting, and browser compatibility. Hopefully, this will help people appreciate CSS a bit more.',
+	},
+	{
+		name: 'Paul Wright',
+		role: 'Full Stack Web Developer',
+		image: testimonial_paul,
+		website: 'https://www.suedeapple.co.uk/',
+		websiteLabel: 'Visit Paul Wright’s website',
+		quote:
+			'Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second chapter. You Don’t Need JavaScript is a breath of fresh air packed with “wait… CSS can do that?!” moments. Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t always need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity often live right there in your stylesheet.',
+	},
+	{
+		name: 'Lionel Péramo',
+		role: 'Fullstack Developer & Content Creator',
+		image: testimonial_lionel,
+		website: 'http://lionel-peramo.com/',
+		websiteLabel: 'Visit Lionel Péramo’s website',
+		quote:
+			'Theo brilliantly shows how modern CSS can replace complex JavaScript without losing creativity or functionality. The examples are clear, practical, and inspiring. A refreshing reminder that the simplest tools often create the best results. A must-read for any developer.',
+	},
+	{
+		name: 'Joseph',
+		role: 'Acworth Web Designs LLC',
+		image: testimonial_joseph,
+		website: 'https://acworthwebdesigns.com/',
+		websiteLabel: 'Visit Joseph’s Acworth Web Designs website',
+		quote:
+			'An important read for web designers in this era. Theo takes some of the most powerful new web features of the last few years & distills them into simple, immediately-useful examples. If you’re like me, you’ll be able to significantly reduce your JavaScript footprint overnight, while also improving the quality of your web pages.',
+	},
+	{
+		name: 'Virgile Gouala',
+		role: 'Engineering Manager',
+		image: testimonial_virgile,
+		website: 'https://goua.la/',
+		websiteLabel: 'Visit Virgile Gouala’s website',
+		quote:
+			'You Don’t Need JavaScript introduced me to the “Rule of Least Power”, a principle that is both simple and profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological, thoughtful, and handcrafted approach to development, reminding us that elegance and impact often arise from simplicity.',
+	},
+	{
+		name: 'Cedric Molla',
+		role: 'Web Developer',
+		image: testimonial_cedric,
+		quote:
+			'Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made me want to revisit old projects and try a lighter, CSS-first approach.',
+	},
+	{
+		name: 'Pierre Liegard',
+		role: 'Front-end Developer',
+		image: testimonial_pierre,
+		quote:
+			'This book offers a welcome reminder of the latest CSS developments at a time when performance matters more than ever.',
+	},
+];
 ---
 
-<section class="testimonials">
-	<h2 class="testimonials__title">Loved by the community</h2>
-	<fieldset class="switcher">
-		<legend class="visually-hidden">Testimonial layout</legend>
-		<label class="switcher__option" for="two-columns">
-			<input type="radio" name="testimonial-columns" value="2" id="two-columns" checked />
-			<span>2 columns</span>
-		</label>
+<section class="testimonials" id="reviews" aria-labelledby="testimonials-title">
+	<div class="testimonials__container">
+		<header class="testimonials__intro">
+			<h2 class="testimonials__title" id="testimonials-title">Loved by the community</h2>
+			<p>What front-end developers took away from the book.</p>
+		</header>
 
-		<label class="switcher__option" for="three-columns">
-			<input type="radio" name="testimonial-columns" value="3" id="three-columns" />
-			<span>3 columns</span>
-		</label>
-	</fieldset>
-
-	<div class="testimonials__container testimonials__reviews">
-		<div class="heart heart-1"></div>
 		<ul class="testimonial__list">
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_utsav}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">
-						Utsav Meena
-						<TestimonialWebsiteLink href="https://flexicajourney.com/" label="Visit Utsav Meena’s website" />
-						<br />
-						<span>CSS Content Creator</span>
-					</p>
-				</div>
-				<blockquote class="testimonial__text">
-					It’s an easy-to-follow guide with everything explained step by step. I also liked the extra pointers on
-					accessibility, troubleshooting, and browser compatibility. <br />Hopefully, this will help people appreciate
-					CSS a bit more.
-				</blockquote>
-			</li>
-
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_pierre}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">Pierre Liegard<br /> <span>Front-end Developer</span></p>
-				</div>
-				<blockquote class="testimonial__text">
-					This book offers a welcome reminder of the latest CSS developments at a time when performance matters more
-					than ever.
-				</blockquote>
-			</li>
-
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_cedric}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">Cedric Molla<br /> <span>Web Developer</span></p>
-				</div>
-				<blockquote class="testimonial__text">
-					Such a great read! It’s practical, easy to follow, and packed with smart ideas I can actually use. It made me
-					want to revisit old projects and try a lighter, CSS-first approach.
-				</blockquote>
-			</li>
-
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_virgile}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">
-						Virgile Gouala
-						<TestimonialWebsiteLink href="https://goua.la/" label="Visit Virgile Gouala’s website" />
-						<br />
-						<span>Engineering Manager</span>
-					</p>
-				</div>
-				<blockquote class="testimonial__text">
-					<i>You Don’t Need JavaScript</i> introduced me to the “Rule of Least Power”, a principle that is both simple and
-					profoundly enlightening. In a web world that’s always accelerating, this work promotes a more ecological, thoughtful,
-					and handcrafted approach to development, reminding us that elegance and impact often arise from simplicity.
-				</blockquote>
-			</li>
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_paul}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">
-						Paul Wright
-						<TestimonialWebsiteLink href="https://www.suedeapple.co.uk/" label="Visit Paul Wright’s website" />
-						<br />
-						<span>Full Stack Web Developer</span>
-					</p>
-				</div>
-				<blockquote class="testimonial__text">
-					Read this book and you’ll be gleefully ripping out half your JS before you’ve even finished the second
-					chapter. <i>You Don’t Need JavaScript</i> is a breath of fresh air packed with “wait… CSS can do that?!” moments.
-					Theo has a knack for making complex ideas feel effortless, proving that elegant, interactive design doesn’t always
-					need a mountain of JS. It’s the perfect reminder that simplicity, speed, and creativity often live right there in
-					your stylesheet.
-				</blockquote>
-			</li>
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_lionel}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">
-						Lionel Péramo
-						<TestimonialWebsiteLink href="http://lionel-peramo.com/" label="Visit Lionel Péramo’s website" />
-						<br />
-						<span>Fullstack Developer &amp; Content Creator</span>
-					</p>
-				</div>
-				<blockquote class="testimonial__text">
-					Theo brilliantly shows how modern CSS can replace complex JavaScript without losing creativity or
-					functionality. The examples are clear, practical, and inspiring. A refreshing reminder that the simplest tools
-					often create the best results. A must-read for any developer.
-				</blockquote>
-			</li>
-
-			<li class="testimonial">
-				<div class="testimonial__content">
-					<Picture
-						src={testimonial_joseph}
-						formats={['avif', 'webp', 'jpg']}
-						width="168"
-						height="168"
-						alt=""
-						class="testimonial__image"
-					/>
-					<p class="testimonial__author">
-						Joseph
-						<TestimonialWebsiteLink
-							href="https://acworthwebdesigns.com/"
-							label="Visit Joseph’s Acworth Web Designs website"
-						/>
-						<br />
-						<span>Acworth Web Designs LLC</span>
-					</p>
-				</div>
-				<blockquote class="testimonial__text">
-					An important read for web designers in this era. Theo takes some of the most powerful new web features of the
-					last few years &amp; distills them into simple, immediately-useful examples. If you're like me, you'll be able
-					to significantly reduce your JavaScript footprint overnight, while also improving the quality of your web
-					pages.
-				</blockquote>
-			</li>
+			{
+				testimonials.map((testimonial) => (
+					<li class="testimonial">
+						<div class="testimonial__content">
+							<Picture
+								src={testimonial.image}
+								formats={['avif', 'webp', 'jpg']}
+								width="168"
+								height="168"
+								alt=""
+								class="testimonial__image"
+							/>
+							<p class="testimonial__author">
+								<span class="testimonial__name">
+									{testimonial.name}
+									{testimonial.website && testimonial.websiteLabel && (
+										<TestimonialWebsiteLink href={testimonial.website} label={testimonial.websiteLabel} />
+									)}
+								</span>
+								<span class="testimonial__role">{testimonial.role}</span>
+							</p>
+						</div>
+						<blockquote class="testimonial__text">{testimonial.quote}</blockquote>
+					</li>
+				))
+			}
 		</ul>
-		<div class="heart heart-2"></div>
 	</div>
 </section>

@@ -2,110 +2,177 @@
 	.pricing {
 		padding: var(--pad-xl) var(--pad-16-32);
 		border-bottom: 2px solid var(--border);
+		background-color: var(--background);
+	}
+
+	.pricing__intro {
+		display: grid;
+		justify-items: center;
+		gap: var(--pad-8-12);
+		max-width: var(--container-width);
+		margin: 0 auto clamp(2rem, 5vw, 4rem);
+		text-align: center;
+	}
+
+	.pricing__title,
+	.pricing__intro > p {
+		margin: 0;
+	}
+
+	.pricing__intro > p {
+		max-inline-size: 54ch;
+		font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.2rem);
+		line-height: 1.55;
 	}
 
 	.pricing__container {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-		gap: 2rem;
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 3rem);
 		max-width: var(--container-width);
 		margin-inline: auto;
-		padding: 0;
-	}
-
-	.pricing__title {
-		text-align: center;
-		font-family: 'BebasNeue', sans-serif;
-		margin-bottom: var(--pad-xl);
 	}
 
 	.pricing__item {
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		background-color: var(--white);
-		padding: var(--pad-16-32);
-		border-radius: 0.5rem;
+		min-inline-size: 0;
+		padding: clamp(1.25rem, 3vw, 2rem);
 		border: 2px solid var(--border);
-		flex: 1;
-		position: relative;
-		transition: transform 0.3s ease;
+		border-radius: 0.5rem;
+		background-color: var(--white);
 	}
 
-	.pricing__item:hover {
-		transform: translateY(-5px);
+	.pricing__item--bundle {
+		isolation: isolate;
+		border: 3px solid transparent;
 	}
 
-	.pricing__item .button:before {
+	.pricing__item--bundle > * {
+		z-index: 1;
+	}
+
+	@property --bundle-border-angle {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: false;
+	}
+
+	.pricing__item--bundle::before,
+	.pricing__item--bundle::after {
 		content: '';
 		position: absolute;
-		inset: 0;
-		cursor: pointer;
+		inset: -3px;
+		pointer-events: none;
+		border-radius: 0.65rem;
+		background: conic-gradient(
+			from var(--bundle-border-angle),
+			#ff4545,
+			#00ff99,
+			#006aff,
+			#ff0095,
+			#ff4545
+		);
+		animation: bundle-border-spin 3s linear infinite;
 	}
 
-	.pricing__item-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		position: relative;
+	.pricing__item--bundle::before {
+		z-index: -1;
+		filter: blur(1.5rem);
+		opacity: 0.8;
+	}
+
+	.pricing__item--bundle::after {
+		z-index: 0;
+		border: 3px solid transparent;
+		background:
+			linear-gradient(var(--white), var(--white)) padding-box,
+			conic-gradient(
+				from var(--bundle-border-angle),
+				#ff4545,
+				#00ff99,
+				#006aff,
+				#ff0095,
+				#ff4545
+			) border-box;
+	}
+
+	@keyframes bundle-border-spin {
+		to {
+			--bundle-border-angle: 360deg;
+		}
+	}
+
+	.pricing__item-header {
+		display: grid;
+		justify-items: center;
+		gap: var(--pad-8-12);
+		text-align: center;
+	}
+
+	.pricing__item-badge {
+		margin: 0 0 var(--pad-8-12);
+		padding: 0.25rem 0.65rem;
+		border: 2px solid var(--border);
+		border-radius: 0.2rem;
+		background-color: var(--yellow);
+		font-size: 0.8125rem;
+		font-weight: 850;
+		line-height: 1.3;
+		letter-spacing: 0.025em;
+	}
+
+	.pricing__item-title,
+	.pricing__item-price,
+	.pricing__item-summary {
+		margin: 0;
 	}
 
 	.pricing__item-title {
 		font-family: 'BebasNeue', sans-serif;
-		text-align: center;
-		font-size: var(--fs-2);
-		margin: 0;
+		font-size: var(--fs-2-5);
+		font-weight: bold;
+		line-height: 1;
 	}
 
 	.pricing__item-price {
 		font-family: 'BebasNeue', sans-serif;
-		font-weight: bold;
-		text-align: center;
 		font-size: var(--fs-5);
-		margin: 0;
+		font-weight: bold;
+		font-variant-numeric: tabular-nums;
 		line-height: 1;
-		margin-top: 1rem;
+	}
 
-		sup {
-			font-size: var(--fs-2-5);
-		}
+	.pricing__item-price sup {
+		font-size: var(--fs-2-5);
+	}
+
+	.pricing__item-summary {
+		max-inline-size: 44ch;
+		color: var(--small-text);
+		line-height: 1.5;
 	}
 
 	.pricing__item-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0.8rem;
+		display: grid;
+		gap: 0.75rem;
 		list-style: none;
-		padding: 0;
-		margin-bottom: 2rem;
+		padding: var(--pad-16-32) 0;
+		margin: var(--pad-16-32) 0;
+		border-block: 2px solid color-mix(in srgb, var(--border) 30%, transparent);
 	}
 
-	.pricing__item-list li:before {
+	.pricing__item-list li {
+		display: grid;
+		grid-template-columns: 1.2em minmax(0, 1fr);
+		gap: 0.45rem;
+		line-height: 1.45;
+	}
+
+	.pricing__item-list li::before {
 		content: '✓';
-		margin-right: 0.5rem;
 		color: var(--secondary);
-	}
-
-	.pricing__item-list .princing__item-cross span {
-		text-decoration: line-through;
-		margin-left: 0.5rem;
-		color: var(--black);
-	}
-
-	.pricing__item-list .princing__item-cross:before {
-		content: none;
-	}
-
-	.pricing__item-list .princing__item-cross {
-		color: brown;
-	}
-
-	.pricing hr {
-		height: 2px;
-		background-color: var(--small-text);
-		border: none;
-		margin: var(--pad-12-16) 0;
+		font-weight: 900;
 	}
 
 	.pricing .button {
@@ -116,6 +183,12 @@
 	.pricing .button:hover,
 	.pricing .button:focus-visible {
 		transform: none;
+	}
+
+	.pricing .button::before {
+		content: '';
+		position: absolute;
+		inset: 0;
 	}
 
 	.pricing .pricing__button--secondary {
@@ -131,101 +204,57 @@
 		color: var(--white);
 	}
 
-	.pricing__money-back {
-		text-align: center;
-		font-size: var(--fs-1);
-		font-weight: bold;
-	}
-
-	@property --angle {
-		syntax: '<angle>';
-		initial-value: 0deg;
-		inherits: false;
-	}
-
-	.pricing__item.pricing__item-popular {
-		border: none;
-		position: relative;
-		isolation: isolate;
-		background-color: var(--white) !important;
+	.pricing__guarantee {
+		display: grid;
+		justify-items: center;
+		gap: var(--pad-12-16);
+		max-inline-size: 56rem;
+		margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+		padding: clamp(1.25rem, 3vw, 2rem);
+		border: 2px solid var(--main);
 		border-radius: 0.5rem;
+		background-color: color-mix(in srgb, var(--main) 6%, var(--white));
+		text-align: center;
 	}
 
-	.pricing__item.pricing__item-popular > * {
-		z-index: 1;
-	}
-
-	.pricing__item-badge {
-		position: absolute;
-		inset-block-start: 0;
-		inset-inline-start: 50%;
-		z-index: 2;
+	.pricing__guarantee-title,
+	.pricing__guarantee-text {
 		margin: 0;
-		padding: 0.25rem 0.75rem;
-		transform: translate(-50%, -50%);
-		border: 2px solid var(--border);
-		border-radius: 999px;
-		background-color: var(--yellow);
-		box-shadow: 2px 2px 0 var(--black);
-		color: var(--black);
-		font-size: 0.875rem;
+	}
+
+	.pricing__guarantee-title {
+		font-family: 'BebasNeue', sans-serif;
+		font-size: var(--fs-2);
+		font-weight: bold;
+		line-height: 1.05;
+	}
+
+	.pricing__guarantee-text {
+		max-inline-size: 50ch;
+		font-size: var(--fs-1);
+		line-height: 1.5;
+	}
+
+	.pricing__guarantee a {
+		color: inherit;
 		font-weight: 800;
-		line-height: 1.2;
-		letter-spacing: 0.025em;
-	}
-
-	.pricing__item.pricing__item-popular::after,
-	.pricing__item.pricing__item-popular::before {
-		content: '';
-		position: absolute;
-		inset: -2px;
-		z-index: -1;
-		pointer-events: none;
-		border-radius: inherit;
-		border-radius: 0.7rem;
-
-		background: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-
-		animation: spin 3s linear infinite;
-	}
-
-	.pricing__item.pricing__item-popular::after {
-		z-index: 0;
-		border: 2px solid transparent;
-		background:
-			linear-gradient(var(--white), var(--white)) padding-box,
-			conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545) border-box;
-	}
-
-	.pricing__item.pricing__item-popular::before {
-		filter: blur(1.5rem);
-		opacity: 0.8;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.pricing__item {
-			transition: none;
-		}
-
-		.pricing__item:hover {
-			transform: none;
-		}
-
-		.pricing__item.pricing__item-popular::after,
-		.pricing__item.pricing__item-popular::before {
-			animation: none;
-		}
-	}
-
-	@keyframes spin {
-		to {
-			--angle: 360deg;
-		}
+		text-underline-offset: 0.18em;
 	}
 
 	@media screen and (min-width: 43.75em) {
 		.pricing__container {
-			flex-direction: row;
+			grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+		}
+
+		.pricing__item--ebook {
+			margin-block: clamp(1rem, 2vw, 2rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.pricing__item--bundle::before,
+		.pricing__item--bundle::after {
+			animation: none;
 		}
 	}
 }

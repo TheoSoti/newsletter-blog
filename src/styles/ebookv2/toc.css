@@ -1,0 +1,239 @@
+@layer toc {
+	.toc-section {
+		padding: var(--pad-xl) var(--pad-16-32);
+		border-bottom: 2px solid var(--border);
+		background: var(--yellow);
+	}
+
+	.toc-section__container {
+		max-width: var(--container-width);
+		margin-inline: auto;
+	}
+
+	.toc-section__header {
+		display: grid;
+		justify-items: center;
+		gap: var(--pad-8-12);
+		margin-block-end: clamp(2rem, 5vw, 3.5rem);
+		text-align: center;
+	}
+
+	.toc-section__title,
+	.toc-section__header p {
+		margin: 0;
+	}
+
+	.toc-section__header p {
+		max-inline-size: 52ch;
+		font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.2rem);
+		line-height: 1.5;
+	}
+
+	.toc__overview {
+		display: grid;
+		overflow: clip;
+		border: 2px solid var(--border);
+		border-radius: 0.5rem;
+		background-color: var(--white);
+	}
+
+	.toc__part {
+		display: grid;
+		align-content: start;
+		gap: 0.65rem;
+		min-inline-size: 0;
+		padding: clamp(1.25rem, 3vw, 2rem);
+	}
+
+	.toc__part + .toc__part {
+		border-block-start: 2px solid var(--border);
+	}
+
+	.toc__part-label,
+	.toc__part h3,
+	.toc__part-description,
+	.toc__part-count {
+		margin: 0;
+	}
+
+	.toc__part-label {
+		color: var(--main);
+		font-weight: 850;
+		line-height: 1;
+	}
+
+	.toc__part h3 {
+		font-family: 'BebasNeue', sans-serif;
+		font-size: var(--fs-2);
+		font-weight: bold;
+		line-height: 1.05;
+	}
+
+	.toc__part-description {
+		max-inline-size: 34ch;
+		color: var(--small-text);
+		line-height: 1.45;
+	}
+
+	.toc__part-count {
+		align-self: end;
+		padding-block-start: 0.35rem;
+		font-size: 0.9375rem;
+		font-weight: 800;
+	}
+
+	.toc {
+		overflow: clip;
+		margin-block-start: 1rem;
+		border: 2px solid var(--border);
+		border-radius: 0.5rem;
+		background-color: var(--white);
+	}
+
+	.toc__summary {
+		display: block;
+		min-block-size: 44px;
+		padding: var(--pad-12-16) var(--pad-16-32);
+		list-style: none;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.toc__summary:hover,
+	.toc__summary:focus-visible {
+		background-color: var(--background);
+	}
+
+	.toc__summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.toc__summary-label {
+		font-family: 'BebasNeue', sans-serif;
+		font-size: var(--fs-2);
+		font-weight: bold;
+		line-height: 1.2;
+	}
+
+	.toc__summary-label--open {
+		display: none;
+	}
+
+	.toc[open] .toc__summary-label--closed {
+		display: none;
+	}
+
+	.toc[open] .toc__summary-label--open {
+		display: inline;
+	}
+
+	.toc__summary-label::after {
+		content: '\276F';
+		display: inline-block;
+		margin-inline-start: 0.6ch;
+		transform: rotate(90deg);
+		transform-origin: center;
+		transition: transform 0.3s ease;
+	}
+
+	.toc[open] .toc__summary-label::after {
+		transform: rotate(270deg);
+	}
+
+	.toc__list {
+		display: grid;
+		gap: clamp(1.5rem, 4vw, 2.5rem);
+		padding: clamp(1.25rem, 3vw, 2rem);
+		border-block-start: 2px solid var(--border);
+	}
+
+	.toc__group {
+		min-inline-size: 0;
+	}
+
+	.toc__group-header {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-block-end: 0.75rem;
+		border-block-end: 2px solid var(--border);
+	}
+
+	.toc__group-header h3,
+	.toc__group-header > span {
+		margin: 0;
+	}
+
+	.toc__group-header h3 {
+		font-family: 'BebasNeue', sans-serif;
+		font-size: var(--fs-2);
+		font-weight: bold;
+		line-height: 1.1;
+	}
+
+	.toc__group-header h3 span {
+		display: block;
+		margin-block-end: 0.25rem;
+		color: var(--main);
+		font-family: sans-serif;
+		font-size: 0.75rem;
+		font-weight: 850;
+		line-height: 1;
+	}
+
+	.toc__group-header > span {
+		flex: none;
+		color: var(--small-text);
+		font-size: 0.8125rem;
+		font-weight: 750;
+	}
+
+	.toc__group ol {
+		display: grid;
+		gap: 0.6rem;
+		padding-inline-start: 1.5rem;
+		margin: 1rem 0 0;
+	}
+
+	.toc__group li {
+		padding-inline-start: 0.2rem;
+	}
+
+	.toc__group li::marker {
+		color: var(--main);
+		font-weight: 800;
+	}
+
+	.toc__group li p {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		margin: 0;
+		line-height: 1.4;
+	}
+
+	.toc__group li span {
+		flex: none;
+		color: var(--small-text);
+		font-variant-numeric: tabular-nums;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toc__summary-label::after {
+			transition: none;
+		}
+	}
+
+	@media screen and (min-width: 43.75em) {
+		.toc__overview,
+		.toc__list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.toc__part + .toc__part {
+			border-block-start: 0;
+			border-inline-start: 2px solid var(--border);
+		}
+	}
+}

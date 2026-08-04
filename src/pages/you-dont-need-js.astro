@@ -5,14 +5,15 @@ import AboutSection from '../components/ebook/AboutSection.astro';
 import EbookFooter from '../components/ebook/EbookFooter.astro';
 import FaqSection from '../components/ebook/FaqSection.astro';
 import EbookStructuredData from '../components/ebook/EbookStructuredData.astro';
-import FeaturesSection from '../components/ebook/FeaturesSection.astro';
-import GuaranteeSection from '../components/ebook/GuaranteeSection.astro';
 import HeroProofSection from '../components/ebook/HeroProofSection.astro';
 import HeroSection from '../components/ebook/HeroSection.astro';
+import IncludedSection from '../components/ebook/IncludedSection.astro';
 import LearningSection from '../components/ebook/LearningSection.astro';
 import MarqueeStrip from '../components/ebook/MarqueeStrip.astro';
 import PricingSection from '../components/ebook/PricingSection.astro';
+import QualificationSection from '../components/ebook/QualificationSection.astro';
 import TestimonialsSection from '../components/ebook/TestimonialsSection.astro';
+import TocSection from '../components/ebook/TocSection.astro';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -63,14 +64,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<main class="ebook-main">
 			<HeroSection />
 			<HeroProofSection />
+			<QualificationSection />
 			<LearningSection />
-			<FeaturesSection />
 			<MarqueeStrip width="270px" icon="starburst" />
+			<IncludedSection />
 			<TestimonialsSection />
-			<GuaranteeSection />
+			<PricingSection />
 			<AboutSection />
 			<MarqueeStrip width="265px" icon="sparkle" />
-			<PricingSection />
+			<TocSection />
 			<FaqSection />
 		</main>
 		<EbookFooter />

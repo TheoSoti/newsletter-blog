@@ -1,0 +1,102 @@
+---
+const parts = [
+	{
+		label: 'Part 1',
+		title: 'Everyday features',
+		description: 'Practical patterns for the interface work you already do.',
+		count: '8 chapters',
+		chapters: [
+			{ name: 'Conditionally Styling with :has()', page: '5' },
+			{ name: 'Dark Mode in CSS', page: '12' },
+			{ name: 'Smooth Scrolling to Sections', page: '18' },
+			{ name: 'Native Modals with <dialog>', page: '22' },
+			{ name: 'Accordions with Pure CSS', page: '27' },
+			{ name: 'Pure-CSS Automatic Slider', page: '32' },
+			{ name: 'Auto-Numbered Headings', page: '39' },
+			{ name: 'Other Use-Case of Counter', page: '43' },
+		],
+	},
+	{
+		label: 'Part 2',
+		title: 'Modern CSS power moves',
+		description: 'Animation, transitions, masks, validation, and more.',
+		count: '5 chapters',
+		chapters: [
+			{ name: 'Custom Border Animations', page: '48' },
+			{ name: 'View Transitions', page: '55' },
+			{ name: 'CSS Motion Path', page: '59' },
+			{ name: 'CSS Mask Effects', page: '68' },
+			{ name: 'CSS-Only Form Validation', page: '77' },
+		],
+	},
+	{
+		label: 'Part 3',
+		title: 'A glimpse of the future',
+		description: 'New platform features that replace common JavaScript.',
+		count: '6 chapters',
+		chapters: [
+			{ name: 'Scroll-Driven Animations', page: '83' },
+			{ name: 'Native Popovers', page: '90' },
+			{ name: 'Customized Selects', page: '97' },
+			{ name: 'Anchor Positioning', page: '106' },
+			{ name: 'Native CSS Carousels', page: '112' },
+			{ name: 'And more to come...', page: '118' },
+		],
+	},
+];
+---
+
+<section class="toc-section" aria-labelledby="toc-title">
+	<div class="toc-section__container">
+		<header class="toc-section__header">
+			<h2 class="toc-section__title" id="toc-title">Inside the book</h2>
+			<p>Three parts, 19 chapters, and 125 pages of practical CSS.</p>
+		</header>
+
+		<div class="toc__overview">
+			{
+				parts.map((part) => (
+					<article class="toc__part">
+						<p class="toc__part-label">{part.label}</p>
+						<h3>{part.title}</h3>
+						<p class="toc__part-description">{part.description}</p>
+						<p class="toc__part-count">{part.count}</p>
+					</article>
+				))
+			}
+		</div>
+
+		<details class="toc">
+			<summary class="toc__summary">
+				<span class="toc__summary-label toc__summary-label--closed">See all 19 chapters</span>
+				<span class="toc__summary-label toc__summary-label--open">Hide chapter details</span>
+			</summary>
+
+			<div class="toc__list">
+				{
+					parts.map((part) => (
+						<section class="toc__group">
+							<div class="toc__group-header">
+								<h3>
+									<span>{part.label}</span>
+									{part.title}
+								</h3>
+								<span>{part.count}</span>
+							</div>
+							<ol>
+								{part.chapters.map((chapter) => (
+									<li>
+										<p>
+											{chapter.name}
+											<span>{chapter.page}</span>
+										</p>
+									</li>
+								))}
+							</ol>
+						</section>
+					))
+				}
+			</div>
+		</details>
+	</div>
+</section>
