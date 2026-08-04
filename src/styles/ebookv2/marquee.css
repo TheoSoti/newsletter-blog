@@ -3,8 +3,7 @@
 		width: 100%;
 		height: var(--height);
 		background-color: var(--white);
-		border-bottom: 4px solid var(--black);
-		border-top: 4px solid var(--black);
+		border-block-end: 4px solid var(--black);
 	}
 
 	.slider__container {
@@ -34,7 +33,7 @@
 		font-size: 2.3em;
 		font-family: 'BebasNeue', sans-serif;
 		width: var(--width);
-		height: calc(var(--height) - 8px);
+		height: calc(var(--height) - 4px);
 	}
 
 	.slider .sparkle {

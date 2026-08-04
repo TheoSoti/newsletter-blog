@@ -91,7 +91,10 @@
 	}
 
 	.toc__summary {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
 		min-block-size: 44px;
 		padding: var(--pad-12-16) var(--pad-16-32);
 		list-style: none;
@@ -127,16 +130,16 @@
 		display: inline;
 	}
 
-	.toc__summary-label::after {
+	.toc__summary::after {
 		content: '\276F';
 		display: inline-block;
-		margin-inline-start: 0.6ch;
+		flex: none;
 		transform: rotate(90deg);
 		transform-origin: center;
 		transition: transform 0.3s ease;
 	}
 
-	.toc[open] .toc__summary-label::after {
+	.toc[open] .toc__summary::after {
 		transform: rotate(270deg);
 	}
 
