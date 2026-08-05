@@ -61,7 +61,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	</head>
 
 	<body>
-		<main class="ebook-main">
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<main class="ebook-main" id="main-content" tabindex="-1">
 			<HeroSection />
 			<HeroProofSection />
 			<QualificationSection />

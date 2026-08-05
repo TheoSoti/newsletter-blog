@@ -77,6 +77,27 @@
 		line-height: 1.7;
 	}
 
+	.skip-link {
+		position: fixed;
+		inset-block-start: 0.75rem;
+		inset-inline-start: 0.75rem;
+		z-index: 1000;
+		padding: var(--pad-8-12) var(--pad-12-16);
+		border: 2px solid var(--border);
+		border-radius: 0.2em;
+		background-color: var(--white);
+		box-shadow: 4px 4px 0 var(--border);
+		color: var(--black);
+		font-weight: 700;
+		text-decoration: none;
+		transform: translateY(calc(-100% - 1rem));
+		transition: transform 0.15s ease;
+	}
+
+	.skip-link:focus-visible {
+		transform: translateY(0);
+	}
+
 	main {
 		width: var(--container-width);
 		max-width: calc(100% - 2em);

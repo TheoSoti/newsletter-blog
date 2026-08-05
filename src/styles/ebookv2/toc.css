@@ -102,13 +102,13 @@
 		touch-action: manipulation;
 	}
 
-	.toc__summary:hover,
-	.toc__summary:focus-visible {
-		background-color: var(--background);
-	}
-
 	.toc__summary::-webkit-details-marker {
 		display: none;
+	}
+
+	.toc:has(.toc__summary:focus-visible) {
+		outline: 2px solid var(--text);
+		outline-offset: 4px;
 	}
 
 	.toc__summary-label {
@@ -141,6 +141,21 @@
 
 	.toc[open] .toc__summary::after {
 		transform: rotate(270deg);
+	}
+
+	.toc::details-content {
+		block-size: 0;
+		overflow: clip;
+		content-visibility: hidden;
+		transition:
+			block-size 0.3s ease,
+			content-visibility 0.3s ease;
+		transition-behavior: allow-discrete;
+	}
+
+	.toc[open]::details-content {
+		block-size: auto;
+		content-visibility: visible;
 	}
 
 	.toc__list {
@@ -223,7 +238,8 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.toc__summary-label::after {
+		.toc__summary::after,
+		.toc::details-content {
 			transition: none;
 		}
 	}
