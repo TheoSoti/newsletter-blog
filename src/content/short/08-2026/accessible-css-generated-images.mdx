@@ -1,0 +1,44 @@
+---
+title: 'Add alternative text to CSS generated images'
+description: 'Use the slash syntax of the CSS content property to provide replacement text for generated images while keeping meaningful content in HTML.'
+tags:
+  - CSS
+  - accessibility
+  - generated content
+  - alternative text
+  - screen readers
+pubDate: 'Aug 09 2026'
+heroImage: '/short/08-2026/accessible-css-generated-images.jpeg'
+---
+
+<img
+	src="/short/08-2026/accessible-css-generated-images.jpeg"
+	alt="Before and after code examples showing alternative text added after a slash in the CSS content property"
+	width="800"
+	height="1131"
+	style="width: 400px; max-width: 100%; height: auto; margin: 2em auto 1em; display: block; border: 4px solid var(--border)"
+/>
+
+## CSS generated images can have replacement text.
+
+Most people use `content` to insert icons or decorative images. But what if that generated image carries information?
+
+The `content` property accepts alternative text after a slash:
+
+```css
+.element::before {
+	content: url('/images/status.jpg') / 'Current status: available';
+}
+```
+
+The value after the slash is the replacement text associated with the generated content.
+
+This syntax is widely available in browsers, but assistive-technology behavior can still vary. For meaningful content, real HTML such as `<img alt="…">` remains the safer choice.
+
+Use CSS generated content for decoration or progressive enhancement, not for information that must always be announced.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

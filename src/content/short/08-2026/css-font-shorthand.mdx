@@ -1,0 +1,61 @@
+---
+title: 'Replace six typography declarations with the CSS font shorthand'
+description: 'Combine font style, variant, weight, size, line height, and family in one font declaration, while avoiding the shorthand reset trap.'
+tags:
+  - CSS
+  - typography
+  - CSS shorthand
+  - font
+  - CSS tip
+pubDate: 'Aug 09 2026'
+---
+
+## CSS can be verbose and repetitive.
+
+There are often several ways to declare the same result. Horizontal margins alone can be written in at least four ways:
+
+```css
+/* Longhand */
+margin-left: 10px;
+margin-right: 10px;
+
+/* Four-value shorthand */
+margin: 0 10px 0 10px;
+
+/* Two-value shorthand */
+margin: 0 10px;
+
+/* Logical shorthand */
+margin-inline: 10px;
+```
+
+The `font` shorthand can combine six typography declarations in one line.
+
+```css
+.title {
+	font-style: italic;
+	font-variant: small-caps;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1.5;
+	font-family: system-ui, sans-serif;
+}
+```
+
+Becomes:
+
+```css
+.title {
+	font: italic small-caps 700 1rem/1.5 system-ui, sans-serif;
+}
+```
+
+`font-size` and `font-family` are required. The other values are optional, but there is one catch: omitted font longhands are reset to their initial values.
+
+Use the shorthand when you intend to define the complete font state, not when you only want to change one typography property.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

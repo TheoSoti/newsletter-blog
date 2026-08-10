@@ -1,0 +1,47 @@
+---
+title: 'Apply hover styles only when a device can hover'
+description: 'Use the CSS hover media feature to avoid mouse-only interactions on touchscreens and provide appropriate behavior for each input type.'
+tags:
+  - CSS
+  - media queries
+  - hover
+  - touch interfaces
+  - accessibility
+pubDate: 'Aug 09 2026'
+---
+
+## Ever hovered on a touchscreen? Me neither.
+
+But your CSS might still assume that every user can hover.
+
+The `hover` media feature lets you apply styles only when the primary input device can hover conveniently:
+
+```css
+@media (hover: hover) {
+	.card:hover {
+		transform: translateY(-0.25rem);
+	}
+}
+```
+
+You can also target primary input devices that cannot hover:
+
+```css
+@media (hover: none) {
+	.tooltip-trigger {
+		/* Keep the information available on tap or focus */
+	}
+}
+```
+
+This is useful for dropdowns, tooltips, hover transitions, and any interaction that would otherwise disappear on touchscreens.
+
+Use `any-hover` when you care whether any connected input can hover, not just the primary one. A touchscreen laptop with a mouse is a common example.
+
+Hover should remain an enhancement. Important actions and information still need to work with touch and keyboard input.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

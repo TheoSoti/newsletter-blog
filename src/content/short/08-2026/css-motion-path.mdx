@@ -1,0 +1,60 @@
+---
+title: 'Animate elements along a path with CSS Motion Path'
+description: 'Use offset-path, offset-distance, and offset-rotate to move an element along a curve or custom SVG path without animating left and top.'
+tags:
+  - CSS
+  - CSS animation
+  - motion path
+  - offset-path
+  - performance
+pubDate: 'Aug 09 2026'
+heroImage: '/short/08-2026/css-motion-path.gif'
+---
+
+<img
+	src="/short/08-2026/css-motion-path.gif"
+	alt="An element following a curved route created with CSS Motion Path"
+	width="793"
+	height="1122"
+	style="width: 400px; max-width: 100%; height: auto; margin: 2em auto 1em; display: block; border: 4px solid var(--border)"
+/>
+
+## Make elements follow a path without JavaScript or GSAP.
+
+CSS Motion Path lets you animate an element along a curve, loop, or custom shape with three properties.
+
+`offset-path` defines the route. You can use a `path()` value or a basic shape.
+
+`offset-distance` places the element between the start and end of that route.
+
+`offset-rotate: auto` keeps the element aligned with the direction of travel.
+
+```css
+.traveller {
+	offset-path: path('M 20 100 C 80 0 220 0 280 100');
+	offset-rotate: auto;
+	animation: follow-path 3s linear infinite;
+}
+
+@keyframes follow-path {
+	to {
+		offset-distance: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.traveller {
+		animation: none;
+	}
+}
+```
+
+An inline SVG can display the same path as a visual guide, while CSS controls the moving element.
+
+Motion paths work well for loaders, diagrams, timelines, and small interface details. They also avoid animating layout properties such as `left` and `top`.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

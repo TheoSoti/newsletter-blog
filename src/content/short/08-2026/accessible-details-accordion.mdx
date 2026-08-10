@@ -1,0 +1,43 @@
+---
+title: 'Build accessible accordions with details and summary'
+description: 'Use the native details and summary elements for keyboard-friendly accordions, then add a smooth CSS Grid animation without replacing their semantics.'
+tags:
+  - HTML
+  - CSS
+  - accessibility
+  - details
+  - summary
+  - JavaScript alternatives
+pubDate: 'Aug 09 2026'
+heroImage: '/short/08-2026/accessible-details-accordion.gif'
+---
+
+<img
+	src="/short/08-2026/accessible-details-accordion.gif"
+	alt="An accordion opening and closing smoothly using the native details and summary elements"
+	width="793"
+	height="1122"
+	style="width: 400px; max-width: 100%; height: auto; margin: 2em auto 1em; display: block; border: 4px solid var(--border)"
+/>
+
+## Make smooth accordions without JavaScript.
+
+The useful part starts with the `<details>` and `<summary>` elements.
+
+They give you native disclosure semantics and keyboard interaction without recreating the component in JavaScript.
+
+But what about smooth animations?
+
+This is where CSS Grid can help. Instead of relying on a guessed `max-height`, place the accordion content inside a grid row and transition it between `0fr` and `1fr`.
+
+The closed state uses a row height of `0fr`. When the `<details>` element opens, the row changes to `1fr`. A child wrapper with `overflow: hidden` keeps the content clipped during the transition.
+
+Keep `<summary>` as the trigger. The animation should improve the native component, not replace its keyboard behavior or accessible name.
+
+Also respect reduced-motion preferences when adding the transition.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

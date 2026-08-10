@@ -1,0 +1,53 @@
+---
+title: 'Create reusable CSS logic with @function'
+description: 'Define reusable custom CSS functions for calculations, colors, and fluid values without repeating the same expressions across a stylesheet.'
+tags:
+  - CSS
+  - custom CSS functions
+  - experimental CSS
+  - modern CSS
+  - CSS tip
+pubDate: 'Aug 09 2026'
+---
+
+## You can now write custom functions in CSS.
+
+You can keep reusable functions in a `functions.css` or `utils.css` file, much like a `utils.js` file alongside your `reset.css`.
+
+Here is what that can look like:
+
+```css
+/* Return the negative of any value */
+@function --negate(--value) {
+	result: calc(-1 * var(--value));
+}
+
+/* Return a color with a custom alpha value */
+@function --opacity(--color, --opacity) {
+	result: rgb(from var(--color) r g b / var(--opacity));
+}
+
+/* Return a fluid font-size value */
+@function --fluid-type(--font-min, --font-max, --type: 'header') {
+	--scalar: if(
+		style(--type: 'header'): 4vw;
+		style(--type: 'copy'): 0.5vw
+	);
+
+	result: clamp(
+		var(--font-min),
+		var(--scalar) + var(--font-min),
+		var(--font-max)
+	);
+}
+```
+
+The function name starts with `--`, parameters behave like local custom properties, and `result` defines the returned value.
+
+`@function` is still experimental and has limited browser availability. Treat it as progressive enhancement or use it in a controlled browser environment for now.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.

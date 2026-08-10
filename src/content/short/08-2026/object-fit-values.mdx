@@ -1,0 +1,50 @@
+---
+title: 'Understand every CSS object-fit value'
+description: 'Control how images and videos fill a fixed media box with the five object-fit values: fill, contain, cover, none, and scale-down.'
+tags:
+  - CSS
+  - object-fit
+  - responsive images
+  - video
+  - CSS tip
+pubDate: 'Aug 09 2026'
+heroImage: '/short/08-2026/object-fit-values.gif'
+---
+
+<img
+	src="/short/08-2026/object-fit-values.gif"
+	alt="The same image displayed with each of the five CSS object-fit values"
+	width="793"
+	height="1122"
+	style="width: 400px; max-width: 100%; height: auto; margin: 2em auto 1em; display: block; border: 4px solid var(--border)"
+/>
+
+## Master object-fit in under one minute.
+
+Images and videos do not always scale the way you want inside a fixed-size box. That is what `object-fit` controls.
+
+```css
+.media {
+	inline-size: 20rem;
+	block-size: 12rem;
+	object-fit: cover;
+}
+```
+
+There are five values:
+
+- `fill` stretches the media to fill the box, even when that changes its aspect ratio.
+- `contain` shows the whole media without cropping, which may leave empty space.
+- `cover` fills the box while preserving the aspect ratio, so some content may be cropped.
+- `none` keeps the media at its natural size.
+- `scale-down` chooses whichever result is smaller between `none` and `contain`.
+
+The element needs a constrained content box before the differences become visible. Pair `object-fit` with an explicit inline size, block size, or `aspect-ratio`.
+
+I use `object-fit: cover` most often for cards and thumbnails, where filling the frame matters more than showing every edge of the image.
+
+---
+
+If you liked this tip, you might enjoy my guide "You Don't Need JavaScript", which contains more ways to build modern interfaces with HTML and CSS.
+
+You can find it at https://theosoti.com/you-dont-need-js/.
