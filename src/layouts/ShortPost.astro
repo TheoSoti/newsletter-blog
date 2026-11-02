@@ -9,6 +9,7 @@ import { getCollection } from 'astro:content';
 import ShortList from '../components/ShortList.astro';
 import Newsletter from '../components/Newsletter.astro';
 import ShareMenu from '../components/ShareMenu.astro';
+import BuyBook from '../components/BuyBook.astro';
 import { getShortSlug } from '../utils/shortSlug';
 
 const { title, description, pubDate, updatedDate, slug, heroImage, body, tags = [] } = Astro.props;
@@ -177,6 +178,7 @@ const posts = (await getCollection('short'))
       <div class="container">
         <article class="prose">
           <slot />
+          <BuyBook />
         </article>
       </div>
       <Newsletter />

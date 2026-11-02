@@ -1,19 +1,19 @@
 ---
 import { Picture } from 'astro:assets';
-import book from '../assets/ebook/ebook.png';
+import book from '../assets/ebook/book-professional-transparent.png';
 ---
 
 <div class="buybook">
 	<script is:inline src="https://f.convertkit.com/ckjs/ck.5.js" defer></script>
 	<div class="container">
-		<Picture
-			src={book}
-			formats={['avif', 'webp', 'jpg']}
-			class="book"
-			width="440"
-			height="644"
-			alt="You don't need JavaScript ebook cover"
-		/>
+	<Picture
+		src={book}
+		formats={['avif', 'webp', 'png']}
+		class="book"
+		width="839"
+		height="1268"
+		alt="You Don’t Need JavaScript ebook mockup"
+	/>
 		<div class="content">
 			<p class="subscribe-text">Want to build modern interfaces with less JavaScript?</p>
 			<p class="description">
