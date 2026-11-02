@@ -1,0 +1,281 @@
+---
+type Area = 'profile' | 'email' | 'plan' | 'billing';
+
+const cards: Array<{ name: string; area: Area }> = [
+	{ name: 'Profile', area: 'profile' },
+	{ name: 'Email', area: 'email' },
+	{ name: 'Plan', area: 'plan' },
+	{ name: 'Billing', area: 'billing' },
+];
+
+const domOrder: Record<Area, number> = { profile: 1, email: 2, plan: 3, billing: 4 };
+
+const examples: Array<{
+	label: string;
+	value: string;
+	className: string;
+	order: Record<Area, number>;
+	route: string[];
+}> = [
+	{
+		label: 'DOM order',
+		value: 'reading-flow: normal',
+		className: 'reading-flow-demo__grid--normal',
+		order: { profile: 1, email: 2, plan: 3, billing: 4 },
+		route: ['Profile', 'Email', 'Plan', 'Billing'],
+	},
+	{
+		label: 'Visual row order',
+		value: 'reading-flow: grid-rows',
+		className: 'reading-flow-demo__grid--rows',
+		order: { profile: 1, email: 3, plan: 2, billing: 4 },
+		route: ['Profile', 'Plan', 'Email', 'Billing'],
+	},
+];
+---
+
+<section class="reading-flow-demo" aria-label="Compare DOM and visual row tab order">
+	<p class="reading-flow-demo__support" role="status">
+		Your browser does not support <code>reading-flow</code> yet, so both examples will follow DOM
+		order.
+	</p>
+
+	<p class="reading-flow-demo__instructions">
+		Click <strong>Profile</strong> in either grid, then press <kbd>Tab</kbd> three times.
+	</p>
+
+	<div class="reading-flow-demo__examples">
+		{
+			examples.map((example) => (
+				<section class="reading-flow-demo__example" aria-label={example.label}>
+					<header class="reading-flow-demo__header">
+						<strong>{example.label}</strong>
+						<code>{example.value}</code>
+					</header>
+
+					<div class:list={['reading-flow-demo__grid', example.className]}>
+						{cards.map((card) => (
+							<button
+								type="button"
+								class:list={['reading-flow-demo__card', `reading-flow-demo__card--${card.area}`]}
+							>
+								<span class="reading-flow-demo__step reading-flow-demo__step--intended" aria-hidden="true">
+									{example.order[card.area]}
+								</span>
+								{
+									example.className === 'reading-flow-demo__grid--rows' && (
+										<span class="reading-flow-demo__step reading-flow-demo__step--fallback" aria-hidden="true">
+											{domOrder[card.area]}
+										</span>
+									)
+								}
+								{card.name}
+							</button>
+						))}
+					</div>
+
+					<p class="reading-flow-demo__route reading-flow-demo__route--intended">
+						{example.route.map((item, index) => (
+							<>
+								{index > 0 && <span aria-hidden="true"> &rarr; </span>}
+								{item}
+							</>
+						))}
+					</p>
+					{
+						example.className === 'reading-flow-demo__grid--rows' && (
+							<p class="reading-flow-demo__route reading-flow-demo__route--fallback">
+								Profile <span aria-hidden="true"> &rarr; </span> Email
+								<span aria-hidden="true"> &rarr; </span> Plan
+								<span aria-hidden="true"> &rarr; </span> Billing
+							</p>
+						)
+					}
+				</section>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.reading-flow-demo {
+		container-type: inline-size;
+		display: grid;
+		gap: 0.85rem;
+		padding: 0.85rem;
+		background: var(--bg-light);
+	}
+
+	.reading-flow-demo__support {
+		margin: 0;
+		padding: 0.7rem 0.8rem;
+		border: 1px solid color-mix(in srgb, deeppink 65%, var(--border));
+		background: color-mix(in srgb, deeppink 9%, var(--bg));
+		font-size: 0.85rem;
+		line-height: 1.45;
+	}
+
+	@supports (reading-flow: grid-rows) {
+		.reading-flow-demo__support {
+			display: none;
+		}
+	}
+
+	.reading-flow-demo__instructions {
+		margin: 0;
+		font-size: 0.88rem;
+		line-height: 1.45;
+	}
+
+	.reading-flow-demo__instructions kbd {
+		padding: 0.08rem 0.35rem;
+		border: 1px solid var(--border);
+		border-radius: 0.25rem;
+		background: var(--bg);
+		box-shadow: 0 2px 0 color-mix(in srgb, var(--border) 35%, transparent);
+		font: inherit;
+		font-size: 0.78rem;
+	}
+
+	.reading-flow-demo__examples {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.reading-flow-demo__example {
+		display: grid;
+		gap: 0.65rem;
+		margin: 0;
+		padding: 0.7rem;
+		border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+		background: var(--bg);
+	}
+
+	.reading-flow-demo__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.3rem 0.65rem;
+	}
+
+	.reading-flow-demo__header strong {
+		font-size: 0.88rem;
+	}
+
+	.reading-flow-demo__header code {
+		font-size: 0.72rem;
+	}
+
+	.reading-flow-demo__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas:
+			'profile plan'
+			'email billing';
+		gap: 0.55rem;
+	}
+
+	.reading-flow-demo__grid--rows {
+		reading-flow: grid-rows;
+	}
+
+	.reading-flow-demo__route--fallback {
+		display: none;
+	}
+
+	@supports not (reading-flow: grid-rows) {
+		.reading-flow-demo__grid--rows .reading-flow-demo__step--intended,
+		.reading-flow-demo__example:has(.reading-flow-demo__grid--rows)
+			.reading-flow-demo__route--intended {
+			display: none;
+		}
+
+		.reading-flow-demo__grid--rows .reading-flow-demo__step--fallback {
+			display: grid;
+		}
+
+		.reading-flow-demo__example:has(.reading-flow-demo__grid--rows)
+			.reading-flow-demo__route--fallback {
+			display: block;
+		}
+	}
+
+	.reading-flow-demo__card {
+		display: grid;
+		min-width: 0;
+		min-height: 4.25rem;
+		place-items: center;
+		position: relative;
+		padding: 0.7rem 0.35rem;
+		border: 1px solid var(--border);
+		border-radius: 0.35rem;
+		background: var(--bg-light);
+		color: inherit;
+		font: inherit;
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.reading-flow-demo__card--profile {
+		grid-area: profile;
+	}
+
+	.reading-flow-demo__card--email {
+		grid-area: email;
+	}
+
+	.reading-flow-demo__card--plan {
+		grid-area: plan;
+	}
+
+	.reading-flow-demo__card--billing {
+		grid-area: billing;
+	}
+
+	.reading-flow-demo__card:is(:focus, :focus-visible) {
+		outline: 3px solid deeppink;
+		outline-offset: 2px;
+		background: color-mix(in srgb, deeppink 10%, var(--bg-light));
+	}
+
+	.reading-flow-demo__step {
+		display: grid;
+		width: 1.35rem;
+		aspect-ratio: 1;
+		place-items: center;
+		position: absolute;
+		inset-block-start: 0.35rem;
+		inset-inline-start: 0.35rem;
+		border-radius: 50%;
+		background: deeppink;
+		color: white;
+		font-size: 0.68rem;
+		line-height: 1;
+	}
+
+	.reading-flow-demo__step--fallback {
+		display: none;
+	}
+
+	.reading-flow-demo__route {
+		margin: 0;
+		overflow-wrap: anywhere;
+		font-size: 0.72rem;
+		line-height: 1.4;
+		text-align: center;
+	}
+
+	@container (inline-size >= 42rem) {
+		.reading-flow-demo__examples {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (forced-colors: active) {
+		.reading-flow-demo__card:is(:focus, :focus-visible) {
+			outline-color: Highlight;
+		}
+	}
+</style>

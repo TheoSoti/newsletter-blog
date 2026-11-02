@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+	<title id="title">CSS reading-flow grid row order</title>
+	<desc id="desc">Four grid items with arrows showing the reading order from one to four.</desc>
+	<defs>
+		<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto">
+			<path d="M0 0L10 5L0 10Z" fill="deeppink" />
+		</marker>
+	</defs>
+
+	<rect width="1200" height="630" fill="hsl(32, 100%, 97%)" />
+
+	<g fill="none" stroke="deeppink" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)">
+		<path d="M570 195H635" />
+		<path d="M645 285L555 345" />
+		<path d="M570 435H635" />
+	</g>
+
+	<g fill="white" stroke="#111" stroke-width="3">
+		<rect x="210" y="120" width="330" height="150" rx="8" />
+		<rect x="660" y="120" width="330" height="150" rx="8" />
+		<rect x="210" y="360" width="330" height="150" rx="8" />
+		<rect x="660" y="360" width="330" height="150" rx="8" />
+	</g>
+
+	<g fill="deeppink">
+		<circle cx="270" cy="170" r="34" />
+		<circle cx="720" cy="170" r="34" />
+		<circle cx="270" cy="410" r="34" />
+		<circle cx="720" cy="410" r="34" />
+	</g>
+
+	<g fill="white" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="central">
+		<text x="270" y="170">1</text>
+		<text x="720" y="170">2</text>
+		<text x="270" y="410">3</text>
+		<text x="720" y="410">4</text>
+	</g>
+</svg>

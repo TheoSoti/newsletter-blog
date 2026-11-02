@@ -1,0 +1,321 @@
+---
+title: 'CSS reading-flow: Fix Grid and Flexbox Tab Order Without JavaScript'
+description: 'Use CSS reading-flow and reading-order to align keyboard navigation with responsive Grid and Flexbox layouts, without tabindex or JavaScript.'
+tags:
+  - CSS
+  - modern CSS
+  - accessibility
+  - CSS Grid
+  - Flexbox
+  - JavaScript alternatives
+  - frontend tutorial
+pubDate: 'Aug 10 2026'
+heroImage: '/css-reading-flow-reading-order.svg'
+socialImage: '/social/blog/css-reading-flow-reading-order-without-javascript.png'
+readingTime: '7 min read'
+---
+
+import BuyBook from '../../components/BuyBook.astro';
+import Wrapper from '../components/Wrapper.astro';
+import ReadingFlowDemo from '../components/ReadingFlow/1.astro';
+
+## A layout can look right and still tab wrong
+
+CSS Grid and Flexbox can place content almost anywhere. The DOM does not move with it.
+
+Imagine a settings page with four linked cards. The HTML puts the two profile cards first, followed by the two billing cards:
+
+```html
+<nav class="settings-grid" aria-label="Settings">
+	<a class="profile" href="/profile">Profile</a>
+	<a class="email" href="/email">Email</a>
+	<a class="plan" href="/plan">Plan</a>
+	<a class="billing" href="/billing">Billing</a>
+</nav>
+```
+
+On a narrow screen, that source order works well as one column:
+
+1. Profile
+2. Email
+3. Plan
+4. Billing
+
+On a wide screen, the design puts profile settings on the left and billing settings on the right:
+
+```text
+Profile    Plan
+Email      Billing
+```
+
+Visually, you read the first row and then the second. Keyboard focus still follows the DOM, so it moves down the left column before jumping back to the top right:
+
+```text
+Profile -> Email -> Plan -> Billing
+```
+
+That jump is easy to miss if you only test with a mouse.
+
+You could change the HTML, but then the mobile order would become Profile, Plan, Email, Billing. You could also update `tabindex` values with JavaScript at each breakpoint, which creates another order to maintain and relies on positive `tabindex` values that are best avoided.
+
+CSS now has a property for this case:
+
+```css
+.settings-grid {
+	reading-flow: grid-rows;
+}
+```
+
+In a supporting browser, sequential keyboard navigation now follows the visual rows:
+
+```text
+Profile -> Plan -> Email -> Billing
+```
+
+The browser derives the route from the layout, so you do not need DOM measurement, a breakpoint listener, or manually numbered tab indexes.
+
+There is a large support caveat, though. `reading-flow` and `reading-order` are experimental and available in Chrome and Edge at the time of writing, but they are not a production default yet.
+
+## The mental model
+
+`reading-flow` goes on the layout container. It tells the browser how to order that container's children for speech output and sequential navigation such as pressing Tab.
+
+```css
+.settings-grid {
+	display: grid;
+	reading-flow: grid-rows;
+}
+```
+
+`reading-order` goes on a direct child. It lets one child move earlier or later inside the reading flow:
+
+```css
+.settings-grid {
+	reading-flow: grid-rows;
+}
+
+.settings-grid > .urgent {
+	reading-order: -1;
+}
+```
+
+The easiest way to remember the difference is:
+
+- `reading-flow` chooses the route through the container.
+- `reading-order` adjusts the position of an item on that route.
+
+Neither property changes layout or painting. The cards stay in the same grid cells. Only their reading and sequential focus order changes.
+
+The default value is `reading-flow: normal`, which keeps DOM order.
+
+## Start with a sensible source order
+
+Before adding either property, check the HTML.
+
+If the content has one logical order at every viewport size, put that order in the DOM and let CSS handle placement around it. That remains the most reliable option. It works without CSS, in unsupported browsers, and in tools that consume the document source directly.
+
+The CSS Display specification is clear about this. The source should contain the most common or fundamental reading order. `reading-flow` exists for layouts that can have more than one reasonable order as their layout changes.
+
+Our settings example fits that narrow use case:
+
+- The single-column layout groups profile links, then billing links.
+- The two-column layout is easier to scan row by row.
+
+If both layouts should use the same logical order, fix the markup instead.
+
+## Fix a responsive Grid order
+
+Here is the complete CSS for the settings grid:
+
+```css
+.settings-grid {
+	display: grid;
+	gap: 1rem;
+}
+
+.profile {
+	grid-area: profile;
+}
+
+.email {
+	grid-area: email;
+}
+
+.plan {
+	grid-area: plan;
+}
+
+.billing {
+	grid-area: billing;
+}
+
+@media (width >= 48rem) {
+	.settings-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-areas:
+			'profile plan'
+			'email billing';
+		reading-flow: grid-rows;
+	}
+}
+```
+
+On small screens, `reading-flow` remains `normal`, so the browser follows source order.
+
+At `48rem` and wider, the cards form two columns. `grid-rows` tells the browser to follow their visual position one row at a time, while taking the document writing mode into account.
+
+That last part matters. Do not hard-code your idea of left and right into JavaScript. The browser already knows the page's writing direction and can calculate the row order from the layout.
+
+<Wrapper title="Try both tab orders">
+	<ReadingFlowDemo />
+</Wrapper>
+
+This type of responsive reorder often appears in dashboards, settings pages, and card grids. If the component itself changes based on its available space, you can pair the same idea with [container queries](/blog/container-queries/) instead of a viewport media query.
+
+## Flexbox has two visual routes
+
+Flexbox needs two values because visual order and flex direction are not always the same thing.
+
+Consider a reversed row:
+
+```html
+<nav class="steps" aria-label="Setup steps">
+	<a href="/step/one">One</a>
+	<a href="/step/two">Two</a>
+	<a href="/step/three">Three</a>
+</nav>
+```
+
+```css
+.steps {
+	display: flex;
+	flex-direction: row-reverse;
+}
+```
+
+With `reading-flow: normal`, focus remains One, Two, Three because that is the DOM order.
+
+Use `flex-visual` when focus should follow what the reader sees across the line:
+
+```css
+.steps {
+	display: flex;
+	flex-direction: row-reverse;
+	reading-flow: flex-visual;
+}
+```
+
+Use `flex-flow` when focus should start at the flex main-start edge and follow the configured flex direction:
+
+```css
+.steps {
+	display: flex;
+	flex-direction: row-reverse;
+	reading-flow: flex-flow;
+}
+```
+
+The difference becomes easier to see with `row-reverse`, writing modes, or items that use the `order` property. Both values account for CSS `order`; they just choose a different route through the final layout.
+
+I would still question a reversed set of logical steps. If One must come before Two for the content to make sense, the source and visual order should agree. `reading-flow` should not hide a content-model problem.
+
+<BuyBook />
+
+## Use reading-order for small exceptions
+
+`reading-order` accepts an integer. Items are visited from the lowest number to the highest, much like ordinal groups created by the `order` property.
+
+Every child starts at `0`. A value of `-1` moves an item before that group, and `1` moves it after:
+
+```css
+.panel {
+	display: grid;
+	reading-flow: grid-rows;
+}
+
+.panel > .status-alert {
+	reading-order: -1;
+}
+
+.panel > .secondary-action {
+	reading-order: 1;
+}
+```
+
+When two items have the same `reading-order`, the parent's `reading-flow` breaks the tie.
+
+You can also use `source-order` when the layout itself should stay in DOM order and only a specific child needs an override:
+
+```css
+.toolbar {
+	display: flex;
+	reading-flow: source-order;
+}
+
+.toolbar > .primary-action {
+	reading-order: -1;
+}
+```
+
+Use this sparingly. Assigning a custom number to every item gives you another manual order to maintain. That is the same problem as positive `tabindex`, only written in CSS.
+
+## Browser support and fallback
+
+On August 10, 2026, `reading-flow` and `reading-order` are supported in Chrome and Edge from version 137. Can I Use reports 68.26% global support for `reading-flow: grid-rows`, with Chromium-based Opera also supporting it. Firefox and Safari do not support the feature.
+
+MDN marks both properties as experimental and not Baseline. The properties also live in a Working Draft of CSS Display Level 4, so their details can still change.
+
+Unsupported browsers ignore the declaration and keep DOM order:
+
+```css
+.settings-grid {
+	display: grid;
+	reading-flow: grid-rows;
+}
+```
+
+That is a technically safe fallback because the layout does not break. It is not always an acceptable accessibility fallback. In our desktop example, keyboard focus still jumps between columns in Firefox and Safari.
+
+Use `@supports` when you need to explain or adapt the experience:
+
+```css
+.reading-flow-support {
+	display: block;
+}
+
+@supports (reading-flow: grid-rows) {
+	.reading-flow-support {
+		display: none;
+	}
+}
+```
+
+For a non-critical card grid, that progressive enhancement may be reasonable. For checkout, account recovery, or another critical workflow, use a DOM and visual order that works everywhere. Do not make an accessibility fix depend on one browser engine.
+
+Also test the browser and screen reader combinations your users rely on. The specification defines the reading behavior, but assistive technology support should be verified in the real interface, not assumed from a CSS support table.
+
+## When not to use it
+
+Do not use `reading-flow` to repair HTML that has the wrong logical order. Change the source instead when one order makes sense across layouts.
+
+Do not use it when the unsupported-browser order becomes confusing or blocks a task. Chromium support alone is not enough for a critical interaction.
+
+Avoid a long list of `reading-order` numbers. If you need to number every child, simplify the layout or reorder the DOM.
+
+Finally, do not confuse reading order with visual placement. These properties do not move a card, change Grid auto-placement, or alter the paint stack. They only affect speech and sequential navigation order.
+
+## Enjoyed this article?
+
+I write about modern CSS, HTML, and simpler ways to build for the web.
+
+Join my newsletter below if you want more practical frontend tutorials like this.
+
+## References
+
+- [MDN: `reading-flow`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/reading-flow)
+- [MDN: `reading-order`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/reading-order)
+- [Chrome for Developers: Use CSS reading-flow for logical sequential focus navigation](https://developer.chrome.com/blog/reading-flow)
+- [CSS Display Module Level 4](https://www.w3.org/TR/css-display-4/)
+- [Can I Use: `reading-flow: grid-rows`](https://caniuse.com/mdn-css_properties_reading-flow_grid-rows)
+- [CSSWG issue: following visual order instead of logical order](https://github.com/w3c/csswg-drafts/issues/7387)
+- [Adrian Roselli: Source Order Matters](https://adrianroselli.com/2015/09/source-order-matters.html)
