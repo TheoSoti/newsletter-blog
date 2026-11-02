@@ -1,0 +1,104 @@
+---
+const rows = [
+	{
+		guarantee: 'Flat specificity: one class per utility',
+		bug: 'An override refuses to apply',
+		fix: '@layer',
+		href: '#bug-1-the-override-that-refuses-to-apply',
+	},
+	{
+		guarantee: 'No component class names to collide',
+		bug: 'Two components fight over one class name',
+		fix: '@scope',
+		href: '#bug-2-two-components-one-class-name',
+	},
+	{
+		guarantee: 'Styles sit on the element, not on an ancestor',
+		bug: 'A nested component takes the wrong style',
+		fix: 'proximity',
+		href: '#bug-3-the-nested-component-takes-the-wrong-style',
+	},
+	{
+		guarantee: 'A utility only touches its own element',
+		bug: 'A component restyles content it does not own',
+		fix: '@scope … to',
+		href: '#bug-4-the-component-that-restyles-its-content',
+	},
+];
+---
+
+<figure class="bug-map">
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">What Tailwind guarantees</th>
+				<th scope="col">The bug without it</th>
+				<th scope="col">Native fix</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				rows.map((row) => (
+					<tr>
+						<td>{row.guarantee}</td>
+						<td>
+							<a href={row.href}>{row.bug}</a>
+						</td>
+						<td>
+							<code>{row.fix}</code>
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</figure>
+
+<style>
+	.bug-map {
+		margin-block: 1.5rem;
+		border: 2px solid var(--border);
+		border-radius: 0.5rem;
+		overflow: clip;
+	}
+
+	.bug-map table {
+		border-collapse: collapse;
+		font-size: 0.85rem;
+		line-height: 1.4;
+		text-align: start;
+	}
+
+	.bug-map th,
+	.bug-map td {
+		padding: 0.6rem 0.65rem;
+		overflow-wrap: anywhere;
+		text-align: start;
+		vertical-align: top;
+	}
+
+	.bug-map th {
+		background: color-mix(in srgb, deeppink 14%, var(--bg-light));
+		font-size: 0.78rem;
+	}
+
+	.bug-map tbody tr {
+		border-block-start: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+	}
+
+	.bug-map td:last-child {
+		overflow-wrap: normal;
+		white-space: nowrap;
+	}
+
+	@media (width < 30rem) {
+		.bug-map th,
+		.bug-map td {
+			padding: 0.5rem 0.45rem;
+		}
+
+		.bug-map table {
+			font-size: 0.78rem;
+		}
+	}
+</style>

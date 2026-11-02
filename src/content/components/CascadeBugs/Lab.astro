@@ -1,0 +1,253 @@
+---
+import { Code } from 'astro:components';
+
+export interface Preset {
+	label: string;
+	css: string;
+	verdict: string;
+	tone: 'broken' | 'fixed' | 'note';
+	probe?: string;
+}
+
+interface Props {
+	name: string;
+	legend: string;
+	html: string;
+	stageCss: string;
+	presets: Preset[];
+	requiresScope?: boolean;
+}
+
+const { name, legend, html, stageCss, presets, requiresScope = false } = Astro.props;
+const toneLabels = { broken: 'Bug', fixed: 'Fixed', note: 'Note' };
+
+// Browsers without @scope drop the block, so the notice stays visible.
+const supportCss = `
+.cascade-lab__support {
+	display: block;
+}
+
+@scope (.cascade-lab) {
+	.cascade-lab__support {
+		display: none;
+	}
+}`;
+---
+
+<section class="cascade-lab" aria-label={legend}>
+	{
+		requiresScope && (
+			<>
+				<style is:inline set:html={supportCss} />
+				<p class="cascade-lab__support">
+					Your browser does not support <code>@scope</code> yet, so the scoped versions of this demo
+					will lose their styles.
+				</p>
+			</>
+		)
+	}
+
+	<fieldset class="cascade-lab__controls">
+		<legend class="cascade-lab__legend">{legend}</legend>
+		<div class="cascade-lab__options">
+			{
+				presets.map((preset, index) => (
+					<label class="cascade-lab__option">
+						<input type="radio" name={name} value={index} checked={index === 0} />
+						<span>{preset.label}</span>
+					</label>
+				))
+			}
+		</div>
+	</fieldset>
+
+	<div class="cascade-lab__stack">
+		{
+			presets.map((preset, index) => (
+				<div class="cascade-lab__stage" data-state={index}>
+					<template
+						shadowrootmode="open"
+						set:html={`<style>${stageCss}\n${preset.probe ?? ''}\n${preset.css}</style>${html}`}
+					></template>
+				</div>
+			))
+		}
+	</div>
+
+	<div class="cascade-lab__stack" aria-live="polite">
+		{
+			presets.map((preset, index) => (
+				<p class="cascade-lab__verdict" data-state={index} data-tone={preset.tone}>
+					<strong>{toneLabels[preset.tone]}:</strong> <span set:html={preset.verdict} />
+				</p>
+			))
+		}
+	</div>
+
+	<div class="cascade-lab__stack">
+		{
+			presets.map((preset, index) => (
+				<div class="cascade-lab__code" data-state={index}>
+					<Code code={preset.css.trim()} lang="css" />
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	.cascade-lab {
+		--pink: #d6006e;
+		--button: #d6006e;
+		--blue: #1d4ed8;
+		--amber: #92400e;
+		display: grid;
+		gap: 0.75rem;
+		padding: 0.75rem;
+		background: var(--bg-light);
+	}
+
+	:global(:root:has(.check-darkmode:checked)) .cascade-lab {
+		--pink: #ff3aa0;
+		--blue: #93c5fd;
+		--amber: #fcd34d;
+	}
+
+	.cascade-lab__support {
+		margin: 0;
+		padding: 0.7rem 0.8rem;
+		border: 1px solid color-mix(in srgb, deeppink 65%, var(--border));
+		background: color-mix(in srgb, deeppink 9%, var(--bg-light));
+		font-size: 0.85rem;
+		line-height: 1.45;
+	}
+
+	.cascade-lab__controls {
+		min-inline-size: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.cascade-lab__legend {
+		margin-block-end: 0.4rem;
+		padding: 0;
+		font-size: 0.85rem;
+		font-weight: 700;
+	}
+
+	.cascade-lab__options {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.cascade-lab__option {
+		display: inline-grid;
+		place-items: center;
+		position: relative;
+		min-block-size: 2rem;
+		padding: 0.3rem 0.7rem;
+		border: 2px solid var(--border);
+		border-radius: 0.35rem;
+		background: var(--bg-light);
+		font-size: 0.78rem;
+		font-weight: 600;
+		line-height: 1.2;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+
+	.cascade-lab__option input {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	.cascade-lab__option:hover {
+		background: color-mix(in srgb, deeppink 12%, var(--bg-light));
+	}
+
+	.cascade-lab__option:has(input:checked) {
+		border-color: var(--button);
+		background: var(--button);
+		color: white;
+		box-shadow: inset 0 -3px 0 color-mix(in srgb, black 30%, transparent);
+	}
+
+	.cascade-lab__option:has(input:focus-visible) {
+		outline: 3px solid var(--text);
+		outline-offset: 2px;
+	}
+
+	.cascade-lab__stack {
+		display: grid;
+		min-inline-size: 0;
+	}
+
+	.cascade-lab__stack > * {
+		grid-area: 1 / 1;
+		min-inline-size: 0;
+		visibility: hidden;
+	}
+
+	.cascade-lab__stack > [data-state='0'],
+	.cascade-lab:has(input[value='1']:checked) .cascade-lab__stack > [data-state='1'],
+	.cascade-lab:has(input[value='2']:checked) .cascade-lab__stack > [data-state='2'],
+	.cascade-lab:has(input[value='3']:checked) .cascade-lab__stack > [data-state='3'],
+	.cascade-lab:has(input[value='4']:checked) .cascade-lab__stack > [data-state='4'] {
+		visibility: visible;
+	}
+
+	.cascade-lab:has(input:not([value='0']):checked) .cascade-lab__stack > [data-state='0'] {
+		visibility: hidden;
+	}
+
+	.cascade-lab__stage {
+		border: 2px solid var(--border);
+		border-radius: 0.35rem;
+		overflow: clip;
+	}
+
+	.cascade-lab__verdict {
+		--tone: var(--border);
+		margin: 0;
+		padding: 0.6rem 0.75rem;
+		border-inline-start: 4px solid var(--tone);
+		background: color-mix(in srgb, var(--tone) 10%, var(--bg-light));
+		font-size: 0.85rem;
+		line-height: 1.5;
+	}
+
+	.cascade-lab__verdict[data-tone='broken'] {
+		--tone: deeppink;
+	}
+
+	.cascade-lab__verdict[data-tone='fixed'] {
+		--tone: var(--secondary);
+	}
+
+	.cascade-lab__code {
+		display: grid;
+	}
+
+	.cascade-lab__code :global(pre) {
+		margin: 0;
+		padding: 1rem;
+	}
+
+	@media (pointer: coarse) {
+		.cascade-lab__option {
+			min-block-size: 2.75rem;
+		}
+	}
+
+	@media (forced-colors: active) {
+		.cascade-lab__option:has(input:checked) {
+			border-color: Highlight;
+			outline: 2px solid Highlight;
+		}
+	}
+</style>

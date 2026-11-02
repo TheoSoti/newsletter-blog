@@ -1,0 +1,117 @@
+---
+import Lab, { type Preset } from './Lab.astro';
+import { stageBase } from './stage';
+
+const cover =
+	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect width='320' height='180' fill='%23ffd6ec'/%3E%3Cpath d='M0 180 120 60l70 80 40-40 90 80z' fill='%23ff1493'/%3E%3Ccircle cx='250' cy='50' r='24' fill='%23111'/%3E%3C/svg%3E";
+const icon =
+	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23ffc83d'/%3E%3Ccircle cx='8' cy='10' r='2' fill='%23111'/%3E%3Ccircle cx='16' cy='10' r='2' fill='%23111'/%3E%3Cpath d='M7 15q5 5 10 0' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E";
+
+const html = `
+<article class="card">
+	<img src="${cover}" alt="" />
+	<p class="card-title">Release notes</p>
+	<div class="content">
+		<p><img src="${icon}" alt="" /> We rebuilt the <a>billing page</a> this week.</p>
+	</div>
+	<a>Read more</a>
+</article>`;
+
+const stageCss = `${stageBase}
+.card {
+	justify-items: stretch;
+	max-inline-size: 22rem;
+	margin-inline: auto;
+}
+
+.content {
+	padding: 0.5rem 0.7rem 0.7rem;
+	border: 2px dashed var(--border);
+	border-radius: 0.4rem;
+	background: repeating-linear-gradient(
+		-45deg,
+		transparent 0 8px,
+		color-mix(in srgb, var(--text) 6%, transparent) 8px 16px
+	);
+}
+
+.content::before {
+	content: 'CMS content';
+	display: block;
+	margin-block-end: 0.25rem;
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+
+:where(.content a) {
+	color: var(--blue);
+	text-decoration: underline;
+}
+
+:where(.content img) {
+	width: 1.3em;
+	height: 1.3em;
+	vertical-align: -0.25em;
+}
+`;
+
+const declarations = `	img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: 0.4rem;
+	}
+
+	a {
+		color: var(--pink);
+		font-weight: 700;
+		text-decoration: none;
+	}`;
+
+const outline = (prelude: string) => `@scope ${prelude} {
+	* {
+		outline: 2px dashed var(--pink);
+		outline-offset: 1px;
+	}
+}`;
+
+const presets: Preset[] = [
+	{
+		label: '@scope (.card)',
+		css: `@scope (.card) {
+${declarations}
+}`,
+		probe: outline('(.card)'),
+		tone: 'broken',
+		verdict:
+			'The rules reach everything inside <code>.card</code>. The small icon from the CMS turns into a banner, and its link loses its underline. The pink outlines show what the scope can reach.',
+	},
+	{
+		label: 'to (.content)',
+		css: `@scope (.card) to (.content) {
+${declarations}
+}`,
+		probe: outline('(.card) to (.content)'),
+		tone: 'fixed',
+		verdict:
+			'<code>.content</code> is the lower boundary. The outlines stop at the hole, and the CMS icon and link keep their own styles.',
+	},
+	{
+		label: 'Set a color on :scope',
+		css: `@scope (.card) to (.content) {
+	:scope {
+		color: var(--pink);
+	}
+
+${declarations}
+}`,
+		probe: outline('(.card) to (.content)'),
+		tone: 'note',
+		verdict:
+			'The CMS text turns pink even though it sits in the hole. <code>@scope</code> limits what selectors match, and <code>color</code> still inherits through the boundary.',
+	},
+];
+---
+
+<Lab name="donut" legend="Choose where the scope stops" {html} {stageCss} {presets} requiresScope />

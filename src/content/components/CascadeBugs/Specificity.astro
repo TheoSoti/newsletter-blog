@@ -1,0 +1,60 @@
+---
+import Lab, { type Preset } from './Lab.astro';
+import { stageBase } from './stage';
+
+const html = `
+<article class="card">
+	<p class="card-title">Your trial ends in 3 days</p>
+	<p>Need more seats? <a>Compare plans</a> before you decide.</p>
+	<a class="button">Upgrade now</a>
+</article>`;
+
+const cardRule = `.card a {
+	color: var(--blue);
+	text-decoration: underline;
+}`;
+
+const buttonRule = `.button {
+	background: var(--button);
+	color: white;
+	text-decoration: none;
+}`;
+
+const indent = (css: string) => css.replace(/^/gm, '\t');
+
+const layered = (order: string) => `@layer ${order};
+
+@layer base {
+${indent(cardRule)}
+}
+
+@layer components {
+${indent(buttonRule)}
+}`;
+
+const presets: Preset[] = [
+	{
+		label: 'No layers',
+		css: `${cardRule}\n\n${buttonRule}`,
+		tone: 'broken',
+		verdict:
+			'<code>.card a</code> wins <code>color</code> and <code>text-decoration</code>. Its specificity is (0,1,1) and <code>.button</code> only has (0,1,0).',
+	},
+	{
+		label: '@layer base, components',
+		css: layered('base, components'),
+		tone: 'fixed',
+		verdict:
+			'<code>.button</code> wins. The <code>components</code> layer comes after <code>base</code>, so the browser never compares specificity.',
+	},
+	{
+		label: 'Flip the layer order',
+		css: layered('components, base'),
+		tone: 'broken',
+		verdict:
+			'<code>.card a</code> wins again because <code>base</code> is now the later layer. The selectors did not change. One line did.',
+	},
+];
+---
+
+<Lab name="specificity" legend="Choose how the two rules are organized" {html} stageCss={stageBase} {presets} />

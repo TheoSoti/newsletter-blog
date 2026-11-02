@@ -1,0 +1,69 @@
+---
+const steps = [
+	{ name: 'Origin and importance', detail: '!important, browser styles' },
+	{ name: 'Style attribute', detail: 'style=""' },
+	{ name: 'Layers', detail: '@layer', isNew: true },
+	{ name: 'Specificity', detail: '(0,1,1) beats (0,1,0)' },
+	{ name: 'Scope proximity', detail: '@scope', isNew: true },
+	{ name: 'Order of appearance', detail: 'last rule wins' },
+];
+---
+
+<figure class="cascade-ladder">
+	<ol>
+		{
+			steps.map((step) => (
+				<li class:list={['cascade-ladder__step', { 'cascade-ladder__step--new': step.isNew }]}>
+					<span class="cascade-ladder__name">{step.name}</span>
+					<code>{step.detail}</code>
+				</li>
+			))
+		}
+	</ol>
+	<figcaption>The browser walks down this list and stops at the first difference. Simplified from CSS Cascade 6.</figcaption>
+</figure>
+
+<style>
+	.cascade-ladder {
+		margin-block: 1.5rem;
+	}
+
+	.cascade-ladder ol {
+		display: grid;
+		gap: 0.35rem;
+		margin: 0 0 0.6rem;
+		padding: 0;
+		list-style: none;
+		counter-reset: step;
+	}
+
+	.cascade-ladder__step {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.2rem 0.75rem;
+		padding: 0.5rem 0.75rem;
+		border: 2px solid color-mix(in srgb, var(--border) 45%, transparent);
+		border-radius: 0.35rem;
+		background: var(--bg-light);
+		font-size: 0.9rem;
+		counter-increment: step;
+	}
+
+	.cascade-ladder__name::before {
+		content: counter(step) '. ';
+		font-variant-numeric: tabular-nums;
+	}
+
+	.cascade-ladder__step--new {
+		border-color: deeppink;
+		background: color-mix(in srgb, deeppink 10%, var(--bg-light));
+		font-weight: 700;
+	}
+
+	.cascade-ladder code {
+		font-size: 0.75rem;
+		overflow-wrap: anywhere;
+	}
+</style>

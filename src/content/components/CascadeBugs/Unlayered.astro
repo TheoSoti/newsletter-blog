@@ -1,0 +1,64 @@
+---
+import Lab, { type Preset } from './Lab.astro';
+import { stageBase } from './stage';
+
+const html = `
+<article class="card">
+	<p class="card-title">Your trial ends in 3 days</p>
+	<p>Need more seats? <a>Compare plans</a> before you decide.</p>
+	<a class="button">Upgrade now</a>
+</article>`;
+
+const buttonLayer = `@layer components {
+	.button {
+		background: var(--button);
+		color: white;
+		text-decoration: none;
+	}
+}`;
+
+const presets: Preset[] = [
+	{
+		label: 'Old rule outside a layer',
+		css: `/* legacy.css, not migrated yet */
+.card a {
+	color: var(--blue);
+	text-decoration: underline;
+}
+
+${buttonLayer}`,
+		tone: 'broken',
+		verdict: 'The unlayered <code>.card a</code> wins. Styles outside a layer sit above every layer.',
+	},
+	{
+		label: 'A bare a selector',
+		css: `/* legacy.css, not migrated yet */
+a {
+	color: var(--blue);
+	text-decoration: underline;
+}
+
+${buttonLayer}`,
+		tone: 'broken',
+		verdict:
+			'A bare <code>a</code> has a specificity of (0,0,1) and it still beats <code>.button</code>. Specificity only counts inside the same layer.',
+	},
+	{
+		label: 'Old rule in a low layer',
+		css: `@layer legacy, components;
+
+@layer legacy {
+	.card a {
+		color: var(--blue);
+		text-decoration: underline;
+	}
+}
+
+${buttonLayer}`,
+		tone: 'fixed',
+		verdict: '<code>legacy</code> now sits below <code>components</code>, so <code>.button</code> wins.',
+	},
+];
+---
+
+<Lab name="unlayered" legend="Choose where the old rule lives" {html} stageCss={stageBase} {presets} />

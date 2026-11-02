@@ -1,0 +1,84 @@
+---
+import Lab, { type Preset } from './Lab.astro';
+import { stageBase } from './stage';
+
+const html = `
+<article class="card">
+	<a>Link in the card</a>
+	<aside class="alert">
+		<a>Link in the alert</a>
+		<article class="card">
+			<a>Link in the nested card</a>
+		</article>
+	</aside>
+</article>`;
+
+const stageCss = `${stageBase}
+.card,
+.alert {
+	justify-items: stretch;
+}
+`;
+
+const plainCard = `.card a {
+	color: var(--pink);
+	text-decoration: underline;
+}`;
+
+const plainAlert = `.alert a {
+	color: var(--amber);
+	text-decoration: underline wavy;
+}`;
+
+const scopedCard = `@scope (.card) {
+	a {
+		color: var(--pink);
+		text-decoration: underline;
+	}
+}`;
+
+const scopedAlert = (selector: string) => `@scope (.alert) {
+	${selector} {
+		color: var(--amber);
+		text-decoration: underline wavy;
+	}
+}`;
+
+const presets: Preset[] = [
+	{
+		label: 'Plain selectors',
+		css: `${plainCard}\n\n${plainAlert}`,
+		tone: 'broken',
+		verdict:
+			'The nested card link matches both rules with the same specificity, so source order decides. <code>.alert a</code> comes last and the link takes the wavy alert style.',
+	},
+	{
+		label: 'Swap the rules',
+		css: `${plainAlert}\n\n${plainCard}`,
+		tone: 'broken',
+		verdict: 'Now <code>.card a</code> comes last, so the alert loses its own link. Swapping the rules only moves the bug.',
+	},
+	{
+		label: '@scope',
+		css: `${scopedCard}\n\n${scopedAlert('a')}`,
+		tone: 'fixed',
+		verdict:
+			'The nested link is 1 hop from the inner <code>.card</code> and 2 hops from <code>.alert</code>. The nearest root wins.',
+	},
+	{
+		label: '@scope, swapped',
+		css: `${scopedAlert('a')}\n\n${scopedCard}`,
+		tone: 'fixed',
+		verdict: 'Same result. Proximity is checked before source order, so the order of the rules stopped mattering.',
+	},
+	{
+		label: 'Stronger selector',
+		css: `${scopedCard}\n\n${scopedAlert(':scope a')}`,
+		tone: 'broken',
+		verdict:
+			'<code>:scope a</code> has a specificity of (0,1,1) and the card rule has (0,0,1). Specificity is checked first, so the far root wins.',
+	},
+];
+---
+
+<Lab name="proximity" legend="Choose how the nested links are styled" {html} {stageCss} {presets} requiresScope />

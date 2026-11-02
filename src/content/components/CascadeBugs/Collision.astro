@@ -1,0 +1,72 @@
+---
+import Lab, { type Preset } from './Lab.astro';
+import { stageBase } from './stage';
+
+const html = `
+<div class="pair">
+	<article class="card">
+		<p class="title">Annual plan</p>
+		<p>$96 per year, billed once.</p>
+	</article>
+	<aside class="alert">
+		<p class="title">Payment failed</p>
+		<p>Update your card to keep your plan.</p>
+	</aside>
+</div>`;
+
+const stageCss = `${stageBase}
+.pair {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+	gap: 0.75rem;
+}
+`;
+
+const presets: Preset[] = [
+	{
+		label: 'Global class names',
+		css: `/* card.css */
+.title {
+	color: var(--pink);
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+/* alert.css */
+.title {
+	color: var(--amber);
+	font-size: 0.8em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}`,
+		tone: 'broken',
+		verdict:
+			'Both rules match both titles. <code>alert.css</code> loads last, so the card title turns small, amber, and uppercase. The alert title picks up the bold weight from <code>card.css</code>.',
+	},
+	{
+		label: '@scope',
+		css: `/* card.css */
+@scope (.card) {
+	.title {
+		color: var(--pink);
+		font-size: 1.5em;
+		font-weight: 700;
+	}
+}
+
+/* alert.css */
+@scope (.alert) {
+	.title {
+		color: var(--amber);
+		font-size: 0.8em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+}`,
+		tone: 'fixed',
+		verdict: 'Each rule only reaches the <code>.title</code> inside its own root. The class name is local now.',
+	},
+];
+---
+
+<Lab name="collision" legend="Choose how the titles are styled" {html} {stageCss} {presets} requiresScope />

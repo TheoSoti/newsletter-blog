@@ -1,0 +1,421 @@
+---
+title: 'Leaving Tailwind? 4 CSS Bugs It Was Protecting You From'
+description: 'Tailwind prevents specificity fights, class collisions, and leaking styles. Reproduce each bug in a live demo, then fix it with native @layer and @scope.'
+tags:
+  - CSS
+  - modern CSS
+  - Tailwind CSS
+  - cascade layers
+  - CSS architecture
+  - frontend tutorial
+pubDate: 'Nov 01 2026'
+heroImage: '/css-layer-scope-bugs-tailwind-prevents.svg'
+socialImage: '/social/blog/css-layer-scope-bugs-tailwind-prevents.png'
+readingTime: '11 min read'
+---
+
+import BuyBook from '../../components/BuyBook.astro';
+import Wrapper from '../components/Wrapper.astro';
+import BugMap from '../components/CascadeBugs/BugMap.astro';
+import Collision from '../components/CascadeBugs/Collision.astro';
+import Donut from '../components/CascadeBugs/Donut.astro';
+import Ladder from '../components/CascadeBugs/Ladder.astro';
+import Proximity from '../components/CascadeBugs/Proximity.astro';
+import Specificity from '../components/CascadeBugs/Specificity.astro';
+import Unlayered from '../components/CascadeBugs/Unlayered.astro';
+
+## Tailwind does more than shorten your CSS
+
+In May, Julia Evans published [a post about moving away from Tailwind](https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/) and learning to structure CSS by hand. The [Hacker News thread](https://news.ycombinator.com/item?id=48158400) under it collected almost 400 comments about what you gain and lose when you leave.
+
+One line from the post stayed with me: "The CSS for one component never overrides the CSS for any other component." That rule is a convention. Nothing in the browser enforces it, and `@layer` and `@scope` are on the post's list of features to try later.
+
+That convention is what Tailwind gives you for free. The usual arguments focus on long class lists and separation of concerns. I find a narrower question more useful: which bugs cannot happen in a Tailwind project, and what does plain CSS need to prevent them too?
+
+I count four:
+
+<BugMap />
+
+Tailwind v4 ships its own styles in native cascade layers, so you may already rely on the first fix. If you are staying on Tailwind, the [trap with unlayered CSS](#the-trap-unlayered-css-beats-every-layer) still applies to you.
+
+## Bug 1: the override that refuses to apply
+
+Start with a card. It has a link in its text and a button at the bottom, and the button is also a link:
+
+```html
+<article class="card">
+	<p>Need more seats? <a href="/plans">Compare plans</a> before you decide.</p>
+	<a class="button" href="/upgrade">Upgrade now</a>
+</article>
+```
+
+The card styles its links. The button has its own class:
+
+```css
+.card a {
+	color: var(--blue);
+	text-decoration: underline;
+}
+
+.button {
+	background: var(--button);
+	color: white;
+	text-decoration: none;
+}
+```
+
+The button renders with blue underlined text on a pink background. `.card a` has a specificity of (0,1,1) and `.button` has (0,1,0). A rule written for links in a paragraph beats the class you put on the element.
+
+The usual fixes push the problem forward. You write `.card a.button`, or `.card a:not(.button)`, or you add `!important`. Each one makes the next override harder.
+
+This bug cannot happen in a Tailwind project. Every utility is one class, nothing like `.card a` exists, and the framework controls the order of its own output.
+
+Native CSS gets the same result with cascade layers:
+
+```css
+@layer base, components;
+
+@layer base {
+	.card a {
+		/* … */
+	}
+}
+
+@layer components {
+	.button {
+		/* … */
+	}
+}
+```
+
+The first line sets the order, and later layers win. When two rules live in different layers, the browser compares the layers and stops there. Specificity only matters between rules in the same layer.
+
+Try it below. The code under each demo is the CSS the browser applies to it, minus padding and other decoration.
+
+<Wrapper title="Reorder the layers and watch the button">
+	<Specificity />
+</Wrapper>
+
+The third version is the one to remember. The selectors are identical in all three, and a single line decides the winner. That line is also the priority system of your whole stylesheet, in one place instead of scattered across selectors.
+
+It is how Tailwind v4 works too. Its stylesheet declares `@layer theme, base, components, utilities;`, which is why a utility can override a class from the `components` layer.
+
+These demos need no JavaScript, by the way. Radio inputs and `:has()` switch between versions, and declarative shadow DOM gives each version its own cascade. A page can only have one layer order, so that is how this one shows two.
+
+### The trap: unlayered CSS beats every layer
+
+Layers have one rule that catches almost everyone: styles outside any layer beat all of the layers, including the last one.
+
+This is where migrations go wrong. You put your new components in a layer, you leave the old stylesheet where it is, and the old stylesheet now wins every conflict.
+
+<Wrapper title="Move the old rule into a layer">
+	<Unlayered />
+</Wrapper>
+
+The second version is the surprising one. A bare `a` selector beats a class because specificity never gets a vote.
+
+So migrate from the bottom up. Put the old code in a low layer first:
+
+```css
+@layer legacy, base, components;
+
+@import url('legacy.css') layer(legacy);
+```
+
+That moves the whole file below everything else. You can pull rules out of it at your own pace.
+
+The same rule applies in a Tailwind v4 project. A class you write outside a layer beats every utility, so `<div class="promo p-8">` keeps the padding from `.promo` if `.promo` sets one.
+
+`!important` reverses all of this. Between layers, an important declaration in an earlier layer beats one in a later layer, and important layered styles beat important unlayered ones. This lets a reset insist on something. It also means `!important` cannot help you climb the stack. If a rule needs to win, move it to a later layer.
+
+<BuyBook />
+
+## Bug 2: two components, one class name
+
+Here are two components, probably written months apart:
+
+```css
+/* card.css */
+.title {
+	color: var(--pink);
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+/* alert.css */
+.title {
+	color: var(--amber);
+	font-size: 0.8em;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+```
+
+Class names are global. Both rules match both titles, the last file wins the properties they share, and the rest merges.
+
+BEM fixes this with a convention: `.card__title` and `.alert__title`. That works for as long as everyone follows it. Tailwind fixes it by removing the name. `@scope` fixes it by making the name local:
+
+```css
+@scope (.card) {
+	.title {
+		/* card title styles */
+	}
+}
+
+@scope (.alert) {
+	.title {
+		/* alert title styles */
+	}
+}
+```
+
+`@scope (.card)` limits the rules to the inside of `.card`. The selector no longer has to be unique across the whole project.
+
+<Wrapper title="Give each .title its own scope">
+	<Collision />
+</Wrapper>
+
+Two details before you convert everything.
+
+`@scope` adds no specificity. `.title` inside the block stays at (0,1,0), and that is usually what you want, because scoped components stay easy to override. It also means a rewrite can lower a selector. `.card a` is (0,1,1), but `a` inside `@scope (.card)` is (0,0,1), so an old global rule such as `.link` can start winning after the move. Layers solve that one too.
+
+`@scope` also keeps going through nested components. If an `.alert` sits inside a `.card`, the card's `.title` rule reaches the alert's title. The next two bugs deal with that.
+
+## Bug 3: the nested component takes the wrong style
+
+Cards go inside alerts. Alerts go inside cards. Both style their links:
+
+```css
+.card a {
+	color: var(--pink);
+	text-decoration: underline;
+}
+
+.alert a {
+	color: var(--amber);
+	text-decoration: underline wavy;
+}
+```
+
+Both selectors have a specificity of (0,1,1), and a link in a card that sits in an alert matches both. The cascade used to have no concept of "closer", so the last rule in the file wins, wherever the link is.
+
+Tailwind avoids this because the classes are on the link itself. In plain CSS, `@scope` adds a new step to the cascade called proximity. When two scoped rules tie on specificity, the one whose root is fewer steps up the DOM tree wins.
+
+```css
+@scope (.card) {
+	a {
+		/* pink link */
+	}
+}
+
+@scope (.alert) {
+	a {
+		/* amber wavy link */
+	}
+}
+```
+
+<Wrapper title="Compare source order and proximity">
+	<Proximity />
+</Wrapper>
+
+The last version is a good reason to keep scoped selectors plain. `:scope` counts as a pseudo-class, so it adds (0,1,0), and specificity is checked before proximity. One stronger selector in a far scope beats every nearer one.
+
+You may not need proximity at all. If a component only changes values, custom properties already give you "nearest wins", because inheritance works that way:
+
+```css
+a {
+	color: var(--link);
+}
+
+.card {
+	--link: var(--pink);
+}
+
+.alert {
+	--link: var(--amber);
+}
+```
+
+The nested link reads `--link` from its closest ancestor that sets it. I would start there, and [relative colors](/blog/css-relative-colors/) can generate the rest of the palette. Proximity earns its place when the nested rules differ by more than a few values, or when you cannot edit the inner component.
+
+### Where the two new steps sit
+
+You have now seen both features change the result of the cascade. Here is the order the browser follows:
+
+<Ladder />
+
+Layers sit above specificity and proximity sits below it, which is why the two features do not compete. A layer answers "which kind of rule wins?". A scope answers "which elements can this rule touch?".
+
+## Bug 4: the component that restyles its content
+
+A card often wraps content it does not control, such as CMS text, rendered Markdown, or a child component. A scoped rule reaches all of it:
+
+```css
+@scope (.card) {
+	img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: 0.4rem;
+	}
+
+	a {
+		color: var(--pink);
+		font-weight: 700;
+		text-decoration: none;
+	}
+}
+```
+
+A writer adds a small icon to a sentence and it becomes a banner. This cannot happen by accident in Tailwind, because a utility only touches the element that carries it.
+
+`@scope` takes a second selector, which sets a lower boundary:
+
+```css
+@scope (.card) to (.content) {
+	/* same rules */
+}
+```
+
+This is called a donut scope. The rules apply from `.card` down to `.content`, and the hole in the middle is left alone.
+
+<Wrapper title="Cut a hole in the scope">
+	<Donut />
+</Wrapper>
+
+The boundary excludes `.content` itself. To style `.content` and still protect what is inside it, write `to (.content > *)`.
+
+The third version shows the most common misunderstanding about `@scope`. It controls which elements a selector can match, and inheritance ignores it. A `color` set on `.card` flows straight through the hole. If the hole must keep its own text color, reset the color on `.content`.
+
+### Keep styles next to the markup
+
+The best part of writing Tailwind is that you never leave the HTML. `@scope` has a small version of this. Without a selector, it scopes the rules to the parent of the `<style>` element:
+
+```html
+<article class="promo">
+	<style>
+		@scope {
+			a {
+				color: var(--pink);
+			}
+		}
+	</style>
+
+	<a href="/plans">Compare plans</a>
+</article>
+```
+
+You need no class names in the CSS and no build step. I would keep this for one-off sections. A list of 100 cards would ship the same styles 100 times, and a strict Content Security Policy can block inline styles.
+
+## Putting it together
+
+Here is a small structure that uses both features. It follows the same groups as Julia Evans's post (a reset, colors, components, utilities), but now the browser enforces the order:
+
+```css
+/* main.css */
+@layer reset, tokens, base, components, utilities;
+
+@import url('reset.css') layer(reset);
+@import url('tokens.css') layer(tokens);
+@import url('base.css') layer(base);
+@import url('card.css') layer(components);
+@import url('alert.css') layer(components);
+@import url('utilities.css') layer(utilities);
+```
+
+```css
+/* card.css */
+@scope (.card) to (.content) {
+	:scope {
+		padding: 1rem;
+	}
+
+	.title {
+		font-size: var(--size-lg);
+	}
+
+	a {
+		color: var(--pink);
+	}
+}
+```
+
+`main.css` decides priority, and each component decides its own reach. A helper such as `.hidden` in `utilities` beats any component rule, whatever the selector looks like.
+
+Native `@import` works without a build step, which makes development simple. Each import is one more request, though, so for production a bundler such as esbuild or Lightning CSS can merge the files.
+
+## What you still lose
+
+`@layer` and `@scope` deal with the cascade. They do not replace everything Tailwind gives you.
+
+You lose unused CSS removal. Tailwind only generates the classes you use, and native CSS ships everything you write. One file per component makes deletion easier, but nothing does it for you.
+
+You lose a default scale. Custom properties can hold the same values, but nothing stops someone from typing `padding: 13px`.
+
+You lose some speed in the markup. `md:flex` is shorter than a media query.
+
+You also lose familiarity. Most teammates and LLMs know Tailwind, and both may need a nudge toward `@scope`.
+
+If those matter more to you than long class lists bother you, staying on Tailwind is a fine decision.
+
+## Browser support
+
+On November 1, 2026, [Can I Use reports 96.89% global support for cascade layers](https://caniuse.com/css-cascade-layers), available since Chrome and Edge 99, Firefox 97, and Safari 15.4. MDN lists them as Baseline Widely Available.
+
+[`@scope` is at 92.92%](https://caniuse.com/css-cascade-scope), with support in Chrome and Edge 118, Safari 17.4, and Firefox 146. MDN lists it as Baseline 2026, Newly Available. Firefox only shipped it in December 2025, so older browsers still matter here.
+
+A browser without `@scope` drops the whole block, which leaves a scoped component without its styles. You cannot test for it cleanly yet either: [`@supports at-rule()`](https://caniuse.com/mdn-css_at-rules_supports_at-rule) only reaches 67.65% of users, which is less than `@scope` itself.
+
+The fallback that works everywhere is the cascade. Write the plain rule first, then override it inside a scope:
+
+```css
+.support-notice {
+	display: block;
+}
+
+@scope (.card) {
+	.support-notice {
+		display: none;
+	}
+}
+```
+
+Supporting browsers hide the notice and older ones keep it. The demos in this article use the same trick. For a component you cannot afford to lose, keep unique class names and unscoped rules a little longer.
+
+MDN also warns that engines handle `&` inside `@scope` differently, so I avoided it in this article. Use bare selectors, and `:scope` when you need the root.
+
+## Final thoughts
+
+I think native CSS is better than Tailwind, and these four bugs are the reason.
+
+They were the strongest argument for Tailwind. Plain CSS gave you no clean way to set priority or to keep a selector inside its component. Tailwind solved both by putting every style on the element. In exchange, you accepted a build step and a second vocabulary on top of CSS.
+
+That trade made sense while the browser could not help. Now it can. `@layer` gives you one line that decides priority. `@scope` gives you a boundary that code review no longer has to enforce.
+
+Native CSS also ages better. In Tailwind v4, `shadow-sm` draws what `shadow` drew in v3, so upgrading means rewriting classes across your markup. CSS written ten years ago still works as written, and new features work in your stylesheet the day browsers ship them.
+
+Most of the losses I listed earlier are about convenience. The four bugs are about correctness, and I would rather have the browser guard that.
+
+If you are leaving Tailwind, I think you are making the right call. Learn `@layer` and `@scope` before you write your first component. They turn a convention into something the browser checks.
+
+## Enjoyed this article?
+
+I write about modern CSS, HTML, and simpler ways to build for the web.
+
+Join my newsletter below if you want more practical frontend tutorials like this.
+
+## References
+
+- [Julia Evans: Moving away from Tailwind, and learning to structure my CSS](https://jvns.ca/blog/2026/05/15/moving-away-from-tailwind--and-learning-to-structure-my-css-/)
+- [Hacker News discussion of that post](https://news.ycombinator.com/item?id=48158400)
+- [CSS Cascading and Inheritance Level 6](https://drafts.csswg.org/css-cascade-6/)
+- [MDN: `@layer`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer)
+- [MDN: `@scope`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@scope)
+- [Chrome for Developers: How to use `@scope`](https://developer.chrome.com/docs/css-ui/at-scope)
+- [CSS-Tricks: A Complete Guide to CSS Cascade Layers](https://css-tricks.com/css-cascade-layers/)
+- [Tailwind CSS: Adding custom styles](https://tailwindcss.com/docs/adding-custom-styles)
+- [Tailwind CSS: Preflight](https://tailwindcss.com/docs/preflight)
+- [Can I Use: CSS Cascade Layers](https://caniuse.com/css-cascade-layers)
+- [Can I Use: CSS `@scope`](https://caniuse.com/css-cascade-scope)

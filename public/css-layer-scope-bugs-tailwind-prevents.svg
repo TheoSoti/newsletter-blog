@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+	<title id="title">CSS layers and scope</title>
+	<desc id="desc">Three stacked cascade layers next to a card with a hole in its scope.</desc>
+	<defs>
+		<pattern id="hole" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+			<rect width="12" height="24" fill="#ff1493" fill-opacity="0.16" />
+		</pattern>
+	</defs>
+
+	<rect width="1200" height="630" fill="hsl(32, 100%, 97%)" />
+
+	<g stroke="#111" stroke-width="3">
+		<rect x="170" y="110" width="330" height="190" rx="16" fill="#fff" />
+		<rect x="130" y="170" width="330" height="190" rx="16" fill="#f7ecff" />
+		<rect x="90" y="230" width="330" height="190" rx="16" fill="#ff1493" fill-opacity="0.9" />
+	</g>
+
+	<rect x="680" y="110" width="430" height="310" rx="16" fill="#fff" stroke="#111" stroke-width="3" />
+	<rect x="710" y="140" width="370" height="26" rx="13" fill="#ff1493" fill-opacity="0.9" />
+	<rect x="710" y="186" width="230" height="16" rx="8" fill="#111" fill-opacity="0.2" />
+	<rect x="710" y="222" width="370" height="168" rx="12" fill="url(#hole)" stroke="deeppink" stroke-width="3" stroke-dasharray="12 10" />
+
+	<g fill="#111" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="46" font-weight="700" text-anchor="middle" dominant-baseline="middle">
+		<text x="255" y="505">@layer</text>
+		<text x="895" y="505">@scope</text>
+	</g>
+</svg>
