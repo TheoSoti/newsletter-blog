@@ -11,6 +11,7 @@ import Newsletter from '../components/Newsletter.astro';
 import ShareMenu from '../components/ShareMenu.astro';
 import BuyBook from '../components/BuyBook.astro';
 import { getShortSlug } from '../utils/shortSlug';
+import { isImagePath } from '../utils/media';
 
 const { title, description, pubDate, updatedDate, slug, heroImage, body, tags = [] } = Astro.props;
 const shortSlug = getShortSlug(slug);
@@ -38,7 +39,7 @@ const posts = (await getCollection('short'))
     <BaseHead
       title={title}
       description={description}
-      image={heroImage}
+      image={isImagePath(heroImage) ? heroImage : undefined}
       type="article"
       pubDate={pubDate}
       updatedDate={updatedDate}
