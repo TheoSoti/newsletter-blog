@@ -224,7 +224,6 @@ const posts = (await getCollection('blog'))
       <BlogPosting
         {...{ title, description, pubDate, updatedDate, readingTime, body }}
         heroImage={socialImage}
-        type="TechArticle"
         keywords={tags}
       />
       <BreadcrumbList items={breadcrumbs} />

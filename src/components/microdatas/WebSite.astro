@@ -1,31 +1,22 @@
 ---
-import profile from '../../assets/profile.png';
-import logo from '../../assets/logo.png';
+import { homeUrl, organization, person } from './identity';
 
 const structuredData = {
 	'@context': 'https://schema.org',
-	'@type': 'WebSite',
-	name: 'Theo Soti',
-	url: 'https://theosoti.com/',
-	description: 'Modern CSS tutorials and frontend development insights by Theo Soti.',
-	inLanguage: 'en',
-	author: {
-		'@type': 'Person',
-		name: 'Theo Soti',
-		description: 'Frontend Developer & Content Creator',
-		image: `https://theosoti.com${profile.src}`,
-		sameAs: ['https://www.linkedin.com/in/theodorelefevre/', 'https://x.com/theoleff', 'https://codepen.io/theosoti'],
-	},
-	publisher: {
-		'@type': 'Organization',
-		name: 'Theo Soti',
-		logo: {
-			'@type': 'ImageObject',
-			url: `https://theosoti.com${logo.src}`,
-			width: 200,
-			height: 50,
+	'@graph': [
+		{
+			'@type': 'WebSite',
+			'@id': `${homeUrl}#website`,
+			name: 'Theo Soti',
+			url: homeUrl,
+			description: 'Modern CSS tutorials and frontend development insights by Theo Soti.',
+			inLanguage: 'en',
+			author: { '@id': person['@id'] },
+			publisher: { '@id': organization['@id'] },
 		},
-	},
+		organization,
+		person,
+	],
 };
 ---
 
